@@ -1,4 +1,4 @@
-<?phpqqW
+<?php
 
 return [
 

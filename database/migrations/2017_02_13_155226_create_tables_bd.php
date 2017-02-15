@@ -29,6 +29,7 @@ class CreateTablesBd extends Migration
         });
 
         Schema::create('roles', function (Blueprint $table) {
+            $table->increments('id');
             $table->string('email',190)->index();
             $table->string('token',190)->index();
             $table->timestamp('created_at')->nullable();

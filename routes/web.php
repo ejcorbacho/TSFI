@@ -20,3 +20,5 @@ Auth::routes();
 Route::get('/administracio', 'HomeController@index');
 
 Auth::routes();
+
+Route::get('/nuevoUsuario', 'nuevoUsuarioController@index');

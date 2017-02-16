@@ -57,7 +57,7 @@ class CreateTablesBd extends Migration
 
         Schema::create('log', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('id_usuario');
+            $table->integer('id_usuario')->unsigned();
             $table->string('accion', 200);
             $table->foreign('id_usuario')->references('id')->on('usuarios');
             $table->timestamps();
@@ -78,10 +78,10 @@ class CreateTablesBd extends Migration
             $table->string('resumen_largo', 200);
             $table->string('contenido', 200);
             $table->integer('visible');
-            $table->integer('foto');
+            $table->integer('foto')->unsigned();
             $table->integer('publico');
             $table->integer('relevancia');
-            $table->integer('usuario_publicador');
+            $table->integer('usuario_publicador')->unsigned();
             $table->foreign('usuario_publicador')->references('id')->on('usuarios');
             $table->foreign('foto')->references('id')->on('fotos');
             $table->timestamps();
@@ -95,9 +95,9 @@ class CreateTablesBd extends Migration
             $table->string('resumen_largo', 200);
             $table->string('contenido', 200);
             $table->integer('visible');
-            $table->integer('foto');
+            $table->integer('foto')->unsigned();
             $table->integer('publico');
-            $table->integer('usuario_publicador');
+            $table->integer('usuario_publicador')->unsigned();
             $table->foreign('usuario_publicador')->references('id')->on('usuarios');
             $table->foreign('foto')->references('id')->on('fotos');
             $table->timestamps();
@@ -125,8 +125,8 @@ class CreateTablesBd extends Migration
 
         Schema::create('entradas_categorias', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('id_entrada');
-            $table->integer('id_categoria');
+            $table->integer('id_entrada')->unsigned();
+            $table->integer('id_categoria')->unsigned();
             $table->foreign('id_entrada')->references('id')->on('entradas');
             $table->foreign('id_categoria')->references('id')->on('categorias');
             $table->timestamps();

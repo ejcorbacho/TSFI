@@ -71,7 +71,6 @@
   color: white;
   width: 350px;
   background-color: rgba(40,40,40,0.95);
-
 }
 .item-submenu {
 
@@ -181,7 +180,7 @@
   top: 78px;
   padding-bottom: 15px;
   min-width: 303px;
-
+  z-index: 20;
 }
 
 .items_menu_responsive{
@@ -241,16 +240,15 @@
 
 /************************* FOOTER *************************/
 footer {
-
   min-width: 303px;
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  left: 0;
+  width: 100%;
   padding: 1rem;
   background-color: #1C2227;
   text-align: center;
   color: white;
+  height:200px;
+  float:left;
+  margin-top: 50px;
 
 }
 

@@ -1,0 +1,68 @@
+.popularPost{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    overflow: hidden;
+}
+
+.popularPostLink:link{
+    text-decoration: none;
+    color: black;
+}
+.popularPostLink:visited {
+    text-decoration: none;
+}
+.popularPostLink:hover {
+    text-decoration: none;
+}
+.popularPostImage{
+    overflow:hidden;
+}
+.popularPostImage  img{
+    width: 100%;
+    object-fit: cover;
+    height: 100%;
+    max-height: 250px;
+}
+.popularPostInfo >h1 {
+    margin-top: 0px;
+}
+.popularPostText{
+    color:black;
+    height:15%;
+    overflow:hidden;
+    margin-bottom:0px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp:6;
+    text-overflow: ellipsis;
+}
+.popularPostData{
+    height: 20px;
+}
+.popularPostDataSeparator{
+    float:left;
+    margin: 0 6 0 0px;
+}
+
+.popularPostSocialIcon{
+    height: 20px;
+    width: 20px;
+    text-align: center;
+    font-size: 19px !important;
+}
+
+.popularPostDate{
+    padding: 0px;
+    width: 70px;
+}
+.popularPostSeparator{
+    margin: 0px;
+    border-color:black;
+}
+.sidebarLink{
+    width: 100%;
+    height: 50px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    float:left;
+}

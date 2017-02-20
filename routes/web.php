@@ -11,9 +11,12 @@
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
+
+Route::get('/', 'home@index');
+
+Route::get('/category', 'home@category');
+
+Route::get('/post', 'home@post');
 
 Auth::routes();
 

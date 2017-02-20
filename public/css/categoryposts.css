@@ -1,0 +1,106 @@
+.categoryPost{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    overflow: hidden;
+}
+
+.categoryPostLink:link{
+    text-decoration: none;
+    color: black;
+}
+.categoryPostLink:visited {
+    text-decoration: none;
+}
+.categoryPostLink:hover {
+    text-decoration: none;
+}
+.categoryPostImage{
+    overflow:hidden;
+}
+.categoryPostImage  img{
+    width: 100%;
+    object-fit: cover;
+    height: 100%;
+    max-height: 250px;
+}
+.categoryPostInfo >h1 {
+    margin-top: 0px;
+}
+.categoryPostText{
+    color:black;
+    height:15%;
+    overflow:hidden;
+    margin-bottom:0px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp:6;
+    text-overflow: ellipsis;
+}
+.categoryPostData{
+    height: 20px;
+}
+.categoryPostDataSeparator{
+    float:left;
+    margin: 0 6 0 0px;
+}
+
+.categoryPostSocialIcon{
+    height: 20px;
+    width: 20px;
+    text-align: center;
+    font-size: 19px !important;
+}
+.categoryPostDate{
+    padding: 0px;
+    width: 70px;
+}
+.categoryPostSeparator{
+    margin: 0px;
+    border-color:black;
+}
+.categoryPostsSidebar{
+    border: 1px solid black;
+}
+.sidebarLink{
+    width: 100%;
+    height: 50px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    float:left;
+}
+.sidebarPost{
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    position: relative;
+}
+.sidebarPostImg{
+    width: 100%;
+    object-fit: cover;
+}
+.sidebarPostTitle{
+    height: 16%;
+    margin-left: 10%;
+    width: 80%;
+    opacity: 60;
+    background-color:grey;
+    position: absolute;
+    bottom: 25%;
+    z-index: 1;
+    object-fit: contain;
+    font-size: 2.9em;
+    font-weight: bold;
+    text-align: center;
+    color: black;
+}
+.sidebarPostTitle > p{
+    background-color:grey;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp:2;
+    text-overflow: ellipsis;
+}
+@media (min-width: 992px) {
+    .sidebarPostTitle{font-size: 1.2em;height: 32px;}
+}

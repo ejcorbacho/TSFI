@@ -25,4 +25,8 @@ class HomeController extends Controller
     {
         return view('homeBack');
     }
+    public function editCategory()
+    {
+        return view('backendEditCategory');
+    }
 }

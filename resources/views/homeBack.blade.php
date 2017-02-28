@@ -2,8 +2,6 @@
 
 @section('content')
 <div class="container">
-
-  Sessió iniciada {{Auth::user()->name }} {{Auth::user()->apellido}}
-
+    Beinvenido {{Auth::user()->name }}!
 </div>
 @endsection

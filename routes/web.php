@@ -14,12 +14,20 @@
 
 Route::get('/', 'home@index');
 
+Route::get('/home', 'HomeController@index');
+
+Route::get('/category', 'home@category');
+
+Route::get('/post', 'home@post');
+
 Auth::routes();
 
 Route::get('/administracio', 'HomeController@index');
 
+Route::get('administracio/categoria/editar', 'HomeController@editCategory');
 Route::get('/nuevaEntrada', 'nuevaEntrada@index');
 
 Route::get('/nuevaEntrada', array('uses' => 'EntradasController@makeEntrada')); //Mostrar formulario
 Route::post('/crearEntrada', array('uses' => 'EntradasController@crearEntrada'));  //Guardar entrada
 Route::get('/listarEntradas', array('uses' => 'EntradasController@listarEntradas'));  //Mostrar los datos
+

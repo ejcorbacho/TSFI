@@ -106,7 +106,7 @@ class CreateTablesBd extends Migration
         Schema::create('categorias', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nombre', 200);
-            $table->integer('id_padre');
+            $table->integer('id_padre')->nullable();
             $table->timestamps();
         });
 
@@ -129,6 +129,19 @@ class CreateTablesBd extends Migration
             $table->integer('id_categoria')->unsigned();
             $table->foreign('id_entrada')->references('id')->on('entradas');
             $table->foreign('id_categoria')->references('id')->on('categorias');
+            $table->timestamps();
+        });
+        Schema::create('etiquetas', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('nombre',200);
+            $table->timestamps();
+        });
+        Schema::create('entradas_etiquetas', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('id_entrada')->unsigned();
+            $table->integer('id_etiqueta')->unsigned();
+            $table->foreign('id_entrada')->references('id')->on('entradas');
+            $table->foreign('id_etiqueta')->references('id')->on('etiquetas');
             $table->timestamps();
         });
     }

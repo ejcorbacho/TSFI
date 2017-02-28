@@ -14,14 +14,12 @@
 
 Route::get('/', 'home@index');
 
-Route::get('/category', 'home@category');
-
-Route::get('/post', 'home@post');
-
 Auth::routes();
 
 Route::get('/administracio', 'HomeController@index');
 
-Auth::routes();
+Route::get('/nuevaEntrada', 'nuevaEntrada@index');
 
-Route::get('/nuevoUsuario', 'nuevoUsuarioController@index');
+Route::get('/nuevaEntrada', array('uses' => 'EntradasController@makeEntrada')); //Mostrar formulario
+Route::post('/crearEntrada', array('uses' => 'EntradasController@crearEntrada'));  //Guardar entrada
+Route::get('/listarEntradas', array('uses' => 'EntradasController@listarEntradas'));  //Mostrar los datos

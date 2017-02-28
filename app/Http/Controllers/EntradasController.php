@@ -35,7 +35,7 @@ class EntradasController  extends Controller
       $this->oentradas->titulo = Input::get('titulo');
       $this->oentradas->subtitulo = Input::get('subtitulo');
       $this->oentradas->twitter = Input::get('twitter');
-      $this->oentradas->resumen_largo = Input::get('resum_llarg');
+      $this->oentradas->resumen_largo = Input::get('resum');
       $this->oentradas->contenido = Input::get('contenido');
 
       if ($this->oentradas->guardar()){

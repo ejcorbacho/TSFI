@@ -81,9 +81,7 @@
                 <div class="col-xs-3 item" id="buscador">
                   <div id="boton_menu">
                     <i id="boton_desplegar_menu" class="fa fa-bars" aria-hidden="true"></i>
-
                   </div>
-
                 </div>
               </div>
           </nav>

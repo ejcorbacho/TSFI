@@ -7,23 +7,25 @@
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.6 -->
-  <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="{{asset('bootstrap/css/bootstrap.min.css')}}">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
 
   <!-- IMPORTANTE -->
-  <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
+  <link rel="stylesheet" href="{{asset('dist/css/AdminLTE.css')}}">
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
-  <link rel="stylesheet" href="dist/css/skins/_all-skins.min.css">
+  <link rel="stylesheet" href="{{asset('dist/css/skins/_all-skins.min.css')}}">
   <!-- jQuery 2.2.3 -->
-	<script src="plugins/jQuery/jquery-2.2.3.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <!-- Bootstrap 3.3.6 -->
-<script src="bootstrap/js/bootstrap.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <!-- Desplegable notificaciones (tuerca) -->
-	<script src="dist/js/app.min.js"></script>
+	<script src="{{asset('dist/js/app.min.js')}}"></script>
+<!-- UTILIDADES GENERALES -->
+     <link rel="stylesheet" href="{{asset('css/backend/backendUtil.css')}}">
 
 <!-- CONTROL DE SESION -->
 <!-- Scripts -->
@@ -38,7 +40,10 @@
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
-
+    <div id="topSuccessMessage" class="alert alert-success alerta">
+    </div>
+    <div id="topErrorMessage" class="alert alert-danger alerta">
+    </div>
   <header class="main-header">
 
     <!-- Logo -->
@@ -63,7 +68,7 @@
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
-              <span class="hidden-xs">{{Auth::user()->name }}</span>
+              <span class="hidden-xs">{{Auth::user()->name }} {{ Auth::user()->apellido }}</span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
@@ -71,8 +76,8 @@
                 <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 
                 <p>
-                  {{Auth::user()->name }}
-                  <small>{{Auth::user()->email }}</small>
+                  {{Auth::user()->name }} {{ Auth::user()->apellido }}
+                  <small>{{ $email_usuarios }}</small>
                 </p>
               </li>
 
@@ -142,7 +147,20 @@
           <ul class="treeview-menu">
             <li><a href="pages/charts/chartjs.html"><i class="fa fa-circle-o"></i> Nueva Entrada</a></li>
             <li><a href="pages/charts/morris.html"><i class="fa fa-circle-o"></i> Entradas </a></li>
-            <li><a href="pages/charts/flot.html"><i class="fa fa-circle-o"></i> Categorias</a></li>
+          </ul>
+        </li>
+ <!-- APARTADO CATEGORIAS --->
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-pie-chart"></i>
+            <span>CATEGORIAS</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="administracio/categoria/editar"><i class="fa fa-circle-o"></i> Nova Categoria</a></li>
+            <li><a href="administracio/categoria/editar"><i class="fa fa-circle-o"></i> Editar Categoria </a></li>
           </ul>
         </li>
 
@@ -225,5 +243,11 @@
 
 </div>
 
+    
+    <!--  SCRIPTS  -->
+    <!--  SCRIPT GENERAL  -->
+    <script src="{{asset('js/backend/backendUtil.js')}}"></script>
+    
+    
 </body>
 </html>

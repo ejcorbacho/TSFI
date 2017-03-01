@@ -12,13 +12,13 @@
 */
 
 
-Route::get('/', 'home@index');
+Route::get('/', 'feController@index');
 
 Route::get('/home', 'HomeController@index');
 
-Route::get('/category', 'home@category');
+Route::get('/category', 'feController@category');
 
-Route::get('/post', 'home@post');
+Route::get('/post', 'feController@post');
 
 Auth::routes();
 

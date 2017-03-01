@@ -4,11 +4,14 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/xampp/htdocs/TSFI/resources/views/homeBack.blade.php</file>
+            <file>file:/C:/xampp/htdocs/TSFI/app/Http/Controllers/EntradasController.php</file>
+            <file>file:/C:/xampp/htdocs/TSFI/resources/views/backendEditCategory.blade.php</file>
             <file>file:/C:/xampp/htdocs/TSFI/resources/views/layouts/backend.blade.php</file>
-            <file>file:/C:/xampp/htdocs/TSFI/resources/views/backend/editCategory.blade.php</file>
             <file>file:/C:/xampp/htdocs/TSFI/routes/web.php</file>
             <file>file:/C:/xampp/htdocs/TSFI/app/Http/Controllers/HomeController.php</file>
             <file>file:/C:/xampp/htdocs/TSFI/resources/views/layouts/frontend.blade.php</file>
+            <file>file:/C:/xampp/htdocs/TSFI/resources/views/Entradas.blade.php</file>
+            <file>file:/C:/xampp/htdocs/TSFI/app/Entradas.php</file>
         </group>
     </open-files>
 </project-private>

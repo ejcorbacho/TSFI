@@ -5,15 +5,15 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 
-class home extends Controller
+class feController extends Controller
 {
   public function index() {
-    return view('home');
+    return view('feHome');
   }
   public function category() {
-    return view('category');
+    return view('feCategory');
   }
   public function post() {
-    return view('post');
+    return view('fePost');
   }
 }

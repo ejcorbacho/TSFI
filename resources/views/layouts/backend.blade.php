@@ -159,7 +159,7 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="administracio/categoria/editar"><i class="fa fa-circle-o"></i> Nova Categoria</a></li>
+            <li><a href="administracio/categoria/nova"><i class="fa fa-circle-o"></i> Nova Categoria</a></li>
             <li><a href="administracio/categoria/editar"><i class="fa fa-circle-o"></i> Editar Categoria </a></li>
           </ul>
         </li>

@@ -20,11 +20,14 @@ Route::get('/category', 'feController@category');
 
 Route::get('/post', 'feController@post');
 
+Route::get('/post/{id}', ['uses' =>'feController@post']);
+
 Auth::routes();
 
 Route::get('/administracio', 'HomeController@index');
 
-Route::get('administracio/categoria/editar', 'HomeController@editCategory');
+Route::get('administracio/categoria/editar', 'beCategoriesController@editarCategoria');
+Route::get('administracio/categoria/nova', 'beCategoriesController@novaCategoria');
 
 Route::get('administracio/entradas/nuevaEntrada', array('uses' => 'EntradasController@makeEntrada')); //Mostrar formulario
 Route::post('administracio/entradas/crearEntrada', array('uses' => 'EntradasController@crearEntrada'));  //Guardar entrada

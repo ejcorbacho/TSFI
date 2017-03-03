@@ -20,6 +20,8 @@ Route::get('/category', 'feController@category');
 
 Route::get('/post', 'feController@post');
 
+Route::get('/post/{id}', ['uses' =>'feController@post']);
+
 Auth::routes();
 
 Route::get('/administracio', 'HomeController@index');

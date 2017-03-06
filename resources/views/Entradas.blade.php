@@ -5,9 +5,9 @@
 <link rel="stylesheet" href="{{ asset('css/sol.css') }}">
 
 <script type="text/javascript" src="{{ asset('js/sol.js') }}"></script>
-<script src="{{ asset('js/tinymce/tinymce/tinymce.dev.js') }}"></script>
-<script src="{{ asset('js/tinymceConfig.js') }}"></script>
-<script src="{{ asset('js/controlEntradas.js') }}"></script>
+<!--<script src="{{ asset('js/tinymce/tinymce/tinymce.dev.js') }}"></script>
+<script src="{{ asset('js/tinymceConfig.js') }}"></script>-->
+<script src="{{ asset('js/EntradasScript.js') }}"></script>
 
 <div class="container">
       <!-- Main content -->
@@ -29,7 +29,7 @@
       <section class="content">
         <div class="row">
   		<div class="col-md-9">
-        {{ Form::open(array('url'=>'/crearEntrada', 'role'=>'form')) }}
+        {{ Form::open(array('url'=>'administracio/entradas/crearEntrada', 'role'=>'form')) }}
           <!-- general form elements -->
             <div class="box box-primary">
               <div class="box-header with-border">

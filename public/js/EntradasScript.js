@@ -1,10 +1,36 @@
-
+//************* DECLARAR VARIABLES             ******************//
 var enviar = false;
 var maximoTwitter = 140; /* CARACTERES MAXIMOS DE TWITTER */
 var maximoResumen = 450; /* CARACTERES MAXIMOS DE RESUMEN */
 var maximoTitulo = 30; /* CARACTERES MAXIMOS DE TITULO */
 var maximoSubtitulo = 40; /* CARACTERES MAXIMOS DE SUBTITULO */
 var maximoContenido = 30; /* CARACTERES MAXIMOS DE CONTENIDO */
+
+
+//************* CUERPO PRINCIPAL DEL PROGRAMA *******************//
+
+alert('hola');
+
+cargarListadoCategorias(); // CARGA INICIAL DEL LISTADO DE CATEGORIAS //
+
+//************* LLAMADAS A AJAX               ******************//
+
+function cargarListadoCategorias(){
+  alert('llama');
+  $.ajax({
+          type: "POST",
+          url: "/ajax/categories/llistaCategories",
+          data: {},
+          dataType: "html",
+          error: function(){
+                    alert("error petición ajax");
+          },
+          success: function(data){
+
+          }
+  });
+
+}
 
 function validarTwitter(){
   var longitud = $("#twitter").val().length;

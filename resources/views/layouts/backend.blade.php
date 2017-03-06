@@ -145,7 +145,7 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="administracio/entradas/nuevaEntrada"><i class="fa fa-circle-o"></i> Nova Entrada</a></li>
+            <li><a href="{{ url('administracio/entrada/nova') }}"><i class="fa fa-circle-o"></i> Nova Entrada</a></li>
             <li><a href="administracio/entradas/entradas"><i class="fa fa-circle-o"></i> Entradas </a></li>
           </ul>
         </li>

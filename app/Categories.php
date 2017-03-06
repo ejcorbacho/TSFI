@@ -11,8 +11,8 @@ class Categories extends Model
     public $id;
     public $nombre;
     public $id_padre;
-    
-    
+
+
 
     public function guardar(){
       $data = array(
@@ -37,7 +37,7 @@ class Categories extends Model
         }
     }
 
-    public function llegirTotes(){
+    public function llistarTotes(){
         $contenido =  DB::table('categorias')
           ->select('categorias.*')
           ->get();

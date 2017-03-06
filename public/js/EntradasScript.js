@@ -17,16 +17,19 @@ cargarListadoCategorias(); // CARGA INICIAL DEL LISTADO DE CATEGORIAS //
 
 function cargarListadoCategorias(){
   alert('llama');
+
   $.ajax({
-          type: "POST",
-          url: "/ajax/categories/llistaCategories",
+          type: "GET",
+          url: '/TSFI/public/ajax/categories/llistaCategories',
           data: {},
           dataType: "html",
           error: function(){
                     alert("error petición ajax");
           },
           success: function(data){
-
+              var dataParse = JSON.parse(data)
+              alert(data);
+              alert(dataParse[0].nombre);
           }
   });
 

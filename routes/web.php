@@ -35,4 +35,4 @@ Route::get('administracio/entradas/listarEntradas', array('uses' => 'EntradasCon
 
 
 //******* RUTAS AJAX ***********/
-Route::post('ajax/categories/llistaCategories', array('uses' => 'beCategoriesController@llistarCategoria')); //Mostrar formulario
+Route::get('ajax/categories/llistaCategories', array('uses' => 'beCategoriesController@llistarCategoria')); //Mostrar formulario

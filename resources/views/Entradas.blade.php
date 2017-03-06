@@ -2,7 +2,9 @@
 
 @section('content')
 <link href="{{ asset('css/tinymce.css') }}" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="{{ asset('css/sol.css') }}">
 
+<script type="text/javascript" src="{{ asset('js/sol.js') }}"></script>
 <script src="{{ asset('js/tinymce/tinymce/tinymce.dev.js') }}"></script>
 <script src="{{ asset('js/tinymceConfig.js') }}"></script>
 <script src="{{ asset('js/controlEntradas.js') }}"></script>
@@ -121,40 +123,45 @@
           </div>
           <!-- FI publicacio-->
 
-  		<div class="col-md-3">
-  		<div class="example-modal">
+          <div class="col-md-3">
+            <div class="example-modal">
               <div class="modal-content box">
                 <div class="modal-header">
                   <h4 class="modal-title">Categories</h4>
-  			  </div>
-  			  <div class="modal-body">
-  				<div class="form-group ">
+                </div>
+                <div class="modal-body">
+                  <div class="form-group ">
                     <label>Totes les categories</label>
-                    <select class="form-control" width="40%">
-                      <option>Categoria 1</option>
-                      <option>Categoria 2</option>
-                      <option>Categoria 3</option>
-                      <option>Categoria 4</option>
-                      <option>Categoria 5</option>
+                    <select id="my-select" name="character" multiple="multiple">
+                      <option value="Peter">Peter Griffin</option>
+                      <option value="Lois">Lois Griffin</option>
+                      <option value="Chris">Chris Griffin</option>
+                      <option value="Meg">Meg Griffin</option>
+                      <option value="Stewie">Stewie Griffin</option>
+                      <option value="Cleveland">Cleveland Brown</option>
+                      <option value="Joe">Joe Swanson</option>
+                      <option value="Quagmire">Glenn Quagmire</option>
+                      <option value="Evil Monkey">Evil Monkey</option>
+                      <option value="Herbert">John Herbert</option>
                     </select>
                   </div>
-  			   </div>
-  				<div class="box-header with-border">
-  				  <a type="button" class="btn btn-box-tool" data-widget="collapse">+ Afegir nova categoria</a>
+                </div>
+                <div class="box-header with-border">
+                  <a type="button" class="btn btn-box-tool" data-widget="collapse">+ Afegir nova categoria</a>
 
-  				  <!-- /.box-tools -->
-  				</div>
-  				<!-- /.box-header -->
-  				<div class="box-body">
-  					 <div class="form-group">
-  					  <input type="text" class="form-control" placeholder="Introdueix el titol aquí">
-  					</div>
-  					<button type="button" class="btn btn-default pull-left" data-dismiss="modal">Afegir Categoria</button>
-  				</div>
+                  <!-- /.box-tools -->
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                  <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Introdueix la categoria aquí">
+                  </div>
+                  <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Afegir Categoria</button>
+                </div>
               </div>
 
-  	    </div>
-        </div>
+            </div>
+          </div>
   	<!-- END Categories -->
 
   	  <div class="col-md-3">

@@ -145,8 +145,8 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="pages/charts/chartjs.html"><i class="fa fa-circle-o"></i> Nueva Entrada</a></li>
-            <li><a href="pages/charts/morris.html"><i class="fa fa-circle-o"></i> Entradas </a></li>
+            <li><a href="administracio/entradas/nuevaEntrada"><i class="fa fa-circle-o"></i> Nova Entrada</a></li>
+            <li><a href="administracio/entradas/entradas"><i class="fa fa-circle-o"></i> Entradas </a></li>
           </ul>
         </li>
  <!-- APARTADO CATEGORIAS --->
@@ -159,7 +159,7 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="administracio/categoria/editar"><i class="fa fa-circle-o"></i> Nova Categoria</a></li>
+            <li><a href="administracio/categoria/nova"><i class="fa fa-circle-o"></i> Nova Categoria</a></li>
             <li><a href="administracio/categoria/editar"><i class="fa fa-circle-o"></i> Editar Categoria </a></li>
           </ul>
         </li>
@@ -243,11 +243,11 @@
 
 </div>
 
-    
+
     <!--  SCRIPTS  -->
     <!--  SCRIPT GENERAL  -->
     <script src="{{asset('js/backend/backendUtil.js')}}"></script>
-    
-    
+
+
 </body>
 </html>

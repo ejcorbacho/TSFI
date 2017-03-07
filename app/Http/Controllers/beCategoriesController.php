@@ -11,21 +11,27 @@ use View;
 class beCategoriesController extends Controller
 {
     private $ocategories;
-    
+
     public function __construct()
     {
         $this->middleware('auth');
         $this->ocategories = new Categories;
     }
-    
+
     public function novaCategoria()
     {
         $this->ocategories->nombre = Input::get('nombre');
         //falta un if de comprobacion que esta en entradas controller
         $this->ocategories->guardar();
-        
-        
+
+
         return view('backend.beNovaCategoria');
+    }
+
+    public function llistarCategoria()
+    {
+      return($this->ocategories->llistarTotes());
+
     }
     public function editarCategoria()
     {

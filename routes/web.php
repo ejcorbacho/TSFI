@@ -18,6 +18,8 @@ Route::get('/home', 'HomeController@index');
 
 Route::get('/category', 'feController@category');
 
+Route::get('/category/{id}', ['uses' =>'feController@category']);
+
 Route::get('/post', 'feController@post');
 
 Route::get('/post/{id}', ['uses' =>'feController@post']);

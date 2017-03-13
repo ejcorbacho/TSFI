@@ -105,7 +105,7 @@ class CreateTablesBd extends Migration
 
         Schema::create('categorias', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nombre', 200);
+            $table->string('nombre', 200)->unique();
             $table->integer('id_padre')->nullable()->unsigned();
             $table->timestamps();
         });

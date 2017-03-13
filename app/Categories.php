@@ -11,13 +11,13 @@ class Categories extends Model
     public $id;
     public $nombre;
     public $id_padre;
-    
-    
+
+
 
     public function guardar(){
       $data = array(
         'nombre'=> $this->nombre,
-        'id_padre'=> null
+        'id_padre'=> $this->id_padre
       );
 
 
@@ -37,12 +37,20 @@ class Categories extends Model
         }
     }
 
-    public function llegirTotes(){
+    public function llegirCategoriesSensePare(){
+        $contenido =  DB::table('categorias')
+          ->select('categorias.*')
+          ->where('categorias.id_padre', '=', null)
+          ->get();
+          //->pluck('nombre', 'id');
+
+        return $contenido;
+    }
+    public function llistarTotes(){
         $contenido =  DB::table('categorias')
           ->select('categorias.*')
           ->get();
 
         return $contenido;
     }
-
 }

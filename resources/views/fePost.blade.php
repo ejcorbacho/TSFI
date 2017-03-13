@@ -12,8 +12,8 @@
     <div class="col-lg-10 col-lg-offset-1 col-sm-12">
         <div class="postTitleContainer">
             <img src="http://placehold.it/700x400" alt="image placeholder" class="postTitleImg">
-            <h1 class="titol col-sm-6 col-sm-offset-3 col-xs-6 col-xs-offset-3">TÍTOL DEL POST</h1>
-            <h2 class="categoria col-sm-2 col-sm-offset-5 col-xs-2 col-xs-offset-5">CATEGORIA</h2>
+            <h1 class="titol col-sm-6 col-sm-offset-3 col-xs-6 col-xs-offset-3">{!!html_entity_decode($data->titulo)!!}</h1>
+            <h2 class="categoria col-sm-2 col-sm-offset-5 col-xs-2 col-xs-offset-5">{!!html_entity_decode($data->nombre)!!}</h2>
             <h3 class="autor col-sm-4 col-sm-offset-4 col-xs-4 col-xs-offset-4">Creat per · Martí</h3>
         </div>
 

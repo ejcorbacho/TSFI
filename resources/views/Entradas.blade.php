@@ -17,7 +17,8 @@
         <h1>
           Entrada
         </h1>
-        {{ $data['mensaje']}}
+
+
         <ol class="breadcrumb">
           <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
           <li><a href="#">Forms</a></li>
@@ -29,8 +30,9 @@
       <section class="content">
         <div class="row">
   		<div class="col-md-9">
-        {{ Form::open(array('url'=>'/administracio/entradas/crearEntrada', 'role'=>'form')) }}
+        <form id="formulario_entrada">
           <!-- general form elements -->
+            <input name="idBD" value="@if (!empty($data[0]->titulo)) {{ $data[0]->id }} @else {{ '0' }} @endif" id="idBD" type="hidden" value='0' />
             <div class="box box-primary">
               <div class="box-header with-border">
                 <h3 class="box-title">Afegir nova entrada</h3>
@@ -38,12 +40,13 @@
                 <div class="box-body">
 
   				<div class="form-group">
-                      <div id="notificaciones_titulo">adfasdf</div>
-                      {{Form::text('titulo', null, array('id' => 'titulo', 'class' => 'form-control', 'placeholder' => 'Introdueix el titol aquí', 'onkeyup' => 'validarEnviar()'))}}
+                      <div id="notificaciones_titulo"></div>
+                      <input type="text" name="titulo" value="@if (!empty($data[0]->titulo)) {{ $data[0]->titulo }} @endif" id="titulo" class="form-control" placeholder="Introdueix el titol" onkeyup="validarEnviar()" />
+
                   </div>
   				<div class="form-group">
                     <div id="notificaciones_subtitulo">adfasdf</div>
-                    {{Form::text('subtitulo', null, array('id' => 'subtitulo', 'class' => 'form-control', 'placeholder' => 'Introdueix el subtitol aquí', 'onkeyup' => 'validarEnviar()'))}}
+                    <input type="text" name="subtitulo" value="@if (!empty($data[0]->subtitulo)) {{ $data[0]->subtitulo  }} @endif" id="subtitulo" class="form-control" placeholder="Introdueix el subtitol" onkeyup="validarEnviar()" />
                   </div>
                 </div>
 
@@ -55,10 +58,10 @@
             <div class="box-header">
               <h3 class="box-title">TWITTER</h3>
             </div>
-            <div id="notificaciones_twitter">adfasdf</div>
+            <div id="notificaciones_twitter"></div>
             <div class="box-body pad">
               <button type="submit" class="btn btn-primary">Imatges</button>
-              {{ Form::textarea('twitter', null, ['id' => 'twitter', 'onkeyup' => 'validarEnviar()', 'onchange' => 'validarEnviar()']) }}
+              <textarea name="twitter" id="twitter" onkeyup="validarEnviar()" onchange="validarEnviar()">@if (!empty($data[0]->resumen_corto)) {{ $data[0]->resumen_corto  }} @endif</textarea>
             </div>
           </div>
 
@@ -70,10 +73,10 @@
             <div class="box-header">
               <h3 class="box-title">RESUM</h3>
             </div>
-            <div id="notificaciones_resumen">adfasdf</div>
+            <div id="notificaciones_resumen"></div>
             <div class="box-body pad">
               <button type="submit" class="btn btn-primary">Imatges</button>
-              {{ Form::textarea('resum', null, ['id' => 'resum', 'onkeyup' => 'validarEnviar()', 'onchange' => 'validarEnviar()']) }}
+              <textarea name="resum" id="resum" onkeyup="validarEnviar()" onchange="validarEnviar()"> @if (!empty($data[0]->resumen_largo)) {{ $data[0]->resumen_largo  }} @endif </textarea>
             </div>
           </div>
 
@@ -84,10 +87,10 @@
             <div class="box-header">
               <h3 class="box-title">CONTINGUT</h3>
             </div>
-            <div id="notificaciones_contenido">adfasdf</div>
+            <div id="notificaciones_contenido"></div>
             <div class="box-body pad">
               <button type="submit" class="btn btn-primary">Imatges</button>
-              {{ Form::textarea('contenido', null, array('id' => 'editor', 'onkeyup' => 'validarEnviar()')) }}
+              <textarea name="contingut" id="contingut" onkeyup="validarEnviar()" onchange="validarEnviar()">@if (!empty($data[0]->contenido)) {{ $data[0]->contenido }} @endif</textarea>
             </div>
           </div>
 
@@ -116,7 +119,7 @@
                 </div>
                 <div class="box-footer">
                   <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Vista previa</button>
-                  {{Form::submit('Guardar', ['class' => 'btn btn-primary pull-right']) }}
+                  <button type="submit" value="Guardar" class="btn btn-primary pull-right" />Guardar</button>
                 </div>
               </div>
             </div>
@@ -125,25 +128,16 @@
 
           <div class="col-md-3">
             <div class="example-modal">
-              <div class="modal-content box">
+              <div class="modal-content box collapsed-box ">
                 <div class="modal-header">
                   <h4 class="modal-title">Categories</h4>
                 </div>
                 <div class="modal-body">
                   <div class="form-group ">
                     <label>Totes les categories</label>
-                    <select id="my-select" name="character" multiple="multiple">
-                      <option value="Peter">Peter Griffin</option>
-                      <option value="Lois">Lois Griffin</option>
-                      <option value="Chris">Chris Griffin</option>
-                      <option value="Meg">Meg Griffin</option>
-                      <option value="Stewie">Stewie Griffin</option>
-                      <option value="Cleveland">Cleveland Brown</option>
-                      <option value="Joe">Joe Swanson</option>
-                      <option value="Quagmire">Glenn Quagmire</option>
-                      <option value="Evil Monkey">Evil Monkey</option>
-                      <option value="Herbert">John Herbert</option>
-                    </select>
+                    <div id="selector_categorias">
+                        <select id='selectcategorias' multiple='multiple' name='categorias_seleccionadas[]'></select>
+                  </div>
                   </div>
                 </div>
                 <div class="box-header with-border">
@@ -152,11 +146,11 @@
                   <!-- /.box-tools -->
                 </div>
                 <!-- /.box-header -->
-                <div class="box-body">
+                <div   class="box-body" style="display: none;">
                   <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Introdueix la categoria aquí">
+                    <input id="nombrecategoria" type="text" class="form-control" placeholder="Introdueix la categoria aquí">
                   </div>
-                  <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Afegir Categoria</button>
+                  <button type="button" class="btn btn-default pull-left" onclick="guardarCategoria()" data-dismiss="modal">Afegir Categoria</button>
                 </div>
               </div>
 
@@ -199,7 +193,7 @@
               </div>
   	    </div>
         </div>
-        {{ Form::close() }}
+      </form>
 
   	<!-- END IMATGE-->
       <!-- ./row -->

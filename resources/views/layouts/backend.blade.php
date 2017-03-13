@@ -44,6 +44,11 @@
   <!-- CSRF Token -->
   <meta name="csrf-token" content="{{ csrf_token() }}">
 
+  <!-- Gràfics Analytics -->
+
+  <script src="{{asset('js/backend/analyticsUI.js')}}"></script>
+  <script src="{{asset('plugins/chartjs/Chart-2.5.js')}}"></script>
+
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">

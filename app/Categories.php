@@ -46,5 +46,11 @@ class Categories extends Model
 
         return $contenido;
     }
+    public function llistarTotes(){
+        $contenido =  DB::table('categorias')
+          ->select('categorias.*')
+          ->get();
 
+        return $contenido;
+    }
 }

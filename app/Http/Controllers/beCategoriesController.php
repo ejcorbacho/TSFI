@@ -18,7 +18,7 @@ class beCategoriesController extends Controller
         $this->ocategories = new Categories;
     }
 
-    public function novaCategoriaForm()
+    public function novaCategoria()
     {
         $data = $this->ocategories->llegirCategoriesSensePare();
         

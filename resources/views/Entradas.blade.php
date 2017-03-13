@@ -5,9 +5,9 @@
 <link rel="stylesheet" href="{{ asset('css/sol.css') }}">
 
 <script type="text/javascript" src="{{ asset('js/sol.js') }}"></script>
-<script src="{{ asset('js/tinymce/tinymce/tinymce.dev.js') }}"></script>
-<script src="{{ asset('js/tinymceConfig.js') }}"></script>
-<script src="{{ asset('js/controlEntradas.js') }}"></script>
+<!--<script src="{{ asset('js/tinymce/tinymce/tinymce.dev.js') }}"></script>
+<script src="{{ asset('js/tinymceConfig.js') }}"></script>-->
+<script type="text/javascript" src="{{ asset('js/EntradasScript.js') }}"></script>
 
 <div class="container">
       <!-- Main content -->

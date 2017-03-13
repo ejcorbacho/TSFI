@@ -31,6 +31,10 @@ Route::get('/administracio', 'HomeController@index');
 Route::get('administracio/categoria/editar', 'beCategoriesController@editarCategoria');
 Route::get('administracio/categoria/nova', 'beCategoriesController@novaCategoria');
 
-Route::get('administracio/entradas/nuevaEntrada', array('uses' => 'EntradasController@makeEntrada')); //Mostrar formulario
+Route::get('administracio/entrada/nova', array('uses' => 'EntradasController@makeEntrada')); //Mostrar formulario
 Route::post('administracio/entradas/crearEntrada', array('uses' => 'EntradasController@crearEntrada'));  //Guardar entrada
 Route::get('administracio/entradas/listarEntradas', array('uses' => 'EntradasController@listarEntradas'));  //Mostrar los datos
+
+
+//******* RUTAS AJAX ***********/
+Route::get('ajax/categories/llistaCategories', array('uses' => 'beCategoriesController@llistarCategoria')); //Mostrar formulario

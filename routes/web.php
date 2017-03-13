@@ -32,3 +32,10 @@ Route::get('administracio/categoria/nova', 'beCategoriesController@novaCategoria
 Route::get('administracio/entradas/nuevaEntrada', array('uses' => 'EntradasController@makeEntrada')); //Mostrar formulario
 Route::post('administracio/entradas/crearEntrada', array('uses' => 'EntradasController@crearEntrada'));  //Guardar entrada
 Route::get('administracio/entradas/listarEntradas', array('uses' => 'EntradasController@listarEntradas'));  //Mostrar los datos
+
+//Dades analytics
+Route::get('ajax/analytics/getNewUsersData', array('uses' => 'HomeController@getNewUsersData'));  //Dades sobre nous usuaris
+Route::get('ajax/analytics/getDeviceCategoryData', array('uses' => 'HomeController@getDeviceCategoriesData'));  //Dades sobre dispositius
+Route::get('ajax/analytics/getMobileOSData', array('uses' => 'HomeController@getMobileOSData'));  //Dades sobre sistema operatiu dels mòbils
+Route::get('ajax/analytics/getGenderData', array('uses' => 'HomeController@getGenderData'));  //Dades sobre l'edat dels usuaris
+Route::get('ajax/analytics/getAgeBracketData', array('uses' => 'HomeController@getAgeBracketData'));  //Dades sobre el gènere dels usuaris

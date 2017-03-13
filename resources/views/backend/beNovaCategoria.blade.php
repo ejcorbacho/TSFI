@@ -1,6 +1,7 @@
 @extends('layouts.backend')
 
 @section('content')
+<script src="{{asset('js/backend/beCategories.js')}}"></script>
 <!-- Content Header (Page header) -->
       <section class="content-header">
         <h1>
@@ -16,28 +17,27 @@
       <!-- Main content -->
       <section class="content">
         <div class="box box-primary">
-            <h1 onchange="showSuccessAlert({{ $salida_vista['mensaje'] }})">
-            
-            @if (!empty($success))
-                {{ $success }}
-            @endif
             </h1>
           <!--<div class="box-header with-border">
             <h3 class="box-title">Quick Example</h3>
           </div>-->
           <!-- /.box-header -->
           <!-- form start -->
-          <form role="form">
+          <form id="formulariNovaCategoria">
             <div class="box-body">
               <div class="form-group">
-                <label for="exampleInputEmail1">Nom de la categoria</label>
-                {{Form::text('nombre', null, array('id' => 'nombre', 'class' => 'form-control', 'placeholder' => 'Inserta el nom de la categoria'))}}
-                <!--<input type="text" class="form-control" id="CategoryName" placeholder="Inserta el nom de la categoria">-->
+                <label>Nom de la categoria</label>
+                <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Inserta el nom de la categoria">
               </div>
               <div class="form-group">
                 <label class="parentIDSelectorLabel">ID de categoria pare (opcional)</label>
-                {{Form::select('idPare',array_merge(['' => ''], $data->toArray()),null,array('class' => 'selectpicker', 'data-live-search' => 'true',))}}
                 
+                <select id="idPare" name="idPare" class="selectpicker" data-live-search="true">
+                    <option></option>
+                    @foreach($data as $categoria)
+                        <option value={{ $categoria->id  }}>{{$categoria->nombre}}</option>
+                    @endforeach
+                </select>
 
               </div>
               <div class="form-group">
@@ -46,8 +46,7 @@
               <!-- /.box-body -->
 
               <div class="box-footer">
-                {{Form::submit('Guardar', ['class' => 'btn btn-primary']) }}
-                <!--<button type="submit" class="btn btn-primary">Guardar</button>-->
+                  <button type="submit" class="btn btn-primary">Guardar</button>
               </div>
           </form>
           </div>

@@ -22,6 +22,18 @@ class beCategoriesController extends Controller
     {
         $data = $this->ocategories->llegirCategoriesSensePare();
         
+//        $this->ocategories->nombre = Input::get('nombre');
+//        $this->ocategories->id_padre = Input::get('idPare');  
+//        //falta un if de comprobacion que esta en entradas controller
+//        if ($this->ocategories->guardar()){
+//          $this->salida_vista['mensaje'] = "Guardat!";
+//        } else {
+//          $this->salida_vista['mensaje'] = "Error al guardar!";
+//        }
+        return view('backend.beNovaCategoria',['data'=>$data]);
+    }
+    public function guardarNovaCategoria()
+    {
         $this->ocategories->nombre = Input::get('nombre');
         $this->ocategories->id_padre = Input::get('idPare');  
         //falta un if de comprobacion que esta en entradas controller
@@ -29,10 +41,12 @@ class beCategoriesController extends Controller
           $this->salida_vista['mensaje'] = "Guardat!";
         } else {
           $this->salida_vista['mensaje'] = "Error al guardar!";
+          abort(500,"Error al guardar!");
         }
-        return view('backend.beNovaCategoria',['data'=>$data, 'salida_vista' =>$this->salida_vista]);
+        return $this->salida_vista['mensaje'];
     }
-
+    
+    
     public function llistarCategoria()
     {
       return($this->ocategories->llistarTotes());

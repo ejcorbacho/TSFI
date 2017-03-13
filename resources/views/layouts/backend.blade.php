@@ -6,6 +6,8 @@
   <title>TSFI ADMIN</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <!-- Bootstrap 3.3.6 -->
   <link rel="stylesheet" href="{{asset('bootstrap/css/bootstrap.min.css')}}">
   <!-- Font Awesome -->
@@ -18,17 +20,22 @@
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
   <link rel="stylesheet" href="{{asset('dist/css/skins/_all-skins.min.css')}}">
+
   <!-- jQuery 2.2.3 -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <!-- Bootstrap 3.3.6 -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/3.51/jquery.form.min.js"></script> <!-- formulario AJAX -->
 <!-- Desplegable notificaciones (tuerca) -->
 	<script src="{{asset('dist/js/app.min.js')}}"></script>
 <!-- UTILIDADES GENERALES -->
      <link rel="stylesheet" href="{{asset('css/backend/backendUtil.css')}}">
      <link rel="stylesheet" href="{{asset('css/backend/bootstrap-select.css')}}">
+     
 <!-- CONTROL DE SESION -->
 <!-- Scripts -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.1.0/jquery.form.js"></script>
   <script>
       window.Laravel = {!! json_encode([
           'csrfToken' => csrf_token(),
@@ -36,6 +43,11 @@
   </script>
   <!-- CSRF Token -->
   <meta name="csrf-token" content="{{ csrf_token() }}">
+
+  <!-- Gràfics Analytics -->
+
+  <script src="{{asset('js/backend/analyticsUI.js')}}"></script>
+  <script src="{{asset('plugins/chartjs/Chart-2.5.js')}}"></script>
 
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
@@ -146,7 +158,7 @@
           </a>
           <ul class="treeview-menu">
             <li><a href="{{ url('administracio/entrada/nova') }}"><i class="fa fa-circle-o"></i> Nova Entrada</a></li>
-            <li><a href="administracio/entradas/entradas"><i class="fa fa-circle-o"></i> Entradas </a></li>
+            <li><a href="{{ url('administracio/entrada/llistat') }}"><i class="fa fa-circle-o"></i> Entradas </a></li>
           </ul>
         </li>
  <!-- APARTADO CATEGORIAS --->

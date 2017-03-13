@@ -11,13 +11,13 @@ use View;
 class beCategoriesController extends Controller
 {
     private $ocategories;
-    
+
     public function __construct()
     {
         $this->middleware('auth');
         $this->ocategories = new Categories;
     }
-    
+
     public function novaCategoria()
     {
         $data = $this->ocategories->llegirCategoriesSensePare();
@@ -31,6 +31,12 @@ class beCategoriesController extends Controller
           $this->salida_vista['mensaje'] = "Error al guardar!";
         }
         return view('backend.beNovaCategoria',['data'=>$data, 'salida_vista' =>$this->salida_vista]);
+    }
+
+    public function llistarCategoria()
+    {
+      return($this->ocategories->llistarTotes());
+
     }
     public function editarCategoria()
     {

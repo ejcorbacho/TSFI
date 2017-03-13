@@ -11,8 +11,8 @@ class Categories extends Model
     public $id;
     public $nombre;
     public $id_padre;
-    
-    
+
+
 
     public function guardar(){
       $data = array(

@@ -31,29 +31,35 @@ class EntradasController  extends Controller
   //Guardar datos del formulario en la BD
   public function crearEntrada()
   {
-
+      $idPostBd = Input::get('idBD');
+      $this->oentradas->id = Input::get('idBD');
       $this->oentradas->titulo = Input::get('titulo');
       $this->oentradas->subtitulo = Input::get('subtitulo');
       $this->oentradas->twitter = Input::get('twitter');
       $this->oentradas->resumen_largo = Input::get('resum');
-      $this->oentradas->contenido = Input::get('contenido');
-
-      if ($this->oentradas->guardar()){
-
-          $this->salida_vista['mensaje'] = "Guardat!";
+      $this->oentradas->contenido = Input::get('contingut');
+      $this->oentradas->categorias = Input::get('categorias_seleccionadas');
+      //return Input::get('categorias_seleccionadas');
+      if($idPostBd == 0){
+          return $this->oentradas->guardar();
       } else {
-        $this->salida_vista['mensaje'] = "Error al guardar!";
+          return $this->oentradas->actualizar();
       }
-        
 
-      return view('Entradas',['data'=>$this->salida_vista]);
 
   }
-
-  //Listar los clientes guardados en la BD
-  public function listarEntradas()
+//Listar los clientes guardados en la BD
+  public function editarEntrada($id)
   {
-    $caca = "hola";
-    return View::make('Entradas',['variable'=>$this->nombre]);
+    $this->oentradas->id = $id;
+    $entradas = $this->oentradas->leerContenido();
+    return view('Entradas',['data'=>$entradas]);
+  }
+
+  //Listar las entradas guardados en la BD
+  public function llistarEntradas()
+  {
+    $entradas = $this->oentradas->leerTodas();
+    return view('beTotesEntrades',['data'=> $entradas]);
   }
 }

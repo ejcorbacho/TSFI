@@ -27,12 +27,14 @@ Auth::routes();
 Route::get('/administracio', 'HomeController@index');
 
 Route::get('administracio/categoria/editar', 'beCategoriesController@editarCategoria');
-Route::get('administracio/categoria/nova', 'beCategoriesController@novaCategoria');
+Route::get('administracio/categoria/nova', 'beCategoriesController@novaCategoriaForm');
 
-Route::get('administracio/entrada/nova', array('uses' => 'EntradasController@makeEntrada')); //Mostrar formulario
-Route::post('administracio/entradas/crearEntrada', array('uses' => 'EntradasController@crearEntrada'));  //Guardar entrada
-Route::get('administracio/entradas/listarEntradas', array('uses' => 'EntradasController@listarEntradas'));  //Mostrar los datos
+Route::get('administracio/entrada/nova/', array('uses' => 'EntradasController@makeEntrada')); //Mostrar formulario
+Route::get('administracio/entrada/nova/{id}', array('uses' => 'EntradasController@editarEntrada')); //Mostrar formulario
+Route::get('administracio/entrada/llistat', array('uses' => 'EntradasController@llistarEntradas')); //Mostrar listado de entradas
 
 
 //******* RUTAS AJAX ***********/
 Route::get('ajax/categories/llistaCategories', array('uses' => 'beCategoriesController@llistarCategoria')); //Mostrar formulario
+Route::post('ajax/categories/guardarCategoria', array('uses' => 'beCategoriesController@novaCategoriaPost')); //Mostrar formulario
+Route::post('ajax/entradas/guardarEntrada', array('uses' => 'EntradasController@crearEntrada'));  //Guardar entrada

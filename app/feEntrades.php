@@ -13,7 +13,7 @@ class feEntrades extends Model
         $contenido =  DB::table('entradas')
           //->join('fotos', 'entradas.foto', '=', 'fotos.id')
           ->select('entradas.*')
-          ->where('entradas.id', '=', $id)
+          ->where('entradas.id', '=', $this->id)
           ->get();
 
         return $contenido;

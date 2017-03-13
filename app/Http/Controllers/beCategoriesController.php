@@ -18,9 +18,21 @@ class beCategoriesController extends Controller
         $this->ocategories = new Categories;
     }
 
-    public function novaCategoria()
+    public function novaCategoriaForm()
     {
-        $this->ocategories->nombre = Input::get('nombre');
+      $nombre = Input::get('nombre');
+      return $this->novaCategoria($nombre);
+    }
+
+    public function novaCategoriaPost()
+    {
+      $nombre = Input::get('nombre');
+      return $this->novaCategoria($nombre);
+    }
+
+    public function novaCategoria($nombre)
+    {
+        $this->ocategories->nombre = $nombre;
         //falta un if de comprobacion que esta en entradas controller
         $this->ocategories->guardar();
 

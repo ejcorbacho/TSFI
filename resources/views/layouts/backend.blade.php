@@ -31,9 +31,11 @@
 	<script src="{{asset('dist/js/app.min.js')}}"></script>
 <!-- UTILIDADES GENERALES -->
      <link rel="stylesheet" href="{{asset('css/backend/backendUtil.css')}}">
-
+     <link rel="stylesheet" href="{{asset('css/backend/bootstrap-select.css')}}">
+     
 <!-- CONTROL DE SESION -->
 <!-- Scripts -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.1.0/jquery.form.js"></script>
   <script>
       window.Laravel = {!! json_encode([
           'csrfToken' => csrf_token(),
@@ -252,7 +254,7 @@
     <!--  SCRIPTS  -->
     <!--  SCRIPT GENERAL  -->
     <script src="{{asset('js/backend/backendUtil.js')}}"></script>
-
+    <script src="{{asset('js/backend/bootstrap-select.js')}}"></script>
 
 </body>
 </html>

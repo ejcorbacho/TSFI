@@ -18,6 +18,8 @@ Route::get('/home', 'HomeController@index');
 
 Route::get('/category', 'feController@category');
 
+Route::get('/category/{id}', ['uses' =>'feController@category']);
+
 Route::get('/post', 'feController@post');
 
 Route::get('/post/{id}', ['uses' =>'feController@post']);
@@ -25,9 +27,10 @@ Route::get('/post/{id}', ['uses' =>'feController@post']);
 Auth::routes();
 
 Route::get('/administracio', 'HomeController@index');
-
+//Categories:
 Route::get('administracio/categoria/editar', 'beCategoriesController@editarCategoria');
-Route::get('administracio/categoria/nova', 'beCategoriesController@novaCategoriaForm');
+Route::get('administracio/categoria/nova', 'beCategoriesController@novaCategoria');
+Route::get('ajax/categories/guardarCategoria', 'beCategoriesController@guardarNovaCategoria');
 
 Route::get('administracio/entrada/nova/', array('uses' => 'EntradasController@makeEntrada')); //Mostrar formulario
 Route::get('administracio/entrada/nova/{id}', array('uses' => 'EntradasController@editarEntrada')); //Mostrar formulario

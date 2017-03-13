@@ -41,8 +41,8 @@ class Categories extends Model
         $contenido =  DB::table('categorias')
           ->select('categorias.*')
           ->where('categorias.id_padre', '=', null)
-          ->get()
-          ->pluck('nombre', 'id');
+          ->get();
+          //->pluck('nombre', 'id');
 
         return $contenido;
     }

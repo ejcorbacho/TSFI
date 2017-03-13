@@ -11,3 +11,10 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 }
+/*class ArticleController extends Controller {
+    public function index()
+    {
+        $articles = Article::paginate(5);
+        return view('someview', compact('articles'));
+    }
+}*/

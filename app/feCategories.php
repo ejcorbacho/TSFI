@@ -27,7 +27,8 @@ class feCategories extends Model
       ->join('entradas_categorias','entradas_categorias.id_entrada', '=','entradas.id' )
       ->select('entradas.*')
       ->where('entradas_categorias.id_categoria', '=', $id)
-      ->get();
+      ->paginate(5);
+
 
     return $contenido;
 }

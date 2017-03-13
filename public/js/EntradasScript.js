@@ -18,7 +18,7 @@ var notificarEntrada = true;
 //************* CUERPO PRINCIPAL DEL PROGRAMA *******************//
 $( document ).ready(function() {
   cargarListadoCategorias(); // CARGA INICIAL DEL LISTADO DE CATEGORIAS //
-  //validarEnviar();           // ES FA LA VALIDACIÓ INICAL DE CONTINGUTS //
+  validarEnviar();           // ES FA LA VALIDACIÓ INICAL DE CONTINGUTS //
 
 
     // bind 'myForm' and provide a simple callback function
@@ -200,10 +200,6 @@ function validarTodoVacio(){
 }
 
 function validarEnviar(){
-  alert(idPostBD);
-}
-
-function validarEnviarbien(){
   if (validarTwitter() & validarResumen() & validarTitulo() & validarSubtitulo() & validarContenido() & validarTodoVacio()) {
     $("#notificaciones_twitter").append("Si");
     $('input[type="submit"]').removeAttr('disabled');

@@ -14,7 +14,7 @@
                 @foreach($posts as $unpost)
                 <div class="categoryPost">
                     <div class="categoryPostImage col-md-4 col-sm-4 col-xs-12">
-                        <a href="/TSFI/public/post/{{$unpost->id}}">
+                        <a href="../post/{{$unpost->id}}">
                             <img src="http://placehold.it/700x400" alt="image placeholder">
                         </a>
                     </div>

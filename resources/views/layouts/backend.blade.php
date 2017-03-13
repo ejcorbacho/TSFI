@@ -26,7 +26,7 @@
 	<script src="{{asset('dist/js/app.min.js')}}"></script>
 <!-- UTILIDADES GENERALES -->
      <link rel="stylesheet" href="{{asset('css/backend/backendUtil.css')}}">
-
+     <link rel="stylesheet" href="{{asset('css/backend/bootstrap-select.css')}}">
 <!-- CONTROL DE SESION -->
 <!-- Scripts -->
   <script>
@@ -145,7 +145,7 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="administracio/entradas/nuevaEntrada"><i class="fa fa-circle-o"></i> Nova Entrada</a></li>
+            <li><a href="{{ url('administracio/entrada/nova') }}"><i class="fa fa-circle-o"></i> Nova Entrada</a></li>
             <li><a href="administracio/entradas/entradas"><i class="fa fa-circle-o"></i> Entradas </a></li>
           </ul>
         </li>
@@ -247,7 +247,7 @@
     <!--  SCRIPTS  -->
     <!--  SCRIPT GENERAL  -->
     <script src="{{asset('js/backend/backendUtil.js')}}"></script>
-
+    <script src="{{asset('js/backend/bootstrap-select.js')}}"></script>
 
 </body>
 </html>

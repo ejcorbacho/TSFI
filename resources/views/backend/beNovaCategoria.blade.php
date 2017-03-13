@@ -16,7 +16,12 @@
       <!-- Main content -->
       <section class="content">
         <div class="box box-primary">
-
+            <h1 onchange="showSuccessAlert({{ $salida_vista['mensaje'] }})">
+            
+            @if (!empty($success))
+                {{ $success }}
+            @endif
+            </h1>
           <!--<div class="box-header with-border">
             <h3 class="box-title">Quick Example</h3>
           </div>-->
@@ -31,12 +36,8 @@
               </div>
               <div class="form-group">
                 <label class="parentIDSelectorLabel">ID de categoria pare (opcional)</label>
-                <select class="dropdown parentIDSelector">
-                  <option value="null"></option>
-                  <option value=1>1.Mecànica</option>
-                  <option value=8>8.Informàtica</option>
-                  <option value=25>25.Integració Social</option>
-                </select>
+                {{Form::select('idPare',array_merge(['' => ''], $data->toArray()),null,array('class' => 'selectpicker', 'data-live-search' => 'true',))}}
+                
 
               </div>
               <div class="form-group">

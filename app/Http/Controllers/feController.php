@@ -21,7 +21,6 @@ class feController extends Controller
     public function category($id) {
         $ocategories = new feCategories;
         $data = $ocategories->llegirCategories($id);
-
         $post = $ocategories->MostarPosts($id);
 
         return view('feCategory',['categoria'=>$data[0], 'posts'=>$post]);

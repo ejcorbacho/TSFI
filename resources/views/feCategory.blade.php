@@ -4,6 +4,7 @@
 <html>
     <head>
         <link rel="stylesheet" href="{{ asset('css/categoryposts.css')}}">
+        <link rel="stylesheet" href="{{ asset('css/pagination.css')}}">
         <meta name="viewport" content="width=device-width, user-scalable=no">
     </head>
     <body>
@@ -13,28 +14,29 @@
                 @foreach($posts as $unpost)
                 <div class="categoryPost">
                     <div class="categoryPostImage col-md-4 col-sm-4 col-xs-12">
-                        <a href="#">
+                        <a href="/TSFI/public/post/{{$unpost->id}}">
                             <img src="http://placehold.it/700x400" alt="image placeholder">
                         </a>
                     </div>
                     <div class="categoryPostInfo col-md-8 col-sm-8 col-xs-12">
-                        <a class="categoryPostLink" href="#">
+                        <a class="categoryPostLink" href="/TSFI/public/post/{{$unpost->id}}">
                         <h5 class="categoryPostCategory">
                           {{$categoria->nombre}}
                         </h5>
                         <h1>{{$unpost->titulo}}</h1>
-                        <p class="categoryPostText">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam gravida cursus dolor in dictum. Curabitur facilisis erat purus, ut tincidunt enim tempor vel. Etiam sit amet mollis risus, eget consectetur nibh. Aliquam erat volutpat. Praesent ut porta magna. Fusce vel dictum arcu. Aenean sagittis, est quis hendrerit tempor, ante lacus sodales lorem, eu faucibus erat nisi interdum massa. Duis sapien est, pulvinar quis neque sed, dictum scelerisque orci. Sed pharetra, enim ac auctor condimentum, est libero rutrum nunc, id maximus diam turpis eget enim. Suspendisse eget sapien condimentum, pellentesque tortor a, volutpat quam.</p>
+                        <p class="categoryPostText">{{$unpost->resumen_largo}} </p>
                         </a>
                         <div class="categoryPostData">
                             <p class="col-md-2 col-sm-2 col-xs-2 categoryPostDate">19/02/16</p>
                             <span class="categoryPostDataSeparator">•</span>
-                            <a href="#"><i class="fa fa-facebook-official categoryPostSocialIcon" aria-hidden="true"></i></a>
-                            <a href="#"><i class="fa fa-twitter categoryPostSocialIcon" aria-hidden="true"></i></a>
+                            <a href="https://facebook.com"><i class="fa fa-facebook-official categoryPostSocialIcon" aria-hidden="true"></i></a>
+                            <a href="https://twitter.com/krabitzSDS"><i class="fa fa-twitter categoryPostSocialIcon" aria-hidden="true"></i></a>
                         </div>
                     </div>
                 </div>
                 <hr class="categoryPostSeparator">
                 @endforeach
+                <?php echo $posts->render(); ?>
                 <!-- final del bucle de posts -->
             </div>
             <div class="categoryPostsSidebar col-md-3 col-sm-12">

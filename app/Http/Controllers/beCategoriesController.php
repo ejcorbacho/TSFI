@@ -20,15 +20,21 @@ class beCategoriesController extends Controller
     
     public function novaCategoria()
     {
+        $data = $this->ocategories->llegirCategoriesSensePare();
+        
         $this->ocategories->nombre = Input::get('nombre');
+        $this->ocategories->id_padre = Input::get('idPare');  
         //falta un if de comprobacion que esta en entradas controller
-        $this->ocategories->guardar();
-        
-        
-        return view('backend.beNovaCategoria');
+        if ($this->ocategories->guardar()){
+          $this->salida_vista['mensaje'] = "Guardat!";
+        } else {
+          $this->salida_vista['mensaje'] = "Error al guardar!";
+        }
+        return view('backend.beNovaCategoria',['data'=>$data, 'salida_vista' =>$this->salida_vista]);
     }
     public function editarCategoria()
     {
         return view('backend.beEditarCategoria');
     }
+    
 }

@@ -1,12 +1,12 @@
 var deviceCategoriesChart;
 
 $(document).ready(function() {
-    var AJAXError = 0;
+    var successfulCalls = 0;
     var nCalls = 5;
 
     getDataOverAJAX( 'getNewUsersData' ).then(
         function( data ) {
-            ++AJAXError;
+            ++successfulCalls;
             drawNewUsersChart( rearrangeData( JSON.parse( data ) ) );
         }, function () {
             drawNewUsersChart([[],[]]);
@@ -15,7 +15,7 @@ $(document).ready(function() {
 
     getDataOverAJAX( 'getDeviceCategoriesData', 'sessions' ).then(
         function( data ) {
-            ++AJAXError;
+            ++successfulCalls;
             drawDeviceCategoriesChart( JSON.parse( data ) );
         }, function () {
             drawDeviceCategoriesChart([]);
@@ -24,7 +24,7 @@ $(document).ready(function() {
 
     getDataOverAJAX( 'getMobileOSData' ).then(
         function( data ) {
-            ++AJAXError;
+            ++successfulCalls;
             drawMobileOSChart( JSON.parse( data ) );
         }, function () {
             drawMobileOSChart([]);
@@ -33,7 +33,7 @@ $(document).ready(function() {
 
     getDataOverAJAX( 'getGenderData' ).then(
         function( data ) {
-            ++AJAXError;
+            ++successfulCalls;
             drawGenderChart( JSON.parse( data ) );
         }, function () {
             drawGenderChart([]);
@@ -42,7 +42,7 @@ $(document).ready(function() {
 
     getDataOverAJAX( 'getAgeBracketData' ).then(
         function( data ) {
-            ++AJAXError;
+            ++successfulCalls;
             drawAgeBracketChart( JSON.parse( data ) );
         }, function () {
             drawAgeBracketChart([]);
@@ -50,7 +50,7 @@ $(document).ready(function() {
     );
 
     setTimeout(function(){
-        if (AJAXError != nCalls) {
+        if (successfulCalls != nCalls) {
             showErrorAlert("Hi ha hagut un error carregant dades des de Google Analytics.");
         }
     }, 4000);
@@ -58,74 +58,6 @@ $(document).ready(function() {
     $("#deviceCategoriesSelector").change(function() {
         updateDeviceCategoriesChart();
     });
-    /*
-     $.ajax(
-     {
-     type: 'GET',
-     url: 'ajax/analytics/getNewUsersData',
-     success: function (response) {
-     var rearrangedData = rearrangeData(JSON.parse(response));
-     drawNewUsersChart(rearrangedData);
-     },
-     error: function (response) {
-     console.log(response.responseText);
-     showErrorAlert("Hi ha hagut un error carregant les dades, torna-ho a provar.");
-     }
-     });
-
-     $.ajax(
-     {
-     type: 'GET',
-     url: 'ajax/analytics/getDeviceCategoryData',
-     data: {metrics: 'sessions'},
-     success: function (response) {
-     drawDeviceCategoriesChart(JSON.parse(response));
-     },
-     error: function (response) {
-     console.log(response.responseText);
-     alert("Hi ha hagut un error carregant les dades, torna-ho a provar.");
-     }
-     });
-
-     $.ajax(
-     {
-     type: 'GET',
-     url: 'ajax/analytics/getMobileOSData',
-     success: function (response) {
-     drawMobileOSChart(JSON.parse(response));
-     },
-     error: function (response) {
-     console.log(response.responseText);
-     alert("Hi ha hagut un error carregant les dades, torna-ho a provar.");
-     }
-     });
-
-     $.ajax(
-     {
-     type: 'GET',
-     url: 'ajax/analytics/getGenderData',
-     success: function (response) {
-     drawGenderChart(JSON.parse(response));
-     },
-     error: function (response) {
-     console.log(response.responseText);
-     alert("Hi ha hagut un error carregant les dades, torna-ho a provar.");
-     }
-     });
-
-     $.ajax(
-     {
-     type: 'GET',
-     url: 'ajax/analytics/getAgeBracketData',
-     success: function (response) {
-     drawAgeBracketChart(JSON.parse(response));
-     },
-     error: function (response) {
-     console.log(response.responseText);
-     alert("Hi ha hagut un error carregant les dades, torna-ho a provar.");
-     }
-     });
-     */
 });
 
 function drawNewUsersChart(data) {

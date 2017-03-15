@@ -414,7 +414,7 @@ function getDataOverAJAX(route, data) {
                     resolve(JSON.parse(response));
                 },
                 error: function (response) {
-                    console.log(response.responseText);
+//                    console.log(response.responseText);
                     showErrorAlert("Hi ha hagut un error carregant les dades, torna-ho a provar.");
                 }
             });

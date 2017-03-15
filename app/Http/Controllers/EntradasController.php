@@ -26,7 +26,7 @@ class EntradasController  extends Controller
   public function makeEntrada()
   {
       $nombre = "caca";
-      return view('Entradas',['data'=>$this->salida_vista]);
+      return view('backend.Entradas',['data'=>$this->salida_vista]);
   }
   //Guardar datos del formulario en la BD
   public function crearEntrada()
@@ -53,13 +53,13 @@ class EntradasController  extends Controller
   {
     $this->oentradas->id = $id;
     $entradas = $this->oentradas->leerContenido();
-    return view('Entradas',['data'=>$entradas]);
+    return view('backend.Entradas',['data'=>$entradas]);
   }
 
   //Listar las entradas guardados en la BD
   public function llistarEntradas()
   {
     $entradas = $this->oentradas->leerTodas();
-    return view('beTotesEntrades',['data'=> $entradas]);
+    return view('backend.beTotesEntrades',['data'=> $entradas]);
   }
 }

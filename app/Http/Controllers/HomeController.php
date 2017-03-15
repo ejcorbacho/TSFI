@@ -35,7 +35,7 @@ class HomeController extends Controller
 	 */
 	public function index(){
 
-		return view('homeBack');
+		return view('backend.homeBack');
 	}
 
 	public function getNewUsersData() {

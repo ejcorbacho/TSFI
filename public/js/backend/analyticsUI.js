@@ -1,73 +1,59 @@
 var deviceCategoriesChart;
 
 $(document).ready(function() {
+    var successfulCalls = 0;
+    var nCalls = 5;
 
-    $.ajax(
-    {
-        type: 'GET',
-        url: 'ajax/analytics/getNewUsersData',
-        success: function (response) {
-            var rearrangedData = rearrangeData(JSON.parse(response));
-            drawNewUsersChart(rearrangedData);
-        },
-        error: function (response) {
-            console.log(response.responseText);
-            alert("Hi ha hagut un error carregant les dades, torna-ho a provar.");
+    getDataOverAJAX( 'getNewUsersData' ).then(
+        function( data ) {
+            ++successfulCalls;
+            drawNewUsersChart( rearrangeData( JSON.parse( data ) ) );
+        }, function () {
+            drawNewUsersChart([[],[]]);
         }
-    });
+    );
 
-    $.ajax(
-    {
-        type: 'GET',
-        url: 'ajax/analytics/getDeviceCategoryData',
-        data: {metrics: 'sessions'},
-        success: function (response) {
-            drawDeviceCategoriesChart(JSON.parse(response));
-        },
-        error: function (response) {
-            console.log(response.responseText);
-            alert("Hi ha hagut un error carregant les dades, torna-ho a provar.");
+    getDataOverAJAX( 'getDeviceCategoriesData', 'sessions' ).then(
+        function( data ) {
+            ++successfulCalls;
+            drawDeviceCategoriesChart( JSON.parse( data ) );
+        }, function () {
+            drawDeviceCategoriesChart([]);
         }
-    });
+    );
 
-    $.ajax(
-    {
-        type: 'GET',
-        url: 'ajax/analytics/getMobileOSData',
-        success: function (response) {
-            drawMobileOSChart(JSON.parse(response));
-        },
-        error: function (response) {
-            console.log(response.responseText);
-            alert("Hi ha hagut un error carregant les dades, torna-ho a provar.");
+    getDataOverAJAX( 'getMobileOSData' ).then(
+        function( data ) {
+            ++successfulCalls;
+            drawMobileOSChart( JSON.parse( data ) );
+        }, function () {
+            drawMobileOSChart([]);
         }
-    });
+    );
 
-    $.ajax(
-    {
-        type: 'GET',
-        url: 'ajax/analytics/getGenderData',
-        success: function (response) {
-            drawGenderChart(JSON.parse(response));
-        },
-        error: function (response) {
-            console.log(response.responseText);
-            alert("Hi ha hagut un error carregant les dades, torna-ho a provar.");
+    getDataOverAJAX( 'getGenderData' ).then(
+        function( data ) {
+            ++successfulCalls;
+            drawGenderChart( JSON.parse( data ) );
+        }, function () {
+            drawGenderChart([]);
         }
-    });
+    );
 
-    $.ajax(
-    {
-        type: 'GET',
-        url: 'ajax/analytics/getAgeBracketData',
-        success: function (response) {
-            drawAgeBracketChart(JSON.parse(response));
-        },
-        error: function (response) {
-            console.log(response.responseText);
-            alert("Hi ha hagut un error carregant les dades, torna-ho a provar.");
+    getDataOverAJAX( 'getAgeBracketData' ).then(
+        function( data ) {
+            ++successfulCalls;
+            drawAgeBracketChart( JSON.parse( data ) );
+        }, function () {
+            drawAgeBracketChart([]);
         }
-    });
+    );
+
+    setTimeout(function(){
+        if (successfulCalls != nCalls) {
+            showErrorAlert("Hi ha hagut un error carregant dades des de Google Analytics.");
+        }
+    }, 4000);
 
     $("#deviceCategoriesSelector").change(function() {
         updateDeviceCategoriesChart();
@@ -84,26 +70,26 @@ function drawNewUsersChart(data) {
             {
                 label: "Usuaris",
                 /*
-                fillColor: "rgb(210, 214, 222)",
-                strokeColor: "rgb(210, 214, 222)",
-                pointColor: "rgb(210, 214, 222)",
-                pointStrokeColor: "#c1c7d1",
-                pointHighlightFill: "#fff",
-                pointHighlightStroke: "rgb(220,220,220)",
-                */
+                 fillColor: "rgb(210, 214, 222)",
+                 strokeColor: "rgb(210, 214, 222)",
+                 pointColor: "rgb(210, 214, 222)",
+                 pointStrokeColor: "#c1c7d1",
+                 pointHighlightFill: "#fff",
+                 pointHighlightStroke: "rgb(220,220,220)",
+                 */
                 backgroundColor: "rgb(210, 214, 222)",
                 data: data[0]
             },
             {
                 label: "Sessions",
                 /*
-                fillColor: "rgba(60,141,188,0.9)",
-                strokeColor: "rgba(60,141,188,0.8)",
-                pointColor: "#3b8bba",
-                pointStrokeColor: "rgba(60,141,188,1)",
-                pointHighlightFill: "#fff",
-                pointHighlightStroke: "rgba(60,141,188,1)",
-                */
+                 fillColor: "rgba(60,141,188,0.9)",
+                 strokeColor: "rgba(60,141,188,0.8)",
+                 pointColor: "#3b8bba",
+                 pointStrokeColor: "rgba(60,141,188,1)",
+                 pointHighlightFill: "#fff",
+                 pointHighlightStroke: "rgba(60,141,188,1)",
+                 */
                 backgroundColor: "rgba(60,141,188,0.9)",
                 data: data[1]
             }
@@ -111,6 +97,7 @@ function drawNewUsersChart(data) {
     };
 
     var newUsersChartOptions = {
+        scaleOverride: true,
         //Boolean - If we should show the scale at all
         showScale: true,
         //Boolean - Whether grid lines are shown across the chart
@@ -279,14 +266,12 @@ function drawAgeBracketChart (data) {
 
     var ageBracketChartData = {
         labels: [
-            "0-10",
-            "10-20",
-            "20-30",
-            "30-40",
-            "40-50",
-            "50-60",
-            "60-70",
-            "70-80"
+            "18-24",
+            "25-34",
+            "35-44",
+            "45-54",
+            "55-64",
+            "65+"
         ],
         datasets: [
             {
@@ -328,20 +313,11 @@ function drawAgeBracketChart (data) {
 
 function updateDeviceCategoriesChart() {
     var metrics = $("#deviceCategoriesSelector").val();
-    $.ajax(
-    {
-        type: 'GET',
-        url: 'ajax/analytics/getDeviceCategoryData',
-        data: {metrics: metrics},
-        success: function (response) {
-            deviceCategoriesChart.config.data.datasets[0].data = JSON.parse(response);
-            deviceCategoriesChart.update();
-        },
-        error: function (response) {
-            console.log(response.responseText);
-            alert("Hi ha hagut un error carregant les dades, torna-ho a provar.");
+    getDataOverAJAX( 'getDeviceCategoriesData', metrics ).then(
+        function( data ) {
+            drawDeviceCategoriesChart( data );
         }
-    });
+    );
 }
 
 function getLast6Months(){
@@ -380,4 +356,13 @@ function rearrangeData(data) {
         }
     }
     return newArray;
+}
+
+function getDataOverAJAX(route, data) {
+    return $.ajax(
+        {
+            type: 'GET',
+            url: 'ajax/analytics/' + route,
+            data: {data: data}
+        });
 }

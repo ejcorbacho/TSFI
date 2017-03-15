@@ -4890,7 +4890,7 @@ table.text-center th {
 .chart {
   position: relative;
   overflow: hidden;
-  width: 100%;
+  /*width: 100%;*/
 }
 .chart svg,
 .chart canvas {

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use File;
 use Google_Client;
 use Google_Service_Drive;
 use Google_Service_AnalyticsReporting;
@@ -34,7 +35,7 @@ class HomeController extends Controller
 	 */
 	public function index(){
 
-		return view('homeBack');
+		return view('backend.homeBack');
 	}
 
 	public function getNewUsersData() {
@@ -49,7 +50,7 @@ class HomeController extends Controller
 	}
 
 	public function getDeviceCategoriesData(Request $request) {
-		$metrics = $request->input('metrics');
+		$metrics = $request->input('data');
 		$analytics = $this->initializeAnalytics();
 		$response = $this->getDeviceCategoriesReport($analytics,$metrics);
 		$data = $this->printResults($response);
@@ -83,7 +84,7 @@ class HomeController extends Controller
 	  // Use the developers console and download your service account
 	  // credentials in JSON format. Place them in this directory or
 	  // change the key file location if necessary.
-	  $KEY_FILE_LOCATION = __DIR__ . './analytics/service-account-credentials.json';
+	  $KEY_FILE_LOCATION = __DIR__ . '/Analytics/service-account-credentials.json';
 
 	  // Create and configure a new client object.
 	  $client = new Google_Client();

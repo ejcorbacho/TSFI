@@ -2,7 +2,41 @@ var deviceCategoriesChart;
 
 $(document).ready(function() {
 
-    $.ajax(
+   getDataOverAJAX( 'getNewUsersData' ).then(
+       function( data ) {
+           drawNewUsersChart( rearrangeData( data ) );
+       }
+   );
+
+    getDataOverAJAX( 'getDeviceCategoriesData', 'sessions' ).then(
+        function( data ) {
+            drawDeviceCategoriesChart( data );
+        }
+    );
+
+    getDataOverAJAX( 'getMobileOSData' ).then(
+        function( data ) {
+            drawMobileOSChart( data );
+        }
+    );
+
+    getDataOverAJAX( 'getGenderData' ).then(
+        function( data ) {
+            drawGenderChart( data );
+        }
+    );
+
+    getDataOverAJAX( 'getAgeBracketData' ).then(
+        function( data ) {
+            drawAgeBracketChart( data );
+        }
+    );
+
+    $("#deviceCategoriesSelector").change(function() {
+        updateDeviceCategoriesChart();
+    });
+/*
+   $.ajax(
     {
         type: 'GET',
         url: 'ajax/analytics/getNewUsersData',
@@ -12,7 +46,7 @@ $(document).ready(function() {
         },
         error: function (response) {
             console.log(response.responseText);
-            alert("Hi ha hagut un error carregant les dades, torna-ho a provar.");
+            showErrorAlert("Hi ha hagut un error carregant les dades, torna-ho a provar.");
         }
     });
 
@@ -68,10 +102,7 @@ $(document).ready(function() {
             alert("Hi ha hagut un error carregant les dades, torna-ho a provar.");
         }
     });
-
-    $("#deviceCategoriesSelector").change(function() {
-        updateDeviceCategoriesChart();
-    });
+*/
 });
 
 function drawNewUsersChart(data) {
@@ -111,6 +142,7 @@ function drawNewUsersChart(data) {
     };
 
     var newUsersChartOptions = {
+        scaleOverride: true,
         //Boolean - If we should show the scale at all
         showScale: true,
         //Boolean - Whether grid lines are shown across the chart
@@ -279,14 +311,12 @@ function drawAgeBracketChart (data) {
 
     var ageBracketChartData = {
         labels: [
-            "0-10",
-            "10-20",
-            "20-30",
-            "30-40",
-            "40-50",
-            "50-60",
-            "60-70",
-            "70-80"
+            "18-24",
+            "25-34",
+            "35-44",
+            "45-54",
+            "55-64",
+            "65+"
         ],
         datasets: [
             {
@@ -328,20 +358,11 @@ function drawAgeBracketChart (data) {
 
 function updateDeviceCategoriesChart() {
     var metrics = $("#deviceCategoriesSelector").val();
-    $.ajax(
-    {
-        type: 'GET',
-        url: 'ajax/analytics/getDeviceCategoryData',
-        data: {metrics: metrics},
-        success: function (response) {
-            deviceCategoriesChart.config.data.datasets[0].data = JSON.parse(response);
-            deviceCategoriesChart.update();
-        },
-        error: function (response) {
-            console.log(response.responseText);
-            alert("Hi ha hagut un error carregant les dades, torna-ho a provar.");
+    getDataOverAJAX( 'getDeviceCategoriesData', metrics ).then(
+        function( data ) {
+            drawDeviceCategoriesChart( data );
         }
-    });
+    );
 }
 
 function getLast6Months(){
@@ -380,4 +401,22 @@ function rearrangeData(data) {
         }
     }
     return newArray;
+}
+
+function getDataOverAJAX(route, data) {
+    return new Promise( function( resolve, reject ) {
+        $.ajax(
+            {
+                type: 'GET',
+                url: 'ajax/analytics/' + route,
+                data: {data: data},
+                success: function (response) {
+                    resolve(JSON.parse(response));
+                },
+                error: function (response) {
+                    console.log(response.responseText);
+                    showErrorAlert("Hi ha hagut un error carregant les dades, torna-ho a provar.");
+                }
+            });
+    });
 }

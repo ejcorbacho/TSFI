@@ -104,3 +104,7 @@
 @media (min-width: 992px) {
     .sidebarPostTitle{font-size: 1.2em;height: 32px;}
 }
+
+.paginationright{
+  float:right;
+}

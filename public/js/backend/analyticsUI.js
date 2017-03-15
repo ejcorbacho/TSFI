@@ -1,36 +1,59 @@
 var deviceCategoriesChart;
 
 $(document).ready(function() {
+    var AJAXError = 0;
+    var nCalls = 5;
 
-   getDataOverAJAX( 'getNewUsersData' ).then(
-       function( data ) {
-           drawNewUsersChart( rearrangeData( data ) );
-       }
-   );
+    getDataOverAJAX( 'getNewUsersData' ).then(
+        function( data ) {
+            ++AJAXError;
+            drawNewUsersChart( rearrangeData( JSON.parse( data ) ) );
+        }, function () {
+            drawNewUsersChart([[],[]]);
+        }
+    );
 
     getDataOverAJAX( 'getDeviceCategoriesData', 'sessions' ).then(
         function( data ) {
-            drawDeviceCategoriesChart( data );
+            ++AJAXError;
+            drawDeviceCategoriesChart( JSON.parse( data ) );
+        }, function () {
+            drawDeviceCategoriesChart([]);
         }
     );
 
     getDataOverAJAX( 'getMobileOSData' ).then(
         function( data ) {
-            drawMobileOSChart( data );
+            ++AJAXError;
+            drawMobileOSChart( JSON.parse( data ) );
+        }, function () {
+            drawMobileOSChart([]);
         }
     );
 
     getDataOverAJAX( 'getGenderData' ).then(
         function( data ) {
-            drawGenderChart( data );
+            ++AJAXError;
+            drawGenderChart( JSON.parse( data ) );
+        }, function () {
+            drawGenderChart([]);
         }
     );
 
     getDataOverAJAX( 'getAgeBracketData' ).then(
         function( data ) {
-            drawAgeBracketChart( data );
+            ++AJAXError;
+            drawAgeBracketChart( JSON.parse( data ) );
+        }, function () {
+            drawAgeBracketChart([]);
         }
     );
+
+    setTimeout(function(){
+        if (AJAXError != nCalls) {
+            showErrorAlert("Hi ha hagut un error carregant dades des de Google Analytics.");
+        }
+    }, 4000);
 
     $("#deviceCategoriesSelector").change(function() {
         updateDeviceCategoriesChart();
@@ -404,19 +427,10 @@ function rearrangeData(data) {
 }
 
 function getDataOverAJAX(route, data) {
-    return new Promise( function( resolve, reject ) {
-        $.ajax(
-            {
-                type: 'GET',
-                url: 'ajax/analytics/' + route,
-                data: {data: data},
-                success: function (response) {
-                    resolve(JSON.parse(response));
-                },
-                error: function (response) {
-                    console.log(response.responseText);
-                    showErrorAlert("Hi ha hagut un error carregant les dades, torna-ho a provar.");
-                }
-            });
-    });
+    return $.ajax(
+        {
+            type: 'GET',
+            url: 'ajax/analytics/' + route,
+            data: {data: data}
+        });
 }

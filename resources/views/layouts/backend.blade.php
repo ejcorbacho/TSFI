@@ -32,7 +32,7 @@
 <!-- UTILIDADES GENERALES -->
      <link rel="stylesheet" href="{{asset('css/backend/backendUtil.css')}}">
      <link rel="stylesheet" href="{{asset('css/backend/bootstrap-select.css')}}">
-     
+
 <!-- CONTROL DE SESION -->
 <!-- Scripts -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.1.0/jquery.form.js"></script>
@@ -140,7 +140,7 @@
  <!-- APARTADO ESTADISTICAS --->
         <li class="active treeview">
           <a href="#">
-            <i class="fa fa-dashboard"></i> <span>ESTADISTICAS</span>
+            <i class="fa fa-dashboard"></i> <span>ESTADISTÍQUES</span>
             <span class="pull-right-container">
             </span>
           </a>
@@ -151,21 +151,21 @@
         <li class="treeview">
           <a href="#">
             <i class="fa fa-pie-chart"></i>
-            <span>ENTRADAS</span>
+            <span>ENTRADES</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
             <li><a href="{{ url('administracio/entrada/nova') }}"><i class="fa fa-circle-o"></i> Nova Entrada</a></li>
-            <li><a href="{{ url('administracio/entrada/llistat') }}"><i class="fa fa-circle-o"></i> Entradas </a></li>
+            <li><a href="{{ url('administracio/entrada/llistat') }}"><i class="fa fa-circle-o"></i> Entrades </a></li>
           </ul>
         </li>
  <!-- APARTADO CATEGORIAS --->
         <li class="treeview">
           <a href="#">
             <i class="fa fa-pie-chart"></i>
-            <span>CATEGORIAS</span>
+            <span>CATEGORIES</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
@@ -180,33 +180,47 @@
         <li class="treeview">
           <a href="#">
             <i class="fa fa-laptop"></i>
-            <span>PAGINAS</span>
+            <span>PÀGINES</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="pages/UI/general.html"><i class="fa fa-circle-o"></i> Nueva Pagina</a></li>
-            <li><a href="pages/UI/icons.html"><i class="fa fa-circle-o"></i> Todas las Paginas</a></li>
+            <li><a href="pages/UI/general.html"><i class="fa fa-circle-o"></i> Nova Pàgina</a></li>
+            <li><a href="pages/UI/icons.html"><i class="fa fa-circle-o"></i> Totes les Pàgines</a></li>
           </ul>
         </li>
+<!-- APARTADO ENTIDADES --->
+               <li class="treeview">
+                 <a href="#">
+                   <i class="fa fa-building"></i>
+                   <span>ENTITATS</span>
+                   <span class="pull-right-container">
+                     <i class="fa fa-angle-left pull-right"></i>
+                   </span>
+                 </a>
+                 <ul class="treeview-menu">
+                   <li><a href="#"><i class="fa fa-circle-o"></i> Nova entitat</a></li>
+                   <li><a href="#"><i class="fa fa-circle-o"></i> Totes les entitats</a></li>
+                 </ul>
+               </li>
  <!-- APARTADO MENUS --->
         <li class="treeview">
           <a href="#">
-            <i class="fa fa-edit"></i> <span>MENUS</span>
+            <i class="fa fa-edit"></i> <span>MENÚS</span>
           </a>
         </li>
  <!-- APARTADO USUARIOS --->
         <li class="treeview">
           <a>
-            <i class="fa  fa-users"></i> <span>USUARIOS</span>
+            <i class="fa  fa-users"></i> <span>USUARIS</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="pages/forms/general.html"><i class="fa fa-circle-o"></i> Añadir Usuarios</a></li>
-            <li><a href="pages/tables/data.html"><i class="fa fa-circle-o"></i> Mi Perfil</a></li>
+            <li><a href="pages/forms/general.html"><i class="fa fa-circle-o"></i> Afegir Usuaris</a></li>
+            <li><a href="pages/tables/data.html"><i class="fa fa-circle-o"></i> El Meu Perfil</a></li>
           </ul>
         </li>
 
@@ -224,7 +238,7 @@
 	 <!-- APARTADO CONFIGURACION --->
         <li>
           <a href="pages/mailbox/mailbox.html">
-            <i class="fa fa-book"></i> <span>CONFIGURACION</span>
+            <i class="fa fa-book"></i> <span>CONFIGURACIÓ</span>
           </a>
         </li>
 

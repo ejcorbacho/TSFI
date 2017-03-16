@@ -1,108 +1,63 @@
 var deviceCategoriesChart;
 
 $(document).ready(function() {
+    var successfulCalls = 0;
+    var nCalls = 5;
 
-   getDataOverAJAX( 'getNewUsersData' ).then(
-       function( data ) {
-           drawNewUsersChart( rearrangeData( data ) );
-       }
-   );
+    getDataOverAJAX( 'getNewUsersData' ).then(
+        function( data ) {
+            ++successfulCalls;
+            drawNewUsersChart( rearrangeData( JSON.parse( data ) ) );
+        }, function () {
+            drawNewUsersChart([[],[]]);
+        }
+    );
 
     getDataOverAJAX( 'getDeviceCategoriesData', 'sessions' ).then(
         function( data ) {
-            drawDeviceCategoriesChart( data );
+            ++successfulCalls;
+            drawDeviceCategoriesChart( JSON.parse( data ) );
+        }, function () {
+            drawDeviceCategoriesChart([]);
         }
     );
 
     getDataOverAJAX( 'getMobileOSData' ).then(
         function( data ) {
-            drawMobileOSChart( data );
+            ++successfulCalls;
+            drawMobileOSChart( JSON.parse( data ) );
+        }, function () {
+            drawMobileOSChart([]);
         }
     );
 
     getDataOverAJAX( 'getGenderData' ).then(
         function( data ) {
-            drawGenderChart( data );
+            ++successfulCalls;
+            drawGenderChart( JSON.parse( data ) );
+        }, function () {
+            drawGenderChart([]);
         }
     );
 
     getDataOverAJAX( 'getAgeBracketData' ).then(
         function( data ) {
-            drawAgeBracketChart( data );
+            ++successfulCalls;
+            drawAgeBracketChart( JSON.parse( data ) );
+        }, function () {
+            drawAgeBracketChart([]);
         }
     );
+
+    setTimeout(function(){
+        if (successfulCalls != nCalls) {
+            showErrorAlert("Hi ha hagut un error carregant dades des de Google Analytics.");
+        }
+    }, 4000);
 
     $("#deviceCategoriesSelector").change(function() {
         updateDeviceCategoriesChart();
     });
-/*
-   $.ajax(
-    {
-        type: 'GET',
-        url: 'ajax/analytics/getNewUsersData',
-        success: function (response) {
-            var rearrangedData = rearrangeData(JSON.parse(response));
-            drawNewUsersChart(rearrangedData);
-        },
-        error: function (response) {
-            console.log(response.responseText);
-            showErrorAlert("Hi ha hagut un error carregant les dades, torna-ho a provar.");
-        }
-    });
-
-    $.ajax(
-    {
-        type: 'GET',
-        url: 'ajax/analytics/getDeviceCategoryData',
-        data: {metrics: 'sessions'},
-        success: function (response) {
-            drawDeviceCategoriesChart(JSON.parse(response));
-        },
-        error: function (response) {
-            console.log(response.responseText);
-            alert("Hi ha hagut un error carregant les dades, torna-ho a provar.");
-        }
-    });
-
-    $.ajax(
-    {
-        type: 'GET',
-        url: 'ajax/analytics/getMobileOSData',
-        success: function (response) {
-            drawMobileOSChart(JSON.parse(response));
-        },
-        error: function (response) {
-            console.log(response.responseText);
-            alert("Hi ha hagut un error carregant les dades, torna-ho a provar.");
-        }
-    });
-
-    $.ajax(
-    {
-        type: 'GET',
-        url: 'ajax/analytics/getGenderData',
-        success: function (response) {
-            drawGenderChart(JSON.parse(response));
-        },
-        error: function (response) {
-            console.log(response.responseText);
-            alert("Hi ha hagut un error carregant les dades, torna-ho a provar.");
-        }
-    });
-
-    $.ajax(
-    {
-        type: 'GET',
-        url: 'ajax/analytics/getAgeBracketData',
-        success: function (response) {
-            drawAgeBracketChart(JSON.parse(response));
-        },
-        error: function (response) {
-            console.log(response.responseText);
-            alert("Hi ha hagut un error carregant les dades, torna-ho a provar.");
-        }
-    });
-*/
 });
 
 function drawNewUsersChart(data) {
@@ -115,26 +70,26 @@ function drawNewUsersChart(data) {
             {
                 label: "Usuaris",
                 /*
-                fillColor: "rgb(210, 214, 222)",
-                strokeColor: "rgb(210, 214, 222)",
-                pointColor: "rgb(210, 214, 222)",
-                pointStrokeColor: "#c1c7d1",
-                pointHighlightFill: "#fff",
-                pointHighlightStroke: "rgb(220,220,220)",
-                */
+                 fillColor: "rgb(210, 214, 222)",
+                 strokeColor: "rgb(210, 214, 222)",
+                 pointColor: "rgb(210, 214, 222)",
+                 pointStrokeColor: "#c1c7d1",
+                 pointHighlightFill: "#fff",
+                 pointHighlightStroke: "rgb(220,220,220)",
+                 */
                 backgroundColor: "rgb(210, 214, 222)",
                 data: data[0]
             },
             {
                 label: "Sessions",
                 /*
-                fillColor: "rgba(60,141,188,0.9)",
-                strokeColor: "rgba(60,141,188,0.8)",
-                pointColor: "#3b8bba",
-                pointStrokeColor: "rgba(60,141,188,1)",
-                pointHighlightFill: "#fff",
-                pointHighlightStroke: "rgba(60,141,188,1)",
-                */
+                 fillColor: "rgba(60,141,188,0.9)",
+                 strokeColor: "rgba(60,141,188,0.8)",
+                 pointColor: "#3b8bba",
+                 pointStrokeColor: "rgba(60,141,188,1)",
+                 pointHighlightFill: "#fff",
+                 pointHighlightStroke: "rgba(60,141,188,1)",
+                 */
                 backgroundColor: "rgba(60,141,188,0.9)",
                 data: data[1]
             }
@@ -404,19 +359,10 @@ function rearrangeData(data) {
 }
 
 function getDataOverAJAX(route, data) {
-    return new Promise( function( resolve, reject ) {
-        $.ajax(
-            {
-                type: 'GET',
-                url: 'ajax/analytics/' + route,
-                data: {data: data},
-                success: function (response) {
-                    resolve(JSON.parse(response));
-                },
-                error: function (response) {
-//                    console.log(response.responseText);
-                    showErrorAlert("Hi ha hagut un error carregant les dades, torna-ho a provar.");
-                }
-            });
-    });
+    return $.ajax(
+        {
+            type: 'GET',
+            url: 'ajax/analytics/' + route,
+            data: {data: data}
+        });
 }

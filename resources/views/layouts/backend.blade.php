@@ -21,8 +21,8 @@
        folder instead of downloading all of them to reduce the load. -->
   <link rel="stylesheet" href="{{asset('dist/css/skins/_all-skins.min.css')}}">
 
-  <!-- jQuery 2.2.3 -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <!-- jQuery 3.3.1 -->
+	<script src="{{asset('js/jquery-3.1.1.min.js')}}"></script>
 <!-- Bootstrap 3.3.6 -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 

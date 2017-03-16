@@ -37,11 +37,11 @@ Route::get('administracio/entrada/nova/{id}', array('uses' => 'EntradasControlle
 Route::get('administracio/entrada/llistat', array('uses' => 'EntradasController@llistarEntradas')); //Mostrar listado de entradas
 
 //Dades analytics
-Route::get('ajax/analytics/getNewUsersData', array('uses' => 'HomeController@getNewUsersData'));  //Dades sobre nous usuaris
-Route::get('ajax/analytics/getDeviceCategoriesData', array('uses' => 'HomeController@getDeviceCategoriesData'));  //Dades sobre dispositius
-Route::get('ajax/analytics/getMobileOSData', array('uses' => 'HomeController@getMobileOSData'));  //Dades sobre sistema operatiu dels mòbils
-Route::get('ajax/analytics/getGenderData', array('uses' => 'HomeController@getGenderData'));  //Dades sobre l'edat dels usuaris
-Route::get('ajax/analytics/getAgeBracketData', array('uses' => 'HomeController@getAgeBracketData'));  //Dades sobre el gènere dels usuaris
+Route::get('ajax/analytics/getNewUsersData', array('uses' => 'HomeController@getNewUsersData'));                        //Dades sobre nous usuaris
+Route::get('ajax/analytics/getDeviceCategoriesData', array('uses' => 'HomeController@getDeviceCategoriesData'));        //Dades sobre dispositius
+Route::get('ajax/analytics/getMobileOSData', array('uses' => 'HomeController@getMobileOSData'));                        //Dades sobre sistema operatiu dels mòbils
+Route::get('ajax/analytics/getGenderData', array('uses' => 'HomeController@getGenderData'));                            //Dades sobre l'edat dels usuaris
+Route::get('ajax/analytics/getAgeBracketData', array('uses' => 'HomeController@getAgeBracketData'));                    //Dades sobre el gènere dels usuaris
 
 
 //******* RUTAS AJAX ***********/

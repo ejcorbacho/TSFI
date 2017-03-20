@@ -11,7 +11,6 @@ use View;
 
 class EntradasController  extends Controller
 {
-  private $nombre;
   private $oentradas;
   private $salida_vista = array(
     'mensaje'=>'caca'
@@ -25,7 +24,6 @@ class EntradasController  extends Controller
   //Mostrar formulario para crear cliente
   public function makeEntrada()
   {
-      $nombre = "caca";
       return view('backend.Entradas',['data'=>$this->salida_vista]);
   }
   //Guardar datos del formulario en la BD
@@ -39,6 +37,15 @@ class EntradasController  extends Controller
       $this->oentradas->resumen_largo = Input::get('resum');
       $this->oentradas->contenido = Input::get('contingut');
       $this->oentradas->categorias = Input::get('categorias_seleccionadas');
+      //$fecha = Input::get('data_publicacion');
+      $this->oentradas->data_publicacion = '2017-03-07';
+      if(Input::get('visible') == null){
+        $this->oentradas->visible = 0;
+      } else {
+        $this->oentradas->visible = Input::get('visible');
+      }
+      $this->oentradas->publico = Input::get('publico');
+
       //return Input::get('categorias_seleccionadas');
       if($idPostBd == 0){
           return $this->oentradas->guardar();

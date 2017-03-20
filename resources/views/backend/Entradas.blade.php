@@ -134,16 +134,18 @@
         					<b>VISIBLE</b>
         				</center>
                 <hr />
-        				<div id="div_fecha_publicacion">
-                  <p><i class="fa fa-fw fa-calendar-times-o"></i><b>Publicar</b> Data publicació
+        				<div id="div_fecha_publicacion"><center>
+                  <p><i class="fa fa-fw fa-calendar-times-o"></i><b>Data de publicació</b> 
                     <div class="input-group date">
                       <div class="input-group-addon">
                         <i class="fa fa-calendar"></i>
                       </div>
                       <input name="data_publicacion" type="text" class="form-control pull-right" id="data_publicacion">
                     </div>
-                  </p>
+                  </p></center>
+                  <hr />
                 </div>
+
         				<center>
         					<p>
         						<i class="fa fa-fw fa-smile-o"></i><b>Public</b><br />
@@ -179,18 +181,7 @@
                   </div>
                   </div>
                 </div>
-                <div class="box-header with-border">
-                  <a type="button" class="btn btn-box-tool" data-widget="collapse">+ Afegir nova categoria</a>
 
-                  <!-- /.box-tools -->
-                </div>
-                <!-- /.box-header -->
-                <div   class="box-body" style="display: none;">
-                  <div class="form-group">
-                    <input id="nombrecategoria" type="text" class="form-control" placeholder="Introdueix la categoria aquí">
-                  </div>
-                  <button type="button" class="btn btn-default pull-left" onclick="guardarCategoria()" data-dismiss="modal">Afegir Categoria</button>
-                </div>
               </div>
 
             </div>

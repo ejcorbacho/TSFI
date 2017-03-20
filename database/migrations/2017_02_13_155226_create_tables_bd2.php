@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTablesBd extends Migration
+class CreateTablesBd2 extends Migration
 {
     /**
      * Run the migrations.
@@ -37,7 +37,7 @@ class CreateTablesBd extends Migration
 
         Schema::create('fotos', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('url', 200);
+            $table->string('url', 200)->unique();
             $table->string('alt', 200);
             $table->timestamps();
         });
@@ -81,6 +81,8 @@ class CreateTablesBd extends Migration
             $table->integer('foto')->unsigned();
             $table->integer('publico');
             $table->integer('relevancia');
+            $table->datetime('data_publicacion');
+            $table->integer('eliminado');
             $table->integer('usuario_publicador')->unsigned();
             $table->foreign('usuario_publicador')->references('id')->on('usuarios');
             $table->foreign('foto')->references('id')->on('fotos');

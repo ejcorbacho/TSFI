@@ -2,7 +2,7 @@ var deviceCategoriesChart;
 
 $(document).ready(function() {
     var successfulCalls = 0;
-    var nCalls = 5;
+    var numberOfCalls = 5;
 
     getDataOverAJAX( 'getNewUsersData' ).then(
         function( data ) {
@@ -50,10 +50,10 @@ $(document).ready(function() {
     );
 
     setTimeout(function(){
-        if (successfulCalls != nCalls) {
+        if (successfulCalls != numberOfCalls) {
             showErrorAlert("Hi ha hagut un error carregant dades des de Google Analytics.");
         }
-    }, 4000);
+    }, 5000);
 
     $("#deviceCategoriesSelector").change(function() {
         updateDeviceCategoriesChart();

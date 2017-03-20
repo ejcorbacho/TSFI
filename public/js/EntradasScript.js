@@ -1,5 +1,5 @@
 //************* DECLARAR VARIABLES             ******************//
-var url = "/";
+var url = "/TSFI/public/";
 var enviar = false;
 var maximoTwitter = 140; /* CARACTERES MAXIMOS DE TWITTER */
 var maximoResumen = 450; /* CARACTERES MAXIMOS DE RESUMEN */
@@ -19,9 +19,13 @@ var notificarEntrada = true;
 $( document ).ready(function() {
   cargarListadoCategorias(); // CARGA INICIAL DEL LISTADO DE CATEGORIAS //
   validarEnviar();           // ES FA LA VALIDACIÓ INICAL DE CONTINGUTS //
-
-
+  habilitarFechas()
     // bind 'myForm' and provide a simple callback function
+
+  $('#data_publicacion').datepicker({
+    autoclose: true,
+  weekStart:1,
+  });
 
     $.ajaxSetup({
       headers: {
@@ -30,11 +34,11 @@ $( document ).ready(function() {
     });
 
     $("#formulario_entrada").ajaxForm({
-        url: '/ajax/entradas/guardarEntrada',
+        url: url + '/ajax/entradas/guardarEntrada',
         type: 'post',
         success: function(data) {
           $('#idBD' ).val(data); /* GUARDAMOS LA ID DE LA BD EN EL FORMULARIO */
-          showSuccessAlert('Guardar correctament!');
+          showSuccessAlert(data);
         },
         error: function(xhr, desc, err) {
           console.log(xhr);
@@ -44,7 +48,6 @@ $( document ).ready(function() {
     });
 
 });
-
 //************* GUARDADO DE CONTENIDO         ******************//
 
 
@@ -87,7 +90,7 @@ function guardarCategoria(){
           data: { nombre: nombre_categoria},
           dataType: "html",
           error: function(){
-              showSuccessAlert('Error al guardar al categoria');
+              showErrorAlert('Error al guardar al categoria');
           },
           success: function(){
 
@@ -105,7 +108,7 @@ function validarTwitter(){
   var longitud = $("#twitter").val().length;
   $("#notificaciones_twitter ").empty();
   var restant = maximoTwitter - longitud;
-  $("#notificaciones_twitter ").append("Queden " + restant);
+  $("#notificaciones_twitter ").append("queden " + restant);
   if(restant != maximoTwitter){
     hayTwitter = true;
   } else {
@@ -122,7 +125,7 @@ function validarResumen() {
   var longitud = $("#resum").val().length;
   $("#notificaciones_resumen ").empty();
   var restant = maximoResumen - longitud;
-  $("#notificaciones_resumen ").append("Queden " + restant);
+  $("#notificaciones_resumen ").append("queden " + restant);
   if(restant != maximoResumen){
     hayResumen = true;
   } else {
@@ -139,7 +142,7 @@ function validarTitulo() {
   var longitud = $("#titulo").val().length;
   $("#notificaciones_titulo ").empty();
   var restant = maximoTitulo - longitud;
-  $("#notificaciones_titulo ").append("Queden " + restant);
+  $("#notificaciones_titulo ").append("queden " + restant);
   if(restant != maximoTitulo){
     hayTitulo = true;
   } else {
@@ -156,7 +159,7 @@ function validarSubtitulo() {
   var longitud = $("#subtitulo").val().length;
   $("#notificaciones_subtitulo ").empty();
   var restant = maximoSubtitulo - longitud;
-  $("#notificaciones_subtitulo ").append("Queden " + restant);
+  $("#notificaciones_subtitulo ").append("queden " + restant);
   if(restant != maximoSubtitulo){
     haySubtitulo = true;
   } else {
@@ -170,7 +173,7 @@ function validarSubtitulo() {
 }
 
 function validarContenido() {
-  var longitud = $("#editor").val().length;
+  var longitud = $("#contingut").val().length;
   $("#notificaciones_contenido").empty();
   var restant = maximoContenido - longitud;
   if(restant != maximoContenido){
@@ -201,10 +204,26 @@ function validarTodoVacio(){
 
 function validarEnviar(){
   if (validarTwitter() & validarResumen() & validarTitulo() & validarSubtitulo() & validarContenido() & validarTodoVacio()) {
-    $("#notificaciones_twitter").append("Si");
-    $('input[type="submit"]').removeAttr('disabled');
+    //$("#notificaciones_twitter").append("Si");
+    $('button[type="submit"]').removeAttr('disabled');
   } else {
-    $("#notificaciones_twitter ").append("No");
-    $('input[type="submit"]').attr('disabled','disabled');
+    //$("#notificaciones_twitter ").append("No");
+    $('button[type="submit"]').attr('disabled','disabled');
   }
+}
+
+//Date picker
+//Date picker
+
+
+/*********************** FUNCIONES CON FECHAS **************************************/
+function habilitarFechas(){
+
+       if($("#visible").is(':checked')) {
+           $('#div_fecha_publicacion').css('display', 'block');
+       } else {
+           $('#div_fecha_publicacion').css('display', 'none');
+       }
+
+
 }

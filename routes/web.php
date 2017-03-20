@@ -46,8 +46,10 @@ Route::get('ajax/analytics/getMobileOSData', array('uses' => 'HomeController@get
 Route::get('ajax/analytics/getGenderData', array('uses' => 'HomeController@getGenderData'));                            //Dades sobre l'edat dels usuaris
 Route::get('ajax/analytics/getAgeBracketData', array('uses' => 'HomeController@getAgeBracketData'));                    //Dades sobre el gènere dels usuaris
 
+//Uploads
+Route::post('administracio/uploadFile', array('uses' => 'beImageController@uploadFile'));
 
 //******* RUTAS AJAX ***********/
 Route::get('ajax/categories/llistaCategories', array('uses' => 'beCategoriesController@llistarCategoria')); //Mostrar formulario
-Route::post('ajax/categories/guardarCategoria', array('uses' => 'beCategoriesController@novaCategoriaPost')); //Mostrar formulario
+Route::post('ajax/categories/guardarCategoria', array('uses' => 'beCategoriesController@novaCategoria')); //Mostrar formulario
 Route::post('ajax/entradas/guardarEntrada', array('uses' => 'EntradasController@crearEntrada'));  //Guardar entrada

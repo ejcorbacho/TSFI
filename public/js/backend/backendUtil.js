@@ -9,6 +9,8 @@ function showSuccessAlert(msg){
     $("#topSuccessMessage").slideDown(200).delay(2000).fadeOut("slow");
 }
 
+
+
 //
 //    $(function() {
 //        // initialize sol

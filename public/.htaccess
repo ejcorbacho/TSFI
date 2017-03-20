@@ -4,7 +4,7 @@
     </IfModule>
 
     RewriteEngine On
-    RewriteBase /tsfi/public/
+    RewriteBase /TSFI/public/
    # change above to your site i.e.,  RewriteBase /whatever/public/
 
     # Redirect Trailing Slashes...

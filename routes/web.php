@@ -30,7 +30,10 @@ Route::get('/administracio', 'HomeController@index');
 //Categories:
 Route::get('administracio/categoria/editar', 'beCategoriesController@editarCategoria');
 Route::get('administracio/categoria/nova', 'beCategoriesController@novaCategoria');
+Route::get('administracio/categoria/llistat', 'beCategoriesController@taulaCaregories');
+Route::get('administracio/categoria/editar/{id}', array('uses' => 'beCategoriesController@editarCategoria')); //Mostrar formulario
 Route::get('ajax/categories/guardarCategoria', 'beCategoriesController@guardarNovaCategoria');
+Route::post('ajax/categories/actualitzarCategoria', 'beCategoriesController@actualitzarCategoria');
 
 Route::get('administracio/entrada/nova/', array('uses' => 'EntradasController@makeEntrada')); //Mostrar formulario
 Route::get('administracio/entrada/nova/{id}', array('uses' => 'EntradasController@editarEntrada')); //Mostrar formulario

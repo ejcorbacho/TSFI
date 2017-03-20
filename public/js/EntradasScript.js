@@ -44,7 +44,7 @@ $( document ).ready(function() {
     });
 
 });
-º
+
 //************* GUARDADO DE CONTENIDO         ******************//
 
 

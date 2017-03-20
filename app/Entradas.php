@@ -95,7 +95,6 @@ class Entradas extends Model
             return false;
         }
 
-
     }
 
     public function leerTodas(){

@@ -1,6 +1,7 @@
 @extends('layouts.backend')
 
 @section('content')
+<script src="{{asset('js/backend/beCategories.js')}}"></script>
 <!-- Content Header (Page header) -->
       <section class="content-header">
         <h1>
@@ -16,67 +17,30 @@
       <!-- Main content -->
       <section class="content">
         <div class="box box-primary">
-          <div class="box-header with-border">
-            <h3 class="box-title">Selecciona una categoria per editar:</h3>
-          </div>
+            </h1>
+          <!--<div class="box-header with-border">
+            <h3 class="box-title">Quick Example</h3>
+          </div>-->
           <!-- /.box-header -->
           <!-- form start -->
-          <form role="form">
+          <form id="formulariEditarCategoria">
             <div class="box-body">
               <div class="form-group">
-                <select class="selectpicker" data-live-search="true">
-                  <option>Hot Dog</option>
-                  <option>Burger</option>
-                  <option>Sugar</option>
-                  <option>Hot Dog</option>
-                  <option>Burger</option>
-                  <option>Sugar</option>
-                  <option>Burger</option>
-                  <option>Sugar</option>
-                  <option>Hot Dog</option>
-                  <option>Burger</option>
-                  <option>Sugar</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label for="exampleInputEmail1">Nom de la categoria</label>
-                <input type="text" class="form-control" id="CategoryName" placeholder="Inserta el nom de la categoria">
+                <input type="hidden" class="form-control" id="id" name="id" value="{{ $data[0]->id }}">
+                <label>Nom de la categoria</label>
+                <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Inserta el nom de la categoria" value="@if (!empty($data[0]->nombre)){{$data[0]->nombre}}@endif">
+                
               </div>
               <div class="form-group">
                 <label class="parentIDSelectorLabel">ID de categoria pare (opcional)</label>
-                <select class="dropdown parentIDSelector">
-                  <option value="null"></option>
-                  
+                <select id="idPare" name="idPare" class="selectpicker" data-live-search="true" value="@if (!empty($data[0]->id_padre)) {{ $data[0]->id_padre }} @endif">
+                    <option></option>
+                    @foreach($categoriesSensePare as $categoria)
+                        
+                            <option value="{{ $categoria->id  }}" @if($data[0]->id_padre==$categoria->id ){{'selected'}}@endif>{{$categoria->nombre}}</option>
+                        
+                    @endforeach
                 </select>
-
-
-
-                <div class="deleteCategoryModal">
-                  <div id="myModal" class="modal modal-danger">
-                    <div class="modal-dialog">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">×</span>
-                          </button>
-                          <h4 class="modal-title">Eliminar categoria</h4>
-                        </div>
-                        <div class="modal-body">
-                          <p>Estes segur de que vols eliminar la categoria seleccionada?</p>
-                        </div>
-                        <div class="modal-footer">
-                          <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Close</button>
-                          <button type="button" class="btn btn-default btn-primary">Save changes</button>
-                        </div>
-                      </div>
-                      <!-- /.modal-content -->
-                    </div>
-                    <!-- /.modal-dialog -->
-                  </div>
-                  <!-- /.modal -->
-                </div>
-              </div>
-
 
               </div>
               <div class="form-group">
@@ -85,14 +49,10 @@
               <!-- /.box-body -->
 
               <div class="box-footer">
-                <button type="submit" class="categoryButtons btn btn-primary">Guardar</button>
-                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal">Eliminar</button>
+                  <button id="submitEditCategory" class="btn btn-primary">Guardar</button>
               </div>
           </form>
           </div>
       </section>
-
-
-
 
 @endsection

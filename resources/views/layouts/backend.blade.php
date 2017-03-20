@@ -42,6 +42,13 @@
       ]) !!};
   </script>
   <!-- CSRF Token -->
+  <script type="text/javascript">
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+</script>
   <meta name="csrf-token" content="{{ csrf_token() }}">
 
   <!-- Gràfics Analytics -->
@@ -55,6 +62,8 @@
     <div id="topSuccessMessage" class="alert alert-success alerta">
     </div>
     <div id="topErrorMessage" class="alert alert-danger alerta">
+    </div>
+    <div id="topWarningMessage" class="alert alert-warning alerta">
     </div>
   <header class="main-header">
 
@@ -139,7 +148,7 @@
 
  <!-- APARTADO ESTADISTICAS --->
         <li class="active treeview">
-          <a href="#">
+          <a href="{{ url('administracio') }}">
             <i class="fa fa-dashboard"></i> <span>ESTADISTICAS</span>
             <span class="pull-right-container">
             </span>
@@ -171,8 +180,9 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="administracio/categoria/nova"><i class="fa fa-circle-o"></i> Nova Categoria</a></li>
-            <li><a href="administracio/categoria/editar"><i class="fa fa-circle-o"></i> Editar Categoria </a></li>
+            <li><a href="{{ url('/administracio/categoria/nova') }}"><i class="fa fa-circle-o"></i> Nova Categoria</a></li>
+            <!--<li><a href="{{ url('/administracio/categoria/editar') }}"><i class="fa fa-circle-o"></i> Editar Categoria </a></li>-->
+            <li><a href="{{ url('/administracio/categoria/llistat') }}"><i class="fa fa-circle-o"></i> Totes Les Categories</a></li>
           </ul>
         </li>
 

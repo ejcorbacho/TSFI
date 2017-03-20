@@ -37,7 +37,9 @@ class EntradasController  extends Controller
       $this->oentradas->resumen_largo = Input::get('resum');
       $this->oentradas->contenido = Input::get('contingut');
       $this->oentradas->categorias = Input::get('categorias_seleccionadas');
-      //$fecha = Input::get('data_publicacion');
+      $fecha = Input::get('data_publicacion');
+
+      return  date_format($fecha, 'Y-m-d');
       $this->oentradas->data_publicacion = '2017-03-07';
       if(Input::get('visible') == null){
         $this->oentradas->visible = 0;

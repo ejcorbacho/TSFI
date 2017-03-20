@@ -1,5 +1,5 @@
 tinyMCE.init({
-    selector: '#editor',
+    selector: '#contingut',
     height: 500,
     theme: 'modern',
     skin: 'charcoal',
@@ -21,15 +21,19 @@ tinyMCE.init({
         '//fonts.googleapis.com/css?family=Lato:300,300i,400,400i',
         '//www.tinymce.com/css/codepen.min.css'
     ],
-    language: getLang()
+    language: getLang(),
+    setup: function(ed) {
+        ed.on('keyup', function(e) {
+            validarContenido();
+        });
+    }
 });
 
 function getEditorContent() {
     console.log(tinyMCE.get('editor').getContent());
 }
 
-function getLang()
-{
+function getLang() {
     if (navigator.languages != undefined) {
         var lang = navigator.languages[0];
         if (lang.indexOf('-') != -1) {
@@ -42,7 +46,8 @@ function getLang()
 }
 
 function getStats(id) {
-    var body = tinymce.get(id).getBody(), text = tinymce.trim(body.innerText || body.textContent);
+    var body = tinymce.get(id).getBody();
+    var text = tinymce.trim(body.innerText || body.textContent);
 
     return {
         chars: text.length,

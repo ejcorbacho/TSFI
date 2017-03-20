@@ -37,7 +37,7 @@ class CreateTablesBd extends Migration
 
         Schema::create('fotos', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('url', 200);
+            $table->string('url', 200)->unique();
             $table->string('alt', 200);
             $table->timestamps();
         });

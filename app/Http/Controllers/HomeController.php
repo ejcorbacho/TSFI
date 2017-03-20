@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
 use File;
 use Google_Client;
 use Google_Service_Drive;
@@ -34,7 +35,6 @@ class HomeController extends Controller
 	 * @return \Illuminate\Http\Response
 	 */
 	public function index(){
-
 		return view('backend.homeBack');
 	}
 

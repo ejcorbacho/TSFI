@@ -1,6 +1,12 @@
 @extends('layouts.backend')
 
 @section('content')
+
+<!-- Gràfics Analytics -->
+
+<script src="{{asset('js/backend/analyticsUI.js')}}"></script>
+<script src="{{asset('plugins/chartjs/Chart-2.5.js')}}"></script>
+
 <div>
     <div class="chart">
         <canvas id="newUsersChart" style="height: 180px;"></canvas>

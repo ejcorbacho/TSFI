@@ -146,6 +146,14 @@ class CreateTablesBd2 extends Migration
             $table->foreign('id_etiqueta')->references('id')->on('etiquetas');
             $table->timestamps();
         });
+
+        Schema::create('entidades', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('nombre',200);
+            $table->integer('son_colaboradoras');
+            $table->string('url');
+            $table->timestamps();
+        });
     }
 
     /**

@@ -173,7 +173,7 @@ function validarSubtitulo() {
 }
 
 function validarContenido() {
-  var longitud = $("#contingut").val().length;
+  var longitud = getStats('contingut').chars;
   $("#notificaciones_contenido").empty();
   var restant = maximoContenido - longitud;
   if(restant != maximoContenido){

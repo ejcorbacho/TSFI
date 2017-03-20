@@ -24,8 +24,10 @@ $( document ).ready(function() {
 
   $('#data_publicacion').datepicker({
     autoclose: true,
-  weekStart:1,
+    dateFormat:'yy-mm-dd',
+    weekStart:1,
   });
+
 
     $.ajaxSetup({
       headers: {

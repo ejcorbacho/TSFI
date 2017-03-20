@@ -8,6 +8,12 @@ function showSuccessAlert(msg){
     document.getElementById('topSuccessMessage').innerHTML = msg;
     $("#topSuccessMessage").slideDown(200).delay(2000).fadeOut("slow");
 }
+function showWarningAlert(msg){
+    document.getElementById('topWarningMessage').innerHTML = msg;
+    $("#topWarningMessage").slideDown(200).delay(2000).fadeOut("slow");
+}
+
+
 
 //
 //    $(function() {

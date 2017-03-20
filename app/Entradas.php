@@ -19,6 +19,7 @@ class Entradas extends Model
     public $foto;
     public $publico;
     public $usuario_publicador;
+    public $data_publicacion;
     public $relevancia;
 
     public function guardar(){
@@ -28,7 +29,9 @@ class Entradas extends Model
         'resumen_corto'=>  $this->twitter,
         'resumen_largo'=> $this->resumen_largo,
         'contenido'=>  $this->contenido,
-        'visible'=> '1',
+        'data_publicacion' => $this->data_publicacion,
+        'visible'=> $this->visible,
+        'eliminado'=>'0',
         'foto'=> '1',
         'publico'=> '1',
         'usuario_publicador'=> '1',
@@ -38,7 +41,7 @@ class Entradas extends Model
 
         DB::beginTransaction();
         try {
-            //$post = Entradas::insert($data);
+            $post = Entradas::insert($data);
             $this->id = DB::table('entradas')->insertGetId($data);
             //GUARDAR LAS CATEGORIAS
             for ($i=0;$i<count($this->categorias);$i++){
@@ -69,9 +72,10 @@ class Entradas extends Model
         'resumen_corto'=>  $this->twitter,
         'resumen_largo'=> $this->resumen_largo,
         'contenido'=>  $this->contenido,
-        'visible'=> '1',
+        'visible'=> $this->visible,
         'foto'=> '1',
-        'publico'=> '1',
+        'publico'=> $this->publico,
+        'data_publicacion' => $this->data_publicacion,
         'usuario_publicador'=> '1',
         'relevancia'=> '1'
       );
@@ -94,7 +98,6 @@ class Entradas extends Model
             DB::rollback();
             return false;
         }
-
 
     }
 

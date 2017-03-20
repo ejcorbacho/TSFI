@@ -36,7 +36,20 @@ class Categories extends Model
             return false;
         }
     }
+    public function actualitzarCategoria(){
+        $contenido =  DB::table('categorias')
+          ->where('categorias.id', '=', $this->id)
+          ->update(['id_padre'=> $this->id_padre, 'nombre'=> $this->nombre]);
+        return $contenido;
+    }
+    public function llegirCategoriaPerId($id){
+        $contenido =  DB::table('categorias')
+          ->select('categorias.*')
+          ->where('categorias.id', '=', $id)
+          ->get();
 
+        return $contenido;
+    }
     public function llegirCategoriesSensePare(){
         $contenido =  DB::table('categorias')
           ->select('categorias.*')
@@ -49,6 +62,7 @@ class Categories extends Model
     public function llistarTotes(){
         $contenido =  DB::table('categorias')
           ->select('categorias.*')
+          ->orderby('nombre')
           ->get();
 
         return $contenido;

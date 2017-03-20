@@ -48,3 +48,11 @@ Route::get('ajax/analytics/getAgeBracketData', array('uses' => 'HomeController@g
 Route::get('ajax/categories/llistaCategories', array('uses' => 'beCategoriesController@llistarCategoria')); //Mostrar formulario
 Route::post('ajax/categories/guardarCategoria', array('uses' => 'beCategoriesController@novaCategoriaPost')); //Mostrar formulario
 Route::post('ajax/entradas/guardarEntrada', array('uses' => 'EntradasController@crearEntrada'));  //Guardar entrada
+
+
+/***** entitats *****/
+
+Route::get('administracio/entitats/nova', 'beEntitatsController@NovaEntitat');
+Route::get('ajax/entitat/guardarEntitat', array('uses' => 'beEntitatsController@guardarNovaEntitat'));
+Route::get('ajax/entitat/llistatEntitats', array('uses' => 'beEntitatsController@llistarEnitats'));
+Route::get('ajax/entitat/TresEntitats', array('uses' => 'beEntitatsController@TresEnitats'));

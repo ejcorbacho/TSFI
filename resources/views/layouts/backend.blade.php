@@ -137,7 +137,7 @@
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu">
 
- <!-- APARTADO ESTADISTICAS --->
+ <!-- APARTADO ESTADISTICAS -->
         <li class="active treeview">
           <a href="#">
             <i class="fa fa-dashboard"></i> <span>ESTADISTÍQUES</span>
@@ -147,7 +147,7 @@
 
         </li>
 
- <!-- APARTADO ENTRADAS --->
+ <!-- APARTADO ENTRADAS -->
         <li class="treeview">
           <a href="#">
             <i class="fa fa-pie-chart"></i>
@@ -161,7 +161,7 @@
             <li><a href="{{ url('administracio/entrada/llistat') }}"><i class="fa fa-circle-o"></i> Entrades </a></li>
           </ul>
         </li>
- <!-- APARTADO CATEGORIAS --->
+ <!-- APARTADO CATEGORIAS -->
         <li class="treeview">
           <a href="#">
             <i class="fa fa-pie-chart"></i>
@@ -176,7 +176,7 @@
           </ul>
         </li>
 
- <!-- APARTADO PAGINAS --->
+ <!-- APARTADO PAGINAS -->
         <li class="treeview">
           <a href="#">
             <i class="fa fa-laptop"></i>
@@ -190,7 +190,7 @@
             <li><a href="pages/UI/icons.html"><i class="fa fa-circle-o"></i> Totes les Pàgines</a></li>
           </ul>
         </li>
-<!-- APARTADO ENTIDADES --->
+<!-- APARTADO ENTIDADES -->
                <li class="treeview">
                  <a href="#">
                    <i class="fa fa-building"></i>
@@ -200,17 +200,17 @@
                    </span>
                  </a>
                  <ul class="treeview-menu">
-                   <li><a href="#"><i class="fa fa-circle-o"></i> Nova entitat</a></li>
+                   <li><a href="{{ url('administracio/entitats/nova') }}"><i class="fa fa-circle-o"></i> Nova entitat</a></li>
                    <li><a href="#"><i class="fa fa-circle-o"></i> Totes les entitats</a></li>
                  </ul>
                </li>
- <!-- APARTADO MENUS --->
+ <!-- APARTADO MENUS -->
         <li class="treeview">
           <a href="#">
             <i class="fa fa-edit"></i> <span>MENÚS</span>
           </a>
         </li>
- <!-- APARTADO USUARIOS --->
+ <!-- APARTADO USUARIOS -->
         <li class="treeview">
           <a>
             <i class="fa  fa-users"></i> <span>USUARIS</span>
@@ -235,7 +235,7 @@
           </a>
         </li>--->
 
-	 <!-- APARTADO CONFIGURACION --->
+	 <!-- APARTADO CONFIGURACION  -->
         <li>
           <a href="pages/mailbox/mailbox.html">
             <i class="fa fa-book"></i> <span>CONFIGURACIÓ</span>

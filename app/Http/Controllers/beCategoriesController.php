@@ -32,6 +32,14 @@ class beCategoriesController extends Controller
 //        }
         return view('backend.beNovaCategoria',['data'=>$data]);
     }
+    public function editarCategoria($id)
+    {
+        $data = $this->ocategories->llegirCategoriaPerId($id);
+        $categoriesSensePare = $this->ocategories->llegirCategoriesSensePare();
+        
+        return view('backend.beEditarCategoria',['data'=>$data,'categoriesSensePare'=>$categoriesSensePare]);
+    }
+    
     public function guardarNovaCategoria()
     {
         $this->ocategories->nombre = Input::get('nombre');
@@ -45,16 +53,30 @@ class beCategoriesController extends Controller
         }
         return $this->salida_vista['mensaje'];
     }
-    
+    public function actualitzarCategoria()
+    {
+        $this->ocategories->id = Input::get('id');
+        $this->ocategories->nombre = Input::get('nombre');
+        $this->ocategories->id_padre = Input::get('idPare');
+        //COMPOBAR SI ID ES NULL
+        if ($this->ocategories->actualitzarCategoria()){
+          $this->salida_vista['mensaje'] = "Guardat!";
+        } else {
+          $this->salida_vista['mensaje'] = "Error al guardar!";
+          abort(500,"Error al guardar!");
+        }
+        return $this->salida_vista['mensaje'];
+    }
+    public function taulaCaregories()
+    {
+      return view('backend.beTotesCategories',['data'=>$this->ocategories->llistarTotes()]);
+    }
     
     public function llistarCategoria()
     {
       return($this->ocategories->llistarTotes());
-
     }
-    public function editarCategoria()
-    {
-        return view('backend.beEditarCategoria');
-    }
+    
+    
     
 }

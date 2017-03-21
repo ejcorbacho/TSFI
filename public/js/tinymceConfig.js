@@ -26,6 +26,9 @@ tinyMCE.init({
         ed.on('keyup', function(e) {
             validarContenido();
         });
+        ed.on('init', function(e) {
+            validarContenido();
+        });
     }
 });
 

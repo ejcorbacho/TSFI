@@ -49,6 +49,9 @@ Route::get('ajax/analytics/getAgeBracketData', array('uses' => 'HomeController@g
 //Uploads
 Route::post('administracio/uploadFile', array('uses' => 'beImageController@uploadFile'));
 
+//Images
+Route::get('ajax/uploads/getImageList', array('uses' => 'beImageController@getImageList'));
+
 //******* RUTAS AJAX ***********/
 Route::get('ajax/categories/llistaCategories', array('uses' => 'beCategoriesController@llistarCategoria')); //Mostrar formulario
 Route::post('ajax/categories/guardarCategoria', array('uses' => 'beCategoriesController@novaCategoria')); //Mostrar formulario

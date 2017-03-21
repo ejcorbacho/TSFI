@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Input;
 use View;
 
 
-class EntradasController  extends Controller
+class EntradasController extends Controller
 {
   private $oentradas;
   private $salida_vista = array(

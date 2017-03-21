@@ -12,11 +12,17 @@
 <script type="text/javascript" src="{{ asset('js/dropzone/dropzone.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/backend/dropzoneConfig.js') }}"></script>
 <link rel="stylesheet" href="{{ asset('css/dropzone/dropzone.css') }}">
+<link rel="stylesheet" href="{{ asset('css/image-picker/image-picker.css') }}">
 
 <script type="text/javascript" src="{{ asset('js/sol.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/EntradasScript.js') }}"></script>
 <script src="{{ asset('js/tinymce/tinymce/tinymce.dev.js') }}"></script>
 <script src="{{ asset('js/tinymceConfig.js') }}"></script>
-<script type="text/javascript" src="{{ asset('js/EntradasScript.js') }}"></script>
+
+<!-- Image gallery -->
+<script src="{{ asset('js/image-picker/image-picker.js') }}"></script>
+<script src="{{ asset('js/backend/imageGallery.js') }}"></script>
+<link rel="stylesheet" href="{{ asset('css/imageGallery.css') }}">
 
 <div class="container">
       <!-- Main content -->
@@ -246,27 +252,48 @@
 
 
     <!-- IMAGE UPLOADING MODAL -->
-    <div class="modal fade" id="uploadsModal" tabindex="-1" role="dialog">
-      <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title">Modal title</h4>
-          </div>
-          <div class="modal-body">
-            <form action="/tsfi/public/administracio/uploadFile" class="dropzone" id="dropzone-upload">
-              <input name="_token" type="hidden" value="{!! csrf_token() !!}" />
-            </form>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
-          </div>
-        </div><!-- /.modal-content -->
-      </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
-    <!-- END IMAGE UPLOADING MODAL -->
-   <img id="adsffsfsa" src="C:\wamp64\www\TSFI\public\uploads\409A.jpg">
 
+  <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#imageModal">
+    Launch demo modal
+  </button>
+
+  <div class="modal fade" id="imageModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+        </div>
+        <div class="modal-body">
+          <div class="tabbable">
+              <ul class="nav nav-tabs" data-tabs="tabs">
+                  <li id="tab1" class="active mytabs">
+                      <a href="#One" data-toggle="tab">Galeria</a>
+                  </li>
+                  <li id="tab2" class="mytabs">
+                      <a href="#Two" data-toggle="tab">Puja imatges</a>
+                  </li>
+              </ul>
+              <div class="tab-content">
+                  <div class="tab-pane active" id="One">
+                      <div class="picker">
+                          <select id="imageSelector" class="image-picker" multiple="multiple"></select>
+                        </div>
+                  </div>
+                  <div class="tab-pane" id="Two">
+                      <form class="dropzone" id="dropzone-upload">
+                        <input name="_token" type="hidden" value="{!! csrf_token() !!}" />
+                      </form>
+                  </div>
+              </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Tancar</button>
+          <button id="insertImages" type="button" class="btn btn-primary">Inserir seleccionats</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 @endsection

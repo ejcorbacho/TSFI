@@ -18,13 +18,13 @@ var notificarEntrada = true;
 //************* CUERPO PRINCIPAL DEL PROGRAMA *******************//
 $( document ).ready(function() {
   cargarListadoCategorias(); // CARGA INICIAL DEL LISTADO DE CATEGORIAS //
-  validarEnviar();           // ES FA LA VALIDACIÓ INICAL DE CONTINGUTS //
-  habilitarFechas()
+
+  habilitarFechas();
     // bind 'myForm' and provide a simple callback function
 
   $('#data_publicacion').datepicker({
     autoclose: true,
-  weekStart:1,
+    weekStart:1
   });
 
     $.ajaxSetup({

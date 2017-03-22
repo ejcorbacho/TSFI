@@ -1,8 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Categories;
 use App\Entradas;
+use App\beEtiquetas;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Input;
@@ -12,19 +13,24 @@ use View;
 class EntradasController  extends Controller
 {
   private $oentradas;
-  private $salida_vista = array(
-    'mensaje'=>'caca'
-  );
+  private $ocategorias;
+  private $categorias;
+  private $etiquetas;
+  private $oetiquetas;
 
   public function __construct()
   {
     $this->middleware('auth');
     $this->oentradas = new Entradas;
+    $this->ocategorias = new Categories;
+    $this->oetiquetas = new beEtiquetas;
   }
   //Mostrar formulario para crear cliente
   public function makeEntrada()
   {
-      return view('backend.Entradas',['data'=>$this->salida_vista]);
+      $this->categorias = $this->ocategorias->llistarTotes();
+      $this->etiquetas = $this->oetiquetas->llistarTotes();
+      return view('backend.Entradas',['etiquetas'=>$this->etiquetas, 'categoriesSensePare'=>$this->categorias]);
   }
   //Guardar datos del formulario en la BD
   public function crearEntrada()
@@ -37,10 +43,10 @@ class EntradasController  extends Controller
       $this->oentradas->resumen_largo = Input::get('resum');
       $this->oentradas->contenido = Input::get('contingut');
       $this->oentradas->categorias = Input::get('categorias_seleccionadas');
+      $this->oentradas->etiquetas = Input::get('etiquetas_seleccionadas');
       $fecha = Input::get('data_publicacion');
-
-      return  date_format($fecha, 'Y-m-d');
-      $this->oentradas->data_publicacion = '2017-03-07';
+      $fecha = date("Y-m-d", strtotime($fecha));
+      $this->oentradas->data_publicacion = $fecha;
       if(Input::get('visible') == null){
         $this->oentradas->visible = 0;
       } else {
@@ -60,9 +66,10 @@ class EntradasController  extends Controller
 //Listar los clientes guardados en la BD
   public function editarEntrada($id)
   {
+    $this->categorias = $this->ocategorias->llistarTotes();
     $this->oentradas->id = $id;
     $entradas = $this->oentradas->leerContenido();
-    return view('backend.Entradas',['data'=>$entradas]);
+    return view('backend.Entradas',['data'=>$entradas, 'categoriesSensePare'=>$this->categorias]);
   }
 
   //Listar las entradas guardados en la BD

@@ -57,8 +57,5 @@ class beEntitats extends Model
           ->get();
 
         return $contenido;
-    }
-
-
-    
+    }    
 }

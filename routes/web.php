@@ -61,3 +61,9 @@ Route::get('administracio/entitats/nova', 'beEntitatsController@NovaEntitat');
 Route::get('ajax/entitat/guardarEntitat', array('uses' => 'beEntitatsController@guardarNovaEntitat'));
 Route::get('ajax/entitat/llistatEntitats', array('uses' => 'beEntitatsController@llistarEnitats'));
 Route::get('ajax/entitat/TresEntitats', array('uses' => 'beEntitatsController@TresEnitats'));
+
+
+
+/***home****/
+
+Route::get('ajax/entitat/FotosEntrades', array('uses' => 'feController@FotosEntitats'));

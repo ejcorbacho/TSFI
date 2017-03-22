@@ -207,10 +207,10 @@
                 <h2>Twitter</h2>
                 <iframe id="twitter-widget-0" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true" class="twitter-timeline twitter-timeline-rendered" style="position: static; visibility: visible; display: inline-block; width: 400px; height: 400px; padding: 0px; border: none; max-width: 100%; min-width: 180px; margin-top: 0px; margin-bottom: 0px; min-height: 300px;" data-widget-id="585734069557792768" title="Twitter Timeline"></iframe>
                 <h2>Enlaces</h2>
-                <a href="#"><div class="sidebarLink" style="background-color: gray"></div></a>
-                <a href="#"><div class="sidebarLink" style="background-color: gray"></div></a>
-                <a href="#"><div class="sidebarLink" style="background-color: gray"></div></a>
-                <a href="#"><div class="sidebarLink" style="background-color: gray"></div></a>
+                <a href="#"><div class="sidebarLink" ></div></a>
+                <a href="#"><div class="sidebarLink" ></div></a>
+                <a href="#"><div class="sidebarLink" ></div></a>
+
             </div>
         </div>
     </body>

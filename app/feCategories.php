@@ -24,11 +24,24 @@ class feCategories extends Model
 
     public function MostarPosts($id){
     $contenido =  DB::table('entradas')
+      ->join('fotos', 'entradas.foto', '=', 'fotos.id') 
       ->join('entradas_categorias','entradas_categorias.id_entrada', '=','entradas.id' )
-      ->select('entradas.*')
+      ->select('fotos.id as fotoId', 'fotos.url as fotosUrl' , 'entradas.*')
       ->where('entradas_categorias.id_categoria', '=', $id)
       ->paginate(5);
 
+    return $contenido;
+}
+
+    public function MostrarPostsRelated($id){
+    $contenido =  DB::table('entradas')
+      ->join('fotos', 'entradas.foto', '=', 'fotos.id') 
+      ->join('entradas_categorias','entradas_categorias.id_entrada', '=','entradas.id' )
+      ->select('fotos.id as fotoId', 'fotos.url as fotosUrl' , 'entradas.*')
+      ->where('entradas_categorias.id_categoria', '=', $id)
+      ->inRandomOrder() 
+      ->limit(4)
+      ->get();
 
     return $contenido;
 }

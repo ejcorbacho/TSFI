@@ -17,7 +17,6 @@ function mostrarEntitats (data) {
 
     document.getElementsByClassName("sidebarLink");
     var ContingutEntitat = document.getElementsByClassName("sidebarLink");
-    console.log("hola");
    // entidades = JSON.parse(data);
     
 for (var index = 0; index < ContingutEntitat.length; index++) {
@@ -25,6 +24,5 @@ for (var index = 0; index < ContingutEntitat.length; index++) {
     element.innerHTML= '<img src="'+ data[index].url +'">';
   //  element.innerHTML=data[index].nombre;
 }
-
 
 };

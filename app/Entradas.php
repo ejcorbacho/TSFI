@@ -15,6 +15,7 @@ class Entradas extends Model
     public $resumen_largo;
     public $contenido;
     public $categorias;
+    public $etiquetas;
     public $visible;
     public $foto;
     public $publico;
@@ -44,16 +45,25 @@ class Entradas extends Model
             $post = Entradas::insert($data);
             $this->id = DB::table('entradas')->insertGetId($data);
             //GUARDAR LAS CATEGORIAS
+
+
+
             for ($i=0;$i<count($this->categorias);$i++){
-              DB::table('entradas_categorias')->insert(
+             DB::table('entradas_categorias')->insert(
                   ['id_entrada' => $this->id, 'id_categoria' => $this->categorias[$i]]
               );
             }
 
+            for ($i=0;$i<count($this->etiquetas);$i++){
+             DB::table('entradas_etiquetas')->insert(
+                  ['id_entrada' => $this->id, 'id_etiqueta' => $this->etiquetas[$i]]
+              );
+            }
+
             DB::commit();
-            return $this->id;
+           return $this->id;
         } catch (\Illuminate\Database\QueryException $e) {
-            //return $e;
+            return $e;
             DB::rollback();
             return false;
         } catch (\Exception $e) {
@@ -73,6 +83,7 @@ class Entradas extends Model
         'resumen_largo'=> $this->resumen_largo,
         'contenido'=>  $this->contenido,
         'visible'=> $this->visible,
+        'eliminado'=>'0',
         'foto'=> '1',
         'publico'=> $this->publico,
         'data_publicacion' => $this->data_publicacion,
@@ -86,6 +97,20 @@ class Entradas extends Model
             //$post = Entradas::insert($data);
             DB::table('entradas')->where('id', '=', $this->id)->update($data);
             //GUARDAR LAS CATEGORIAS
+            DB::table('entradas_categorias')->where('id_entrada', '=', $this->id)->delete();
+            for ($i=0;$i<count($this->categorias);$i++){
+             DB::table('entradas_categorias')->insert(
+                  ['id_entrada' => $this->id, 'id_categoria' => $this->categorias[$i]]
+              );
+            }
+
+            //GUARDAR LAS EITQUETAS
+            DB::table('entradas_etiquetas')->where('id_entrada', '=', $this->id)->delete();
+            for ($i=0;$i<count($this->etiquetas);$i++){
+             DB::table('entradas_etiquetas')->insert(
+                  ['id_entrada' => $this->id, 'id_etiqueta' => $this->etiquetas[$i]]
+              );
+            }
 
             DB::commit();
             return $this->id;

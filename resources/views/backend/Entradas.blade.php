@@ -108,6 +108,7 @@
             </div>
 
             <div class="box-body pad">
+
               <button class="btn btn-primary">Imatges</button><br /><br />
               <textarea name="contingut" id="contingut" onkeyup="validarEnviar()" onchange="validarEnviar()">@if (!empty($data[0]->contenido)) {{ $data[0]->contenido }} @endif</textarea>
             </div>
@@ -135,7 +136,7 @@
         				</center>
                 <hr />
         				<div id="div_fecha_publicacion"><center>
-                  <p><i class="fa fa-fw fa-calendar-times-o"></i><b>Data de publicació</b> 
+                  <p><i class="fa fa-fw fa-calendar-times-o"></i><b>Data de publicació</b>
                     <div class="input-group date">
                       <div class="input-group-addon">
                         <i class="fa fa-calendar"></i>
@@ -173,12 +174,29 @@
                 <div class="modal-header">
                   <h4 class="modal-title">Categories</h4>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body" style="margin-bottom: 5px;">
                   <div class="form-group ">
-                    <label>Totes les categories</label>
-                    <div id="selector_categorias">
-                        <select id='selectcategorias' multiple='multiple' name='categorias_seleccionadas[]'></select>
-                  </div>
+
+
+
+                    <div id="dropdown_categorias" class="dropdown-container">
+                        <div id="dropdown_button_categorias" class="dropdown-button noselect">
+                            <div class="dropdown-label">Selecciona categories</div>
+                        </div>
+                        <div id="dropdown_list_categorias" class="dropdown-list" style="display: none;">
+                            <input  id="dropdown_search_categorias" type="search" placeholder="Cerca categories" class="dropdown-search"/>
+                            <ul>
+                              @foreach($categoriesSensePare as $categoria)
+                                <li >
+                                  <input name="categorias_seleccionadas[]" value="{{$categoria->id}}" type="checkbox">
+                                  <label for="nombre">{{$categoria->nombre}}</label>
+                                </li>
+                              @endforeach
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div>.</div>
                   </div>
                 </div>
 
@@ -194,17 +212,28 @@
                 <div class="modal-header">
                   <h4 class="modal-title">Etiquetes</h4>
   			  </div>
-  			  <div class="modal-body">
-  				<div class="form-group ">
-                    <label>Afegir nova etiqueta</label>
-  				  <div class="form-group">
-  					<input type="text" class="form-control" placeholder="Introdueix la nova etiqueta ">
-                   </div>
-  				</div>
+  			  <div  class="modal-body">
+            <div id="dropdown_etiquetas" class="dropdown-container">
+                <div id="dropdown_button_etiquetas" class="dropdown-button noselect">
+                    <div class="dropdown-label"><input type="search" id="dropdown_search_etiquetes" autocomplete="off" placeholder="Cerca etiquetes" class="dropdown-search"/></div>
+                </div>
+                <div id="dropdown_list_etiquetas" class="dropdown-list" style="display: none;">
+
+                    <ul >
+                      @foreach($etiquetas as $etiqueta)
+                        <li >
+                          <input name="etiquetas_seleccionadas[]" value="{{$etiqueta->id}}" type="checkbox">
+                          <label for="nombre">{{$etiqueta->nombre}}</label>
+                        </li>
+                      @endforeach
+
+                    </ul>
+                </div>
+            </div>
+            <hr />
+
   			  </div>
-              <div class="box-body">
-  				<button type="button" class="btn btn-default pull-left" data-dismiss="modal">Afegir</button>
-              </div>
+
               </div>
   	    </div>
         </div>
@@ -223,6 +252,22 @@
               </div>
   	    </div>
         </div>
+
+        <!-- FECHAS EVENTOS -->
+<div class="col-md-3">
+  <div class="example-modal">
+    <div class="modal-content box">
+      <div class="modal-header">
+        <h4 class="modal-title">Esdeveniment</h4>
+      </div>
+      <div class="modal-body">
+        <div class="form-group ">
+          <a type="button" class="btn">+ Afegir imatge destacada</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
       </form>
 
       <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#uploadsModal">
@@ -245,7 +290,7 @@
             <h4 class="modal-title">Modal title</h4>
           </div>
           <div class="modal-body">
-            <form action="/tsfi/public/administracio/uploadFile" class="dropzone" id="dropzone-upload">
+            <form action="/TSFI/public/administracio/uploadFile" class="dropzone" id="dropzone-upload">
               <input name="_token" type="hidden" value="{!! csrf_token() !!}" />
             </form>
           </div>

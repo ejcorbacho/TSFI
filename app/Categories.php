@@ -17,7 +17,8 @@ class Categories extends Model
     public function guardar(){
       $data = array(
         'nombre'=> $this->nombre,
-        'id_padre'=> $this->id_padre
+        'id_padre'=> $this->id_padre,
+        'eliminado'=>'0',
       );
 
 
@@ -36,10 +37,24 @@ class Categories extends Model
             return false;
         }
     }
+    public function MostarPostsDeCategoria($id){
+    $contenido =  DB::table('entradas')
+      ->join('entradas_categorias','entradas_categorias.id_entrada', '=','entradas.id' )
+      ->select('entradas.*')
+      ->where('entradas_categorias.id_categoria', '=', $id)
+      ->get();
+    return $contenido;
+}
     public function actualitzarCategoria(){
         $contenido =  DB::table('categorias')
           ->where('categorias.id', '=', $this->id)
           ->update(['id_padre'=> $this->id_padre, 'nombre'=> $this->nombre]);
+        return $contenido;
+    }
+    public function eliminarCategoria(){
+        $contenido =  DB::table('categorias')
+          ->where('categorias.id', '=', $this->id)
+          ->update(['eliminado'=> 1]);
         return $contenido;
     }
     public function llegirCategoriaPerId($id){

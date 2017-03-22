@@ -34,6 +34,8 @@ Route::get('administracio/categoria/llistat', 'beCategoriesController@taulaCareg
 Route::get('administracio/categoria/editar/{id}', array('uses' => 'beCategoriesController@editarCategoria')); //Mostrar formulario
 Route::get('ajax/categories/guardarCategoria', 'beCategoriesController@guardarNovaCategoria');
 Route::post('ajax/categories/actualitzarCategoria', 'beCategoriesController@actualitzarCategoria');
+Route::post('ajax/categories/eliminarCategoria', 'beCategoriesController@eliminarCategoria');
+Route::post('ajax/categories/llistarPostsDeCategoria', 'beCategoriesController@MostarPostsDeCategoria');
 
 Route::get('administracio/entrada/nova/', array('uses' => 'EntradasController@makeEntrada')); //Mostrar formulario
 Route::get('administracio/entrada/nova/{id}', array('uses' => 'EntradasController@editarEntrada')); //Mostrar formulario

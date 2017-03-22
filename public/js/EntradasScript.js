@@ -188,7 +188,8 @@ function validarSubtitulo() {
 }
 
 function validarContenido() {
-  var longitud = getStats('contingut').chars;
+  var longitud = 1;
+  //getStats('contingut').chars;
   $("#notificaciones_contenido").empty();
   var restant = maximoContenido - longitud;
   if(restant != maximoContenido){

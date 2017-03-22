@@ -39,6 +39,17 @@ class beCategoriesController extends Controller
         
         return view('backend.beEditarCategoria',['data'=>$data,'categoriesSensePare'=>$categoriesSensePare]);
     }
+    public function MostarPostsDeCategoria()
+    {
+        $data = $this->ocategories->MostarPostsDeCategoria(Input::get('id'));
+        if (count($data)>0) {
+            return $data;
+        }
+        else{
+            return 0;
+        }
+        
+    }
     
     public function guardarNovaCategoria()
     {
@@ -64,6 +75,19 @@ class beCategoriesController extends Controller
         } else {
           $this->salida_vista['mensaje'] = "Error al guardar!";
           abort(500,"Error al guardar!");
+        }
+        return $this->salida_vista['mensaje'];
+    }
+    public function eliminarCategoria()
+    {
+        
+        $this->ocategories->id = Input::get('id');
+        //COMPOBAR SI ID ES NULL
+        if ($this->ocategories->eliminarCategoria()){
+          $this->salida_vista['mensaje'] = "Guardat!";
+        } else {
+          $this->salida_vista['mensaje'] = "Error al guardar!";
+          abort(500,"Error al eliminar!");
         }
         return $this->salida_vista['mensaje'];
     }

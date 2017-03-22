@@ -277,8 +277,9 @@
 
     <!--  SCRIPTS  -->
     <!--  SCRIPT GENERAL  -->
-    <script src="{{asset('js/backend/backendUtil.js')}}"></script>
+    
     <script src="{{asset('js/backend/bootstrap-select.js')}}"></script>
+    <script src="{{asset('js/backend/backendUtil.js')}}"></script>
 
 </body>
 </html>

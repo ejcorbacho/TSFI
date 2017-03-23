@@ -109,6 +109,7 @@ class CreateTablesBd2 extends Migration
             $table->increments('id');
             $table->string('nombre', 200)->unique();
             $table->integer('id_padre')->nullable()->unsigned();
+            $table->tinyInteger('eliminado');
             $table->timestamps();
         });
 

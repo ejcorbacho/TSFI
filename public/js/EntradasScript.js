@@ -17,17 +17,81 @@ var notificarEntrada = true;
 
 //************* CUERPO PRINCIPAL DEL PROGRAMA *******************//
 $( document ).ready(function() {
-  cargarListadoCategorias(); // CARGA INICIAL DEL LISTADO DE CATEGORIAS //
-  validarEnviar();           // ES FA LA VALIDACIÓ INICAL DE CONTINGUTS //
   habilitarFechas()
-    // bind 'myForm' and provide a simple callback function
+
+  // LISTADO CATEGORIAS
+  $('#dropdown_categorias')
+  	.on('click', '#dropdown_button_categorias', function() {
+      	$('#dropdown_list_categorias').toggle();
+  	})
+  	.on('input', '#dropdown_search_categorias', function() {
+      	var target = $(this);
+      	var search = target.val().toLowerCase();
+
+      	if (!search) {
+              $('#dropdown_categorias li').show();
+              return false;
+          }
+
+      	$('#dropdown_categorias li').each(function() {
+          	var text = $(this).text().toLowerCase();
+              var match = text.indexOf(search) > -1;
+              $(this).toggle(match);
+          });
+  	});
+
+    /********************************* FUNCIONES LISTADO ETIQUETAS  ***********************************/
+
+    $('#dropdown_etiquetas')
+      .on('click', '#dropdown_button_etiquetas', function() {
+
+          $('#dropdown_list_etiquetas').toggle();
+
+          $('#dropdown_list_etiquetas li').each(function() {
+
+                var text = $(this).text().toLowerCase();
+                var match = text.indexOf(search) > -1;
+                if(search.length == 0){match = false}
+                //match = true;
+
+                //MOSTRAR SIEMPRE LO SELECICONADOS
+
+                if ( $(this).children('input').is(':checked') ){
+                  match = true;
+                }
+                $(this).toggle(match);
+            });
+      })
+      .on('input', '#dropdown_search_etiquetes', function() {
+          var target = $(this);
+          var search = target.val().toLowerCase();
+
+
+          $('#dropdown_list_etiquetas li').each(function() {
+                var text = $(this).text().toLowerCase();
+                var match = text.indexOf(search) > -1;
+                if(search.length == 0){match = false}
+                //match = true;
+
+                //MOSTRAR SIEMPRE LO SELECICONADOS
+
+                if ( $(this).children('input').is(':checked') ){
+                  match = true;
+                }
+
+
+                $(this).toggle(match);
+            });
+      });
+
+
+
 
   $('#data_publicacion').datepicker({
     autoclose: true,
-    dateFormat:'yy-mm-dd',
+     dateFormat: 'dd/mm/yy',
     weekStart:1,
   });
-
 
     $.ajaxSetup({
       headers: {
@@ -53,58 +117,7 @@ $( document ).ready(function() {
 //************* GUARDADO DE CONTENIDO         ******************//
 
 
-//************* LLAMADAS A AJAX               ******************//
-function cargarListadoCategorias(){
-  $.ajax({
-          type: "GET",
-          url: url + 'ajax/categories/llistaCategories',
-          data: {},
-          dataType: "html",
-          error: function(){
-              showSuccessAlert('Error al carregar components de la pàgina');
-          },
-          success: function(data){
-              var dataParse = JSON.parse(data);
 
-              for (var x=0; x < dataParse.length; x++){
-                $("#selectcategorias").append("<option value='" + dataParse[x].id + "'>" + dataParse[x].nombre + "</option>");
-              }
-
-             //$('#select_categorias').searchableOptionList();
-          }
-  });
-
-}
-
-
-function guardarCategoria(){
-  var nombre_categoria = $("#nombrecategoria").val();
-
-  $.ajaxSetup({
-    headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    }
-  });
-
-  $.ajax({
-          type: "POST",
-          url: url + 'ajax/categories/guardarCategoria',
-          data: { nombre: nombre_categoria},
-          dataType: "html",
-          error: function(){
-              showErrorAlert('Error al guardar al categoria');
-          },
-          success: function(){
-
-              showSuccessAlert('Categoria afegida!');
-
-              cargarListadoCategorias();
-
-
-          }
-  });
-
-}
 
 function validarTwitter(){
   var longitud = $("#twitter").val().length;
@@ -175,7 +188,8 @@ function validarSubtitulo() {
 }
 
 function validarContenido() {
-  var longitud = getStats('contingut').chars;
+  var longitud = 1;
+  //getStats('contingut').chars;
   $("#notificaciones_contenido").empty();
   var restant = maximoContenido - longitud;
   if(restant != maximoContenido){

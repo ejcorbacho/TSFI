@@ -12,7 +12,13 @@
   <link rel="stylesheet" href="../../dist/css/skins/_all-skins.min.css">
 
   <link rel="stylesheet" href="../../plugins/iCheck/flat/blue.css">
-
+  <!--DATA TABLES-->
+  <link rel="stylesheet" href="{{asset('css/backend/jquery.dataTables.css')}}">
+  <link rel="stylesheet" href="{{asset('css/backend/dataTables.bootstrap.css')}}">
+  <script src="{{asset('js/backend/jquery.dataTables.js')}}"></script>
+  <script src="{{asset('js/backend/dataTables.bootstrap.min.js')}}"></script>
+  <!--DATA TABLES-->
+  <script src="{{asset('js/backend/beCategories.js')}}"></script>
 
 <body class="hold-transition skin-blue sidebar-mini">
 
@@ -22,34 +28,43 @@
 
         <!-- /.col -->
         <div class="col-md-12">
-          <div class="box box-primary">
+          <div class="col-md-12 box box-primary">
             <div class="box-header with-border">
               <h3 class="box-title">Categories</h3>
             </div>
             <!-- /.box-header -->
 
-            <div class="box-body no-padding">
+            <div class="box-body no-padding dataTableContainer">
 
-              <div class="table-responsive mailbox-messages">
+              <div class="">
 			  <div class="mailbox-controls">
                 <!-- Check all button -->
-                <button type="button" class="btn btn-default btn-sm checkbox-toggle"><i class="fa fa-square-o"></i></button>
+                <!--<button type="button" class="btn btn-default btn-sm checkbox-toggle"><i class="fa fa-square-o"></i></button>-->
 
                 <div class="btn-group">
-                  <button type="button" class="btn btn-default btn-sm"><i class="fa fa-trash-o"></i></button>
+                  <button type="button" id="botoEsborrarCategories" class="btn btn-default btn-sm"><i class="fa fa-trash-o"></i></button>
                 </div>
-
-                <div class="pull-right">
-                  1-50/200
-                  <div class="btn-group">
-                    <button type="button" class="btn btn-default btn-sm"><i class="fa fa-chevron-left"></i></button>
-                    <button type="button" class="btn btn-default btn-sm"><i class="fa fa-chevron-right"></i></button>
+                <div id="modalEliminacioCategoria" class="modal">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">×</span></button>
+                        <h4 class="modal-title">Atenció! Aquesta categoria te entrades</h4>
+                      </div>
+                      <div id="modalEliminacioCategoriaContent" class="modal-body">
+                          
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cancel·la</button>
+                        <button type="button" class="btn btn-primary">Eliminar</button>
+                      </div>
+                    </div>
                   </div>
-                  <!-- /.btn-group -->
                 </div>
                 <!-- /.pull-right -->
               </div>
-                <table class="table table-hover table-striped">
+                <table id="taulaDeCategories" class="table table-hover table-striped">
                     <thead>
                         <tr>
                             <th></th>
@@ -58,11 +73,10 @@
                             <th></th>
                         </tr>
                     </thead>
-
                   <tbody>
                   @foreach($data as $dato)
-                  <tr>
-                    <td><input type="checkbox"></td>
+                  <tr class="filaDeDadesCategoria" categoryId="{{ $dato->id }}">
+                    <td><input type="radio" name="categoryRadio" value="{{ $dato->id }}"></td>
                     <td class="mailbox-name">{{ $dato->nombre }}</td>
                     <td class="mailbox-subject">{{ $dato->id_padre }}</td>
                     <td class="mailbox-date"><a href="{{ url('administracio/categoria/editar/' . $dato->id) }}">EDITAR</a></td>

@@ -24,7 +24,10 @@ tinyMCE.init({
     language: getLang(),
     setup: function(ed) {
         ed.on('keyup', function(e) {
-            validarContenido();
+            validarEnviar();
+        });
+        ed.on('Init', function(e) {
+            validarEnviar();
         });
     }
 });

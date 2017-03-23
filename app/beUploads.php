@@ -18,6 +18,7 @@ class beUploads extends Model {
         if (isset($_FILES) && !empty($_FILES)) {
             $originalFileName = $_FILES['file']['name'];
             $extension = pathinfo($originalFileName, PATHINFO_EXTENSION);
+            $originalFileName = pathinfo($originalFileName, PATHINFO_FILENAME);
 
             $tempName = $_FILES['file']['tmp_name'];
 
@@ -27,18 +28,22 @@ class beUploads extends Model {
             $serverFileName = str_replace(".tmp", "." . $extension, $serverFileName);
 
             if (move_uploaded_file($tempName,$serverFileName)) {
-                //return $this->insertAtDataBase($serverFileName, $originalFileName);
-
-                if($this->insertAtDataBase($originalFileName, $serverFileName)) {
-                    return $serverFileName;
+                $extensions = array('jpg', 'jpeg', 'png', 'gif', 'bmp');
+                if (in_array(strtolower($extension), $extensions)) {
+                    $serverFileName = substr($serverFileName, strpos($serverFileName, $ds.'TSFI'));
+                    if($this->insertAtDataBase($serverFileName, $originalFileName)) {
+                        return $serverFileName;
+                    } else {
+                        return '0';
+                    }
                 } else {
-                    return '0';
+                    //Fer algo amb els arxius que no siguin fotos
                 }
             } else {
-                return '0';
+                return '1';
             }
         } else {
-            return '0';
+            return '2';
         }
     }
 
@@ -63,6 +68,15 @@ class beUploads extends Model {
         }
 
         return true;
+    }
+
+    public function getImageList(){
+        $images = DB::table($this->table)
+          ->select('id', 'url', 'alt')
+          ->orderBy('id','DESC')
+          ->get();
+
+        return $images;
     }
 }
 ?>

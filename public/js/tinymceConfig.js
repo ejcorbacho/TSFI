@@ -29,6 +29,9 @@ tinyMCE.init({
         ed.on('Init', function(e) {
             validarEnviar();
         });
+        ed.on('init', function(e) {
+            validarContenido();
+        });
     }
 });
 

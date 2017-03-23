@@ -77,3 +77,82 @@ textarea {
   width: 100%;
   resize:none;
 }
+
+/* FORMATEAR LISTADO CATEGORIAS */
+
+.noselect {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.dropdown-container {
+
+    position: absolute;
+    z-index: 900;
+    top: 5px;
+    width: 88%;
+    margin: 0px;
+    font-size: 14px;
+    background-color: white;
+}
+
+
+
+.dropdown-button {
+  position: relative;
+    width: 100%;
+    background: whitesmoke;
+    padding: 10px 12px;
+    cursor: pointer;
+    border: 1px solid lightgray;
+    box-sizing: border-box;
+
+    .dropdown-label, .dropdown-quantity {
+        float: left;
+    }
+
+    .dropdown-quantity {
+        margin-left: 4px;
+    }
+
+    .fa-filter {
+        float: right;
+    }
+}
+
+.dropdown-list {
+
+    width: 100%;
+    border: 1px solid lightgray;
+    border-top: none;
+    box-sizing: border-box;
+    padding: 10px 12px;
+
+
+
+
+}
+
+.dropdown-list ul {
+  padding: 5px;
+  margin-bottom: 0px;
+}
+
+.dropdown-list li {
+  list-style: none !important;
+}
+
+.dropdown-list input {
+  width: 100%;
+}
+
+
+
+.dropdown-list input[type="checkbox"] {
+  float: left;
+  width: 20px;
+}

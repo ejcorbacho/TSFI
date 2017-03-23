@@ -1,5 +1,5 @@
 Dropzone.options.dropzoneUpload = {
-    url: '/tsfi/public/administracio/uploadFile',
+    url: '/TSFI/public/administracio/uploadFile',
     success: function(file, response){
         startGallery();
     }

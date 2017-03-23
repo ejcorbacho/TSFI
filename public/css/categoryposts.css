@@ -27,7 +27,7 @@
     margin-top: 0px;
 }
 .categoryPostText{
-    color:black;
+    color:#777;
     height:15%;
     overflow:hidden;
     margin-bottom:0px;
@@ -35,6 +35,7 @@
     -webkit-box-orient: vertical;
     -webkit-line-clamp:6;
     text-overflow: ellipsis;
+    font-family: 'Montserrat', sans-serif;
 }
 .categoryPostData{
     height: 20px;
@@ -47,12 +48,15 @@
 .categoryPostSocialIcon{
     height: 20px;
     width: 20px;
+    color:orange;
     text-align: center;
     font-size: 19px !important;
 }
 .categoryPostDate{
     padding: 0px;
-    width: 70px;
+    color:#777;
+    font-family: 'Montserrat', sans-serif;
+    width: 80px;
 }
 .categoryPostSeparator{
     margin: 0px;
@@ -66,6 +70,15 @@
     height: 50px;
     margin-top: 5px;
     margin-bottom: 5px;
+    float:left;
+    border-style: solid;
+    border-width: 2px;
+    border-color:black;
+}
+.sidebarLink > img{
+    width: 100%;
+    height: 100%;
+    
     float:left;
 }
 .sidebarPost{
@@ -83,7 +96,7 @@
     margin-left: 10%;
     width: 80%;
     opacity: 60;
-    background-color:grey;
+    background-color:#3DC2E1;
     position: absolute;
     bottom: 25%;
     z-index: 1;
@@ -91,15 +104,17 @@
     font-size: 2.9em;
     font-weight: bold;
     text-align: center;
-    color: black;
+    color: white;
+    font-family: 'Raleway', sans-serif;
 }
 .sidebarPostTitle > p{
-    background-color:grey;
+    background-color:#3DC2E1;
     overflow: hidden;
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp:2;
     text-overflow: ellipsis;
+    font-family: 'Raleway', sans-serif;
 }
 @media (min-width: 992px) {
     .sidebarPostTitle{font-size: 1.2em;height: 32px;}
@@ -107,4 +122,16 @@
 
 .paginationright{
   float:right;
+}
+
+.titulo{
+   font-size: 24px;
+   font-family: 'Paytone One', sans-serif;
+
+}
+.categoryPostCategory{
+ color:#fab23a;
+ font-size:14px;
+ font-family: 'Paytone One', sans-serif;
+
 }

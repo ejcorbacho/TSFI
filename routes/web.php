@@ -34,6 +34,8 @@ Route::get('administracio/categoria/llistat', 'beCategoriesController@taulaCareg
 Route::get('administracio/categoria/editar/{id}', array('uses' => 'beCategoriesController@editarCategoria')); //Mostrar formulario
 Route::get('ajax/categories/guardarCategoria', 'beCategoriesController@guardarNovaCategoria');
 Route::post('ajax/categories/actualitzarCategoria', 'beCategoriesController@actualitzarCategoria');
+Route::post('ajax/categories/eliminarCategoria', 'beCategoriesController@eliminarCategoria');
+Route::post('ajax/categories/llistarPostsDeCategoria', 'beCategoriesController@MostarPostsDeCategoria');
 
 Route::get('administracio/entrada/nova/', array('uses' => 'EntradasController@makeEntrada')); //Mostrar formulario
 Route::get('administracio/entrada/nova/{id}', array('uses' => 'EntradasController@editarEntrada')); //Mostrar formulario
@@ -56,3 +58,17 @@ Route::get('ajax/uploads/getImageList', array('uses' => 'beImageController@getIm
 Route::get('ajax/categories/llistaCategories', array('uses' => 'beCategoriesController@llistarCategoria')); //Mostrar formulario
 Route::post('ajax/categories/guardarCategoria', array('uses' => 'beCategoriesController@novaCategoria')); //Mostrar formulario
 Route::post('ajax/entradas/guardarEntrada', array('uses' => 'EntradasController@crearEntrada'));  //Guardar entrada
+
+
+/***** entitats *****/
+
+Route::get('administracio/entitats/nova', 'beEntitatsController@NovaEntitat');
+Route::get('ajax/entitat/guardarEntitat', array('uses' => 'beEntitatsController@guardarNovaEntitat'));
+Route::get('ajax/entitat/llistatEntitats', array('uses' => 'beEntitatsController@llistarEnitats'));
+Route::get('ajax/entitat/TresEntitats', array('uses' => 'beEntitatsController@TresEnitats'));
+
+
+
+/***home****/
+
+Route::get('ajax/entitat/FotosEntrades', array('uses' => 'feController@FotosEntitats'));

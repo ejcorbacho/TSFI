@@ -109,6 +109,7 @@ class CreateTablesBd2 extends Migration
             $table->increments('id');
             $table->string('nombre', 200)->unique();
             $table->integer('id_padre')->nullable()->unsigned();
+            $table->tinyInteger('eliminado');
             $table->timestamps();
         });
 
@@ -144,6 +145,14 @@ class CreateTablesBd2 extends Migration
             $table->integer('id_etiqueta')->unsigned();
             $table->foreign('id_entrada')->references('id')->on('entradas');
             $table->foreign('id_etiqueta')->references('id')->on('etiquetas');
+            $table->timestamps();
+        });
+
+        Schema::create('entidades', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('nombre',200);
+            $table->integer('son_colaboradoras');
+            $table->string('url');
             $table->timestamps();
         });
     }

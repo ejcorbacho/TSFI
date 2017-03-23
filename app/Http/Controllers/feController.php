@@ -22,18 +22,20 @@ class feController extends Controller
         $ocategories = new feCategories;
         $data = $ocategories->llegirCategories($id);
         $post = $ocategories->MostarPosts($id);
+        $related = $ocategories->MostrarPostsRelated($id);
 
-        return view('frontend.feCategory',['categoria'=>$data[0], 'posts'=>$post]);
+        return view('frontend.feCategory',['categoria'=>$data[0], 'posts'=>$post, 'related'=>$related]);
     }
     public function post($id) {
         $oentradas = new feEntrades;
         $data = $oentradas->llegirEntrada($id);
-        return view('frontend.fePost',['data'=>$data[0]]);
+        $related = $oentradas->MostrarPostsRelated($id);
+        return view('frontend.fePost',['data'=>$data[0] , 'related'=>$related]);
     }
     //public function category($id) {
     //    $todosposts = new feCateogories;
     //    $data = $todosposts->MostarPosts($id);
     //      return view('feCategory',['data'=>$data[0]]);
     //}
-
+     
 }

@@ -9,6 +9,12 @@
 <link rel="stylesheet" href="{{ asset('plugins/datepicker/datepicker3.css') }}">
 
 
+<script src="{{ asset('plugins/daterangepicker/moment.js') }}"></script>
+<script src="{{ asset('plugins/daterangepicker/daterangepicker.js') }}"></script>
+<link rel="stylesheet" href="{{ asset('plugins/daterangepicker/daterangepicker.css') }}">
+
+
+
 <script type="text/javascript" src="{{ asset('js/dropzone/dropzone.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/backend/dropzoneConfig.js') }}"></script>
 <link rel="stylesheet" href="{{ asset('css/dropzone/dropzone.css') }}">
@@ -276,9 +282,14 @@
         <h4 class="modal-title">Esdeveniment</h4>
       </div>
       <div class="modal-body">
-        <div class="form-group ">
-          <a type="button" class="btn">+ Afegir imatge destacada</a>
-        </div>
+        <div class="modal-body">
+				 <div class="input-group">
+                  <div class="input-group-addon">
+                    <i class="fa fa-calendar"></i>
+                  </div>
+                  <input type="text" class="form-control pull-right" name="evento" id="evento">
+                </div>
+			  </div>
       </div>
     </div>
   </div>

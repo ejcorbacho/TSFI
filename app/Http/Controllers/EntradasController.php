@@ -44,6 +44,7 @@ class EntradasController  extends Controller
       $this->oentradas->contenido = Input::get('contingut');
       $this->oentradas->categorias = Input::get('categorias_seleccionadas');
       $this->oentradas->etiquetas = Input::get('etiquetas_seleccionadas');
+
       $fecha = Input::get('data_publicacion');
       $fecha = date("Y-m-d", strtotime($fecha));
       $this->oentradas->data_publicacion = $fecha;
@@ -53,6 +54,17 @@ class EntradasController  extends Controller
         $this->oentradas->visible = Input::get('visible');
       }
       $this->oentradas->publico = Input::get('publico');
+
+      $fechas = Input::get('evento');
+      $fecha1 = substr($fechas, 0, strpos($fechas, '-'));
+      $fecha2 = substr($fechas, strpos($fechas, '-')+1, strlen($fechas));
+
+      
+      $fecha1 = date("Y-m-d", strtotime($fecha1));
+      $fecha2 = date("Y-m-d", strtotime($fecha2));
+      $this->oentradas->fecha1 = $fecha1;
+      $this->oentradas->fecha2 = $fecha2;
+
 
       //return Input::get('categorias_seleccionadas');
       if($idPostBd == 0){

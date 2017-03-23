@@ -115,7 +115,9 @@
 
             <div class="box-body pad">
 
-              <button class="btn btn-primary">Imatges</button><br /><br />
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#imageInsertionModal">
+                  Inserir imatges
+              </button>
               <textarea name="contingut" id="contingut" onkeyup="validarEnviar()" onchange="validarEnviar()">@if (!empty($data[0]->contenido)) {{ $data[0]->contenido }} @endif</textarea>
             </div>
           </div>
@@ -252,8 +254,15 @@
   			  </div>
   			  <div class="modal-body">
   				<div class="form-group ">
-  					<a type="button" class="btn">+ Afegir imatge destacada</a>
+  				    <input id="mainImageInput" name="mainImage" type="hidden">
+  				    <div id="mainImage">
+
+  				    </div>
+  					<a type="button" class="btn" data-toggle="modal" data-target="#imageSelectionModal">
+  					    + Editar imatge destacada
+                    </a>
   				</div>
+
   			  </div>
               </div>
   	    </div>
@@ -276,75 +285,100 @@
 </div>
       </form>
 
-      <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#uploadsModal">
-        Imatges
-      </button>
-
-  	<!-- END IMATGE-->
-      <!-- ./row -->
-      </section>
-      <!-- /.content -->
-    </div>
-
-
-    <!-- IMAGE UPLOADING MODAL -->
-
-  <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#imageModal">
-    Launch demo modal
-  </button>
-
-  <div class="modal fade" id="imageModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-        </div>
-        <div class="modal-body">
-          <div class="tabbable">
-              <ul class="nav nav-tabs" data-tabs="tabs">
-                  <li id="tab1" class="active mytabs">
-                      <a href="#One" data-toggle="tab">Galeria</a>
-                  </li>
-                  <li id="tab2" class="mytabs">
-                      <a href="#Two" data-toggle="tab">Puja imatges</a>
-                  </li>
-              </ul>
-              <div class="tab-content">
-                  <div class="tab-pane active" id="One">
-                      <div class="picker">
-                          <select id="imageSelector" class="image-picker" multiple="multiple"></select>
+<!-- START IMAGE INSERTION MODAL -->
+    <div class="modal fade" id="imageInsertionModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        Gestió d'imatges
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <div class="tabbable">
+                        <ul class="nav nav-tabs" data-tabs="tabs">
+                            <li id="tab1" class="active mytabs">
+                                <a href="#imageInsertionTabOne" data-toggle="tab">
+                                    Biblioteca
+                                </a>
+                            </li>
+                            <li id="tab2" class="mytabs">
+                                <a href="#imageInsertionTabTwo" data-toggle="tab">
+                                    Pujar imatges
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="imageInsertionTabOne">
+                                <div class="picker insertion">
+                                    <select id="imageInsertionSelector" class="image-picker" multiple="multiple"></select>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="imageInsertionTabTwo">
+                                <form class="dropzone" id="imageInsertionUpload">
+                                    <input name="_token" type="hidden" value="{!! csrf_token() !!}" />
+                                </form>
+                            </div>
                         </div>
-                  </div>
-                  <div class="tab-pane" id="Two">
-                      <form class="dropzone" id="dropzone-upload">
-                        <input name="_token" type="hidden" value="{!! csrf_token() !!}" />
-                      </form>
-                  </div>
-              </div>
-          </div>
-          <div class="modal-body">
-            <form action="/TSFI/public/administracio/uploadFile" class="dropzone" id="dropzone-upload">
-              <input name="_token" type="hidden" value="{!! csrf_token() !!}" />
-            </form>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
-          </div>
-        </div><!-- /.modal-content -->
-      </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
-    <!-- END IMAGE UPLOADING MODAL -->
-   <img id="adsffsfsa" src="C:\wamp64\www\TSFI\public\uploads\409A.jpg">
-
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Tancar</button>
+                    <button id="insertImages" type="button" class="btn btn-primary">Inserir seleccionats</button>
+                </div>
+            </div>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Tancar</button>
-          <button id="insertImages" type="button" class="btn btn-primary">Inserir seleccionats</button>
-        </div>
-      </div>
     </div>
-  </div>
+<!-- END IMAGE INSERTION MODAL -->
+
+<!-- START IMAGE SELECTION MODAL -->
+    <div class="modal fade" id="imageSelectionModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        Gestió d'imatges
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <div class="tabbable">
+                        <ul class="nav nav-tabs" data-tabs="tabs">
+                            <li id="tab1" class="active mytabs">
+                                <a href="#imageSelectionTabOne" data-toggle="tab">
+                                    Biblioteca
+                                </a>
+                            </li>
+                            <li id="tab2" class="mytabs">
+                                <a href="#imageSelectionTabTwo" data-toggle="tab">
+                                    Pujar imatges
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="imageSelectionTabOne">
+                                <div class="picker selection">
+                                    <select id="imageSelectionSelector" class="image-insertion"></select>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="imageSelectionTabTwo">
+                                <form class="dropzone" id="imageSelectionUpload">
+                                    <input name="_token" type="hidden" value="{!! csrf_token() !!}" />
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Tancar</button>
+                    <button id="setImage" type="button" class="btn btn-primary">Desar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- END IMAGE SELECTION MODAL -->
 </div>
 @endsection

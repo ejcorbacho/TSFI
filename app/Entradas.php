@@ -32,6 +32,7 @@ class Entradas extends Model
         'subtitulo'=> $this->subtitulo,
         'resumen_corto'=>  $this->twitter,
         'resumen_largo'=> $this->resumen_largo,
+        'localizacion' => '',
         'contenido'=>  $this->contenido,
         'data_publicacion' => $this->data_publicacion,
         'visible'=> $this->visible,
@@ -86,6 +87,7 @@ class Entradas extends Model
         'subtitulo'=> $this->subtitulo,
         'resumen_corto'=>  $this->twitter,
         'resumen_largo'=> $this->resumen_largo,
+        'localizacion' => '',
         'contenido'=>  $this->contenido,
         'visible'=> $this->visible,
         'fecha1'=> $this->fecha1,
@@ -152,5 +154,8 @@ class Entradas extends Model
         return $contenido;
     }
 
+    public function getEvents() {
+
+    }
 
 }

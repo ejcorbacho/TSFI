@@ -110,7 +110,7 @@ $( document ).ready(function() {
         type: 'post',
         success: function(data) {
           $('#idBD' ).val(data); /* GUARDAMOS LA ID DE LA BD EN EL FORMULARIO */
-          showSuccessAlert(data);
+          showSuccessAlert('Desat!');
         },
         error: function(xhr, desc, err) {
           console.log(xhr);

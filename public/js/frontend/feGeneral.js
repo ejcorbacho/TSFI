@@ -1,4 +1,5 @@
-$(document).ready(function() { 
+/*
+$(document).ready(function() {
 
 $.ajax({
             url: '/TSFI/public/ajax/entitat/TresEntitats',
@@ -26,3 +27,4 @@ for (var index = 0; index < ContingutEntitat.length; index++) {
 }
 
 };
+    */

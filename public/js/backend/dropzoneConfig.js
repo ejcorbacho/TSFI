@@ -1,5 +1,5 @@
 Dropzone.options.imageInsertionUpload = {
-    url: '/tsfi/public/administracio/uploadFile',
+    url: '/TSFI/public/administracio/uploadFile',
     success: function(file, response){
         startGallery();
     },
@@ -7,7 +7,7 @@ Dropzone.options.imageInsertionUpload = {
 };
 
 Dropzone.options.imageSelectionUpload = {
-    url: '/tsfi/public/administracio/uploadFile',
+    url: '/TSFI/public/administracio/uploadFile',
     success: function(file, response){
         startGallery();
     },

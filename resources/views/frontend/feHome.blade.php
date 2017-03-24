@@ -3,10 +3,20 @@
 @section('content')
 <html>      
     <head>
+        <meta name="viewport" content="width=device-width, user-scalable=no">
         <link rel="stylesheet" href="{{ asset('css/popularposts.css')}}">
         <link href="{{ asset('css/mainGrid.css')}}" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <meta name="viewport" content="width=device-width, user-scalable=no">
+
+        <!-- API Google Calendar -->
+        <script src="{{ asset('js/frontend/googleCalendar.js')}}"></script>
+        <!-- Widget Calendari -->
+        <script src="{{ asset('fullcalendar-3.2.0/lib/moment.min.js')}}"></script>
+        <script src="{{ asset('fullcalendar-3.2.0/fullcalendar.min.js')}}"></script>
+        <script src="{{ asset('js/frontend/calendar.js')}}"></script>
+        <link href="{{ asset('fullcalendar-3.2.0/fullcalendar.min.css')}}" rel='stylesheet' />
+        <link href="{{ asset('fullcalendar-3.2.0/fullcalendar.print.min.css')}}" rel='stylesheet' media='print' />
+        <link href="{{ asset('/css/calendar.css')}}" rel="stylesheet" >
     </head>
     <body>
         <div class="col-md-12 col-lg-10 col-lg-offset-1">
@@ -202,8 +212,20 @@
                 <hr class="popularPostSeparator">
             </div>
             <div id="popularPostsSidebar" class="col-md-3 col-sm-12">
-                <h2>Calendario</h2>
+                <h2>Calendari</h2>
+<!-- INICI CALENDARI -->
+                <!--ANTIC
                 <iframe src="https://calendar.google.com/calendar/embed?src=kravitz.sds%40gmail.com&ctz=Europe/Madrid" style="border: 0" width="100%" height="250px" frameborder="0" scrolling="no"></iframe>
+                -->
+
+                <div id='calendar'></div>
+
+                <script async defer src="https://apis.google.com/js/api.js"
+                        onload="this.onload=function(){};handleClientLoad()"
+                        onreadystatechange="if (this.readyState === 'complete') this.onload()">
+                </script>
+
+<!-- FI CALENDARI -->
                 <h2>Twitter</h2>
                 <iframe id="twitter-widget-0" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true" class="twitter-timeline twitter-timeline-rendered" style="position: static; visibility: visible; display: inline-block; width: 400px; height: 400px; padding: 0px; border: none; max-width: 100%; min-width: 180px; margin-top: 0px; margin-bottom: 0px; min-height: 300px;" data-widget-id="585734069557792768" title="Twitter Timeline"></iframe>
                 <h2>Enlaces</h2>

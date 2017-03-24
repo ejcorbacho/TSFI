@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    startImageInsertionGallery();
+    startGallery    ();
 
     $("#insertImages").click( function () {
         var images = "";
@@ -29,7 +29,7 @@ $(document).ready(function() {
     });
 });
 
-function startImageInsertionGallery() {
+function startGallery() {
     getDataOverAJAX( 'getImageList' ).then(
         function( data ) {
             fillImageGallery( '#imageInsertionSelector', data );
@@ -51,7 +51,7 @@ function fillImageGallery( id, data ) {
 function getDataOverAJAX(route, data) {
     return $.ajax({
         type: 'GET',
-        url: '/tsfi/public/ajax/uploads/' + route,
+        url: '/TSFI/public/ajax/uploads/' + route,
         data: {data: data}
     });
 }

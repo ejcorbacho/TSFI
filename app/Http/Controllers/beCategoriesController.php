@@ -26,9 +26,9 @@ class beCategoriesController extends Controller
 //        $this->ocategories->id_padre = Input::get('idPare');  
 //        //falta un if de comprobacion que esta en entradas controller
 //        if ($this->ocategories->guardar()){
-//          $this->salida_vista['mensaje'] = "Guardat!";
+//          $mensaje = "Guardat!";
 //        } else {
-//          $this->salida_vista['mensaje'] = "Error al guardar!";
+//          $mensaje = "Error al guardar!";
 //        }
         return view('backend.beNovaCategoria',['data'=>$data]);
     }
@@ -41,14 +41,14 @@ class beCategoriesController extends Controller
     }
     public function MostarPostsDeCategoria()
     {
-        $data = $this->ocategories->MostarPostsDeCategoria(Input::get('id'));
+        $this->ocategories->id = Input::get('id');
+        $data = $this->ocategories->MostarPostsDeCategoria();
         if (count($data)>0) {
             return $data;
         }
         else{
             return 0;
         }
-        
     }
     
     public function guardarNovaCategoria()
@@ -57,12 +57,12 @@ class beCategoriesController extends Controller
         $this->ocategories->id_padre = Input::get('idPare');  
         //falta un if de comprobacion que esta en entradas controller
         if ($this->ocategories->guardar()){
-          $this->salida_vista['mensaje'] = "Guardat!";
+          $mensaje = "Guardat!";
         } else {
-          $this->salida_vista['mensaje'] = "Error al guardar!";
+          $mensaje = "Error al guardar!";
           abort(500,"Error al guardar!");
         }
-        return $this->salida_vista['mensaje'];
+        return $mensaje;
     }
     public function actualitzarCategoria()
     {
@@ -71,25 +71,40 @@ class beCategoriesController extends Controller
         $this->ocategories->id_padre = Input::get('idPare');
         //COMPOBAR SI ID ES NULL
         if ($this->ocategories->actualitzarCategoria()){
-          $this->salida_vista['mensaje'] = "Guardat!";
+          $mensaje = "Guardat!";
         } else {
-          $this->salida_vista['mensaje'] = "Error al guardar!";
+          $mensaje = "Error al guardar!";
           abort(500,"Error al guardar!");
         }
-        return $this->salida_vista['mensaje'];
+        return $mensaje;
     }
     public function eliminarCategoria()
     {
-        
         $this->ocategories->id = Input::get('id');
         //COMPOBAR SI ID ES NULL
         if ($this->ocategories->eliminarCategoria()){
-          $this->salida_vista['mensaje'] = "Guardat!";
+          $mensaje = "Guardat!";
         } else {
-          $this->salida_vista['mensaje'] = "Error al guardar!";
+          $mensaje = "Error al guardar!";
           abort(500,"Error al eliminar!");
         }
-        return $this->salida_vista['mensaje'];
+        return $mensaje;
+    }
+    public function transferirCategoria()
+    {
+        $this->ocategories->id = Input::get('id');
+        $this->ocategories->id_desti = Input::get('id_desti');
+        
+        $this->ocategories->postsAMover = $this->ocategories->MostarPostsDeCategoria($this->ocategories->id);
+        
+        //COMPOBAR SI ID ES NULL
+        if ($this->ocategories->transferirCategoria()){
+          $mensaje = "Posts transferits correctament";
+        } else {
+          $mensaje = "Error transferir els posts!";
+          abort(500,"Error al eliminar!");
+        }
+        return json_encode($mensaje);
     }
     public function taulaCaregories()
     {
@@ -99,6 +114,10 @@ class beCategoriesController extends Controller
     public function llistarCategoria()
     {
       return($this->ocategories->llistarTotes());
+    }
+    public function llistarCategoriaPerTransferencia()
+    {
+        return($this->ocategories->llistarCategoriaPerTransferencia(Input::get('id')));
     }
     
     

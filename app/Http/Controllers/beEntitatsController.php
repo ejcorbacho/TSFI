@@ -70,10 +70,6 @@ class beEntitatsController extends Controller
       return($this->oentitats->llistarTotesEntitats());
 
     }
-    public function TresEnitats()
-    {
-      return($this->oentitats->LlistaTresEntitats());
-
-    }
+    
     
 }

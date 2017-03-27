@@ -48,14 +48,5 @@ class beEntitats extends Model
 
         return $contenido;
     }
-
-     public function LlistaTresEntitats(){
-        $contenido =  DB::table('entidades')
-          ->select('entidades.*')
-          ->inRandomOrder() 
-          ->limit(3)
-          ->get();
-
-        return $contenido;
-    }    
+   
 }

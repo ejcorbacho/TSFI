@@ -62,9 +62,9 @@ Route::post('ajax/entradas/guardarEntrada', array('uses' => 'EntradasController@
 Route::get('administracio/entitats/nova', 'beEntitatsController@NovaEntitat');
 Route::get('ajax/entitat/guardarEntitat', array('uses' => 'beEntitatsController@guardarNovaEntitat'));
 Route::get('ajax/entitat/llistatEntitats', array('uses' => 'beEntitatsController@llistarEnitats'));
-Route::get('ajax/entitat/TresEntitats', array('uses' => 'beEntitatsController@TresEnitats'));
-
-
+Route::get('ajax/entitat/TresEntitats', array('uses' => 'feController@TresEnitats'));
+/***entitats footer ***/
+Route::get('ajax/entitat/EntitatsFooter', array('uses' => 'feController@FooterEntitats'));
 
 /***home****/
 

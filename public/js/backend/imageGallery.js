@@ -6,15 +6,20 @@ $(document).ready(function() {
     startGallery();
     $("#insertImages").click( function () {
         var images = "";
+        /*
         $( "div.insertion ul.image_picker_selector li div.selected" ).each(function() {
             images += $( this ).html();
             $( this ).toggleClass('selected');
+        });*/
+        selected.forEach( function ( image ) {
+            images += image;
         });
         var regEx = new RegExp('>', 'g');
         images = images.replace(regEx, 'width="200">');
 
         tinymce.get("contingut").execCommand('mceInsertContent', false, images);
         $('#imageInsertionModal').modal('hide');
+        selected = [];
     });
 
     $("#setImage").click( function () {
@@ -56,8 +61,15 @@ function paginate ( selector, start ) {
         ++i;
     }
     $( selector ).imagepicker({
-        selected: function() {
-            selected.push(option.currentTarget.innerHTML);
+        clicked: function( select, option ) {
+            if ( $(this)[0].id.indexOf("nsertion") >= 0 ) {
+                var clickedOption = option.currentTarget.innerHTML;
+                if (!selected.includes(clickedOption)) {
+                    selected.push(clickedOption);
+                } else {
+                    selected.pop(clickedOption);
+                }
+            }
         }
     });
 }

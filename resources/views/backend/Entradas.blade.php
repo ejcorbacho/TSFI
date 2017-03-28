@@ -4,6 +4,7 @@
 <link href="{{ asset('css/tinymce.css') }}" rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="{{ asset('css/sol.css') }}">
 <link rel="stylesheet" href="{{ asset('css/beEntradas.css') }}">
+<link rel="stylesheet" href="{{ asset('css/chosen.css') }}">
 <!-- bootstrap datepicker -->
 <script src="{{ asset('plugins/datepicker/bootstrap-datepicker.js') }}"></script>
 <link rel="stylesheet" href="{{ asset('plugins/datepicker/datepicker3.css') }}">
@@ -17,6 +18,8 @@
 
 <script type="text/javascript" src="{{ asset('js/dropzone/dropzone.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/backend/dropzoneConfig.js') }}"></script>
+
+<script src="{{ asset('js/chosen.jquery.js') }}" type="text/javascript"></script>
 <link rel="stylesheet" href="{{ asset('css/dropzone/dropzone.css') }}">
 
 <script type="text/javascript" src="{{ asset('js/sol.js') }}"></script>
@@ -192,10 +195,10 @@
                         <div id="dropdown_list_categorias" class="dropdown-list" style="display: none;">
                             <input  id="dropdown_search_categorias" type="search" placeholder="Cerca categories" class="dropdown-search"/>
                             <ul>
-                              @foreach($categoriesSensePare as $categoria)
+                              @foreach($categorias as $categoria)
                                 <li >
-                                  <input name="categorias_seleccionadas[]" value="{{$categoria->id}}" type="checkbox">
-                                  <label for="nombre">{{$categoria->nombre}}</label>
+                                  <input @if ($categoria['seleccionado'])) {{ 'checked'}} @endif name="categorias_seleccionadas[]" value="{{$categoria['id']}}" type="checkbox">
+                                  <label for="nombre">{{$categoria['nombre']}}</label>
                                 </li>
                               @endforeach
                             </ul>
@@ -211,7 +214,7 @@
             </div>
           </div>
   	<!-- END Categories -->
-
+      <input type="hidden" value="" id="etiquetasNuevas" class="etiquetasNuevas" name="etiquetasNuevas" />
   	  <div class="col-md-3">
   		<div class="example-modal">
               <div class="modal-content box">
@@ -220,21 +223,17 @@
   			  </div>
   			  <div  class="modal-body">
             <div id="dropdown_etiquetas" class="dropdown-container">
-                <div id="dropdown_button_etiquetas" class="dropdown-button noselect">
-                    <div class="dropdown-label"><input type="search" id="dropdown_search_etiquetes" autocomplete="off" placeholder="Cerca etiquetes" class="dropdown-search"/></div>
-                </div>
-                <div id="dropdown_list_etiquetas" class="dropdown-list" style="display: none;">
 
-                    <ul >
-                      @foreach($etiquetas as $etiqueta)
-                        <li >
-                          <input name="etiquetas_seleccionadas[]" value="{{$etiqueta->id}}" type="checkbox">
-                          <label for="nombre">{{$etiqueta->nombre}}</label>
-                        </li>
-                      @endforeach
+                <select name="etiquetas_seleccionadas[]" id="selector_etiquetas" data-placeholder="Your Favorite Types of Bear" style="width:350px;" multiple class="chosen-select" tabindex="8">
+                  @foreach($etiquetas as $etiqueta)
 
-                    </ul>
-                </div>
+                    <option @if ($etiqueta['seleccionado'])) {{ 'selected'}} @endif  value="{{$etiqueta['id']}}">{{$etiqueta['nombre']}}</option>
+
+
+                  @endforeach
+
+                </select>
+
             </div>
             <hr />
 
@@ -279,6 +278,41 @@
     </div>
   </div>
 </div>
+
+<!-- ***************** ENTITATS... ****************** -->
+<div class="col-md-3">
+  <div class="example-modal">
+    <div class="modal-content box">
+      <div class="modal-header">
+        <h4 class="modal-title">Entitats</h4>
+      </div>
+      <div class="modal-body">
+        <div class="modal-body">
+          <div id="dropdown_entitats" class="dropdown-container">
+              <div id="dropdown_button_entitats" class="dropdown-button noselect">
+                  <div class="dropdown-label">Selecciona entitats</div>
+              </div>
+              <div id="dropdown_list_entitats" class="dropdown-list" style="display: none;">
+                  <input  id="dropdown_search_entitats" type="search" placeholder="Cerca entitats" class="dropdown-search"/>
+                  <ul>
+                    @foreach($entitats as $entitat)
+
+                      <li >
+                        <input @if ($entitat['seleccionado'])) {{ 'checked'}} @endif name="entitats_seleccionadas[]" value="{{$entitat['id']}}" type="checkbox">
+                        <label for="nombre">{{$entitat['nombre']}}</label>
+                      </li>
+                    @endforeach
+                  </ul>
+              </div>
+          </div>
+          <div>.</div>
+			  </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ***************** ...ENTITATS ****************** -->
+
       </form>
 
       <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#uploadsModal">

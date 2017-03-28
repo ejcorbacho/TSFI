@@ -171,9 +171,7 @@
       </div>
       <hr />
       <ul id="items_menu_cms">
-        <li> item submenu</li>
-        <li> item submenu</li>
-        <li> item submenu</li>
+        
       </ul>
       <div style="clear: both"></div>
       <div id="redes_sociales_footer">

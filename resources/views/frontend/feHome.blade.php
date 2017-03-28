@@ -3,6 +3,7 @@
 @section('content')
 <html>      
     <head>
+    <a href="feHome.blade.php"></a>
         <meta name="viewport" content="width=device-width, user-scalable=no">
         <link rel="stylesheet" href="{{ asset('css/popularposts.css')}}">
         <link href="{{ asset('css/mainGrid.css')}}" rel="stylesheet">
@@ -23,15 +24,17 @@
     <body>
         <div class="col-md-12 col-lg-10 col-lg-offset-1">
         <!-- Portfolio Item Row -->
+        @if(isset($post))
         <div class="row mainGridContainer">
             <!-- 1 APARTADO PRINCIPAL-->
             <div class="col-md-8 img-relative">
-                <img class="img-responsive erc max" src="{{$posts[0]->fotosUrl}}" alt="">
+               
+                <img class="img-responsive erc max" src="@if(!empty($posts[0]->fotosUrl)){{$posts[0]->fotosUrl}}@endif" alt="">
 				<div class="maximolineas">
 					<a>
 						<h4>@if(!empty($posts[0]->nombre)) {{$posts[0]->nombre}} @endif</h4>
 						<h3>@if(!empty($posts[0]->titulo)) {{$posts[0]->titulo}} @endif</h3>
-						<p>@if(!empty(!!html_entity_decode($posts[0]->contenido)!!)) {{!!html_entity_decode($posts[0]->contenido)!!}} @endif</p>
+						<p>@if(!empty($posts[0]->contenido)) {{!!html_entity_decode($posts[0]->contenido)!!}} @endif</p>
 					</a>
 				</div>
 				<div class="icons">
@@ -41,12 +44,12 @@
 			</div>
 			<!-- 2 APARTADOS DE DERECHA-->
 			<div class="col-sm-8 col-md-4">
-                <img class="img-responsive erc sec" src="{{$posts[1]->fotosUrl}}" alt="">
+                <img class="img-responsive erc sec" src="@if(!empty($posts[1]->fotosUrl)){{$posts[1]->fotosUrl}}@endif" alt="">
 				<div class="maximolineas">
 					<a>
 						<h4>@if(!empty($posts[1]->nombre)) {{$posts[1]->nombre}} @endif</h4>
 						<h3>@if(!empty($posts[1]->titulo)) {{$posts[1]->titulo}} @endif</h3>
-						<p>@if(!empty(!!html_entity_decode($posts[1]->contenido)!!)) {{!!html_entity_decode($posts[1]->contenido)!!}} @endif</p>
+						<p>@if(!empty($posts[1]->contenido)) {{!!html_entity_decode($posts[1]->contenido)!!}} @endif</p>
 					</a>
 				</div>
 				<div class="icons">
@@ -56,12 +59,12 @@
             </div>	
 			
 			<div class="col-sm-4 col-md-4">
-                <img class="img-responsive erc sec" src="{{$posts[2]->fotosUrl}}">
+                            <img class="img-responsive erc sec" src="@if(!empty($posts[2]->fotosUrl)){{$posts[2]->fotosUrl}}@endif">
 				<div class="maximolineas">
 					<a>
 						<h4>@if(!empty($posts[2]->nombre)) {{$posts[2]->nombre}} @endif</h4>
 						<h3>@if(!empty($posts[2]->titulo)) {{$posts[2]->titulo}} @endif</h3>
-						<p>@if(!empty(!!html_entity_decode($posts[2]->contenido)!!)) {{!!html_entity_decode($posts[2]->contenido)!!}} @endif</p>
+						<p>@if(!empty($posts[2]->contenido)) {{!!html_entity_decode($posts[2]->contenido)!!}} @endif</p>
 					</a>
 				</div>
 				<div class="icons">
@@ -73,12 +76,12 @@
         <div class="row mainGridContainer">-->
             <!-- 3 APARTADOS DE ABAJO-->
             <div class="col-sm-4 rango">
-                <img class="img-responsive erc terc" src="{{$posts[3]->fotosUrl}}">
+                <img class="img-responsive erc terc" src="@if(!empty($posts[3]->fotosUrl)){{$posts[3]->fotosUrl}}@endif">
 				<div class="maximolineas">
 					<a>
 						<h4>@if(!empty($posts[3]->nombre)) {{$posts[3]->nombre}} @endif</h4>
 						<h3>@if(!empty($posts[3]->titulo)) {{$posts[3]->titulo}} @endif</h3>
-						<p>@if(!empty(!!html_entity_decode($posts[3]->contenido)!!)) {{!!html_entity_decode($posts[3]->contenido)!!}} @endif</p>
+						<p>@if(!empty($posts[3]->contenido)) {{!!html_entity_decode($posts[3]->contenido)!!}} @endif</p>
 					</a>
 				</div>
 				<div class="icons">
@@ -88,12 +91,12 @@
 			</div>
 
             <div class="col-sm-4 rango">
-                <img class="img-responsive erc terc"  src="{{$posts[4]->fotosUrl}}">
+                <img class="img-responsive erc terc"  src="@if(!empty($posts[4]->fotosUrl)){{$posts[4]->fotosUrl}}@endif">
 				<div class="maximolineas">
 					<a>
 						<h4>@if(!empty($posts[4]->nombre)) {{$posts[4]->nombre}} @endif</h4>
 						<h3>@if(!empty($posts[4]->titulo)) {{$posts[4]->titulo}} @endif</h3>
-						<p>@if(!empty(!!html_entity_decode($posts[4]->contenido)!!)) {{!!html_entity_decode($posts[4]->contenido)!!}} @endif</p>
+						<p>@if(!empty($posts[4]->contenido)) {{!!html_entity_decode($posts[4]->contenido)!!}} @endif</p>
 					</a>
 				</div>
 				<div class="icons">
@@ -103,12 +106,12 @@
 			</div>
 
             <div class="col-sm-4 rango">
-                <img class="img-responsive erc terc" src="{{$posts[5]->fotosUrl}}">
+                <img class="img-responsive erc terc" src="@if(!empty($posts[5]->fotosUrl)){{$posts[5]->fotosUrl}}@endif">
 				<div class="maximolineas">
 					<a>
 						<h4>@if(!empty($posts[5]->nombre)) {{$posts[5]->nombre}} @endif</h4>
 						<h3>@if(!empty($posts[5]->titulo)) {{$posts[5]->titulo}} @endif</h3>
-						<p>@if(!empty(!!html_entity_decode($posts[5]->contenido)!!)) {{!!html_entity_decode($posts[5]->contenido)!!}} @endif</p>
+						<p>@if(!empty($posts[5]->contenido)) {{!!html_entity_decode($posts[5]->contenido)!!}} @endif</p>
 					</a>
 				</div>
 				<div class="icons">
@@ -117,7 +120,9 @@
 				</div>
 			</div>
         </div>
+        @endif
     </div>
+        
     <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
         <div id="popularPostsSection" class="col-lg-10 col-lg-offset-1 col-md-12">
             <div id="popularPostsContainer" class="col-md-9 col-sm-12">

@@ -52,6 +52,9 @@
     text-align: center;
     font-size: 19px !important;
 }
+.categoryPostSocialIcon:hover{
+    color:deepskyblue;
+}
 .categoryPostDate{
     padding: 0px;
     color:#777;

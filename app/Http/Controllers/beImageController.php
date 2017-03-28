@@ -19,4 +19,9 @@ class beImageController extends Controller {
         $response = $this->uploads->uploadFile($photo);
         return $response;
     }
+
+
+    public function getImageList() {
+        return($this->uploads->getImageList());
+    }
 }

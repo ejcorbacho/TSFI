@@ -35,7 +35,11 @@ Route::get('administracio/categoria/editar/{id}', array('uses' => 'beCategoriesC
 Route::get('ajax/categories/guardarCategoria', 'beCategoriesController@guardarNovaCategoria');
 Route::post('ajax/categories/actualitzarCategoria', 'beCategoriesController@actualitzarCategoria');
 Route::post('ajax/categories/eliminarCategoria', 'beCategoriesController@eliminarCategoria');
+Route::post('ajax/categories/dadesTaulaCaregories', 'beCategoriesController@dadesTaulaCaregories');
 Route::post('ajax/categories/llistarPostsDeCategoria', 'beCategoriesController@MostarPostsDeCategoria');
+Route::post('ajax/categories/llistarCategoriaPerTransferencia', 'beCategoriesController@llistarCategoriaPerTransferencia');
+Route::post('ajax/categories/transferirCategoria', 'beCategoriesController@transferirCategoria');
+
 
 Route::get('administracio/entrada/nova/', array('uses' => 'EntradasController@makeEntrada')); //Mostrar formulario
 Route::get('administracio/entrada/nova/{id}', array('uses' => 'EntradasController@editarEntrada')); //Mostrar formulario
@@ -51,6 +55,9 @@ Route::get('ajax/analytics/getAgeBracketData', array('uses' => 'HomeController@g
 //Uploads
 Route::post('administracio/uploadFile', array('uses' => 'beImageController@uploadFile'));
 
+//Images
+Route::get('ajax/uploads/getImageList', array('uses' => 'beImageController@getImageList'));
+
 //******* RUTAS AJAX ***********/
 Route::get('ajax/categories/llistaCategories', array('uses' => 'beCategoriesController@llistarCategoria')); //Mostrar formulario
 Route::post('ajax/categories/guardarCategoria', array('uses' => 'beCategoriesController@novaCategoria')); //Mostrar formulario
@@ -65,6 +72,9 @@ Route::get('ajax/entitat/llistatEntitats', array('uses' => 'beEntitatsController
 Route::get('ajax/entitat/TresEntitats', array('uses' => 'feController@TresEnitats'));
 /***entitats footer ***/
 Route::get('ajax/entitat/EntitatsFooter', array('uses' => 'feController@FooterEntitats'));
+
+//Search
+Route::post('/search', 'SearchController@search');
 
 /***home****/
 

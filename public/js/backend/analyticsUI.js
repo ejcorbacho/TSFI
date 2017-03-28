@@ -51,9 +51,9 @@ $(document).ready(function() {
 
     setTimeout(function(){
         if (successfulCalls != numberOfCalls) {
-            showErrorAlert("Hi ha hagut un error carregant dades des de Google Analytics.");
+            showErrorAlert("Hi ha hagut un error carregant dades des de Google Analytics. Provi de recarregar la pàgina.");
         }
-    }, 5000);
+    }, 10000);
 
     $("#deviceCategoriesSelector").change(function() {
         updateDeviceCategoriesChart();

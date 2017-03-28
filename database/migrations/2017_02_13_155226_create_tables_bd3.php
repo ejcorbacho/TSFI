@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTablesBd2 extends Migration
+class CreateTablesBd3 extends Migration
 {
     /**
      * Run the migrations.
@@ -76,12 +76,15 @@ class CreateTablesBd2 extends Migration
             $table->string('subtitulo', 200);
             $table->string('resumen_corto', 200);
             $table->string('resumen_largo', 200);
-            $table->string('contenido', 200);
+            $table->string('localizacion', 500);
+            $table->longText('contenido');
             $table->integer('visible');
             $table->integer('foto')->unsigned();
             $table->integer('publico');
             $table->integer('relevancia');
             $table->datetime('data_publicacion');
+            $table->datetime('fecha1');
+            $table->datetime('fecha2');
             $table->integer('eliminado');
             $table->integer('usuario_publicador')->unsigned();
             $table->foreign('usuario_publicador')->references('id')->on('usuarios');
@@ -134,6 +137,7 @@ class CreateTablesBd2 extends Migration
             $table->foreign('id_categoria')->references('id')->on('categorias');
             $table->timestamps();
         });
+
         Schema::create('etiquetas', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nombre',200);
@@ -155,6 +159,17 @@ class CreateTablesBd2 extends Migration
             $table->string('url');
             $table->timestamps();
         });
+
+
+        Schema::create('entradas_entidades', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('id_entrada')->unsigned();
+            $table->integer('id_entidad')->unsigned();
+            $table->foreign('id_entrada')->references('id')->on('entradas');
+            $table->foreign('id_entidad')->references('id')->on('entidades');
+            $table->timestamps();
+        });
+
     }
 
     /**

@@ -47,7 +47,9 @@ class Entradas extends Model
         'relevancia'=> '1'
       );
 
-
+      $nuevasetiquetas_array = array();
+      $nuevasetiquetas_array = json_decode($this->etiquetasNuevas);
+      
         DB::beginTransaction();
         try {
 
@@ -191,7 +193,7 @@ class Entradas extends Model
     }
 
     public function llegirCategoriesDeEntrada() {
-        
+
         $contenido = DB::table('entradas')
                 ->join('entradas_categorias', 'entradas_categorias.id_entrada', '=', 'entradas.id')
                 ->join('categorias', 'categorias.id', '=', 'entradas_categorias.id_categoria')
@@ -200,7 +202,7 @@ class Entradas extends Model
                 ->get();
     }
     public function getEvents() {
-        
+
     }
     public function leerEtiquetasMarcadas($id){
         $contenido =  DB::table('entradas_etiquetas')

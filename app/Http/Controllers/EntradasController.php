@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Input;
 use View;
 
 
-class EntradasController  extends Controller
+class EntradasController extends Controller
 {
   private $mentradas; //* MODEL ENTRADAS **/
   private $ocategorias;

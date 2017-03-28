@@ -53,7 +53,7 @@ $(document).ready(function() {
         if (successfulCalls != numberOfCalls) {
             showErrorAlert("Hi ha hagut un error carregant dades des de Google Analytics.");
         }
-    }, 5000);
+    }, 10000);
 
     $("#deviceCategoriesSelector").change(function() {
         updateDeviceCategoriesChart();

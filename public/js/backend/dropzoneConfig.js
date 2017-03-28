@@ -1,6 +1,15 @@
-Dropzone.options.dropzoneUpload = {
-    url: '/TSFI/public/administracio/uploadFile',
+Dropzone.options.imageInsertionUpload = {
+    url: '/tsfi/public/administracio/uploadFile',
     success: function(file, response){
-        console.log(response);
-    }
+        startGallery();
+    },
+    dictDefaultMessage: 'Arrossegui aquí les fotos a pujar'
+};
+
+Dropzone.options.imageSelectionUpload = {
+    url: '/tsfi/public/administracio/uploadFile',
+    success: function(file, response){
+        startGallery();
+    },
+    dictDefaultMessage: 'Arrossegui aquí les fotos a pujar'
 };

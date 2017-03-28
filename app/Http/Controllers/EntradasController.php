@@ -31,13 +31,14 @@ class EntradasController extends Controller
     $this->mentitats = new beEntitats;
   }
 
-  //Mostrar formulario para crear cliente
+  //Mostrar formulario para crear client
   public function makeEntrada()
   {
-      $this->categorias = $this->ocategorias->llistarTotes();
-      $etiquetas = $this->oetiquetas->llistarTotes();
-      $entitats = $this->mentitats->llistarTotesEntitats();
-      return view('backend.Entradas',['etiquetas'=>$etiquetas, 'categoriesSensePare'=>$this->categorias, 'entitats'=>$entitats]);
+      $categorias = $this->categoriaMarcada('-1');
+    $etiquetas = $this->etiquetaMarcada('-1');
+    $entitats = $this->entidadMarcada('-1');
+
+    return view('backend.Entradas',['categorias'=>$categorias, 'etiquetas'=>$etiquetas, 'entitats'=>$entitats]);
   }
 
   //Guardar datos del formulario en la BD

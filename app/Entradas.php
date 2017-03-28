@@ -198,17 +198,15 @@ class Entradas extends Model
                 ->select( 'categorias.nombre', 'categorias.id as idcat')
                 ->where('entradas.id', '=', $this->id)
                 ->get();
+    }
     public function getEvents() {
+        
+    }
     public function leerEtiquetasMarcadas($id){
         $contenido =  DB::table('entradas_etiquetas')
           ->select('entradas_etiquetas.id_etiqueta as id')
           ->where('entradas_etiquetas.id_entrada', '=', $id)
           ->get();
-
-        return $contenido;
-    }
-
-    }
 
         return $contenido;
     }

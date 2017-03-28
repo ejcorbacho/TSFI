@@ -24,10 +24,6 @@ class feController extends Controller
         $this->oentitats = new feEntitats;
     }
 
-    public function index() {
-        return view('frontend.feHome');
-    }
-
 
     public function category($id) {
         $ocategories = new feCategories;

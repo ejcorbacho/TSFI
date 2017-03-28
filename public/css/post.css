@@ -1,4 +1,54 @@
-body {     margin: 0;     padding: 0; } .titol {     position: absolute;     bottom: -10px;     color: white;     background: black;     opacity: 0.7;     font-size: 35px;     padding: 25px 0 35px; } .categoria {     position: absolute;     bottom: 72px;     color: black;     background: yellow;     font-size: 22px;     padding: 5px; } .autor {     position: absolute;     bottom: 0;     color: white;     font-size: 18px; } main{     padding-top: 30px;     height:800px;     opacity: 0.6; } article{     background-color: black;     height:600px;     opacity: 0.8;     color: white; } aside{     background-color: black;     height:800px;     opacity: 0.8; }
+body  {
+         margin:  0;
+         padding:  0;
+ }
+ .titol  {
+         position:  absolute;
+         bottom:  -10px;
+         color:  white;
+         background:  black;
+         opacity:  0.7;
+         font-size:  35px;
+         padding:  25px 0 35px;
+ }
+ .categoria  {
+         position:  absolute;
+         bottom:  72px;
+         color:  black;
+         background:#fab23a;
+         font-size:  22px;
+         padding:  5px;
+ }
+ .autor  {
+         position:  absolute;
+         bottom:  0;
+         color:  white;
+         font-size:  18px;
+ }
+ main {
+         padding-top:  30px;
+         height: 800px;
+ }
+ article {       
+         height: 600px;
+ }
+ article p {
+        color:black;
+        height:15%;
+        overflow:hidden;
+        margin-bottom:0px;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp:6;
+        text-overflow: ellipsis;
+        font-family: 'Montserrat', sans-serif;
+}
+ aside {
+         background-color:  black;
+         height: 800px;
+         opacity:  0.8;
+ }
+
 
 .postTitleContainer{
     height: 35%;     
@@ -9,10 +59,11 @@ body {     margin: 0;     padding: 0; } .titol {     position: absolute;     bot
 }
 #link:hover{
     text-decoration: none;
-    color:orangered;
 }
 #link{
     color:black;
+    font-weight: bold;
+    font-size: 20px;
 }
 
 .postTitleImg{
@@ -25,6 +76,7 @@ body {     margin: 0;     padding: 0; } .titol {     position: absolute;     bot
 }
 .PostContent{
     padding: 22px;
+    
 }
 .PostLink:link{
     text-decoration: none;
@@ -109,7 +161,7 @@ body {     margin: 0;     padding: 0; } .titol {     position: absolute;     bot
     margin-left: 10%;
     width: 80%;
     opacity: 60;
-    background-color:grey;
+    background-color:#3DC2E1;
     position: absolute;
     bottom: 25%;
     z-index: 1;
@@ -117,10 +169,10 @@ body {     margin: 0;     padding: 0; } .titol {     position: absolute;     bot
     font-size: 2.9em;
     font-weight: bold;
     text-align: center;
-    color: black;
+    color: white;
 }
 .sidebarPostTitle > p{
-    background-color:grey;
+    background-color:#3DC2E1;
     overflow: hidden;
     display: -webkit-box;
     -webkit-box-orient: vertical;

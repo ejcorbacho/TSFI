@@ -46,6 +46,4 @@ class feCategories extends Model
     return $contenido;
 }
 
-
-
 }

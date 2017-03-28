@@ -19,12 +19,13 @@ class Entradas extends Model
     public $visible;
     public $foto;
     public $publico;
+    public $entidades;
     public $usuario_publicador;
     public $data_publicacion;
     public $relevancia;
     public $fecha1;
     public $fecha2;
-
+    public $etiquetasNuevas;
 
     public function guardar(){
       $data = array(
@@ -38,6 +39,7 @@ class Entradas extends Model
         'visible'=> $this->visible,
         'fecha1'=> $this->fecha1,
         'fecha2'=> $this->fecha2,
+        'localizacion'=> '',
         'eliminado'=>'0',
         'foto'=> '1',
         'publico'=> '1',
@@ -49,7 +51,7 @@ class Entradas extends Model
         DB::beginTransaction();
         try {
 
-            $post = Entradas::insert($data);
+            //$post = Entradas::insert($data);
             $this->id = DB::table('entradas')->insertGetId($data);
 
             //GUARDAR LAS CATEGORIAS
@@ -64,6 +66,21 @@ class Entradas extends Model
              DB::table('entradas_etiquetas')->insert(
                   ['id_entrada' => $this->id, 'id_etiqueta' => $this->etiquetas[$i]]
               );
+            }
+
+            for ($i=0;$i<count($this->entidades);$i++){
+             DB::table('entradas_entidades')->insert(
+                  ['id_entrada' => $this->id, 'id_entidad' => $this->entidades[$i]]
+              );
+            }
+
+            //GUARDAR NUEVAS etiquetas
+            for ($i=0;$i<count($nuevasetiquetas_array);$i++){
+              $data_etiquetaNueva = array('nombre' => $nuevasetiquetas_array[$i]);
+              $id_nuevaEtiqueta = DB::table('etiquetas')->insertGetId($data_etiquetaNueva);
+              DB::table('entradas_etiquetas')->insert(
+                   ['id_entrada' => $this->id, 'id_etiqueta' =>  $id_nuevaEtiqueta]
+               );
             }
 
             DB::commit();
@@ -92,6 +109,7 @@ class Entradas extends Model
         'visible'=> $this->visible,
         'fecha1'=> $this->fecha1,
         'fecha2'=> $this->fecha2,
+        'localizacion'=> '',
         'eliminado'=>'0',
         'foto'=> '1',
         'publico'=> $this->publico,
@@ -100,10 +118,12 @@ class Entradas extends Model
         'relevancia'=> '1'
       );
 
+        $nuevasetiquetas_array = array();
+        $nuevasetiquetas_array = json_decode($this->etiquetasNuevas);
 
         DB::beginTransaction();
         try {
-            //$post = Entradas::insert($data);
+           //$post = Entradas::insert($data);
             DB::table('entradas')->where('id', '=', $this->id)->update($data);
             //GUARDAR LAS CATEGORIAS
             DB::table('entradas_categorias')->where('id_entrada', '=', $this->id)->delete();
@@ -119,6 +139,22 @@ class Entradas extends Model
              DB::table('entradas_etiquetas')->insert(
                   ['id_entrada' => $this->id, 'id_etiqueta' => $this->etiquetas[$i]]
               );
+            }
+
+            DB::table('entradas_entidades')->where('id_entrada', '=', $this->id)->delete();
+            for ($i=0;$i<count($this->entidades);$i++){
+             DB::table('entradas_entidades')->insert(
+                  ['id_entrada' => $this->id, 'id_entidad' => $this->entidades[$i]]
+              );
+            }
+
+            //GUARDAR NUEVAS etiquetas
+            for ($i=0;$i<count($nuevasetiquetas_array);$i++){
+              $data_etiquetaNueva = array('nombre' => $nuevasetiquetas_array[$i]);
+              $id_nuevaEtiqueta = DB::table('etiquetas')->insertGetId($data_etiquetaNueva);
+              DB::table('entradas_etiquetas')->insert(
+                   ['id_entrada' => $this->id, 'id_etiqueta' =>  $id_nuevaEtiqueta]
+               );
             }
 
             DB::commit();
@@ -154,8 +190,43 @@ class Entradas extends Model
         return $contenido;
     }
 
+    public function llegirCategoriesDeEntrada() {
+        
+        $contenido = DB::table('entradas')
+                ->join('entradas_categorias', 'entradas_categorias.id_entrada', '=', 'entradas.id')
+                ->join('categorias', 'categorias.id', '=', 'entradas_categorias.id_categoria')
+                ->select( 'categorias.nombre', 'categorias.id as idcat')
+                ->where('entradas.id', '=', $this->id)
+                ->get();
+    }
     public function getEvents() {
+        
+    }
+    public function leerEtiquetasMarcadas($id){
+        $contenido =  DB::table('entradas_etiquetas')
+          ->select('entradas_etiquetas.id_etiqueta as id')
+          ->where('entradas_etiquetas.id_entrada', '=', $id)
+          ->get();
 
+        return $contenido;
+    }
+
+    public function leerEntidadesMarcadas($id){
+        $contenido =  DB::table('entradas_entidades')
+          ->select('entradas_entidades.id_entidad as id')
+          ->where('entradas_entidades.id_entrada', '=', $id)
+          ->get();
+
+        return $contenido;
+    }
+
+    public function leerCategoriasMarcadas($id){
+        $contenido =  DB::table('entradas_categorias')
+          ->select('entradas_categoria.id_categoria as id')
+          ->where('entradas_categoria.id_entrada', '=', $id)
+          ->get();
+
+        return $contenido;
     }
 
 }

@@ -12,7 +12,12 @@
   <link rel="stylesheet" href="../../dist/css/skins/_all-skins.min.css">
 
   <link rel="stylesheet" href="../../plugins/iCheck/flat/blue.css">
-
+  <link rel="stylesheet" href="{{asset('css/backend/jquery.dataTables.css')}}">
+  <link rel="stylesheet" href="{{asset('css/backend/dataTables.bootstrap.css')}}">
+  <script src="{{asset('js/backend/jquery.dataTables.js')}}"></script>
+  <script src="{{asset('js/backend/dataTables.bootstrap.min.js')}}"></script>
+  <!--DATA TABLES-->
+  <script src="{{asset('js/backend/beTotesEntrades.js')}}"></script>
 
 <body class="hold-transition skin-blue sidebar-mini">
 
@@ -30,7 +35,7 @@
 
             <div class="box-body no-padding">
 
-              <div class="table-responsive mailbox-messages">
+              <div class="col-md-12">
 			  <div class="mailbox-controls">
                 <!-- Check all button -->
                 <button type="button" class="btn btn-default btn-sm checkbox-toggle"><i class="fa fa-square-o"></i></button>
@@ -38,7 +43,6 @@
                 <div class="btn-group">
                   <button type="button" class="btn btn-default btn-sm"><i class="fa fa-trash-o"></i></button>
                 </div>
-
                 <div class="pull-right">
                   1-50/200
                   <div class="btn-group">
@@ -49,28 +53,27 @@
                 </div>
                 <!-- /.pull-right -->
               </div>
-                <table class="table table-hover table-striped">
-				  <thead>
-					<tr>
-						<th></th>
-						 <th>Titol</th>
-						 <th>Resum</th>
-						 <th>Categories</th>
-						 <th>Data</th>
-             <th></th>
-					</tr>
-				  </thead>
+                  <table id="taulaDePosts" class="table table-hover table-striped">
+                      <thead>
+                          <tr>
+                              <th></th>
+                              <th>Títol</th>
+                              <th>Resum</th>
+                              <th>Categories</th>
+                              <th>Data de publicació</th>
+                              <th></th>
+                          </tr>
+                      </thead>
 
-                  <tbody>
+                      <tbody>
                   @foreach($data as $dato)
                   <tr>
-                    <td><input type="checkbox"></td>
-                    <td class="mailbox-name">{{ $dato->titulo }}</td>
-                    <td class="mailbox-subject">{{ $dato->resumen_corto }}
-                    </td>
-                    <td class="mailbox-attachment">{{ $dato->titulo }}</td>
-                    <td class="mailbox-date">{{ $dato->titulo }}</td>
-                    <td class="mailbox-date"><a href="{{ url('administracio/entrada/nova/' . $dato->id) }}">EDITAR</a></td>
+                      <td><input type="checkbox"></td>
+                      <td>{{ $dato->titulo }}</td>
+                      <td>{{ $dato->resumen_corto }}</td>
+                      <td>{{ $dato->titulo }}</td>
+                      <td>{{ $dato->data_publicacion }}</td>
+                      <td><a href="{{ url('administracio/entrada/nova/' . $dato->id) }}">EDITAR</a></td>
                   </tr>
                   @endforeach
                   </tbody>
@@ -94,10 +97,8 @@
 
 
 
-<!-- jQuery 2.2.3 -->
-<script src="../../plugins/jQuery/jquery-2.2.3.min.js"></script>
-<!-- Bootstrap 3.3.6 -->
-<script src="../../bootstrap/js/bootstrap.min.js"></script>
+
+
 <!-- Slimscroll -->
 <script src="../../plugins/slimScroll/jquery.slimscroll.min.js"></script>
 <!-- FastClick -->

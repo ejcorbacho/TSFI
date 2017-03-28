@@ -7,6 +7,7 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="{{asset('/css/post.css')}}">
     <meta name="viewport" content="width=device-width, user-scalable=no"> </head>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
 
 <body>
     <div class="col-lg-10 col-lg-offset-1 col-sm-12">
@@ -23,8 +24,8 @@
             </article>
         </main>
         <div class="categoryPostsSidebar col-md-3 col-sm-12">                
-                <h2>Related Posts</h2>
                 @foreach($related as $info)
+                <h2>Related Posts</h2>              
                 <a href="../post/{{$info->id}}">
                     <div class="sidebarPost">
                         <img class="sidebarPostImg" src="{{$info->fotosUrl}}">

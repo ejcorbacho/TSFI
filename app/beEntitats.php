@@ -13,9 +13,6 @@ class beEntitats extends Model
     public $url;
     public $son_colaboradoras;
 
-
-
-
     public function guardar(){
       $data = array(
         'nombre'=> $this->nombre,
@@ -52,10 +49,10 @@ class beEntitats extends Model
      public function LlistaTresEntitats(){
         $contenido =  DB::table('entidades')
           ->select('entidades.*')
-          ->inRandomOrder() 
+          ->inRandomOrder()
           ->limit(3)
           ->get();
 
         return $contenido;
-    }    
+    }
 }

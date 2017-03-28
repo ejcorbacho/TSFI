@@ -24,13 +24,14 @@
         <div class="col-md-12 col-lg-10 col-lg-offset-1">
         <!-- Portfolio Item Row -->
         <div class="row mainGridContainer">
+            <!-- 1 APARTADO PRINCIPAL-->
             <div class="col-md-8 img-relative">
-                <img class="img-responsive erc max" src="http://placehold.it/700x400" alt="">
+                <img class="img-responsive erc max" src="{{$posts[0]->fotosUrl}}" alt="">
 				<div class="maximolineas">
 					<a>
-						<h4>Categoria</h4>
-						<h3>TITULO YEA</h3>
-						<p >Lorrem iasdasdsad sad a asd fqwer32423a sd asd as dasd asd as d as 33333333333333 ddddddddddddd a em iasdasdsad sad a asd fqwer32423a sd asd as dasd asd as d as 33333333333333 ddddddddddddd a asdsdweer23n hola ajsjsia psum dolor sit amet, consectetur adipisicing elit. Explicabo, asdsdweer23n hola ajsjsia psum dolor sit amet, consectetur adipisicing elit. Explicabo, quidem, consectetur, officia rem officiis illum aliquam perspiciatis aspernatur quod modi hic nemo qui soluta aut eius fugit quam in suscipit?</p>
+						<h4>{{$posts[0]->nombre}}</h4>
+						<h3>{{$posts[0]->titulo}}</h3>
+						<p >{!!html_entity_decode($posts[0]->contenido)!!}</p>
 					</a>
 				</div>
 				<div class="icons">
@@ -38,15 +39,15 @@
 					<i style="font-size:20px" class="fa espacio">&#xf099;</i>
 				</div>
 			</div>
-			
+			<!-- 2 APARTADOS DE DERECHA-->
 			<div class="col-sm-8 col-md-4">
-                <img class="img-responsive erc sec" src="http://placehold.it/700x400" alt="">
+                <img class="img-responsive erc sec" src="{{$posts[1]->fotosUrl}}" alt="">
 				<div class="maximolineas">
 					<a>
-						<h4>Categoria</h4>
-						<h3>TITULO YEA</h3>
-						<p >Lorrem iasdasdsad sad a asd fqwer32423a sd asd as dasd asd as d as 33333333333333 ddddddddddddd a em iasdasdsad sad a asd fqwer32423a sd asd as dasd asd as d as 33333333333333 ddddddddddddd a asdsdweer23n hola ajsjsia psum dolor sit amet, consectetur adipisicing elit. Explicabo, asdsdweer23n hola ajsjsia psum dolor sit amet, consectetur adipisicing elit. Explicabo, quidem, consectetur, officia rem officiis illum aliquam perspiciatis aspernatur quod modi hic nemo qui soluta aut eius fugit quam in suscipit?</p>
-					</a>
+						<h4>{{$posts[1]->nombre}}</h4>
+						<h3>{{$posts[1]->titulo}}</h3>
+						<p >{!!html_entity_decode($posts[1]->contenido)!!}</p>
+                    </a>
 				</div>
 				<div class="icons">
 					<i style="font-size:20px" class="fa espacio face">&#xf082;</i>
@@ -55,12 +56,12 @@
             </div>	
 			
 			<div class="col-sm-4 col-md-4">
-                <img class="img-responsive erc sec" src="http://placehold.it/700x400">
+                <img class="img-responsive erc sec" src="{{$posts[2]->fotosUrl}}">
 				<div class="maximolineas">
 					<a>
-						<h4>Categoria</h4>
-						<h3>TITULO YEA</h3>
-						<p>Lorrem iasdasdsad sad a asd fqwer32423a sd asd as dasd asd as d as 33333333333333 ddddddddddddd a em iasdasdsad sad a asd fqwer32423a sd asd as dasd asd as d as 33333333333333 ddddddddddddd a asdsdweer23n hola ajsjsia psum dolor sit amet, consectetur adipisicing elit. Explicabo, asdsdweer23n hola ajsjsia psum dolor sit amet, consectetur adipisicing elit. Explicabo, quidem, consectetur, officia rem officiis illum aliquam perspiciatis aspernatur quod modi hic nemo qui soluta aut eius fugit quam in suscipit?</p>
+						<h4>{{$posts[2]->nombre}}</h4>
+						<h3>{{$posts[2]->titulo}}</h3>
+						<p >{!!html_entity_decode($posts[2]->contenido)!!}</p>
 					</a>
 				</div>
 				<div class="icons">
@@ -70,14 +71,14 @@
 			</div>
         <!--</div>
         <div class="row mainGridContainer">-->
-
+            <!-- 3 APARTADOS DE ABAJO-->
             <div class="col-sm-4 rango">
-                <img class="img-responsive erc terc" src="http://placehold.it/700x400">
+                <img class="img-responsive erc terc" src="{{$posts[3]->fotosUrl}}">
 				<div class="maximolineas">
 					<a>
-						<h4>Categoria</h4>
-						<h3>TITULO YEA</h3>
-						<p>Lorrem iasdasdsad sad a asd fqwer32423a sd asd as dasd asd as d as 33333333333333 ddddddddddddd a em iasdasdsad sad a asd fqwer32423a sd asd as dasd asd as d as 33333333333333 ddddddddddddd a asdsdweer23n hola ajsjsia psum dolor sit amet, consectetur adipisicing elit. Explicabo, asdsdweer23n hola ajsjsia psum dolor sit amet, consectetur adipisicing elit. Explicabo, quidem, consectetur, officia rem officiis illum aliquam perspiciatis aspernatur quod modi hic nemo qui soluta aut eius fugit quam in suscipit?</p>
+						<h4>{{$posts[3]->nombre}}</h4>
+						<h3>{{$posts[3]->titulo}}</h3>
+						<p >{!!html_entity_decode($posts[3]->contenido)!!}</p>
 					</a>
 				</div>
 				<div class="icons">
@@ -87,12 +88,12 @@
 			</div>
 
             <div class="col-sm-4 rango">
-                <img class="img-responsive erc terc" src="http://placehold.it/700x400">
+                <img class="img-responsive erc terc"  src="{{$posts[4]->fotosUrl}}">
 				<div class="maximolineas">
 					<a>
-						<h4>Categoria</h4>
-						<h3>TITULO YEA</h3>
-						<p>Lorrem iasdasdsad sad a asd fqwer32423a sd asd as dasd asd as d as 33333333333333 ddddddddddddd a em iasdasdsad sad a asd fqwer32423a sd asd as dasd asd as d as 33333333333333 ddddddddddddd a asdsdweer23n hola ajsjsia psum dolor sit amet, consectetur adipisicing elit. Explicabo, asdsdweer23n hola ajsjsia psum dolor sit amet, consectetur adipisicing elit. Explicabo, quidem, consectetur, officia rem officiis illum aliquam perspiciatis aspernatur quod modi hic nemo qui soluta aut eius fugit quam in suscipit?</p>
+						<h4>{{$posts[4]->nombre}}</h4>
+						<h3>{{$posts[4]->titulo}}</h3>
+						<p >{!!html_entity_decode($posts[4]->contenido)!!}</p>
 					</a>
 				</div>
 				<div class="icons">
@@ -102,12 +103,12 @@
 			</div>
 
             <div class="col-sm-4 rango">
-                <img class="img-responsive erc terc" src="http://placehold.it/700x400">
+                <img class="img-responsive erc terc" src="{{$posts[5]->fotosUrl}}">
 				<div class="maximolineas">
 					<a>
-						<h4>Categoria</h4>
-						<h3>TITULO YEA</h3>
-						<p>Lorrem iasdasdsad sad a asd fqwer32423a sd asd as dasd asd as d as 33333333333333 ddddddddddddd a em iasdasdsad sad a asd fqwer32423a sd asd as dasd asd as d as 33333333333333 ddddddddddddd a asdsdweer23n hola ajsjsia psum dolor sit amet, consectetur adipisicing elit. Explicabo, asdsdweer23n hola ajsjsia psum dolor sit amet, consectetur adipisicing elit. Explicabo, quidem, consectetur, officia rem officiis illum aliquam perspiciatis aspernatur quod modi hic nemo qui soluta aut eius fugit quam in suscipit?</p>
+						<h4>{{$posts[5]->nombre}}</h4>
+						<h3>{{$posts[5]->titulo}}</h3>
+						<p >{!!html_entity_decode($posts[5]->contenido)!!}</p>
 					</a>
 				</div>
 				<div class="icons">

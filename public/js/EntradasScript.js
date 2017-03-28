@@ -13,13 +13,15 @@ var hayTwitter;
 var hayResumen;
 var vacio;
 var notificarEntrada = true;
+var etiquetasNuevas = new Array();
+var contadorEtiquetas = 0;
 
 
 //************* CUERPO PRINCIPAL DEL PROGRAMA *******************//
 $( document ).ready(function() {
   habilitarFechas()
 
-  // LISTADO CATEGORIAS
+  /********************************* LISTADO CATEGORIAS *******************************/
   $('#dropdown_categorias')
   	.on('click', '#dropdown_button_categorias', function() {
       	$('#dropdown_list_categorias').toggle();
@@ -40,65 +42,55 @@ $( document ).ready(function() {
           });
   	});
 
-    /********************************* FUNCIONES LISTADO ETIQUETAS  ***********************************/
+    /********************************* LISTADO ETIQUETAS *******************************/
+    var config = {
+      '.chosen-select'           : {},
+      '.chosen-select-deselect'  : {allow_single_deselect:true},
+      '.chosen-select-no-single' : {disable_search_threshold:10},
+      '.chosen-select-no-results': {function(){alert('hola');}},
+      '.chosen-select-width'     : {width:"95%"}
+    }
+    for (var selector in config) {
+      $('#selector_etiquetas').chosen(config[selector]);
+    }
 
-    $('#dropdown_etiquetas')
-      .on('click', '#dropdown_button_etiquetas', function() {
+    /********************************* FUNCIONES LISTADO ENTITATS  ***********************************/
 
-          $('#dropdown_list_etiquetas').toggle();
+    $('#dropdown_entitats')
+    	.on('click', '#dropdown_button_entitats', function() {
+        	$('#dropdown_list_entitats').toggle();
+    	})
+    	.on('input', '#dropdown_search_entitats', function() {
+        	var target = $(this);
+        	var search = target.val().toLowerCase();
 
-          $('#dropdown_list_etiquetas li').each(function() {
+        	if (!search) {
+                $('#dropdown_entitats li').show();
+                return false;
+            }
 
-                var text = $(this).text().toLowerCase();
+        	$('#dropdown_entitats li').each(function() {
+            	var text = $(this).text().toLowerCase();
                 var match = text.indexOf(search) > -1;
-                if(search.length == 0){match = false}
-                //match = true;
-
-                //MOSTRAR SIEMPRE LO SELECICONADOS
-
-                if ( $(this).children('input').is(':checked') ){
-                  match = true;
-                }
                 $(this).toggle(match);
             });
-      })
-      .on('input', '#dropdown_search_etiquetes', function() {
-          var target = $(this);
-          var search = target.val().toLowerCase();
+    	});
 
+    /********************************* FUNCIONES DATEPICKER  ***********************************/
 
-          $('#dropdown_list_etiquetas li').each(function() {
-                var text = $(this).text().toLowerCase();
-                var match = text.indexOf(search) > -1;
-                if(search.length == 0){match = false}
-                //match = true;
-
-                //MOSTRAR SIEMPRE LO SELECICONADOS
-
-                if ( $(this).children('input').is(':checked') ){
-                  match = true;
-                }
-
-
-                $(this).toggle(match);
-            });
+      $('#data_publicacion').datepicker({
+        autoclose: true,
+         dateFormat: 'dd/mm/yy',
+        weekStart:1
       });
 
 
+      $('#evento').daterangepicker({
+        autoclose: true,
+      weekStart:1
+    });
 
-
-  $('#data_publicacion').datepicker({
-    autoclose: true,
-     dateFormat: 'dd/mm/yy',
-    weekStart:1
-  });
-
-
-  $('#evento').daterangepicker({
-    autoclose: true,
-  weekStart:1
-});
-
+    /********************************* FUNCIONES BOTON GUARDAR  ***********************************/
     $.ajaxSetup({
       headers: {
           'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -110,7 +102,9 @@ $( document ).ready(function() {
         type: 'post',
         success: function(data) {
           $('#idBD' ).val(data); /* GUARDAMOS LA ID DE LA BD EN EL FORMULARIO */
-          showSuccessAlert('Desat!');
+
+          showSuccessAlert(data);
+          recargarEtiquetas();
         },
         error: function(xhr, desc, err) {
           console.log(xhr);
@@ -122,7 +116,23 @@ $( document ).ready(function() {
 });
 //************* GUARDADO DE CONTENIDO         ******************//
 
+function guardarNuevaEtiqueta(){
+  var contenido = $('#selector_etiquetas_chosen input[type="text"]').val();
+  var lon = contenido.length;
+  if(lon > 1){
+    if(contenido.substring(lon-1, lon) == ';'){
 
+      var etiqueta = contenido.substring(0, lon-1);
+      etiquetasNuevas[contadorEtiquetas] = etiqueta;
+      contadorEtiquetas = contadorEtiquetas +1;
+      var etiquetasNuevas_json = JSON.stringify(etiquetasNuevas);
+      $('#etiquetasNuevas').val(etiquetasNuevas_json);
+      $('#selector_etiquetas_chosen .chosen-choices').prepend('<li class="search-choice"><span>' + etiqueta + '</span><a id="' + contadorEtiquetas + '" class="eliminar search-choice-close" ></a></li>');
+      $('#selector_etiquetas_chosen input[type="text"]').val('');
+      console.log(etiqueta);
+    }
+  }
+}
 
 
 function validarTwitter(){
@@ -246,4 +256,12 @@ function habilitarFechas(){
        }
 
 
+}
+
+/*************************** ETIQUETAS *******************************/
+function recargarEtiquetas(){
+  alert('hola');
+  etiquetasNuevas = [];
+  var etiquetasNuevas_json = JSON.stringify(etiquetasNuevas);
+  $('#etiquetasNuevas').val(etiquetasNuevas_json);
 }

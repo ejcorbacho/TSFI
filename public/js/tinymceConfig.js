@@ -2,7 +2,6 @@ tinyMCE.init({
     selector: '#contingut',
     height: 500,
     theme: 'modern',
-    skin: 'charcoal',
     plugins: [
         'advlist autolink lists link image charmap print preview hr anchor pagebreak',
         'searchreplace wordcount visualblocks visualchars code fullscreen',
@@ -28,6 +27,9 @@ tinyMCE.init({
         });
         ed.on('Init', function(e) {
             validarEnviar();
+        });
+        ed.on('init', function(e) {
+            validarContenido();
         });
     }
 });

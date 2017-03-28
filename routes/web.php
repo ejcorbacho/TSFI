@@ -55,6 +55,9 @@ Route::get('ajax/analytics/getAgeBracketData', array('uses' => 'HomeController@g
 //Uploads
 Route::post('administracio/uploadFile', array('uses' => 'beImageController@uploadFile'));
 
+//Images
+Route::get('ajax/uploads/getImageList', array('uses' => 'beImageController@getImageList'));
+
 //******* RUTAS AJAX ***********/
 Route::get('ajax/categories/llistaCategories', array('uses' => 'beCategoriesController@llistarCategoria')); //Mostrar formulario
 Route::post('ajax/categories/guardarCategoria', array('uses' => 'beCategoriesController@novaCategoria')); //Mostrar formulario
@@ -69,6 +72,9 @@ Route::get('ajax/entitat/llistatEntitats', array('uses' => 'beEntitatsController
 Route::get('ajax/entitat/TresEntitats', array('uses' => 'feController@TresEnitats'));
 /***entitats footer ***/
 Route::get('ajax/entitat/EntitatsFooter', array('uses' => 'feController@FooterEntitats'));
+
+//Search
+Route::post('/search', 'SearchController@search');
 
 /***home****/
 

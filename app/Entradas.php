@@ -22,6 +22,9 @@ class Entradas extends Model
     public $usuario_publicador;
     public $data_publicacion;
     public $relevancia;
+    public $fecha1;
+    public $fecha2;
+
 
     public function guardar(){
       $data = array(
@@ -29,9 +32,12 @@ class Entradas extends Model
         'subtitulo'=> $this->subtitulo,
         'resumen_corto'=>  $this->twitter,
         'resumen_largo'=> $this->resumen_largo,
+        'localizacion' => '',
         'contenido'=>  $this->contenido,
         'data_publicacion' => $this->data_publicacion,
         'visible'=> $this->visible,
+        'fecha1'=> $this->fecha1,
+        'fecha2'=> $this->fecha2,
         'eliminado'=>'0',
         'foto'=> '1',
         'publico'=> '1',
@@ -42,11 +48,11 @@ class Entradas extends Model
 
         DB::beginTransaction();
         try {
+
             $post = Entradas::insert($data);
             $this->id = DB::table('entradas')->insertGetId($data);
+
             //GUARDAR LAS CATEGORIAS
-
-
 
             for ($i=0;$i<count($this->categorias);$i++){
              DB::table('entradas_categorias')->insert(
@@ -81,8 +87,11 @@ class Entradas extends Model
         'subtitulo'=> $this->subtitulo,
         'resumen_corto'=>  $this->twitter,
         'resumen_largo'=> $this->resumen_largo,
+        'localizacion' => '',
         'contenido'=>  $this->contenido,
         'visible'=> $this->visible,
+        'fecha1'=> $this->fecha1,
+        'fecha2'=> $this->fecha2,
         'eliminado'=>'0',
         'foto'=> '1',
         'publico'=> $this->publico,
@@ -153,8 +162,11 @@ class Entradas extends Model
                 ->select( 'categorias.nombre', 'categorias.id as idcat')
                 ->where('entradas.id', '=', $this->id)
                 ->get();
+    public function getEvents() {
 
         return $contenido;
+    }
+
     }
 
 }

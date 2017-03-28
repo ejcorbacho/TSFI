@@ -90,8 +90,14 @@ $( document ).ready(function() {
   $('#data_publicacion').datepicker({
     autoclose: true,
      dateFormat: 'dd/mm/yy',
-    weekStart:1,
+    weekStart:1
   });
+
+
+  $('#evento').daterangepicker({
+    autoclose: true,
+  weekStart:1
+});
 
     $.ajaxSetup({
       headers: {
@@ -104,7 +110,7 @@ $( document ).ready(function() {
         type: 'post',
         success: function(data) {
           $('#idBD' ).val(data); /* GUARDAMOS LA ID DE LA BD EN EL FORMULARIO */
-          showSuccessAlert(data);
+          showSuccessAlert('Desat!');
         },
         error: function(xhr, desc, err) {
           console.log(xhr);
@@ -228,8 +234,6 @@ function validarEnviar(){
   }
 }
 
-//Date picker
-//Date picker
 
 
 /*********************** FUNCIONES CON FECHAS **************************************/

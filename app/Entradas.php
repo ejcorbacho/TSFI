@@ -33,6 +33,7 @@ class Entradas extends Model
         'subtitulo'=> $this->subtitulo,
         'resumen_corto'=>  $this->twitter,
         'resumen_largo'=> $this->resumen_largo,
+        'localizacion' => '',
         'contenido'=>  $this->contenido,
         'data_publicacion' => $this->data_publicacion,
         'visible'=> $this->visible,
@@ -103,6 +104,7 @@ class Entradas extends Model
         'subtitulo'=> $this->subtitulo,
         'resumen_corto'=>  $this->twitter,
         'resumen_largo'=> $this->resumen_largo,
+        'localizacion' => '',
         'contenido'=>  $this->contenido,
         'visible'=> $this->visible,
         'fecha1'=> $this->fecha1,
@@ -188,6 +190,18 @@ class Entradas extends Model
         return $contenido;
     }
 
+    public function llegirCategoriesDeEntrada() {
+        
+        $contenido = DB::table('entradas')
+                ->join('entradas_categorias', 'entradas_categorias.id_entrada', '=', 'entradas.id')
+                ->join('categorias', 'categorias.id', '=', 'entradas_categorias.id_categoria')
+                ->select( 'categorias.nombre', 'categorias.id as idcat')
+                ->where('entradas.id', '=', $this->id)
+                ->get();
+    }
+    public function getEvents() {
+        
+    }
     public function leerEtiquetasMarcadas($id){
         $contenido =  DB::table('entradas_etiquetas')
           ->select('entradas_etiquetas.id_etiqueta as id')

@@ -38,13 +38,13 @@
                          Java
                       </a>
 
-<!--                      <div class = "dropdown-menu">
+                     <div class = "dropdown-menu">
                           <a href="#"><div class="item-submenu">item 1 </div></a>
                           <a href="#"><div class="item-submenu">item 1 </div></a>
                           <a href="#"><div class="item-submenu">item 1 </div></a>
                           <a href="#"><div class="item-submenu">item 1 </div></a>
                           <a href="#"><div class="item-submenu">item 1 </div></a>
-                      </div>-->
+                      </div>
                    </li>
                 </ul>
                 <div class="col-lg-3 col-md-3 col-sm-3 item" id="buscador">
@@ -171,9 +171,7 @@
       </div>
       <hr />
       <ul id="items_menu_cms">
-        <li> item submenu</li>
-        <li> item submenu</li>
-        <li> item submenu</li>
+        
       </ul>
       <div style="clear: both"></div>
       <div id="redes_sociales_footer">

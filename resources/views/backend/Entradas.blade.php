@@ -33,6 +33,9 @@
 <script src="{{ asset('js/backend/imageGallery.js') }}"></script>
 <link rel="stylesheet" href="{{ asset('css/imageGallery.css') }}">
 
+<!-- Paginacio -->
+<script src="{{ asset('js/bootpag/bootpag.js') }}"></script>
+
 <div class="container">
       <!-- Main content -->
 
@@ -360,6 +363,9 @@
                                 <div class="picker insertion">
                                     <select id="imageInsertionSelector" class="image-picker" multiple="multiple"></select>
                                 </div>
+                                <p id="imageInsertionGallery" style="text-align:center">
+
+                                </p>
                             </div>
                             <div class="tab-pane" id="imageInsertionTabTwo">
                                 <form class="dropzone" id="imageInsertionUpload">
@@ -408,6 +414,9 @@
                                 <div class="picker selection">
                                     <select id="imageSelectionSelector" class="image-insertion"></select>
                                 </div>
+                                <p id="imageSelectionGallery" style="text-align:center">
+
+                                </p>
                             </div>
                             <div class="tab-pane" id="imageSelectionTabTwo">
                                 <form class="dropzone" id="imageSelectionUpload">

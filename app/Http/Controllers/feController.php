@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\feEntrades;
 use App\feCategories;
+use App\feHome;
 use Illuminate\Http\Request;
 
 
@@ -14,10 +15,11 @@ class feController extends Controller
     private $ocategories;
     private $todosposts;
     private $valor;
+    private $oentradashome;
 
-    public function index() {
-        return view('frontend.feHome');
-    }
+    //public function index() {
+//return view('frontend.feHome');
+//}
     public function category($id) {
         $ocategories = new feCategories;
         $data = $ocategories->llegirCategories($id);
@@ -31,6 +33,13 @@ class feController extends Controller
         $data = $oentradas->llegirEntrada($id);
         $related = $oentradas->MostrarPostsRelated($id);
         return view('frontend.fePost',['data'=>$data[0] , 'related'=>$related]);
+    }
+
+    public function index() {
+    $oentradashome = new feHome;
+    $data = $oentradashome->MostrarEntradasHome();
+    //$related = $oentradashome->MostrarEntradasHome($id);
+    return view('frontend.feHome',['posts'=>$data]);
     }
     //public function category($id) {
     //    $todosposts = new feCateogories;

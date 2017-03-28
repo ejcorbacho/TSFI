@@ -38,13 +38,13 @@
                          Java
                       </a>
 
-<!--                      <div class = "dropdown-menu">
+                     <div class = "dropdown-menu">
                           <a href="#"><div class="item-submenu">item 1 </div></a>
                           <a href="#"><div class="item-submenu">item 1 </div></a>
                           <a href="#"><div class="item-submenu">item 1 </div></a>
                           <a href="#"><div class="item-submenu">item 1 </div></a>
                           <a href="#"><div class="item-submenu">item 1 </div></a>
-                      </div>-->
+                      </div>
                    </li>
                 </ul>
                 <div class="col-lg-3 col-md-3 col-sm-3 item" id="buscador">

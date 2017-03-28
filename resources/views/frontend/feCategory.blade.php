@@ -44,8 +44,8 @@
                 <!-- final del bucle de posts -->
             </div>
             <div class="categoryPostsSidebar col-md-3 col-sm-12">                
+               @foreach($related as $info)
                 <h2>Related Posts</h2>
-                @foreach($related as $info)
                 <a href="../post/{{$info->id}}">
                     <div class="sidebarPost">
                         <img class="sidebarPostImg" src="{{$info->fotosUrl}}">

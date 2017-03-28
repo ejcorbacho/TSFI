@@ -29,9 +29,9 @@
                 <img class="img-responsive erc max" src="{{$posts[0]->fotosUrl}}" alt="">
 				<div class="maximolineas">
 					<a>
-						<h4>{{$posts[0]->nombre}}</h4>
-						<h3>{{$posts[0]->titulo}}</h3>
-						<p >{!!html_entity_decode($posts[0]->contenido)!!}</p>
+						<h4>@if(!empty($posts[0]->nombre)) {{$posts[0]->nombre}} @endif</h4>
+						<h3>@if(!empty($posts[0]->titulo)) {{$posts[0]->titulo}} @endif</h3>
+						<p>@if(!empty(!!html_entity_decode($posts[0]->contenido)!!)) {{!!html_entity_decode($posts[0]->contenido)!!}} @endif</p>
 					</a>
 				</div>
 				<div class="icons">
@@ -44,10 +44,10 @@
                 <img class="img-responsive erc sec" src="{{$posts[1]->fotosUrl}}" alt="">
 				<div class="maximolineas">
 					<a>
-						<h4>{{$posts[1]->nombre}}</h4>
-						<h3>{{$posts[1]->titulo}}</h3>
-						<p >{!!html_entity_decode($posts[1]->contenido)!!}</p>
-                    </a>
+						<h4>@if(!empty($posts[1]->nombre)) {{$posts[1]->nombre}} @endif</h4>
+						<h3>@if(!empty($posts[1]->titulo)) {{$posts[1]->titulo}} @endif</h3>
+						<p>@if(!empty(!!html_entity_decode($posts[1]->contenido)!!)) {{!!html_entity_decode($posts[1]->contenido)!!}} @endif</p>
+					</a>
 				</div>
 				<div class="icons">
 					<i style="font-size:20px" class="fa espacio face">&#xf082;</i>
@@ -59,9 +59,9 @@
                 <img class="img-responsive erc sec" src="{{$posts[2]->fotosUrl}}">
 				<div class="maximolineas">
 					<a>
-						<h4>{{$posts[2]->nombre}}</h4>
-						<h3>{{$posts[2]->titulo}}</h3>
-						<p >{!!html_entity_decode($posts[2]->contenido)!!}</p>
+						<h4>@if(!empty($posts[2]->nombre)) {{$posts[2]->nombre}} @endif</h4>
+						<h3>@if(!empty($posts[2]->titulo)) {{$posts[2]->titulo}} @endif</h3>
+						<p>@if(!empty(!!html_entity_decode($posts[2]->contenido)!!)) {{!!html_entity_decode($posts[2]->contenido)!!}} @endif</p>
 					</a>
 				</div>
 				<div class="icons">
@@ -76,9 +76,9 @@
                 <img class="img-responsive erc terc" src="{{$posts[3]->fotosUrl}}">
 				<div class="maximolineas">
 					<a>
-						<h4>{{$posts[3]->nombre}}</h4>
-						<h3>{{$posts[3]->titulo}}</h3>
-						<p >{!!html_entity_decode($posts[3]->contenido)!!}</p>
+						<h4>@if(!empty($posts[3]->nombre)) {{$posts[3]->nombre}} @endif</h4>
+						<h3>@if(!empty($posts[3]->titulo)) {{$posts[3]->titulo}} @endif</h3>
+						<p>@if(!empty(!!html_entity_decode($posts[3]->contenido)!!)) {{!!html_entity_decode($posts[3]->contenido)!!}} @endif</p>
 					</a>
 				</div>
 				<div class="icons">
@@ -91,9 +91,9 @@
                 <img class="img-responsive erc terc"  src="{{$posts[4]->fotosUrl}}">
 				<div class="maximolineas">
 					<a>
-						<h4>{{$posts[4]->nombre}}</h4>
-						<h3>{{$posts[4]->titulo}}</h3>
-						<p >{!!html_entity_decode($posts[4]->contenido)!!}</p>
+						<h4>@if(!empty($posts[4]->nombre)) {{$posts[4]->nombre}} @endif</h4>
+						<h3>@if(!empty($posts[4]->titulo)) {{$posts[4]->titulo}} @endif</h3>
+						<p>@if(!empty(!!html_entity_decode($posts[4]->contenido)!!)) {{!!html_entity_decode($posts[4]->contenido)!!}} @endif</p>
 					</a>
 				</div>
 				<div class="icons">
@@ -106,9 +106,9 @@
                 <img class="img-responsive erc terc" src="{{$posts[5]->fotosUrl}}">
 				<div class="maximolineas">
 					<a>
-						<h4>{{$posts[5]->nombre}}</h4>
-						<h3>{{$posts[5]->titulo}}</h3>
-						<p >{!!html_entity_decode($posts[5]->contenido)!!}</p>
+						<h4>@if(!empty($posts[5]->nombre)) {{$posts[5]->nombre}} @endif</h4>
+						<h3>@if(!empty($posts[5]->titulo)) {{$posts[5]->titulo}} @endif</h3>
+						<p>@if(!empty(!!html_entity_decode($posts[5]->contenido)!!)) {{!!html_entity_decode($posts[5]->contenido)!!}} @endif</p>
 					</a>
 				</div>
 				<div class="icons">

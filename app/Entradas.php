@@ -145,5 +145,16 @@ class Entradas extends Model
         return $contenido;
     }
 
+    public function llegirCategoriesDeEntrada() {
+        
+        $contenido = DB::table('entradas')
+                ->join('entradas_categorias', 'entradas_categorias.id_entrada', '=', 'entradas.id')
+                ->join('categorias', 'categorias.id', '=', 'entradas_categorias.id_categoria')
+                ->select( 'categorias.nombre', 'categorias.id as idcat')
+                ->where('entradas.id', '=', $this->id)
+                ->get();
+
+        return $contenido;
+    }
 
 }

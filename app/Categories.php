@@ -123,6 +123,7 @@ class Categories extends Model
         $contenido =  DB::table('categorias')
           ->select('categorias.*')
           ->where('categorias.id', '=', $id)
+          ->where('categorias.eliminado', '!=', 1)
           ->get();
 
         return $contenido;

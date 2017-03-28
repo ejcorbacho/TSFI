@@ -21,7 +21,13 @@ class feController extends Controller
     public function category($id) {
         $ocategories = new feCategories;
         $data = $ocategories->llegirCategories($id);
+        if (count($data)<=0) {
+            abort(404);
+        }
         $post = $ocategories->MostarPosts($id);
+        if (count($post)<=0) {
+            abort(404);
+        }
         $related = $ocategories->MostrarPostsRelated($id);
 
         return view('frontend.feCategory',['categoria'=>$data[0], 'posts'=>$post, 'related'=>$related]);

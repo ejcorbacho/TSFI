@@ -59,6 +59,13 @@ $(document).ready(function() {
         "language": {
             "url": "/TSFI/public/js/backend/dataTableCatalan.json"
         },
+        "columns": [
+            { "orderable": false },
+            {  },
+            { },
+            { "orderable": false }
+        ],
+        
         "order": [[1, 'asc']]
     });
     $('#botoEsborrarCategories').on('click', function (e) {

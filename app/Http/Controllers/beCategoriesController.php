@@ -110,6 +110,10 @@ class beCategoriesController extends Controller
     {
       return view('backend.beTotesCategories',['data'=>$this->ocategories->llistarTotes()]);
     }
+    public function dadesTaulaCaregories()
+    {
+      return $this->ocategories->llistarTotes();
+    }
     
     public function llistarCategoria()
     {

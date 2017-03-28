@@ -19,7 +19,7 @@ $(document).ready(function() {
         defaultView: 'listMonth',
         defaultDate: '2017-02-12',
         navLinks: false, // can click day/week names to navigate views
-        editable: true,
+        editable: false,
         eventLimit: true, // allow "more" link when too many events
         events: [
             {

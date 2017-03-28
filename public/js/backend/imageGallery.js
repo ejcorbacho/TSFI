@@ -62,7 +62,7 @@ function paginate ( selector, start ) {
     }
     $( selector ).imagepicker({
         clicked: function( select, option ) {
-            if ( $(this)[0].id.indexOf("nsertion") >= 0 ) {
+            if ( $(this)[0].id.indexOf("Insertion") >= 0 ) {
                 var clickedOption = option.currentTarget.innerHTML;
                 if (!selected.includes(clickedOption)) {
                     selected.push(clickedOption);

@@ -67,7 +67,8 @@ Route::get('ajax/entitat/guardarEntitat', array('uses' => 'beEntitatsController@
 Route::get('ajax/entitat/llistatEntitats', array('uses' => 'beEntitatsController@llistarEnitats'));
 Route::get('ajax/entitat/TresEntitats', array('uses' => 'beEntitatsController@TresEnitats'));
 
-
+//Search
+Route::post('/search', 'SearchController@search');
 
 /***home****/
 

@@ -13,7 +13,9 @@
         <!-- Widget Calendari -->
         <script src="{{ asset('fullcalendar-3.2.0/lib/moment.min.js')}}"></script>
         <script src="{{ asset('fullcalendar-3.2.0/fullcalendar.min.js')}}"></script>
+        <script src="{{ asset('fullcalendar-3.2.0/locale/ca.js')}}"></script>
         <script src="{{ asset('js/frontend/calendar.js')}}"></script>
+
         <link href="{{ asset('fullcalendar-3.2.0/fullcalendar.min.css')}}" rel='stylesheet' />
         <link href="{{ asset('fullcalendar-3.2.0/fullcalendar.print.min.css')}}" rel='stylesheet' media='print' />
         <link href="{{ asset('/css/calendar.css')}}" rel="stylesheet" >

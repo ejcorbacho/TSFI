@@ -24,7 +24,7 @@
     <body>
         <div class="col-md-12 col-lg-10 col-lg-offset-1">
         <!-- Portfolio Item Row -->
-        @if(isset($post))
+        
         <div class="row mainGridContainer">
             <!-- 1 APARTADO PRINCIPAL-->
             <div class="col-md-8 img-relative">
@@ -120,7 +120,7 @@
 				</div>
 			</div>
         </div>
-        @endif
+        
     </div>
         
     <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->

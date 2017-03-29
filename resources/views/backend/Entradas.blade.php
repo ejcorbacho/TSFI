@@ -262,7 +262,7 @@
   			  </div>
   			  <div class="modal-body">
   				<div class="form-group ">
-  				    <input id="mainImageInput" name="mainImage" value="@if (!empty($data[0]->foto)) {{ $data[0]->foto }} @endif" type="hidden">
+  				    <input id="mainImageInput" name="mainImage" value="@if (!empty($data[0]->foto)) {{ $data[0]->foto }}  @else {{'0'}} @endif" type="hidden">
   				    <div id="mainImage">
                 @if (!empty($data[0]->foto)) {!!html_entity_decode('<img class="image_picker_image" src="\TSFI\public\uploads\8A39.jpg" alt="1milTARJETAredondoBRILLOchento01" width="200"></div>')!!} @endif
   				    </div>

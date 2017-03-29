@@ -87,13 +87,11 @@ class Entradas extends Model
             }
 
             DB::commit();
-           return $this->id;
+           return true;
         } catch (\Illuminate\Database\QueryException $e) {
-            return $e;
             DB::rollback();
             return false;
         } catch (\Exception $e) {
-            return $e;
             DB::rollback();
             return false;
         }
@@ -161,13 +159,12 @@ class Entradas extends Model
             }
 
             DB::commit();
-            return $this->id;
+            return true;
         } catch (\Illuminate\Database\QueryException $e) {
             //return $e;
             DB::rollback();
             return false;
         } catch (\Exception $e) {
-            return $e;
             DB::rollback();
             return false;
         }

@@ -260,7 +260,14 @@ function habilitarFechas(){
 
 /*************************** ETIQUETAS *******************************/
 function recargarEtiquetas(){
-  alert('hola');
+
+  for(var i= 0; i < etiquetasNuevas.length; i++){
+    alert(etiquetasNuevas[i]);
+    var newOption = $('<option selected value="1">' + etiquetasNuevas[i] + '</option>');
+    $('#selector_etiquetas').append(newOption);
+  }
+
+  $('#selector_etiquetas').trigger("chosen:updated");
   etiquetasNuevas = [];
   var etiquetasNuevas_json = JSON.stringify(etiquetasNuevas);
   $('#etiquetasNuevas').val(etiquetasNuevas_json);

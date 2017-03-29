@@ -31,18 +31,7 @@
                 <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Inserta el nom de la categoria" value="@if (!empty($data[0]->nombre)){{$data[0]->nombre}}@endif">
                 
               </div>
-              <div class="form-group">
-                <label class="parentIDSelectorLabel">ID de categoria pare (opcional)</label>
-                <select id="idPare" name="idPare" class="selectpicker" data-live-search="true" value="@if (!empty($data[0]->id_padre)) {{ $data[0]->id_padre }} @endif">
-                    <option></option>
-                    @foreach($categoriesSensePare as $categoria)
-                        
-                            <option value="{{ $categoria->id  }}" @if($data[0]->id_padre==$categoria->id ){{'selected'}}@endif>{{$categoria->nombre}}</option>
-                        
-                    @endforeach
-                </select>
-
-              </div>
+              
               <div class="form-group">
 
               </div>

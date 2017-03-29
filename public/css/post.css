@@ -27,14 +27,14 @@ body  {
  }
  main {
          padding-top:  30px;
-         height: 800px;
+         
  }
  article {       
-         height: 600px;
+         
  }
  article p {
         color:black;
-        height:15%;
+        /*height:15%;*/
         overflow:hidden;
         margin-bottom:0px;
         display: -webkit-box;

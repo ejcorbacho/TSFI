@@ -24,7 +24,7 @@
     <body>
         <div class="col-md-12 col-lg-10 col-lg-offset-1">
         <!-- Portfolio Item Row -->
-        @if(isset($post))
+        
         <div class="row mainGridContainer">
             <!-- 1 APARTADO PRINCIPAL-->
             <div class="col-md-8 img-relative">
@@ -34,7 +34,7 @@
 					<a>
 						<h4>@if(!empty($posts[0]->nombre)) {{$posts[0]->nombre}} @endif</h4>
 						<h3>@if(!empty($posts[0]->titulo)) {{$posts[0]->titulo}} @endif</h3>
-						<p>@if(!empty($posts[0]->contenido)) {{!!html_entity_decode($posts[0]->contenido)!!}} @endif</p>
+						<p>@if(!empty($posts[0]->contenido)){!!html_entity_decode($posts[0]->contenido)!!} @endif</p>
 					</a>
 				</div>
 				<div class="icons">
@@ -49,7 +49,7 @@
 					<a>
 						<h4>@if(!empty($posts[1]->nombre)) {{$posts[1]->nombre}} @endif</h4>
 						<h3>@if(!empty($posts[1]->titulo)) {{$posts[1]->titulo}} @endif</h3>
-						<p>@if(!empty($posts[1]->contenido)) {{!!html_entity_decode($posts[1]->contenido)!!}} @endif</p>
+						<p>@if(!empty($posts[1]->contenido)) {!!html_entity_decode($posts[1]->contenido)!!} @endif</p>
 					</a>
 				</div>
 				<div class="icons">
@@ -64,7 +64,7 @@
 					<a>
 						<h4>@if(!empty($posts[2]->nombre)) {{$posts[2]->nombre}} @endif</h4>
 						<h3>@if(!empty($posts[2]->titulo)) {{$posts[2]->titulo}} @endif</h3>
-						<p>@if(!empty($posts[2]->contenido)) {{!!html_entity_decode($posts[2]->contenido)!!}} @endif</p>
+						<p>@if(!empty($posts[2]->contenido)) {!!html_entity_decode($posts[2]->contenido)!!} @endif</p>
 					</a>
 				</div>
 				<div class="icons">
@@ -81,7 +81,7 @@
 					<a>
 						<h4>@if(!empty($posts[3]->nombre)) {{$posts[3]->nombre}} @endif</h4>
 						<h3>@if(!empty($posts[3]->titulo)) {{$posts[3]->titulo}} @endif</h3>
-						<p>@if(!empty($posts[3]->contenido)) {{!!html_entity_decode($posts[3]->contenido)!!}} @endif</p>
+						<p>@if(!empty($posts[3]->contenido)) {!!html_entity_decode($posts[3]->contenido)!!} @endif</p>
 					</a>
 				</div>
 				<div class="icons">
@@ -96,7 +96,7 @@
 					<a>
 						<h4>@if(!empty($posts[4]->nombre)) {{$posts[4]->nombre}} @endif</h4>
 						<h3>@if(!empty($posts[4]->titulo)) {{$posts[4]->titulo}} @endif</h3>
-						<p>@if(!empty($posts[4]->contenido)) {{!!html_entity_decode($posts[4]->contenido)!!}} @endif</p>
+						<p>@if(!empty($posts[4]->contenido)) {!!html_entity_decode($posts[4]->contenido)!} @endif</p>
 					</a>
 				</div>
 				<div class="icons">
@@ -111,7 +111,7 @@
 					<a>
 						<h4>@if(!empty($posts[5]->nombre)) {{$posts[5]->nombre}} @endif</h4>
 						<h3>@if(!empty($posts[5]->titulo)) {{$posts[5]->titulo}} @endif</h3>
-						<p>@if(!empty($posts[5]->contenido)) {{!!html_entity_decode($posts[5]->contenido)!!}} @endif</p>
+						<p>@if(!empty($posts[5]->contenido)) {!!html_entity_decode($posts[5]->contenido)!!} @endif</p>
 					</a>
 				</div>
 				<div class="icons">
@@ -120,8 +120,8 @@
 				</div>
 			</div>
         </div>
-        @endif
-    </div>
+        
+    </div
         
     <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
         <div id="popularPostsSection" class="col-lg-10 col-lg-offset-1 col-md-12">

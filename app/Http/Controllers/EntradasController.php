@@ -55,6 +55,8 @@ class EntradasController extends Controller
       $this->mentradas->etiquetas = Input::get('etiquetas_seleccionadas');
       $this->mentradas->entidades = Input::get('entitats_seleccionadas');
       $this->mentradas->etiquetasNuevas = Input::get('etiquetasNuevas');
+      $this->mentradas->etiquetasNuevas = Input::get('etiquetasNuevas');
+      $this->mentradas->imagen = Input::get('mainImage');
       //return var_dump($etiquetasNuevas);
 
       $fecha = Input::get('data_publicacion');

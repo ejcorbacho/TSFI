@@ -17,7 +17,7 @@ class Categories extends Model
     public function guardar(){
       $data = array(
         'nombre'=> $this->nombre,
-        'id_padre'=> $this->id_padre,
+        'id_padre'=> null,
         'eliminado'=>'0',
       );
 

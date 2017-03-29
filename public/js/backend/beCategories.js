@@ -15,21 +15,6 @@ $(document).ready(function() {
           showErrorAlert('Error en la inserció de la nova categoria');
         }
     });
-//    $("#formulariEditarCategoria").ajaxForm({
-//        url: '/TSFI/public/ajax/categories/actualitzarCategoria',
-//        type: 'post',
-//        success: function(data) {
-//        console.log(data);
-//        showSuccessAlert('Categoria editada correctament!');
-//        //$("#formulariEditarCategoria").trigger("reset");
-//        },
-//        error: function(xhr, desc, err) {
-//          console.log(xhr);
-//          console.log("Details: " + desc + "\nError:" + err);
-//          showErrorAlert('Error en la edició de la nova categoria');
-//        }
-//    });
-
     $("#formulariEditarCategoria :input").change(function() {
        $("#formulariEditarCategoria").data("changed",true);
     });
@@ -183,7 +168,7 @@ $(document).ready(function() {
                 if (data != 0) {
                     showSuccessAlert(data);
                     $(e).closest('.modal').modal('hide');
-                    location.reload();
+                    setTimeout(location.reload.bind(location), 1000);
                 }
             },
             error: function (xhr, desc, err) {

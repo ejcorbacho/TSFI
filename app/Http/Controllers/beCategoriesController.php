@@ -83,12 +83,12 @@ class beCategoriesController extends Controller
         $this->ocategories->id = Input::get('id');
         //COMPOBAR SI ID ES NULL
         if ($this->ocategories->eliminarCategoria()){
-          $mensaje = "Guardat!";
+          $mensaje = "Categoria Eliminada!";
         } else {
-          $mensaje = "Error al guardar!";
+          $mensaje = "Error al eliminar!";
           abort(500,"Error al eliminar!");
         }
-        return $mensaje;
+        return json_encode($mensaje);
     }
     public function transferirCategoria()
     {

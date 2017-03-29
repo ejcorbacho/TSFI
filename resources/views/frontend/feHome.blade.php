@@ -96,7 +96,7 @@
 					<a>
 						<h4>@if(!empty($posts[4]->nombre)) {{$posts[4]->nombre}} @endif</h4>
 						<h3>@if(!empty($posts[4]->titulo)) {{$posts[4]->titulo}} @endif</h3>
-						<p>@if(!empty($posts[4]->contenido)) {!!html_entity_decode($posts[4]->contenido)!} @endif</p>
+						<p>@if(!empty($posts[4]->contenido)) {!!html_entity_decode($posts[4]->contenido)!!} @endif</p>
 					</a>
 				</div>
 				<div class="icons">

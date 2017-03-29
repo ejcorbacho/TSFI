@@ -83,9 +83,13 @@ class EntradasController extends Controller
 
       //return Input::get('categorias_seleccionadas');
       if($idPostBd == 0){
-          return $this->mentradas->guardar();
+          if(!$this->mentradas->guardar()){
+            abort(500);
+          }
       } else {
-          return $this->mentradas->actualizar();
+          if(!$this->mentradas->actualizar()){
+            abort(500);
+          }
       }
 
 

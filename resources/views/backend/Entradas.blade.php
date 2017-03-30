@@ -263,9 +263,11 @@
   			  <div class="modal-body">
   				<div class="form-group ">
   				    <input id="mainImageInput" name="mainImage" type="hidden">
-  				    <div id="mainImage">
+                    <a href="javascript:void(0);" data-toggle="modal" data-target="#imageSelectionModal">
+                        <div id="mainImage">
 
-  				    </div>
+                        </div>
+                    </a>
   					<a type="button" class="btn" data-toggle="modal" data-target="#imageSelectionModal">
   					    + Editar imatge destacada
                     </a>

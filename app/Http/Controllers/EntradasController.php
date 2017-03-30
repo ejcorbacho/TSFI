@@ -18,6 +18,7 @@ class EntradasController extends Controller
   private $categorias;
   private $etiquetas;
   private $oetiquetas;
+  private $cImages;
 
   private $mentitats; //* MODELO ENTITATS **/
 
@@ -27,7 +28,7 @@ class EntradasController extends Controller
     $this->mentradas = new Entradas;
     $this->ocategorias = new Categories;
     $this->oetiquetas = new beEtiquetas;
-
+    $this->cImages = new beImageController;
     $this->mentitats = new beEntitats;
   }
 
@@ -46,9 +47,13 @@ class EntradasController extends Controller
   {
       $idPostBd = Input::get('idBD');
       $this->mentradas->id = Input::get('idBD');
+
       $this->mentradas->titulo = Input::get('titulo');
+
+
       $this->mentradas->subtitulo = Input::get('subtitulo');
-      $this->mentradas->twitter = Input::get('twitter');
+
+
       $this->mentradas->resumen_largo = Input::get('resum');
       $this->mentradas->contenido = Input::get('contingut');
       $this->mentradas->categorias = Input::get('categorias_seleccionadas');
@@ -83,9 +88,13 @@ class EntradasController extends Controller
 
       //return Input::get('categorias_seleccionadas');
       if($idPostBd == 0){
-          return $this->mentradas->guardar();
+          if(!$this->mentradas->guardar()){
+            abort(500);
+          }
       } else {
-          return $this->mentradas->actualizar();
+          if(!$this->mentradas->actualizar()){
+            abort(500);
+          }
       }
 
 
@@ -159,8 +168,9 @@ class EntradasController extends Controller
     $categorias = $this->categoriaMarcada($id);
     $etiquetas = $this->etiquetaMarcada($id);
     $entitats = $this->entidadMarcada($id);
+    $foto = $this->cImages->getOneImge($entradas[0]->foto);
 
-    return view('backend.Entradas',['data'=>$entradas, 'categorias'=>$categorias, 'etiquetas'=>$etiquetas, 'entitats'=>$entitats]);
+    return view('backend.Entradas',['data'=>$entradas, 'categorias'=>$categorias, 'etiquetas'=>$etiquetas, 'entitats'=>$entitats, 'foto'=>$foto]);
   }
 
   //Listar las entradas guardados en la BD

@@ -61,7 +61,7 @@
             <input name="idBD" value="@if (!empty($data[0]->titulo)) {{ $data[0]->id }} @else {{ '0' }} @endif" id="idBD" type="hidden" value='0' />
             <div class="box box-primary">
               <div class="box-header with-border">
-                <h3 class="box-title">TITOL I SUBTITOL</h3>
+                <h3 class="box-title">*TITOL I *SUBTITOL</h3>
                 <div>&nbspcaracters</div>
                 <div id="notificaciones_subtitulo"></div>
                 <div>&nbspcaracters&nbsp<b>· Subtitol:&nbsp</b></div>
@@ -87,7 +87,7 @@
 
           <div class="box box-primary">
             <div class="box-header">
-              <h3 class="box-title">TWITTER</h3>
+              <h3 class="box-title">*TWITTER</h3>
               <div>&nbspcaracters</div>
               <div id="notificaciones_twitter"></div>
               <div><b>Twitter:&nbsp</b></div>
@@ -105,7 +105,7 @@
 
           <div class="box box-primary">
             <div class="box-header">
-              <h3 class="box-title">RESUM</h3>
+              <h3 class="box-title">*RESUM</h3>
               <div>&nbspcaracters</div>
               <div id="notificaciones_resumen"></div>
               <div><b>Resum:&nbsp</b></div>
@@ -121,7 +121,7 @@
 
           <div class="box box-primary">
             <div class="box-header">
-              <h3 class="box-title">CONTINGUT</h3>
+              <h3 class="box-title">*CONTINGUT</h3>
               <div id="notificaciones_contenido"></div>
             </div>
 
@@ -262,9 +262,9 @@
   			  </div>
   			  <div class="modal-body">
   				<div class="form-group ">
-  				    <input id="mainImageInput" name="mainImage" value="@if (!empty($data[0]->foto)) {{ $data[0]->foto }} @endif" type="hidden">
+  				    <input id="mainImageInput" name="mainImage" value="@if (!empty($data[0]->foto)) {{ $data[0]->foto }}  @else {{'0'}} @endif" type="hidden">
   				    <div id="mainImage">
-                @if (!empty($data[0]->foto)) {!!html_entity_decode('<img class="image_picker_image" src="\TSFI\public\uploads\8A39.jpg" alt="1milTARJETAredondoBRILLOchento01" width="200"></div>')!!} @endif
+                @if (!empty($data[0]->foto)) <img class="image_picker_image" src="{{$foto[0]->url}}" alt="{{$foto[0]->alt}}" width="200"></div> @endif
   				    </div>
   					<a type="button" class="btn" data-toggle="modal" data-target="#imageSelectionModal">
   					    + Editar imatge destacada

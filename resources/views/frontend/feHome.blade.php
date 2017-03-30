@@ -18,7 +18,6 @@
         <script src="{{ asset('js/frontend/calendar.js')}}"></script>
         <link href="{{ asset('fullcalendar-3.2.0/fullcalendar.min.css')}}" rel='stylesheet' />
         <link href="{{ asset('fullcalendar-3.2.0/fullcalendar.print.min.css')}}" rel='stylesheet' media='print' />
-        <link href="{{ asset('/css/calendar.css')}}" rel="stylesheet" >
 
         <!-- Cerca -->
         <script src="{{ asset('js/frontend/search.js')}}"></script>
@@ -222,8 +221,8 @@
                 <hr class="popularPostSeparator">
             </div>
             <div id="popularPostsSidebar" class="col-md-3 col-sm-12">
-                <h2>Calendari</h2>
 <!-- INICI CALENDARI -->
+                <h2>Calendari</h2>
                 <!--ANTIC
                 <iframe src="https://calendar.google.com/calendar/embed?src=kravitz.sds%40gmail.com&ctz=Europe/Madrid" style="border: 0" width="100%" height="250px" frameborder="0" scrolling="no"></iframe>
                 -->
@@ -237,7 +236,8 @@
 
 <!-- FI CALENDARI -->
                 <h2>Twitter</h2>
-                <iframe id="twitter-widget-0" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true" class="twitter-timeline twitter-timeline-rendered" style="position: static; visibility: visible; display: inline-block; width: 400px; height: 400px; padding: 0px; border: none; max-width: 100%; min-width: 180px; margin-top: 0px; margin-bottom: 0px; min-height: 300px;" data-widget-id="585734069557792768" title="Twitter Timeline"></iframe>
+                <a class="twitter-timeline" data-height="75%" href="https://twitter.com/fundacioBCNfp">Tweets by fundacioBCNfp</a>
+                <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
                 <h2>Enlaces</h2>
                 <a href="#"><div class="sidebarLink" ></div></a>
                 <a href="#"><div class="sidebarLink" ></div></a>

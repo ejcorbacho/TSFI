@@ -35,24 +35,4 @@ class feSearch extends Model {
 
         //return
     }
-
-    /*
-
-      $snippets = \DB::table('tags as t')
-                  ->join('snippet_tag', 't.id', '=', 'snippet_tag.tag_id')
-                  ->leftJoin('snippets as s', 's.id', '=', 'snippet_tag.snippet_id')
-                  ->WhereIn('t.name', $tags)
-                  ->select(['s.id', 's.title', \DB::raw('COUNT(og_t.id) AS  found_tags_number')])
-                  ->groupBy('s.id')
-                  ->orderBy('found_tags_number', 'DESC')
-                  ->paginate(10);
-
-      foreach ($snippets as $k => $snippet) {
-          $snippets[$k]->tags = \DB::table('tags')
-                                    ->join('snippet_tag', 'tags.id', '=', 'snippet_tag.tag_id')
-                                    ->where('snippet_tag.snippet_id', '=', $snippets[$k]->id)
-                                    ->select('name')
-                                    ->get();
-      }
-      */
 }

@@ -1,4 +1,4 @@
-
+/*
 $(document).ready(function () {
 
     $.ajax({
@@ -42,7 +42,6 @@ function mostrarEntitats(data) {
     }
 
 }
-;
 
 function mostrarEntitatsFooter(data) {
 
@@ -55,8 +54,5 @@ function mostrarEntitatsFooter(data) {
     }
 
 }
-;
-
 
 */
-

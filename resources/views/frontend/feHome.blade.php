@@ -32,7 +32,9 @@
               <img class="img-responsive erc max" src="@if(!empty($posts[0])){{$posts[0]->fotosUrl}}@endif" alt="@if(!empty($posts[0])){{$posts[0]->alt_foto }}@endif">
       <div class="maximolineas">
 
-            <h4>@if(isset($posts[0]->nombre_categoria[0])) {{$posts[0]->nombre_categoria[0]->nombre_categoria}} @endif</h4>
+            <h4>@if(!empty($posts[0]))
+                @if(isset($posts[0]->nombre_categoria[0])){{$posts[0]->nombre_categoria[0]->nombre_categoria}} @endif
+            @endif</h4>
             <h3>@if(!empty($posts[0])) {{$posts[0]->titulo}} @endif</h3>
             <p>@if(!empty($posts[0])){!!html_entity_decode($posts[0]->contenido)!!} @endif</p>
         </a>
@@ -44,12 +46,13 @@
     </div>
     <!-- 2 APARTADOS DE DERECHA-->
     <div class="col-sm-8 col-md-4">
-      {{var_dump($posts)}}
       @if(!empty($posts[1]))<a href="{{ url('/post/' . $posts[1]->id) }}">@endif
         <img class="img-responsive erc max" src="@if(!empty($posts[1])){{$posts[1]->fotosUrl}}@endif" alt="@if(!empty($posts[1])){{$posts[1]->alt_foto }}@endif">
       <div class="maximolineas">
 
-            <h4>@if(isset($posts[1]->nombre_categoria[0])) {{$posts[1]->nombre_categoria[0]->nombre_categoria}} @endif</h4>
+            <h4>@if(!empty($posts[1]))
+                @if(isset($posts[1]->nombre_categoria[0])){{$posts[1]->nombre_categoria[0]->nombre_categoria}} @endif
+            @endif</h4>
             <h3>@if(!empty($posts[1])) {{$posts[1]->titulo}} @endif</h3>
             <p>@if(!empty($posts[1])){!!html_entity_decode($posts[1]->contenido)!!} @endif</p>
         </a>

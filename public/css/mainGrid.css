@@ -58,7 +58,7 @@
 }
 
 .espacio{
-		padding:5px 0px 5px 10px;
+	padding:5px 0px 5px 10px;
 		
 }
 .erc{
@@ -76,7 +76,7 @@
 	
 }
 .terc{
-	max-height:280px;
+	height:280px;
 	object-fit:cover;
 	
 }
@@ -89,6 +89,7 @@
 .rango{
 	overflow:hidden;
 	height:440px;
+        margin-bottom: 10px;
 }
 
 

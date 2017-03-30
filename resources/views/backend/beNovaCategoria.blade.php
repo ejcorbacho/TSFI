@@ -29,17 +29,7 @@
                 <label>Nom de la categoria</label>
                 <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Inserta el nom de la categoria">
               </div>
-              <div class="form-group">
-                <label class="parentIDSelectorLabel">ID de categoria pare (opcional)</label>
-                
-                <select id="idPare" name="idPare" class="selectpicker" data-live-search="true">
-                    <option></option>
-                    @foreach($data as $categoria)
-                        <option value={{ $categoria->id  }}>{{$categoria->nombre}}</option>
-                    @endforeach
-                </select>
-
-              </div>
+              
               <div class="form-group">
 
               </div>

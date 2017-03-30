@@ -25,6 +25,7 @@ class Entradas extends Model
     public $relevancia;
     public $fecha1;
     public $fecha2;
+    public $imagen;
     public $etiquetasNuevas;
 
     public function guardar(){
@@ -39,9 +40,9 @@ class Entradas extends Model
         'visible'=> $this->visible,
         'fecha1'=> $this->fecha1,
         'fecha2'=> $this->fecha2,
+        'foto'=> $this->imagen,
         'localizacion'=> '',
         'eliminado'=>'0',
-        'foto'=> '1',
         'publico'=> '1',
         'usuario_publicador'=> '1',
         'relevancia'=> '1'
@@ -49,7 +50,7 @@ class Entradas extends Model
 
       $nuevasetiquetas_array = array();
       $nuevasetiquetas_array = json_decode($this->etiquetasNuevas);
-      
+
         DB::beginTransaction();
         try {
 
@@ -86,13 +87,11 @@ class Entradas extends Model
             }
 
             DB::commit();
-           return $this->id;
+           return true;
         } catch (\Illuminate\Database\QueryException $e) {
-            return $e;
             DB::rollback();
             return false;
         } catch (\Exception $e) {
-            return $e;
             DB::rollback();
             return false;
         }
@@ -111,9 +110,9 @@ class Entradas extends Model
         'visible'=> $this->visible,
         'fecha1'=> $this->fecha1,
         'fecha2'=> $this->fecha2,
+        'foto'=> $this->imagen,
         'localizacion'=> '',
         'eliminado'=>'0',
-        'foto'=> '1',
         'publico'=> $this->publico,
         'data_publicacion' => $this->data_publicacion,
         'usuario_publicador'=> '1',
@@ -160,13 +159,12 @@ class Entradas extends Model
             }
 
             DB::commit();
-            return $this->id;
+            return true;
         } catch (\Illuminate\Database\QueryException $e) {
             //return $e;
             DB::rollback();
             return false;
         } catch (\Exception $e) {
-            return $e;
             DB::rollback();
             return false;
         }

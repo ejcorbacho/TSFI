@@ -55,6 +55,8 @@ class EntradasController extends Controller
       $this->mentradas->etiquetas = Input::get('etiquetas_seleccionadas');
       $this->mentradas->entidades = Input::get('entitats_seleccionadas');
       $this->mentradas->etiquetasNuevas = Input::get('etiquetasNuevas');
+      $this->mentradas->etiquetasNuevas = Input::get('etiquetasNuevas');
+      $this->mentradas->imagen = Input::get('mainImage');
       //return var_dump($etiquetasNuevas);
 
       $fecha = Input::get('data_publicacion');
@@ -81,9 +83,13 @@ class EntradasController extends Controller
 
       //return Input::get('categorias_seleccionadas');
       if($idPostBd == 0){
-          return $this->mentradas->guardar();
+          if(!$this->mentradas->guardar()){
+            abort(500);
+          }
       } else {
-          return $this->mentradas->actualizar();
+          if(!$this->mentradas->actualizar()){
+            abort(500);
+          }
       }
 
 

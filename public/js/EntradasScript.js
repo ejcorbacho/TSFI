@@ -77,12 +77,20 @@ $( document ).ready(function() {
     	});
 
     /********************************* FUNCIONES DATEPICKER  ***********************************/
+    var hoy = new Date();
+    dia = hoy.getDate();
+    mes = hoy.getMonth();
+    mes = mes+1;
+    anio= hoy.getFullYear();
+
+    fecha_actual = String(mes+"/"+dia+"/"+anio);
+
 
       $('#data_publicacion').datepicker({
         autoclose: true,
          dateFormat: 'dd/mm/yy',
         weekStart:1
-      });
+      }).datepicker("setDate", fecha_actual);
 
 
       $('#evento').daterangepicker({
@@ -103,12 +111,12 @@ $( document ).ready(function() {
         success: function(data) {
           $('#idBD' ).val(data); /* GUARDAMOS LA ID DE LA BD EN EL FORMULARIO */
 
-          showSuccessAlert(data);
+          showSuccessAlert('Desat!');
           recargarEtiquetas();
+
         },
         error: function(xhr, desc, err) {
-          console.log(xhr);
-          console.log("Details: " + desc + "\nError:" + err);
+
           showErrorAlert('Error al guardar!');
         }
     });
@@ -260,7 +268,14 @@ function habilitarFechas(){
 
 /*************************** ETIQUETAS *******************************/
 function recargarEtiquetas(){
-  alert('hola');
+
+  for(var i= 0; i < etiquetasNuevas.length; i++){
+    alert(etiquetasNuevas[i]);
+    var newOption = $('<option selected value="1">' + etiquetasNuevas[i] + '</option>');
+    $('#selector_etiquetas').append(newOption);
+  }
+
+  $('#selector_etiquetas').trigger("chosen:updated");
   etiquetasNuevas = [];
   var etiquetasNuevas_json = JSON.stringify(etiquetasNuevas);
   $('#etiquetasNuevas').val(etiquetasNuevas_json);

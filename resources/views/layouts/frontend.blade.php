@@ -29,9 +29,11 @@
         <div class="row">
           <nav class = "col-md-12 col-sm-12 col-lg-12 hidden-xs" id="menu_superior">
             <div class="row">
+                <a href="{{url('/')}}">
                 <div class="col-lg-3 col-md-3 col-sm-3 item" id="logotipo">
                     TSFI
                 </div>
+                </a>
                 <ul class = "col-lg-6 col-md-6 col-sm-6 item" id="items_principales">
                    <li class="dropdown">
                       <a href = "#" class="dropdown-toggle" data-toggle = "dropdown">

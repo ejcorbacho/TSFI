@@ -28,28 +28,37 @@
         <!-- /.col -->
         <div class="col-md-12">
           <div class="box box-primary">
-            <div class="box-header with-border">
-              <h3 class="box-title">Entrades</h3>
-            </div>
-            <!-- /.box-header -->
+              <div class="box-header with-border">
+                  <h3 class="box-title">Entrades</h3>
+              </div>
+              <!-- /.box-header -->
+              <div id="modalPublicacionTwitter" class="modal">
+                  <div class="modal-dialog">
+                      <div class="modal-content">
+                          <div class="modal-header">
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">×</span></button>
+                              <h4 class="modal-title">Publicació a Twitter</h4>
+                          </div>
+                          <div id="modalPublicacionTwitterContent" class="modal-body">
+                              <input type="text"class="inputTwitter"></input>
+                          </div>
+                          <div class="modal-footer">
+                              <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cancel·la</button>
+                              <button type="button" class="btn btn-primary botoPublicarTwitterIntern">Publica</button>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="box-body no-padding">
 
-            <div class="box-body no-padding">
-
-              <div class="col-md-12">
-			  <div class="mailbox-controls">
-                <!-- Check all button -->
+                  <div class="col-md-12 table-responsive">
+                      <div class="mailbox-controls">
+                          <!-- Check all button -->
                 <button type="button" class="btn btn-default btn-sm checkbox-toggle"><i class="fa fa-square-o"></i></button>
 
                 <div class="btn-group">
                   <button type="button" class="btn btn-default btn-sm"><i class="fa fa-trash-o"></i></button>
-                </div>
-                <div class="pull-right">
-                  1-50/200
-                  <div class="btn-group">
-                    <button type="button" class="btn btn-default btn-sm"><i class="fa fa-chevron-left"></i></button>
-                    <button type="button" class="btn btn-default btn-sm"><i class="fa fa-chevron-right"></i></button>
-                  </div>
-                  <!-- /.btn-group -->
                 </div>
                 <!-- /.pull-right -->
               </div>
@@ -61,6 +70,7 @@
                               <th>Resum</th>
                               <th>Categories</th>
                               <th>Data de publicació</th>
+                              <th>Publicar a Twitter</th>
                               <th></th>
                           </tr>
                       </thead>
@@ -72,7 +82,8 @@
                       <td>{{ $dato->titulo }}</td>
                       <td>{{ $dato->resumen_corto }}</td>
                       <td>{{ $dato->titulo }}</td>
-                      <td>{{ $dato->data_publicacion }}</td>
+                      <td>{{ Carbon\Carbon::parse($dato->data_publicacion)->format('d-m-Y') }}</td>
+                      <td><i class="twitterIconDataTable fa fa-fw fa-twitter-square"></i></td>
                       <td><a href="{{ url('administracio/entrada/nova/' . $dato->id) }}">EDITAR</a></td>
                   </tr>
                   @endforeach

@@ -31,7 +31,7 @@
                
                 <img class="img-responsive erc max" src="@if(!empty($posts[0]->fotosUrl)){{$posts[0]->fotosUrl}}@endif" alt="">
 				<div class="maximolineas">
-					<a>
+					<a href="../post/{{$posts[0]->id}}">
 						<h4>@if(!empty($posts[0]->nombre)) {{$posts[0]->nombre}} @endif</h4>
 						<h3>@if(!empty($posts[0]->titulo)) {{$posts[0]->titulo}} @endif</h3>
 						<p>@if(!empty($posts[0]->contenido)){!!html_entity_decode($posts[0]->contenido)!!} @endif</p>
@@ -46,7 +46,7 @@
 			<div class="col-sm-8 col-md-4">
                 <img class="img-responsive erc sec" src="@if(!empty($posts[1]->fotosUrl)){{$posts[1]->fotosUrl}}@endif" alt="">
 				<div class="maximolineas">
-					<a>
+					<a href="/TSFI/public/post/{{$posts[1]->id}}">
 						<h4>@if(!empty($posts[1]->nombre)) {{$posts[1]->nombre}} @endif</h4>
 						<h3>@if(!empty($posts[1]->titulo)) {{$posts[1]->titulo}} @endif</h3>
 						<p>@if(!empty($posts[1]->contenido)) {!!html_entity_decode($posts[1]->contenido)!!} @endif</p>
@@ -61,7 +61,7 @@
 			<div class="col-sm-4 col-md-4">
                             <img class="img-responsive erc sec" src="@if(!empty($posts[2]->fotosUrl)){{$posts[2]->fotosUrl}}@endif">
 				<div class="maximolineas">
-					<a>
+					<a href="/TSFI/public/post/{{$posts[2]->id}}">
 						<h4>@if(!empty($posts[2]->nombre)) {{$posts[2]->nombre}} @endif</h4>
 						<h3>@if(!empty($posts[2]->titulo)) {{$posts[2]->titulo}} @endif</h3>
 						<p>@if(!empty($posts[2]->contenido)) {!!html_entity_decode($posts[2]->contenido)!!} @endif</p>

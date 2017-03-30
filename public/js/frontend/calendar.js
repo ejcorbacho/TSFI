@@ -1,5 +1,16 @@
 $(document).ready(function() {
+    getDataOverAJAX( 'eventList', null).then(
+        function ( data ) {
+            startCalendar( data );
+        }, function ( error ) {
+            
+        }
+    );
 
+
+});
+
+function startCalendar( events ) {
     $('#calendar').fullCalendar({
         header: {
             left: 'prev,next',
@@ -17,11 +28,12 @@ $(document).ready(function() {
             insertEventInGoogleCalendar(calEvent)
         },
         defaultView: 'listMonth',
-        defaultDate: '2017-02-12',
-        navLinks: false, // can click day/week names to navigate views
+        defaultDate: moment().format('YYYY-MM-DD'),
+        navLinks: true, // can click day/week names to navigate views
         editable: false,
         eventLimit: true, // allow "more" link when too many events
-        events: [
+
+        events: events/*[
             {
                 title: 'All Day Event',
                 start: '2017-02-01'
@@ -76,7 +88,14 @@ $(document).ready(function() {
                 title: 'Click for Google',
                 start: '2017-02-28'
             }
-        ]
+        ]*/
     });
+}
 
-});
+function getDataOverAJAX( route, data) {
+    return $.ajax({
+        type: 'GET',
+        url: '/TSFI/public/ajax/' + route,
+        data: {data: data}
+    });
+}

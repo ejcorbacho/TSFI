@@ -61,6 +61,8 @@
                               <th>Resum</th>
                               <th>Categories</th>
                               <th>Data de publicació</th>
+                              <th>Publicar a
+                                  Twitter</th>
                               <th></th>
                           </tr>
                       </thead>
@@ -73,6 +75,7 @@
                       <td>{{ $dato->resumen_corto }}</td>
                       <td>{{ $dato->titulo }}</td>
                       <td>{{ $dato->data_publicacion }}</td>
+                      <td><i class="fa fa-fw fa-twitter-square"></i></td>
                       <td><a href="{{ url('administracio/entrada/nova/' . $dato->id) }}">EDITAR</a></td>
                   </tr>
                   @endforeach

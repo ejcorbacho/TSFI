@@ -1,5 +1,3 @@
-//MIRAR SERVICE ACCOUNTS PER EVITAR LOGIN
-
 // Client ID and API key from the Developer Console
 var CLIENT_ID = '697979761569-bj9sl5hj6s5oadrb9mho4pslhndh8kpp.apps.googleusercontent.com';
 

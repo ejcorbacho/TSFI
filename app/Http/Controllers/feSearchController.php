@@ -2,14 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests;
 use Illuminate\Http\Request;
+use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Search\Search;
+use App\feSearch;
 
-class SearchController extends Controller {
-    public function Search(Request $request, User $user)
+class feSearchController extends Controller {
+    private $osearch;
+
+    public function __construct() {
+        $this->osearch = new feSearch;
+    }
+
+    public function searchByTag(Request $request)
     {
-        return Search::search($request);
+        return $this->osearch->searchByTag($request);
     }
 }

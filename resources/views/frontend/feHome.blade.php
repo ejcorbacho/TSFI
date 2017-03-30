@@ -16,10 +16,12 @@
         <script src="{{ asset('fullcalendar-3.2.0/fullcalendar.min.js')}}"></script>
         <script src="{{ asset('fullcalendar-3.2.0/locale/ca.js')}}"></script>
         <script src="{{ asset('js/frontend/calendar.js')}}"></script>
-
         <link href="{{ asset('fullcalendar-3.2.0/fullcalendar.min.css')}}" rel='stylesheet' />
         <link href="{{ asset('fullcalendar-3.2.0/fullcalendar.print.min.css')}}" rel='stylesheet' media='print' />
         <link href="{{ asset('/css/calendar.css')}}" rel="stylesheet" >
+
+        <!-- Cerca -->
+        <script src="{{ asset('js/frontend/search.js')}}"></script>
     </head>
     <body>
         <div class="col-md-12 col-lg-10 col-lg-offset-1">

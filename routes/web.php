@@ -74,7 +74,7 @@ Route::get('ajax/entitat/TresEntitats', array('uses' => 'feController@TresEnitat
 Route::get('ajax/entitat/EntitatsFooter', array('uses' => 'feController@FooterEntitats'));
 
 //Search
-Route::post('/search', 'SearchController@search');
+Route::get('ajax/searchByTag', 'feSearchController@searchByTag');
 
 /***home****/
 

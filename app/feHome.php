@@ -32,7 +32,7 @@ public function MostrarEntradasHome(){
     foreach ($contenidos as $k => $contenido) {
       $contenidos[$k]->nombre_categoria = DB::table('entradas')
         ->join('entradas_categorias','entradas_categorias.id_entrada', '=','entradas.id' )
-        ->join('categorias','categorias.id', '=','entradas_categorias.id' )
+        ->join('categorias','categorias.id', '=','entradas_categorias.id_categoria' )
         ->where('entradas.id', '=', $contenidos[$k]->id_entrada)
         ->select('categorias.nombre as nombre_categoria')
         ->get();

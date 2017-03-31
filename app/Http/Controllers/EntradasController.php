@@ -88,12 +88,18 @@ class EntradasController extends Controller
 
       //return Input::get('categorias_seleccionadas');
       if($idPostBd == 0){
-          if(!$this->mentradas->guardar()){
+          $request = $this->mentradas->guardar();
+          if($request == '-1'){
             abort(500);
+          } else {
+            return $request;
           }
       } else {
-          if(!$this->mentradas->actualizar()){
+          $request = $this->mentradas->actualizar();
+          if($request == '-1'){
             abort(500);
+          } else {
+            return $request;
           }
       }
 
@@ -106,6 +112,8 @@ class EntradasController extends Controller
      $etiquetasMarcadas = $this->mentradas->leerEtiquetasMarcadas($id);
 
      $AEtiquetasMarcadas = array();
+     $etiquetasConMarcado = array();
+
      foreach ($etiquetasMarcadas as $value) $AEtiquetasMarcadas[] = $value->id;
 
      for($i=0; $i < count($todasEtiquetas); $i++){
@@ -125,6 +133,8 @@ class EntradasController extends Controller
      $entidadesMarcadas = $this->mentradas->leerEntidadesMarcadas($id);
 
      $AEntidadesMarcadas = array();
+     $entidadesConMarcado = array();
+
      foreach ($entidadesMarcadas as $value) $AEntidadesMarcadas[] = $value->id;
 
      for($i=0; $i < count($todasEntidades); $i++){
@@ -145,6 +155,7 @@ class EntradasController extends Controller
      $categoriasMarcadas = $this->mentradas->leerEntidadesMarcadas($id);
 
      $ACategoriasMarcadas = array();
+     $categoriasConMarcado = array();
      foreach ($categoriasMarcadas as $value) $ACategoriasMarcadas[] = $value->id;
 
      for($i=0; $i < count($todasCategorias); $i++){

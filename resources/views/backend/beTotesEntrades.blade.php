@@ -70,7 +70,7 @@
                   <tr>
                       <td><input type="checkbox"></td>
                       <td>{{ $dato->titulo }}</td>
-                      <td>{{ $dato->resumen_corto }}</td>
+                      <td>{{ $dato->resumen_largo }}</td>
                       <td>{{ $dato->titulo }}</td>
                       <td>{{ $dato->data_publicacion }}</td>
                       <td><a href="{{ url('administracio/entrada/nova/' . $dato->id) }}">EDITAR</a></td>

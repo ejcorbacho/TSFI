@@ -216,7 +216,7 @@
   			  <div  class="modal-body">
             <div id="dropdown_etiquetas" class="dropdown-container">
 
-                <select name="etiquetas_seleccionadas[]" id="selector_etiquetas" data-placeholder="Introdueix tags aqui" style="width:100%; z-index: 0;" multiple class="chosen-select" tabindex="8">
+                <select name="etiquetas_seleccionadas[]" id="selector_etiquetas" data-placeholder="Introdueix tags aqui" multiple class="chosen-select" tabindex="8">
                   @foreach($etiquetas as $etiqueta)
 
                     <option @if ($etiqueta['seleccionado'])) {{ 'selected'}} @endif  value="{{$etiqueta['id']}}">{{$etiqueta['nombre']}}</option>

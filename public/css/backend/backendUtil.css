@@ -5,3 +5,12 @@
     z-index: 2000;
     display: none;
 }
+.twitterIconDataTable{
+    font-size: 30px;
+}
+.twitterIconDataTable:hover{
+    opacity: 0.5;
+}
+.inputTwitter{
+    width: 100%;
+}

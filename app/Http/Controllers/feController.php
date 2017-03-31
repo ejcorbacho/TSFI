@@ -69,5 +69,10 @@ class feController extends Controller
       return($this->oentitats->LlistaFooterEntitats());
 
     }
+
+    public function getEventList() {
+        $oentradashome = new feHome;
+        return $oentradashome->getEventList();
+    }
      
 }

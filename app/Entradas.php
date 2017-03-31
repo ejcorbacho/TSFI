@@ -85,13 +85,13 @@ class Entradas extends Model
             }
 
             DB::commit();
-           return true;
+           return $this->id;
         } catch (\Illuminate\Database\QueryException $e) {
             DB::rollback();
-            return false;
+            return '-1';
         } catch (\Exception $e) {
             DB::rollback();
-            return false;
+            return '-1';
         }
 
 
@@ -156,14 +156,14 @@ class Entradas extends Model
             }
 
             DB::commit();
-            return true;
+            return $this->id;
         } catch (\Illuminate\Database\QueryException $e) {
             //return $e;
             DB::rollback();
-            return false;
+            return '-1';
         } catch (\Exception $e) {
             DB::rollback();
-            return false;
+            return '-1';
         }
 
     }
@@ -171,7 +171,10 @@ class Entradas extends Model
     public function leerTodas(){
         $contenido =  DB::table('entradas')
           ->join('fotos', 'entradas.foto', '=', 'fotos.id')
-          ->select('entradas.*', 'fotos.url')
+          ->join('entradas_categorias', 'entradas_categorias.id_entrada', '=', 'entradas.id')
+          ->join('categorias', 'categorias.id', '=', 'entradas_categorias.id_categoria')
+          ->select('entradas.id','entradas.resumen_largo','entradas.titulo','entradas.data_publicacion', 'fotos.url',DB::raw('group_concat(categorias.nombre separator ", ") as categoriasDePost'))
+          ->groupBy('entradas.id','entradas.resumen_largo','entradas.titulo','entradas.data_publicacion','fotos.url')
           ->get();
 
         return $contenido;

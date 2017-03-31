@@ -1,7 +1,6 @@
 //************* DECLARAR VARIABLES             ******************//
 var url = "/TSFI/public/";
 var enviar = false;
-var maximoTwitter = 140; /* CARACTERES MAXIMOS DE TWITTER */
 var maximoResumen = 450; /* CARACTERES MAXIMOS DE RESUMEN */
 var maximoTitulo = 30; /* CARACTERES MAXIMOS DE TITULO */
 var maximoSubtitulo = 40; /* CARACTERES MAXIMOS DE SUBTITULO */
@@ -9,7 +8,6 @@ var maximoContenido = 30; /* CARACTERES MAXIMOS DE CONTENIDO */
 var haySubtitulo;
 var hayContenido;
 var hayTitulo;
-var hayTwitter;
 var hayResumen;
 var vacio;
 var notificarEntrada = true;
@@ -109,6 +107,7 @@ $( document ).ready(function() {
         url: url + '/ajax/entradas/guardarEntrada',
         type: 'post',
         success: function(data) {
+          console.log(data);
           $('#idBD' ).val(data); /* GUARDAMOS LA ID DE LA BD EN EL FORMULARIO */
 
           showSuccessAlert('Desat!');
@@ -142,23 +141,6 @@ function guardarNuevaEtiqueta(){
   }
 }
 
-
-function validarTwitter(){
-  var longitud = $("#twitter").val().length;
-  $("#notificaciones_twitter ").empty();
-  var restant = maximoTwitter - longitud;
-  $("#notificaciones_twitter ").append("queden " + restant);
-  if(restant != maximoTwitter){
-    hayTwitter = true;
-  } else {
-    hayTwitter = false;
-  }
-  if (restant >= 0){
-    return true;
-  } else {
-    return false;
-  }
-}
 
 function validarResumen() {
   var longitud = $("#resum").val().length;
@@ -230,7 +212,7 @@ function validarContenido() {
 }
 
 function validarTodoVacio(){
-  if(haySubtitulo || hayContenido || hayTitulo || hayTwitter || hayResumen){
+  if(haySubtitulo || hayContenido || hayTitulo || hayResumen){
     return true;
   } else {
     if(notificarEntrada){
@@ -243,7 +225,7 @@ function validarTodoVacio(){
 }
 
 function validarEnviar(){
-  if (validarTwitter() & validarResumen() & validarTitulo() & validarSubtitulo() & validarContenido() & validarTodoVacio()) {
+  if (validarResumen() & validarTitulo() & validarSubtitulo() & validarContenido() & validarTodoVacio()) {
     //$("#notificaciones_twitter").append("Si");
     $('button[type="submit"]').removeAttr('disabled');
   } else {

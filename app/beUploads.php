@@ -78,5 +78,13 @@ class beUploads extends Model {
 
         return $images;
     }
+    public function getOneImge($imageId){
+        $images = DB::table($this->table)
+          ->select('id', 'url', 'alt')
+          ->where('id', '=', $imageId)
+          ->get();
+
+        return $images;
+    }
 }
 ?>

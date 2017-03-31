@@ -11,7 +11,6 @@ class Entradas extends Model
     public $id;
     public $titulo;
     public $subtitulo;
-    public $twitter;
     public $resumen_largo;
     public $contenido;
     public $categorias;
@@ -32,7 +31,6 @@ class Entradas extends Model
       $data = array(
         'titulo'=> $this->titulo,
         'subtitulo'=> $this->subtitulo,
-        'resumen_corto'=>  $this->twitter,
         'resumen_largo'=> $this->resumen_largo,
         'localizacion' => '',
         'contenido'=>  $this->contenido,
@@ -103,7 +101,6 @@ class Entradas extends Model
       $data = array(
         'titulo'=> $this->titulo,
         'subtitulo'=> $this->subtitulo,
-        'resumen_corto'=>  $this->twitter,
         'resumen_largo'=> $this->resumen_largo,
         'localizacion' => '',
         'contenido'=>  $this->contenido,

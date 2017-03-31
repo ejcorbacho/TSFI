@@ -4,7 +4,7 @@ $(document).ready(function() {
     var successfulCalls = 0;
     var numberOfCalls = 5;
 
-    getDataOverAJAX( 'getNewUsersData' ).then(
+    getDataOverAJAX( 'analytics/getNewUsersData' ).then(
         function( data ) {
             ++successfulCalls;
             drawNewUsersChart( rearrangeData( JSON.parse( data ) ) );
@@ -13,7 +13,7 @@ $(document).ready(function() {
         }
     );
 
-    getDataOverAJAX( 'getDeviceCategoriesData', 'sessions' ).then(
+    getDataOverAJAX( 'analytics/getDeviceCategoriesData', 'sessions' ).then(
         function( data ) {
             ++successfulCalls;
             drawDeviceCategoriesChart( JSON.parse( data ) );
@@ -22,7 +22,7 @@ $(document).ready(function() {
         }
     );
 
-    getDataOverAJAX( 'getMobileOSData' ).then(
+    getDataOverAJAX( 'analytics/getMobileOSData' ).then(
         function( data ) {
             ++successfulCalls;
             drawMobileOSChart( JSON.parse( data ) );
@@ -31,7 +31,7 @@ $(document).ready(function() {
         }
     );
 
-    getDataOverAJAX( 'getGenderData' ).then(
+    getDataOverAJAX( 'analytics/getGenderData' ).then(
         function( data ) {
             ++successfulCalls;
             drawGenderChart( JSON.parse( data ) );
@@ -40,7 +40,7 @@ $(document).ready(function() {
         }
     );
 
-    getDataOverAJAX( 'getAgeBracketData' ).then(
+    getDataOverAJAX( 'analytics/getAgeBracketData' ).then(
         function( data ) {
             ++successfulCalls;
             drawAgeBracketChart( JSON.parse( data ) );
@@ -313,7 +313,7 @@ function drawAgeBracketChart (data) {
 
 function updateDeviceCategoriesChart() {
     var metrics = $("#deviceCategoriesSelector").val();
-    getDataOverAJAX( 'getDeviceCategoriesData', metrics ).then(
+    getDataOverAJAX( 'analytics/getDeviceCategoriesData', metrics ).then(
         function( data ) {
             drawDeviceCategoriesChart( data );
         }
@@ -362,7 +362,7 @@ function getDataOverAJAX(route, data) {
     return $.ajax(
         {
             type: 'GET',
-            url: 'ajax/analytics/' + route,
+            url: 'ajax/' + route,
             data: {data: data}
         });
 }

@@ -28,38 +28,10 @@ class CreateTablesBd3 extends Migration
             $table->timestamp('created_at')->nullable();
         });
 
-        Schema::create('roles', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('email',190)->index();
-            $table->string('token',190)->index();
-            $table->timestamp('created_at')->nullable();
-        });
-
         Schema::create('fotos', function (Blueprint $table) {
             $table->increments('id');
             $table->string('url', 200)->unique();
             $table->string('alt', 200);
-            $table->timestamps();
-        });
-
-        Schema::create('usuarios', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('nombre', 200);
-            $table->string('apellido', 200);
-            $table->integer('id_user')->unsigned();
-            $table->integer('id_rol')->unsigned();
-            $table->integer('foto')->unsigned();
-            $table->foreign('id_user')->references('id')->on('users');
-            $table->foreign('id_rol')->references('id')->on('roles');
-            $table->foreign('foto')->references('id')->on('fotos');
-            $table->timestamps();
-        });
-
-        Schema::create('log', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('id_usuario')->unsigned();
-            $table->string('accion', 200);
-            $table->foreign('id_usuario')->references('id')->on('usuarios');
             $table->timestamps();
         });
 
@@ -72,22 +44,21 @@ class CreateTablesBd3 extends Migration
 
         Schema::create('entradas', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('titulo', 200);
-            $table->string('subtitulo', 200);
-            $table->string('resumen_corto', 200);
-            $table->string('resumen_largo', 200);
-            $table->string('localizacion', 500);
-            $table->longText('contenido');
+            $table->string('titulo', 200)->nullable();
+            $table->string('subtitulo', 200)->nullable();
+            $table->string('resumen_largo', 200)->nullable();
+            $table->string('localizacion', 500)->nullable();
+            $table->longText('contenido')->nullable();
             $table->integer('visible');
             $table->integer('foto')->unsigned();
             $table->integer('publico');
             $table->integer('relevancia');
-            $table->datetime('data_publicacion');
-            $table->datetime('fecha1');
-            $table->datetime('fecha2');
+            $table->datetime('data_publicacion')->nullable();
+            $table->datetime('fecha1')->nullable();
+            $table->datetime('fecha2')->nullable();
             $table->integer('eliminado');
             $table->integer('usuario_publicador')->unsigned();
-            $table->foreign('usuario_publicador')->references('id')->on('usuarios');
+            $table->foreign('usuario_publicador')->references('id')->on('users');
             $table->foreign('foto')->references('id')->on('fotos');
             $table->timestamps();
         });
@@ -103,7 +74,7 @@ class CreateTablesBd3 extends Migration
             $table->integer('foto')->unsigned();
             $table->integer('publico');
             $table->integer('usuario_publicador')->unsigned();
-            $table->foreign('usuario_publicador')->references('id')->on('usuarios');
+            $table->foreign('usuario_publicador')->references('id')->on('users');
             $table->foreign('foto')->references('id')->on('fotos');
             $table->timestamps();
         });
@@ -189,8 +160,6 @@ class CreateTablesBd3 extends Migration
         Schema::dropIfExists('users');
         Schema::dropIfExists('password_resets');
         Schema::dropIfExists('fotos');
-        Schema::dropIfExists('usuarios');
-        Schema::dropIfExists('log');
         Schema::dropIfExists('aux');
     }
 }

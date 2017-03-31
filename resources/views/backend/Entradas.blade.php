@@ -14,14 +14,13 @@
 <script src="{{ asset('plugins/daterangepicker/daterangepicker.js') }}"></script>
 <link rel="stylesheet" href="{{ asset('plugins/daterangepicker/daterangepicker.css') }}">
 
-
-
+<!-- Càrrega d'arxius -->
 <script type="text/javascript" src="{{ asset('js/dropzone/dropzone.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/backend/dropzoneConfig.js') }}"></script>
-
-<script src="{{ asset('js/chosen.jquery.js') }}" type="text/javascript"></script>
 <link rel="stylesheet" href="{{ asset('css/dropzone/dropzone.css') }}">
 <link rel="stylesheet" href="{{ asset('css/image-picker/image-picker.css') }}">
+
+<script src="{{ asset('js/chosen.jquery.js') }}" type="text/javascript"></script>
 
 <script type="text/javascript" src="{{ asset('js/sol.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/EntradasScript.js') }}"></script>
@@ -217,7 +216,7 @@
   			  <div  class="modal-body">
             <div id="dropdown_etiquetas" class="dropdown-container">
 
-                <select name="etiquetas_seleccionadas[]" id="selector_etiquetas" data-placeholder="Introdueix tags aqui" style="width:100%; z-index: 0;" multiple class="chosen-select" tabindex="8">
+                <select name="etiquetas_seleccionadas[]" id="selector_etiquetas" data-placeholder="Introdueix tags aqui" multiple class="chosen-select" tabindex="8">
                   @foreach($etiquetas as $etiqueta)
 
                     <option @if ($etiqueta['seleccionado'])) {{ 'selected'}} @endif  value="{{$etiqueta['id']}}">{{$etiqueta['nombre']}}</option>
@@ -247,7 +246,9 @@
   				    <input id="mainImageInput" name="mainImage" type="hidden">
                     <a href="javascript:void(0);" data-toggle="modal" data-target="#imageSelectionModal">
                         <div id="mainImage">
-                @if (!empty($data[0]->foto)) <img class="image_picker_image" src="{{$foto[0]->url}}" alt="{{$foto[0]->alt}}" width="200"></div> @endif
+                            @if (!empty($data[0]->foto)) {
+                                !!html_entity_decode('<img class="image_picker_image" src="\TSFI\public\uploads\8A39.jpg" alt="1milTARJETAredondoBRILLOchento01" width="200"></div>'
+                            )!!} @endif
                         </div>
                     </a>
   					<a type="button" class="btn" data-toggle="modal" data-target="#imageSelectionModal">

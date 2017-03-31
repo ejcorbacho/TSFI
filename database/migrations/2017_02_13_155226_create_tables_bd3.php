@@ -156,7 +156,9 @@ class CreateTablesBd3 extends Migration
             $table->increments('id');
             $table->string('nombre',200);
             $table->integer('son_colaboradoras');
-            $table->string('url');
+            $table->string('url',500);
+            $table->integer('foto')->unsigned();
+            $table->foreign('foto')->references('id')->on('fotos');
             $table->timestamps();
         });
 

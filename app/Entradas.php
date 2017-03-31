@@ -174,7 +174,10 @@ class Entradas extends Model
     public function leerTodas(){
         $contenido =  DB::table('entradas')
           ->join('fotos', 'entradas.foto', '=', 'fotos.id')
-          ->select('entradas.*', 'fotos.url')
+          ->join('entradas_categorias', 'entradas_categorias.id_entrada', '=', 'entradas.id')
+          ->join('categorias', 'categorias.id', '=', 'entradas_categorias.id_categoria')
+          ->select('entradas.*', 'fotos.url',DB::raw('group_concat(categorias.nombre) as categoriasId'))
+          ->groupBy('entradas.*')
           ->get();
 
         return $contenido;

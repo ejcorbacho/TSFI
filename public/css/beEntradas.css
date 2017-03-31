@@ -156,3 +156,10 @@ textarea {
   float: left;
   width: 20px;
 }
+#dropdown_etiquetas{
+    z-index:0;
+}
+#selector_etiquetas{
+    z-index: 0;
+    width:100%;
+}

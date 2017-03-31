@@ -36,7 +36,7 @@ class beEntitatsController extends Controller
     {
         $this->oentitats->nombre = Input::get('nombre');
         $this->oentitats->son_colaboradoras = Input::get('colab');
-        $this->oentitats->url = 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Vans-logo.svg/1280px-Vans-logo.svg.png';
+        $this->oentitats->url = Input::get('mainImage');
 
         if($this->oentitats->son_colaboradoras ){ // comprobacion de si es o no colaboardor
             $this->oentitats->son_colaboradoras = 1;

@@ -81,3 +81,6 @@ Route::get('ajax/searchByTag', 'feSearchController@searchByTag');
 
 //Events
 Route::get('ajax/eventList', 'feController@getEventList');
+
+//Twitter
+Route::get('ajax/postToTwitter', 'beTwitterController@postToTwitter');

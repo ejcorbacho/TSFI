@@ -1,5 +1,4 @@
 $(document).ready(function () {
-
     $('#taulaDePosts').DataTable({
         "language": {
             "url": "/TSFI/public/js/backend/dataTableCatalan.json"
@@ -15,14 +14,18 @@ $(document).ready(function () {
         ],
         "order": [[1, 'asc']]
     });
+
     $('.twitterIconDataTable').on('click', function (e) {
         //codigo que necesites
         $("#modalPublicacionTwitter").modal('toggle');
 
     });
+
     $('.botoPublicarTwitterIntern').on('click', function (e) {
-        var id = $('input[name=categoryRadio]:checked').val();
-        console.log(id);
+        var text = $('.inputTwitter').val();
+
+        getDataOverAJAX( 'postToTwitter', text );
+        /*
         $.ajax({
             url: '/TSFI/public/ajax/categories/llistarCategoriaPerTransferencia',
             type: 'post',
@@ -35,8 +38,14 @@ $(document).ready(function () {
                 console.log(xhr);
                 console.log("Details: " + desc + "\nError:" + err);
             }});
+        */
     });
-
-
-
 });
+
+function getDataOverAJAX( route, data ) {
+    return $.ajax({
+        type: 'GET',
+        url: '/TSFI/public/ajax/' + route,
+        data: {data: data}
+    });
+}

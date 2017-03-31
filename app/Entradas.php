@@ -85,13 +85,13 @@ class Entradas extends Model
             }
 
             DB::commit();
-           return true;
+           return $this->id;
         } catch (\Illuminate\Database\QueryException $e) {
             DB::rollback();
-            return false;
+            return '-1';
         } catch (\Exception $e) {
             DB::rollback();
-            return false;
+            return '-1';
         }
 
 
@@ -156,14 +156,14 @@ class Entradas extends Model
             }
 
             DB::commit();
-            return true;
+            return $this->id;
         } catch (\Illuminate\Database\QueryException $e) {
             //return $e;
             DB::rollback();
-            return false;
+            return '-1';
         } catch (\Exception $e) {
             DB::rollback();
-            return false;
+            return '-1';
         }
 
     }
@@ -173,8 +173,8 @@ class Entradas extends Model
           ->join('fotos', 'entradas.foto', '=', 'fotos.id')
           ->join('entradas_categorias', 'entradas_categorias.id_entrada', '=', 'entradas.id')
           ->join('categorias', 'categorias.id', '=', 'entradas_categorias.id_categoria')
-          ->select('entradas.*', 'fotos.url',DB::raw('group_concat(categorias.nombre) as categoriasId'))
-          ->groupBy('entradas.*')
+          ->select('entradas.id','entradas.resumen_corto','entradas.titulo','entradas.data_publicacion', 'fotos.url',DB::raw('group_concat(categorias.nombre separator ", ") as categoriasDePost'))
+          ->groupBy('entradas.id','entradas.resumen_corto','entradas.titulo','entradas.data_publicacion','fotos.url')
           ->get();
 
         return $contenido;

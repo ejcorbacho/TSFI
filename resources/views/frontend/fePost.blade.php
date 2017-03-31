@@ -13,14 +13,14 @@
     <div class="col-lg-10 col-lg-offset-1 col-sm-12">
         <div class="postTitleContainer">
             <img src="{{$data->fotosUrl}}" alt="image placeholder" class="postTitleImg">
-            <h1 class="titol col-sm-6 col-sm-offset-3 col-xs-6 col-xs-offset-3">{!!html_entity_decode($data->titulo)!!}</h1>
-            <h2 class="categoria col-sm-2 col-sm-offset-5 col-xs-2 col-xs-offset-5"><a id="link" href="../category/{{$data->idcat}}">{!!html_entity_decode($data->nombre)!!}</a></h2>
-            <h3 class="autor col-sm-4 col-sm-offset-4 col-xs-4 col-xs-offset-4">{!!html_entity_decode($data->data_publicacion)!!}</h3>
+            <h1 class="titol col-sm-6 col-sm-offset-3 col-xs-6 col-xs-offset-3">@if(!empty($data->titulo)) {{$data->titulo}}@endif</h1>
+            <h2 class="categoria col-sm-2 col-sm-offset-5 col-xs-2 col-xs-offset-5"><a id="link" href="../category/{{$data->idcat}}">@if(!empty($data->nombre)) {{$data->nombre}}@endif</a></h2>
+            <h3 class="autor col-sm-4 col-sm-offset-4 col-xs-4 col-xs-offset-4">@if(!empty($data->data_publicacion)) {{$data->data_publicacion}}@endif</h3>
         </div>
 
         <main class="col-md-9 col-sm-12 Post">
             <article class="col-sm-12 PostContent">
-                {!!html_entity_decode($data->contenido)!!}
+                @if(!empty($data->contenido)) {{$data->contenido}}@endif
             </article>
         </main>
         <div class="categoryPostsSidebar col-md-3 col-sm-12">                

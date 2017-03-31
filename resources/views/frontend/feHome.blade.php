@@ -47,7 +47,7 @@
     <!-- 2 APARTADOS DE DERECHA-->
     <div class="col-sm-8 col-md-4">
       @if(!empty($posts[1]))<a href="{{ url('/post/' . $posts[1]->id) }}">@endif
-        <img class="img-responsive erc max" src="@if(!empty($posts[1])){{$posts[1]->fotosUrl}}@endif" alt="@if(!empty($posts[1])){{$posts[1]->alt_foto }}@endif">
+        <img class="img-responsive erc sec" src="@if(!empty($posts[1])){{$posts[1]->fotosUrl}}@endif" alt="@if(!empty($posts[1])){{$posts[1]->alt_foto }}@endif">
       <div class="maximolineas">
 
             <h4>@if(!empty($posts[1]))
@@ -61,13 +61,18 @@
         <i style="font-size:20px" class="fa espacio face">&#xf082;</i>
         <i style="font-size:20px" class="fa espacio twit">&#xf099;</i>
       </div>
-          </div>
+    </div>
 
     <div class="col-sm-4 col-md-4">
-                          <img class="img-responsive erc sec" src="">
+                         @if(!empty($posts[2]))<a href="{{ url('/post/' . $posts[2]->id) }}">@endif
+        <img class="img-responsive erc sec" src="@if(!empty($posts[2])){{$posts[2]->fotosUrl}}@endif" alt="@if(!empty($posts[2])){{$posts[2]->alt_foto }}@endif">
       <div class="maximolineas">
-        <a>
 
+            <h4>@if(!empty($posts[2]))
+                @if(isset($posts[2]->nombre_categoria[0])){{$posts[2]->nombre_categoria[0]->nombre_categoria}} @endif
+            @endif</h4>
+            <h3>@if(!empty($posts[2])) {{$posts[2]->titulo}} @endif</h3>
+            <p>@if(!empty($posts[2])){!!html_entity_decode($posts[2]->contenido)!!} @endif</p>
         </a>
       </div>
       <div class="icons">
@@ -78,12 +83,33 @@
       <!--</div>
       <div class="row mainGridContainer">-->
           <!-- 3 APARTADOS DE ABAJO-->
-          <div class="col-sm-4 rango">
-              <img class="img-responsive erc terc" src="">
-      <div class="maximolineas">
-        <a>
+     <div class="col-sm-4 rango">
+                @if(!empty($posts[3]))<a href="{{ url('/post/' . $posts[3]->id) }}">@endif
+            <img class="img-responsive erc terc" src="@if(!empty($posts[3])){{$posts[3]->fotosUrl}}@endif" alt="@if(!empty($posts[3])){{$posts[3]->alt_foto }}@endif">
+        <div class="maximolineas">
+                <h4>@if(!empty($posts[3]))
+                    @if(isset($posts[3]->nombre_categoria[0])){{$posts[3]->nombre_categoria[0]->nombre_categoria}} @endif
+                @endif</h4>
+                <h3>@if(!empty($posts[3])) {{$posts[3]->titulo}} @endif</h3>
+                <p>@if(!empty($posts[3])){!!html_entity_decode($posts[3]->contenido)!!} @endif</p>
+            </a>
+       </div>
+      <div class="icons">
+        <i style="font-size:20px" class="fa espacio">&#xf082;</i>
+        <i style="font-size:20px" class="fa espacio">&#xf099;</i>
+      </div>
+    </div>
 
-        </a>
+              <div class="col-sm-4 rango">
+                @if(!empty($posts[4]))<a href="{{ url('/post/' . $posts[4]->id) }}">@endif
+            <img class="img-responsive erc terc" src="@if(!empty($posts[4])){{$posts[4]->fotosUrl}}@endif" alt="@if(!empty($posts[4])){{$posts[4]->alt_foto }}@endif">
+        <div class="maximolineas">
+                <h4>@if(!empty($posts[4]))
+                    @if(isset($posts[4]->nombre_categoria[0])){{$posts[4]->nombre_categoria[0]->nombre_categoria}} @endif
+                @endif</h4>
+                <h3>@if(!empty($posts[4])) {{$posts[4]->titulo}} @endif</h3>
+                <p>@if(!empty($posts[4])){!!html_entity_decode($posts[4]->contenido)!!} @endif</p>
+            </a>
       </div>
       <div class="icons">
         <i style="font-size:20px" class="fa espacio">&#xf082;</i>
@@ -91,25 +117,16 @@
       </div>
     </div>
 
-          <div class="col-sm-4 rango">
-              <img class="img-responsive erc terc"  src="">
-      <div class="maximolineas">
-        <a>
-
-        </a>
-      </div>
-      <div class="icons">
-        <i style="font-size:20px" class="fa espacio">&#xf082;</i>
-        <i style="font-size:20px" class="fa espacio">&#xf099;</i>
-      </div>
-    </div>
-
-          <div class="col-sm-4 rango">
-              <img class="img-responsive erc terc" src="">
-      <div class="maximolineas">
-        <a>
-
-        </a>
+              <div class="col-sm-4 rango">
+                @if(!empty($posts[5]))<a href="{{ url('/post/' . $posts[5]->id) }}">@endif
+            <img class="img-responsive erc terc" src="@if(!empty($posts[5])){{$posts[5]->fotosUrl}}@endif" alt="@if(!empty($posts[5])){{$posts[5]->alt_foto }}@endif">
+        <div class="maximolineas">
+                <h4>@if(!empty($posts[5]))
+                    @if(isset($posts[5]->nombre_categoria[0])){{$posts[3]->nombre_categoria[0]->nombre_categoria}} @endif
+                @endif</h4>
+                <h3>@if(!empty($posts[5])) {{$posts[5]->titulo}} @endif</h3>
+                <p>@if(!empty($posts[5])){!!html_entity_decode($posts[5]->contenido)!!} @endif</p>
+            </a>
       </div>
       <div class="icons">
         <i style="font-size:20px" class="fa espacio">&#xf082;</i>
@@ -117,10 +134,9 @@
       </div>
     </div>
       </div>
+  </div>
+<!-- /******************************************************************************************/-->
 
-  </div
-
-  <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
       <div id="popularPostsSection" class="col-lg-10 col-lg-offset-1 col-md-12">
           <div id="popularPostsContainer" class="col-md-9 col-sm-12">
               <div class="popularPost">

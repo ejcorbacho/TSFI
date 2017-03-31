@@ -217,7 +217,7 @@
   			  <div  class="modal-body">
             <div id="dropdown_etiquetas" class="dropdown-container">
 
-                <select name="etiquetas_seleccionadas[]" id="selector_etiquetas" data-placeholder="Your Favorite Types of Bear" style="width:350px;" multiple class="chosen-select" tabindex="8">
+                <select name="etiquetas_seleccionadas[]" id="selector_etiquetas" data-placeholder="Introdueix tags aqui" style="width:100%; z-index: 0;" multiple class="chosen-select" tabindex="8">
                   @foreach($etiquetas as $etiqueta)
 
                     <option @if ($etiqueta['seleccionado'])) {{ 'selected'}} @endif  value="{{$etiqueta['id']}}">{{$etiqueta['nombre']}}</option>
@@ -244,10 +244,12 @@
   			  </div>
   			  <div class="modal-body">
   				<div class="form-group ">
-  				    <input id="mainImageInput" name="mainImage" value="@if (!empty($data[0]->foto)) {{ $data[0]->foto }}  @else {{'0'}} @endif" type="hidden">
-  				    <div id="mainImage">
+  				    <input id="mainImageInput" name="mainImage" type="hidden">
+                    <a href="javascript:void(0);" data-toggle="modal" data-target="#imageSelectionModal">
+                        <div id="mainImage">
                 @if (!empty($data[0]->foto)) <img class="image_picker_image" src="{{$foto[0]->url}}" alt="{{$foto[0]->alt}}" width="200"></div> @endif
-  				    </div>
+                        </div>
+                    </a>
   					<a type="button" class="btn" data-toggle="modal" data-target="#imageSelectionModal">
   					    + Editar imatge destacada
                     </a>

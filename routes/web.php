@@ -45,19 +45,6 @@ Route::get('administracio/entrada/nova/', array('uses' => 'EntradasController@ma
 Route::get('administracio/entrada/nova/{id}', array('uses' => 'EntradasController@editarEntrada')); //Mostrar formulario
 Route::get('administracio/entrada/llistat', array('uses' => 'EntradasController@llistarEntradas')); //Mostrar listado de entradas
 
-//Dades analytics
-Route::get('ajax/analytics/getNewUsersData', array('uses' => 'HomeController@getNewUsersData'));                        //Dades sobre nous usuaris
-Route::get('ajax/analytics/getDeviceCategoriesData', array('uses' => 'HomeController@getDeviceCategoriesData'));        //Dades sobre dispositius
-Route::get('ajax/analytics/getMobileOSData', array('uses' => 'HomeController@getMobileOSData'));                        //Dades sobre sistema operatiu dels mòbils
-Route::get('ajax/analytics/getGenderData', array('uses' => 'HomeController@getGenderData'));                            //Dades sobre l'edat dels usuaris
-Route::get('ajax/analytics/getAgeBracketData', array('uses' => 'HomeController@getAgeBracketData'));                    //Dades sobre el gènere dels usuaris
-
-//Uploads
-Route::post('administracio/uploadFile', array('uses' => 'beImageController@uploadFile'));
-
-//Images
-Route::get('ajax/uploads/getImageList', array('uses' => 'beImageController@getImageList'));
-
 //******* RUTAS AJAX ***********/
 Route::get('ajax/categories/llistaCategories', array('uses' => 'beCategoriesController@llistarCategoria')); //Mostrar formulario
 Route::post('ajax/categories/guardarCategoria', array('uses' => 'beCategoriesController@novaCategoria')); //Mostrar formulario
@@ -73,9 +60,27 @@ Route::get('ajax/entitat/TresEntitats', array('uses' => 'feController@TresEnitat
 /***entitats footer ***/
 Route::get('ajax/entitat/EntitatsFooter', array('uses' => 'feController@FooterEntitats'));
 
-//Search
-Route::post('/search', 'SearchController@search');
-
 /***home****/
-
 Route::get('ajax/entitat/FotosEntrades', array('uses' => 'feController@FotosEntitats'));
+
+//Dades analytics
+Route::get('ajax/analytics/getNewUsersData', array('uses' => 'HomeController@getNewUsersData'));                        //Dades sobre nous usuaris
+Route::get('ajax/analytics/getDeviceCategoriesData', array('uses' => 'HomeController@getDeviceCategoriesData'));        //Dades sobre dispositius
+Route::get('ajax/analytics/getMobileOSData', array('uses' => 'HomeController@getMobileOSData'));                        //Dades sobre sistema operatiu dels mòbils
+Route::get('ajax/analytics/getGenderData', array('uses' => 'HomeController@getGenderData'));                            //Dades sobre l'edat dels usuaris
+Route::get('ajax/analytics/getAgeBracketData', array('uses' => 'HomeController@getAgeBracketData'));                    //Dades sobre el gènere dels usuaris
+
+//Uploads
+Route::post('administracio/uploadFile', array('uses' => 'beImageController@uploadFile'));
+
+//Images
+Route::get('ajax/uploads/getImageList', array('uses' => 'beImageController@getImageList'));
+
+//Search
+Route::get('ajax/searchByTag', 'feSearchController@searchByTag');
+
+//Events
+Route::get('ajax/eventList', 'feController@getEventList');
+
+//Twitter
+Route::get('ajax/postToTwitter', 'beTwitterController@postToTwitter');

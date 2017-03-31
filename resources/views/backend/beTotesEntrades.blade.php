@@ -81,7 +81,7 @@
                       <td><input type="checkbox"></td>
                       <td>{{ $dato->titulo }}</td>
                       <td>{{ $dato->resumen_largo }}</td>
-                      <td>{{ $dato->titulo }}</td>
+                      <td>{{ $dato->categoriasDePost }}</td>
                       <td>{{ Carbon\Carbon::parse($dato->data_publicacion)->format('d-m-Y') }}</td>
                       <td><i class="twitterIconDataTable fa fa-fw fa-twitter-square"></i></td>
                       <td><a href="{{ url('administracio/entrada/nova/' . $dato->id) }}">EDITAR</a></td>

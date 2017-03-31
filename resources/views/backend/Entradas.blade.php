@@ -60,7 +60,7 @@
             <input name="idBD" value="@if (!empty($data[0]->titulo)) {{ $data[0]->id }} @else {{ '0' }} @endif" id="idBD" type="hidden" value='0' />
             <div class="box box-primary">
               <div class="box-header with-border">
-                <h3 class="box-title">TITOL I SUBTITOL</h3>
+                <h3 class="box-title">*TITOL I *SUBTITOL</h3>
                 <div>&nbspcaracters</div>
                 <div id="notificaciones_subtitulo"></div>
                 <div>&nbspcaracters&nbsp<b>· Subtitol:&nbsp</b></div>
@@ -86,7 +86,7 @@
 
           <div class="box box-primary">
             <div class="box-header">
-              <h3 class="box-title">TWITTER</h3>
+              <h3 class="box-title">*TWITTER</h3>
               <div>&nbspcaracters</div>
               <div id="notificaciones_twitter"></div>
               <div><b>Twitter:&nbsp</b></div>
@@ -104,7 +104,7 @@
 
           <div class="box box-primary">
             <div class="box-header">
-              <h3 class="box-title">RESUM</h3>
+              <h3 class="box-title">*RESUM</h3>
               <div>&nbspcaracters</div>
               <div id="notificaciones_resumen"></div>
               <div><b>Resum:&nbsp</b></div>
@@ -120,7 +120,7 @@
 
           <div class="box box-primary">
             <div class="box-header">
-              <h3 class="box-title">CONTINGUT</h3>
+              <h3 class="box-title">*CONTINGUT</h3>
               <div id="notificaciones_contenido"></div>
             </div>
 

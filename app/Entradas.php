@@ -11,7 +11,6 @@ class Entradas extends Model
     public $id;
     public $titulo;
     public $subtitulo;
-    public $twitter;
     public $resumen_largo;
     public $contenido;
     public $categorias;
@@ -32,7 +31,6 @@ class Entradas extends Model
       $data = array(
         'titulo'=> $this->titulo,
         'subtitulo'=> $this->subtitulo,
-        'resumen_corto'=>  $this->twitter,
         'resumen_largo'=> $this->resumen_largo,
         'localizacion' => '',
         'contenido'=>  $this->contenido,
@@ -103,7 +101,6 @@ class Entradas extends Model
       $data = array(
         'titulo'=> $this->titulo,
         'subtitulo'=> $this->subtitulo,
-        'resumen_corto'=>  $this->twitter,
         'resumen_largo'=> $this->resumen_largo,
         'localizacion' => '',
         'contenido'=>  $this->contenido,
@@ -174,7 +171,10 @@ class Entradas extends Model
     public function leerTodas(){
         $contenido =  DB::table('entradas')
           ->join('fotos', 'entradas.foto', '=', 'fotos.id')
-          ->select('entradas.*', 'fotos.url')
+          ->join('entradas_categorias', 'entradas_categorias.id_entrada', '=', 'entradas.id')
+          ->join('categorias', 'categorias.id', '=', 'entradas_categorias.id_categoria')
+          ->select('entradas.*', 'fotos.url',DB::raw('group_concat(categorias.nombre) as categoriasId'))
+          ->groupBy('entradas.*')
           ->get();
 
         return $contenido;

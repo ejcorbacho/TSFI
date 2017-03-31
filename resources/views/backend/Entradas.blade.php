@@ -83,24 +83,6 @@
 
             </div>
 
-        <!-- INICIO CAJA TWIITER -->
-
-          <div class="box box-primary">
-            <div class="box-header">
-              <h3 class="box-title">*TWITTER</h3>
-              <div>&nbspcaracters</div>
-              <div id="notificaciones_twitter"></div>
-              <div><b>Twitter:&nbsp</b></div>
-            </div>
-
-            <div class="box-body pad">
-              <textarea name="twitter" id="twitter" onkeyup="validarEnviar()" onchange="validarEnviar()">@if (!empty($data[0]->resumen_corto)) {{ $data[0]->resumen_corto  }} @endif</textarea> <br /><br />
-              <button class="btn btn-primary">Tweet</button>
-            </div>
-          </div>
-
-        <!-- FIN CAJA TWITTER -->
-
         <!-- INICIO CAJA RESUM llarg  -->
 
           <div class="box box-primary">

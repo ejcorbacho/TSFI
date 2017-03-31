@@ -85,13 +85,13 @@ class Entradas extends Model
             }
 
             DB::commit();
-           return true;
+           return $this->id;
         } catch (\Illuminate\Database\QueryException $e) {
             DB::rollback();
-            return false;
+            return '-1';
         } catch (\Exception $e) {
             DB::rollback();
-            return false;
+            return '-1';
         }
 
 
@@ -156,14 +156,14 @@ class Entradas extends Model
             }
 
             DB::commit();
-            return true;
+            return $this->id;
         } catch (\Illuminate\Database\QueryException $e) {
             //return $e;
             DB::rollback();
-            return false;
+            return '-1';
         } catch (\Exception $e) {
             DB::rollback();
-            return false;
+            return '-1';
         }
 
     }

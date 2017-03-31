@@ -72,12 +72,12 @@
 
   				<div class="form-group">
 
-                      <input type="text" name="titulo" value="@if (!empty($data[0]->titulo)) {{ $data[0]->titulo }} @endif" id="titulo" class="form-control" placeholder="Introdueix el titol" onkeyup="validarEnviar()" />
+                      <input type="text" name="titulo" value="@if (!empty($data[0]->titulo)) {{ $data[0]->titulo }} @endif" id="titulo" class="form-control" placeholder="Introdueix el titol" onkeyup="validarPublicar()" />
 
                   </div>
   				<div class="form-group">
 
-                    <input type="text" name="subtitulo" value="@if (!empty($data[0]->subtitulo)) {{ $data[0]->subtitulo  }} @endif" id="subtitulo" class="form-control" placeholder="Introdueix el subtitol" onkeyup="validarEnviar()" />
+                    <input type="text" name="subtitulo" value="@if (!empty($data[0]->subtitulo)) {{ $data[0]->subtitulo  }} @endif" id="subtitulo" class="form-control" placeholder="Introdueix el subtitol" onkeyup="validarPublicar()" />
                   </div>
                 </div>
 
@@ -94,12 +94,12 @@
             </div>
 
             <div class="box-body pad">
-              <textarea name="resum" id="resum" onkeyup="validarEnviar()" onchange="validarEnviar()"> @if (!empty($data[0]->resumen_largo)) {{ $data[0]->resumen_largo  }} @endif </textarea>
+              <textarea name="resum" id="resum" onkeyup="validarPublicar()" onchange="validarPublicar()">@if (!empty($data[0]->resumen_largo)) {{ $data[0]->resumen_largo  }} @endif</textarea>
             </div>
           </div>
 
-        <!-- FIN CAJA RESUM llarg -->
-        <!-- INICIO CAJA CONTINGUT  -->
+          <!-- FIN CAJA RESUM llarg -->
+          <!-- INICIO CAJA CONTINGUT  -->
 
           <div class="box box-primary">
             <div class="box-header">
@@ -112,7 +112,7 @@
               <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#imageInsertionModal">
                   Inserir imatges
               </button>
-              <textarea name="contingut" id="contingut" onkeyup="validarEnviar()" onchange="validarEnviar()">@if (!empty($data[0]->contenido)) {{ $data[0]->contenido }} @endif</textarea>
+              <textarea name="contingut" id="contingut" onkeyup="validarPublicar()" onchange="validarPublicar()">@if(!empty($data[0]->contenido)){{$data[0]->contenido}}@endif</textarea>
             </div>
           </div>
 

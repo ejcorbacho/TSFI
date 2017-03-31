@@ -1,10 +1,10 @@
 //************* DECLARAR VARIABLES             ******************//
 var url = "/TSFI/public/";
 var enviar = false;
-var maximoResumen = 450; /* CARACTERES MAXIMOS DE RESUMEN */
-var maximoTitulo = 30; /* CARACTERES MAXIMOS DE TITULO */
-var maximoSubtitulo = 40; /* CARACTERES MAXIMOS DE SUBTITULO */
-var maximoContenido = 30; /* CARACTERES MAXIMOS DE CONTENIDO */
+var maximoResumen = 500; /* CARACTERES MAXIMOS DE RESUMEN */
+var maximoTitulo = 60; /* CARACTERES MAXIMOS DE TITULO */
+var maximoSubtitulo = 120; /* CARACTERES MAXIMOS DE SUBTITULO */
+var maximoContenido = 0; /* CARACTERES MAXIMOS DE CONTENIDO */
 var haySubtitulo;
 var hayContenido;
 var hayTitulo;
@@ -147,7 +147,7 @@ function validarResumen() {
   $("#notificaciones_resumen ").empty();
   var restant = maximoResumen - longitud;
   $("#notificaciones_resumen ").append("queden " + restant);
-  if(restant != maximoResumen){
+  if(longitud > 0){
     hayResumen = true;
   } else {
     hayResumen = false;
@@ -164,7 +164,7 @@ function validarTitulo() {
   $("#notificaciones_titulo ").empty();
   var restant = maximoTitulo - longitud;
   $("#notificaciones_titulo ").append("queden " + restant);
-  if(restant != maximoTitulo){
+  if(longitud > 0){
     hayTitulo = true;
   } else {
     hayTitulo = false;
@@ -181,7 +181,7 @@ function validarSubtitulo() {
   $("#notificaciones_subtitulo ").empty();
   var restant = maximoSubtitulo - longitud;
   $("#notificaciones_subtitulo ").append("queden " + restant);
-  if(restant != maximoSubtitulo){
+  if(longitud > 0){
     haySubtitulo = true;
   } else {
     haySubtitulo = false;
@@ -194,25 +194,25 @@ function validarSubtitulo() {
 }
 
 function validarContenido() {
-  var longitud = 1;
-  //getStats('contingut').chars;
-  $("#notificaciones_contenido").empty();
-  var restant = maximoContenido - longitud;
-  if(restant != maximoContenido){
+  var longitud = getStats('contingut').chars;
+//  $("#notificaciones_contenido").empty();
+//  var restant = maximoContenido - longitud;
+  if(longitud > 0){
     hayContenido = true;
   } else {
     hayContenido = false;
   }
-  if (restant >= 0){
-    return true;
-  } else {
-    $("#notificaciones_contenido").append("Máxim de contingut superat! (Sobren: " + Math.abs(restant) + " caracters)");
-    return false;
-  }
+//  if (restant >= 0){
+//    return true;
+//  } else {
+//    $("#notificaciones_contenido").append("Máxim de contingut superat! (Sobren: " + Math.abs(restant) + " caracters)");
+//    return false;
+//  }
 }
 
 function validarTodoVacio(){
-  if(haySubtitulo || hayContenido || hayTitulo || hayResumen){
+  validarContenido();
+  if(hayTitulo | haySubtitulo | hayResumen | hayContenido){
     return true;
   } else {
     if(notificarEntrada){
@@ -224,8 +224,20 @@ function validarTodoVacio(){
   }
 }
 
-function validarEnviar(){
-  if (validarResumen() & validarTitulo() & validarSubtitulo() & validarContenido() & validarTodoVacio()) {
+function validarPublicar(){
+  if (validarResumen() & validarTitulo() & validarSubtitulo()) {
+    //$("#notificaciones_twitter").append("Si");
+  //  $('button[type="submit"]').removeAttr('disabled');
+  } else {
+    //$("#notificaciones_twitter ").append("No");
+  //  $('button[type="submit"]').attr('disabled','disabled');
+  }
+
+    validarGuardar();
+}
+
+function validarGuardar() {
+  if (validarTodoVacio()) {
     //$("#notificaciones_twitter").append("Si");
     $('button[type="submit"]').removeAttr('disabled');
   } else {

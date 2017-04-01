@@ -71,12 +71,12 @@
 
   				<div class="form-group">
 
-                      <input type="text" name="titulo" value="@if (!empty($data[0]->titulo)) {{ $data[0]->titulo }} @endif" id="titulo" class="form-control" placeholder="Introdueix el titol" onkeyup="validarPublicar()" />
+                      <input type="text" name="titulo" value="@if (!empty($data[0]->titulo)) {{ $data[0]->titulo }} @endif" id="titulo" class="form-control" placeholder="Introdueix el titol" onkeyup="validarFormulario()" />
 
                   </div>
   				<div class="form-group">
 
-                    <input type="text" name="subtitulo" value="@if (!empty($data[0]->subtitulo)) {{ $data[0]->subtitulo  }} @endif" id="subtitulo" class="form-control" placeholder="Introdueix el subtitol" onkeyup="validarPublicar()" />
+                    <input type="text" name="subtitulo" value="@if (!empty($data[0]->subtitulo)) {{ $data[0]->subtitulo  }} @endif" id="subtitulo" class="form-control" placeholder="Introdueix el subtitol" onkeyup="validarFormulario()" />
                   </div>
                 </div>
 
@@ -93,7 +93,7 @@
             </div>
 
             <div class="box-body pad">
-              <textarea name="resum" id="resum" onkeyup="validarPublicar()" onchange="validarPublicar()">@if (!empty($data[0]->resumen_largo)) {{ $data[0]->resumen_largo  }} @endif</textarea>
+              <textarea name="resum" id="resum" onkeyup="validarFormulario()" onchange="validarFormulario()">@if (!empty($data[0]->resumen_largo)) {{ $data[0]->resumen_largo  }} @endif</textarea>
             </div>
           </div>
 
@@ -111,7 +111,7 @@
               <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#imageInsertionModal">
                   Inserir imatges
               </button>
-              <textarea name="contingut" id="contingut" onkeyup="validarPublicar()" onchange="validarPublicar()">@if(!empty($data[0]->contenido)){{$data[0]->contenido}}@endif</textarea>
+              <textarea name="contingut" id="contingut" onkeyup="validarFormulario()" onchange="validarFormulario()">@if(!empty($data[0]->contenido)){{$data[0]->contenido}}@endif</textarea>
             </div>
           </div>
 
@@ -131,7 +131,7 @@
         				<center class="selector_publicado">
         					<b>OCULT</b>
         					<label class="switch">
-        						<input id="visible" name="visible" value="1"  type="checkbox" @if (!empty($data[0]->visible)) {{ "checked='checked'"  }} @endif onchange="habilitarFechas()">
+        						<input id="visible" name="visible" value="1"  type="checkbox" @if (!empty($data[0]->visible)) {{ "checked='checked'"  }} @endif onchange="intentoPublicar()">
         						<div class="slider round"></div>
         					</label>
         					<b>VISIBLE</b>

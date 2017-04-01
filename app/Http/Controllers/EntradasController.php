@@ -45,48 +45,53 @@ class EntradasController extends Controller
   //Guardar datos del formulario en la BD
   public function crearEntrada()
   {
+      /* TRATAMOS LA ID DEL POST */
+
       $idPostBd = Input::get('idBD');
       $this->mentradas->id = Input::get('idBD');
 
+      /* TRATAMOS EL CONTENIDO DEL POST */
+
       $this->mentradas->titulo = Input::get('titulo');
-
-
       $this->mentradas->subtitulo = Input::get('subtitulo');
-
-
       $this->mentradas->resumen_largo = Input::get('resum');
       $this->mentradas->contenido = Input::get('contingut');
+
+      /* TRATAMOS DATOS DE ARRAYS */
+
       $this->mentradas->categorias = Input::get('categorias_seleccionadas');
-      $this->mentradas->etiquetas = Input::get('etiquetas_seleccionadas');
       $this->mentradas->entidades = Input::get('entitats_seleccionadas');
+      $this->mentradas->etiquetas = Input::get('etiquetas_seleccionadas');
       $this->mentradas->etiquetasNuevas = Input::get('etiquetasNuevas');
-      $this->mentradas->etiquetasNuevas = Input::get('etiquetasNuevas');
+
+      /* TRATAMOS DATOS DE LA IMAGEN */
+
       $this->mentradas->imagen = Input::get('mainImage');
-      //return var_dump($etiquetasNuevas);
+
+      /* TRATAMOS DATOS DE PUBLICACION */
 
       $fecha = Input::get('data_publicacion');
       $fecha = date("Y-m-d", strtotime($fecha));
       $this->mentradas->data_publicacion = $fecha;
+
       if(Input::get('visible') == null)
       {
         $this->mentradas->visible = 0;
       } else {
         $this->mentradas->visible = Input::get('visible');
       }
+
       $this->mentradas->publico = Input::get('publico');
 
+      /* TRATAR DATOS DE EVENTOS */
       $fechas = Input::get('evento');
       $fecha1 = substr($fechas, 0, strpos($fechas, '-'));
       $fecha2 = substr($fechas, strpos($fechas, '-')+1, strlen($fechas));
-
-
       $fecha1 = date("Y-m-d", strtotime($fecha1));
       $fecha2 = date("Y-m-d", strtotime($fecha2));
       $this->mentradas->fecha1 = $fecha1;
       $this->mentradas->fecha2 = $fecha2;
 
-
-      //return Input::get('categorias_seleccionadas');
       if($idPostBd == 0){
           $request = $this->mentradas->guardar();
           if($request == '-1'){

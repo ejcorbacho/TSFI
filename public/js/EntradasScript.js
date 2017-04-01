@@ -10,6 +10,7 @@ var hayContenido;
 var hayTitulo;
 var hayResumen;
 var vacio;
+var permitirPublicar;
 var notificarEntrada = true;
 var etiquetasNuevas = new Array();
 var contadorEtiquetas = 0;
@@ -45,7 +46,7 @@ $( document ).ready(function() {
       '.chosen-select'           : {},
       '.chosen-select-deselect'  : {allow_single_deselect:true},
       '.chosen-select-no-single' : {disable_search_threshold:10},
-      '.chosen-select-no-results': {function(){alert('hola');}},
+      '.chosen-select-no-results': {function(){}},
       '.chosen-select-width'     : {width:"95%"}
     }
     for (var selector in config) {
@@ -104,7 +105,7 @@ $( document ).ready(function() {
     });
 
     $("#formulario_entrada").ajaxForm({
-        url: url + '/ajax/entradas/guardarEntrada',
+        url: url + 'ajax/entradas/guardarEntrada',
         type: 'post',
         success: function(data) {
           console.log(data);
@@ -195,23 +196,16 @@ function validarSubtitulo() {
 
 function validarContenido() {
   var longitud = getStats('contingut').chars;
-//  $("#notificaciones_contenido").empty();
-//  var restant = maximoContenido - longitud;
   if(longitud > 0){
     hayContenido = true;
   } else {
     hayContenido = false;
   }
-//  if (restant >= 0){
-//    return true;
-//  } else {
-//    $("#notificaciones_contenido").append("Máxim de contingut superat! (Sobren: " + Math.abs(restant) + " caracters)");
-//    return false;
-//  }
+
 }
 
 function validarTodoVacio(){
-  validarContenido();
+
   if(hayTitulo | haySubtitulo | hayResumen | hayContenido){
     return true;
   } else {
@@ -224,27 +218,50 @@ function validarTodoVacio(){
   }
 }
 
-function validarPublicar(){
-  if (validarResumen() & validarTitulo() & validarSubtitulo()) {
-    //$("#notificaciones_twitter").append("Si");
-  //  $('button[type="submit"]').removeAttr('disabled');
-  } else {
-    //$("#notificaciones_twitter ").append("No");
-  //  $('button[type="submit"]').attr('disabled','disabled');
-  }
+function validarFormulario(){
 
-    validarGuardar();
+    var caracteresTitulo = validarTitulo();         /* VALIDA SI LA CANTIDAD DE CARACTERES QUE HAY EN EL TITULO */
+    var caracteresSubtitulo = validarSubtitulo();   /* VALIDA SI LA CANTIDAD DE CARACTERES QUE HAY EN EL SUBTITULO */
+    var caracteresResumen = validarResumen();       /* VALIDA SI LA CANTIDAD DE CARACTERES QUE HAY EN EL RESUMEN */
+    validarContenido();                             /* VALIDA SI HAY CARACTERES EN LA CAJA DE CONTENIDO */
+
+    var camposInformados = validarTodoVacio();      /* VALIDA SI HAY ALGUN CAMPO INFORMADO */
+
+    var maximosRespetados = false;                  /* VALIDA SI LOS MAXIIMOS DE CARACTERES HAN SIDO RESPETADOS */
+    if(caracteresTitulo && caracteresSubtitulo && caracteresResumen) { maximosRespetados = true; }
+
+    var camposObligatorios =  validarCamposObligatorios(); /* VALIDA SI TODOS LOS CAMPOS OBLIGATORIOS ESTAN CUMPLIMENTADOS */
+
+    /* TRATAMIENTO PARA PERMITIR O NO EL GUARDADO */
+    if (maximosRespetados && camposInformados) {
+      $('button[type="submit"]').removeAttr('disabled');
+    } else {
+      $('button[type="submit"]').attr('disabled','disabled');
+    }
+
+    /* TRATAMIENTO PARA PERMITIR O NO LA PUBLICACION */
+    permitirPublicar = camposObligatorios;
+    if (!camposObligatorios && $("#visible").is(':checked')){
+      intentoPublicar();
+    }
 }
 
-function validarGuardar() {
-  if (validarTodoVacio()) {
-    //$("#notificaciones_twitter").append("Si");
-    $('button[type="submit"]').removeAttr('disabled');
+function validarCamposObligatorios(){
+  if(hayTitulo && haySubtitulo && hayResumen && hayContenido){
+    return true;
   } else {
-    //$("#notificaciones_twitter ").append("No");
-    $('button[type="submit"]').attr('disabled','disabled');
+    return false;
   }
 }
+
+function intentoPublicar(){
+  if(!permitirPublicar){
+    $("#visible").prop('checked', false);
+    showErrorAlert('No es permet publicar sense tots els camps obligatoris! (*)');
+  }
+  habilitarFechas();
+}
+
 
 
 
@@ -264,7 +281,6 @@ function habilitarFechas(){
 function recargarEtiquetas(){
 
   for(var i= 0; i < etiquetasNuevas.length; i++){
-    alert(etiquetasNuevas[i]);
     var newOption = $('<option selected value="1">' + etiquetasNuevas[i] + '</option>');
     $('#selector_etiquetas').append(newOption);
   }

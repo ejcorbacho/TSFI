@@ -50,10 +50,11 @@ class CreateTablesBd3 extends Migration
             $table->string('localizacion', 500)->nullable();
             $table->longText('contenido')->nullable();
             $table->integer('visible');
-            $table->integer('foto')->unsigned();
+            $table->integer('foto')->nullable()->unsigned();
             $table->integer('publico');
             $table->integer('relevancia');
             $table->datetime('data_publicacion')->nullable();
+            $table->integer('esdeveniment');
             $table->datetime('fecha1')->nullable();
             $table->datetime('fecha2')->nullable();
             $table->integer('eliminado');

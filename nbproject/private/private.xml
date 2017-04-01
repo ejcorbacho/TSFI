@@ -10,12 +10,14 @@
             <file>file:/C:/xampp/htdocs/TSFI/public/css/backend/backendUtil.css</file>
             <file>file:/C:/xampp/htdocs/TSFI/public/css/beEntradas.css</file>
             <file>file:/C:/xampp/htdocs/TSFI/database/migrations/2017_02_13_155226_create_tables_bd3.php</file>
+            <file>file:/C:/xampp/htdocs/TSFI/app/Http/Controllers/beCategoriesController.php</file>
             <file>file:/C:/xampp/htdocs/TSFI/resources/views/frontend/feHome.blade.php</file>
             <file>file:/C:/xampp/htdocs/TSFI/public/js/EntradasScript.js</file>
             <file>file:/C:/xampp/htdocs/TSFI/resources/views/backend/Entradas.blade.php</file>
             <file>file:/C:/xampp/htdocs/TSFI/public/js/backend/beCategories.js</file>
             <file>file:/C:/xampp/htdocs/TSFI/resources/views/frontend/fePost.blade.php</file>
             <file>file:/C:/xampp/htdocs/TSFI/resources/views/layouts/frontend.blade.php</file>
+            <file>file:/C:/xampp/htdocs/TSFI/public/css/mainGrid.css</file>
             <file>file:/C:/xampp/htdocs/TSFI/public/css/layout.css</file>
             <file>file:/C:/xampp/htdocs/TSFI/resources/views/backend/beTotesEntrades.blade.php</file>
             <file>file:/C:/xampp/htdocs/TSFI/resources/views/backend/beTotesCategories.blade.php</file>

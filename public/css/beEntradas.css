@@ -163,3 +163,6 @@ textarea {
     z-index: 0;
     width:100%;
 }
+.chosen-container{
+    width: 100% !important;
+}

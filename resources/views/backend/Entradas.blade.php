@@ -35,7 +35,7 @@
 <!-- Paginacio -->
 <script src="{{ asset('js/bootpag/bootpag.js') }}"></script>
 
-<div class="container">
+<div class="">
       <!-- Main content -->
 
       <!-- Content Header (Page header) -->
@@ -54,7 +54,7 @@
       <!-- Main content -->
       <section class="content">
         <div class="row">
-  		<div class="col-md-9">
+  		<div class="col-md-12 col-lg-9">
         <form id="formulario_entrada">
           <!-- general form elements -->
             <input name="idBD" value="@if (!empty($data[0]->titulo)) {{ $data[0]->id }} @else {{ '0' }} @endif" id="idBD" type="hidden" value='0' />
@@ -120,7 +120,8 @@
         </div>
 
         <!-- INICI PUBLICACIO -->
-        <div class="col-md-3">
+        
+        <div class="col-md-12 col-lg-3">
         	<div class="example-modal">
         		<div class="modal-content box">
         			<div class="modal-header">
@@ -169,7 +170,7 @@
 
           <!-- FI publicacio-->
 
-          <div class="col-md-3">
+          <div class="col-md-12 col-lg-3">
             <div class="example-modal">
               <div class="modal-content box collapsed-box ">
                 <div class="modal-header">
@@ -184,7 +185,7 @@
                         <div id="dropdown_button_categorias" class="dropdown-button noselect">
                             <div class="dropdown-label">Selecciona categories</div>
                         </div>
-                        <div id="dropdown_list_categorias" class="dropdown-list" style="display: none;">
+                        <div id="dropdown_list_categorias" tabindex="-1" class="dropdown-list" style="display: none;">
                             <input  id="dropdown_search_categorias" type="search" placeholder="Cerca categories" class="dropdown-search"/>
                             <ul>
                               @foreach($categorias as $categoria)
@@ -207,14 +208,14 @@
           </div>
   	<!-- END Categories -->
       <input type="hidden" value="" id="etiquetasNuevas" class="etiquetasNuevas" name="etiquetasNuevas" />
-  	  <div class="col-md-3">
+  	  <div class="col-md-12 col-lg-3">
   		<div class="example-modal">
               <div class="modal-content box">
                 <div class="modal-header">
                   <h4 class="modal-title">Etiquetes</h4>
   			  </div>
   			  <div  class="modal-body">
-            <div id="dropdown_etiquetas" class="dropdown-container">
+            <div id="dropdown_etiquetas"  class="dropdown-container">
 
                 <select name="etiquetas_seleccionadas[]" id="selector_etiquetas" data-placeholder="Introdueix tags aqui" multiple class="chosen-select" tabindex="8">
                   @foreach($etiquetas as $etiqueta)
@@ -235,7 +236,7 @@
   	    </div>
         </div>
   	<!-- END ETIQUETAS-->
-  		  <div class="col-md-3">
+  		  <div class="col-md-12 col-lg-3">
   		<div class="example-modal">
               <div class="modal-content box">
                 <div class="modal-header">
@@ -257,10 +258,11 @@
   			  </div>
               </div>
   	    </div>
-        </div>
-
-        <!-- FECHAS EVENTOS -->
-<div class="col-md-3">
+        
+        
+        
+        
+        <div class="col-md-12 col-lg-3">
   <div class="example-modal">
     <div class="modal-content box">
       <div class="modal-header">
@@ -281,7 +283,7 @@
 </div>
 
 <!-- ***************** ENTITATS... ****************** -->
-<div class="col-md-3">
+<div class="col-md-12 col-lg-3">
   <div class="example-modal">
     <div class="modal-content box">
       <div class="modal-header">
@@ -417,5 +419,13 @@
         </div>
     </div>
 <!-- END IMAGE SELECTION MODAL -->
+        
+        
+        
+        
+        </div>
+
+        <!-- FECHAS EVENTOS -->
+
 </div>
 @endsection

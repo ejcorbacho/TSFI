@@ -23,7 +23,8 @@ $( document ).ready(function() {
   /********************************* LISTADO CATEGORIAS *******************************/
   $('#dropdown_categorias')
   	.on('click', '#dropdown_button_categorias', function() {
-      	$('#dropdown_list_categorias').toggle();
+      	$('#dropdown_list_categorias').show();
+        $('#dropdown_search_categorias').focus();
   	})
   	.on('input', '#dropdown_search_categorias', function() {
       	var target = $(this);
@@ -41,6 +42,14 @@ $( document ).ready(function() {
           });
   	});
 
+    $('#dropdown_categorias').focusout( function() {
+        var $elem = $(this);
+        setTimeout(function () {
+        if (!$elem.find(':focus').length) {
+            $('#dropdown_list_categorias').hide();
+        }
+        }, 0);
+    });
     /********************************* LISTADO ETIQUETAS *******************************/
     var config = {
       '.chosen-select'           : {},
@@ -74,7 +83,14 @@ $( document ).ready(function() {
                 $(this).toggle(match);
             });
     	});
-
+     $('#dropdown_entitats').focusout( function() {
+        var $elem = $(this);
+        setTimeout(function () {
+        if (!$elem.find(':focus').length) {
+            $('#dropdown_list_entitats').hide();
+        }
+        }, 0);
+    });
     /********************************* FUNCIONES DATEPICKER  ***********************************/
     var hoy = new Date();
     dia = hoy.getDate();

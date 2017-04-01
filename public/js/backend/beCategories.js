@@ -45,19 +45,20 @@ $(document).ready(function() {
             "url": "/TSFI/public/js/backend/dataTableCatalan.json"
         },
         "columns": [
-            { "orderable": false },
-            {  },
             { },
+            { "orderable": false },
             { "orderable": false }
         ],
         
-        "order": [[1, 'asc']]
+        "order": [[0, 'asc']]
     });
-    $('#botoEsborrarCategories').on('click', function (e) {
-        var id = $('input[name=categoryRadio]:checked', '#taulaDeCategories').val();
+    $('.botoEsborrarCategories').on('click', function (e) {
+        
+        var id = $(e.currentTarget).parent().parent('tr').attr('categoryId');
         if (id != null) {
 //        e.preventDefault();
             console.log(id);
+            $('#taulaDeCategories').attr('categoryToManage',id);
             $.ajax({
                 url: '/TSFI/public/ajax/categories/llistarPostsDeCategoria',
                 type: 'post',
@@ -99,7 +100,7 @@ $(document).ready(function() {
     });
 
     $('#botoMourePostsCategoria').on('click', function (e) {
-        var id = $('input[name=categoryRadio]:checked', '#taulaDeCategories').val();
+        var id = $('#taulaDeCategories').attr('categoryToManage');
         console.log($('tr[categoryId="' + id + '"]').children('.nomCategoria').text());
         console.log(id);
         $.ajax({
@@ -130,7 +131,7 @@ $(document).ready(function() {
     });
 
     $('#botoMourePostsCategoriaAra').on('click', function (e) {
-        var id = $('input[name=categoryRadio]:checked', '#taulaDeCategories').val();
+        var id = $('#taulaDeCategories').attr('categoryToManage');
         var id_destino = $('#CategoriaDesti').val();
 //        e.preventDefault();
         console.log(id);
@@ -155,7 +156,7 @@ $(document).ready(function() {
         });
     });
     $('.botoEliminarCategoriaIntern').on('click', function (e) {
-        var id = $('input[name=categoryRadio]:checked', '#taulaDeCategories').val();
+        var id = $('#taulaDeCategories').attr('categoryToManage');
 //        e.preventDefault();
         console.log(id);
         $.ajax({
@@ -177,27 +178,6 @@ $(document).ready(function() {
             }
         });
     });
-        
-//        for (var i = 0; i < elements.length; i++) {
-//            console.log(elements[i].parentNode.parentNode.getAttribute('categoryId'));
-//            $.ajax({
-//            url: '/TSFI/public/ajax/categories/eliminarCategoria',
-//            type: 'post',
-//            dataType:'json',
-//            
-//            data: elements[i].parentNode.parentNode.getAttribute('categoryId'),
-//            success: function(data) {
-//            console.log(data);
-//            showSuccessAlert('Categoria eliminada correctament!');
-//            location.reload();
-//            },
-//            error: function(xhr, desc, err) {
-//              console.log(xhr);
-//              console.log("Details: " + desc + "\nError:" + err);
-//              showErrorAlert('Error en la eliminació de la nova categoria');
-//            }});
-//        
-//        }
     
 });
 function OcultarCategoria(id){
@@ -218,9 +198,10 @@ function OcultarCategoria(id){
       });
 }
 function enviarPeticioPerEliminar() {
-    var id = $('input[name=categoryRadio]:checked', '#taulaDeCategories').val();
+    var id = $('#taulaDeCategories').attr('categoryToManage');
+
     $('#modalConfirmacioEliminacioCategoria').modal('toggle');
     $('#modalConfirmacioEliminacioCategoriaContent').empty();
-    var html = '<p>Estas segur de que vols eliminar la categoria "'+$('tr[categoryId="' + id + '"]').children('.nomCategoria').text()+'" ?</p>';
+    var html = '<p categoryId="'+ id +'">Estas segur de que vols eliminar la categoria "'+$('tr[categoryId="' + id + '"]').children('.nomCategoria').text()+'" ?</p>';
     $('#modalConfirmacioEliminacioCategoriaContent').append(html);
 }

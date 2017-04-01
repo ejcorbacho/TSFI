@@ -12,7 +12,7 @@
         <meta name="viewport" content="width=device-width, user-scalable=no">
     </head>
     <body>
-        <div id="categoryPostsSection" class="col-lg-10 col-lg-offset-1 col-md-12">
+        <div id="categoryPostsSection" class="col-lg-12 col-lg-offset-0 col-md-12">
             <h2>{{($categoria->nombre)}}</h2>
             <div id="categoryPostsContainer" class="col-md-9 col-sm-12">
                 @foreach($posts as $unpost)

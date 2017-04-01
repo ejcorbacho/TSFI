@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
 
 <body>
-    <div class="col-lg-10 col-lg-offset-1 col-sm-12">
+    <div class="col-lg-12 col-lg-offset-0 col-sm-12">
         <div class="postTitleContainer">
             <img src="{{$data->fotosUrl}}" alt="image placeholder" class="postTitleImg">
             <h1 class="titol col-sm-6 col-sm-offset-3 col-xs-6 col-xs-offset-3">@if(!empty($data->titulo)) {{$data->titulo}}@endif</h1>

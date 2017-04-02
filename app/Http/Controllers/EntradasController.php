@@ -62,8 +62,6 @@ class EntradasController extends Controller
       $this->mentradas->categorias = Input::get('categorias_seleccionadas');
       $this->mentradas->entidades = Input::get('entitats_seleccionadas');
       $this->mentradas->etiquetas = Input::get('etiquetas_seleccionadas');
-      $this->mentradas->etiquetasNuevas = Input::get('etiquetasNuevas');
-
       /* TRATAMOS DATOS DE LA IMAGEN */
 
       $this->mentradas->imagen = Input::get('mainImage');
@@ -184,11 +182,27 @@ class EntradasController extends Controller
     $categorias = $this->categoriaMarcada($id);
     $etiquetas = $this->etiquetaMarcada($id);
     $entitats = $this->entidadMarcada($id);
-    $foto = $this->cImages->getOneImge($entradas[0]->foto);
+    if(!is_null($entradas[0]->foto)){
+      $foto = $this->cImages->getOneImge($entradas[0]->foto);
+    } else {
+      $foto = NULL;
+    }
 
     return view('backend.Entradas',['data'=>$entradas, 'categorias'=>$categorias, 'etiquetas'=>$etiquetas, 'entitats'=>$entitats, 'foto'=>$foto]);
   }
+  public function recargarListadoEtiquetas(){
+    $id_entrada = Input::get('id');
+    $etiquetas = $this->etiquetaMarcada($id_entrada);
 
+    $html = "";
+
+    for($i=0; $i < count($etiquetas); $i++){
+      $html = $html . '<option ';
+      if($etiquetas[$i]['seleccionado']){ $html = $html . 'selected '; };
+      $html = $html . 'value="' . $etiquetas[$i]['id'] . '">' . $etiquetas[$i]['nombre'] . '</option>';
+    }
+    return $html;
+  }
   //Listar las entradas guardados en la BD
   public function llistarEntradas()
   {

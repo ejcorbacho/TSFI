@@ -25,7 +25,6 @@ class Entradas extends Model
     public $fecha1;
     public $fecha2;
     public $imagen;
-    public $etiquetasNuevas;
 
     public function guardar(){
       $data = array(
@@ -46,8 +45,6 @@ class Entradas extends Model
         'relevancia'=> '1'
       );
 
-      $nuevasetiquetas_array = array();
-      $nuevasetiquetas_array = json_decode($this->etiquetasNuevas);
 
         DB::beginTransaction();
         try {
@@ -63,26 +60,34 @@ class Entradas extends Model
               );
             }
 
+            //GUARDAR LAS EITQUETAS
             for ($i=0;$i<count($this->etiquetas);$i++){
-             DB::table('entradas_etiquetas')->insert(
-                  ['id_entrada' => $this->id, 'id_etiqueta' => $this->etiquetas[$i]]
-              );
+
+              if(!is_numeric($this->etiquetas[$i])){
+
+                //* LA ETIQUETA NO ESTA CREADA EN LA BD */
+                $data_etiquetaNueva = array('nombre' => $this->etiquetas[$i]);
+                $idNuevaEtiqueta = DB::table('etiquetas')->insertGetId($data_etiquetaNueva);
+
+                DB::table('entradas_etiquetas')->insert(
+                     ['id_entrada' => $this->id, 'id_etiqueta' => $idNuevaEtiqueta]
+                 );
+
+              } else {
+                //* LA ETIQUETA YA EXISTE EN LA BD */
+                DB::table('entradas_etiquetas')->insert(
+                     ['id_entrada' => $this->id, 'id_etiqueta' => $this->etiquetas[$i]]
+                 );
+              }
+
             }
 
+            //* GUARDAMOS LAS ENTIDADES *//
             for ($i=0;$i<count($this->entidades);$i++){
-             DB::table('entradas_entidades')->insert(
-                  ['id_entrada' => $this->id, 'id_entidad' => $this->entidades[$i]]
-              );
-            }
-
-            //GUARDAR NUEVAS etiquetas
-            for ($i=0;$i<count($nuevasetiquetas_array);$i++){
-              $data_etiquetaNueva = array('nombre' => $nuevasetiquetas_array[$i]);
-              $id_nuevaEtiqueta = DB::table('etiquetas')->insertGetId($data_etiquetaNueva);
-              DB::table('entradas_etiquetas')->insert(
-                   ['id_entrada' => $this->id, 'id_etiqueta' =>  $id_nuevaEtiqueta]
-               );
-            }
+               DB::table('entradas_entidades')->insert(
+                    ['id_entrada' => $this->id, 'id_entidad' => $this->entidades[$i]]
+                );
+              }
 
             DB::commit();
            return $this->id;
@@ -116,8 +121,7 @@ class Entradas extends Model
         'relevancia'=> '1'
       );
 
-        $nuevasetiquetas_array = array();
-        $nuevasetiquetas_array = json_decode($this->etiquetasNuevas);
+
 
         DB::beginTransaction();
         try {
@@ -134,9 +138,24 @@ class Entradas extends Model
             //GUARDAR LAS EITQUETAS
             DB::table('entradas_etiquetas')->where('id_entrada', '=', $this->id)->delete();
             for ($i=0;$i<count($this->etiquetas);$i++){
-             DB::table('entradas_etiquetas')->insert(
-                  ['id_entrada' => $this->id, 'id_etiqueta' => $this->etiquetas[$i]]
-              );
+
+              if(!is_numeric($this->etiquetas[$i])){
+
+                //* LA ETIQUETA NO ESTA CREADA EN LA BD */
+                $data_etiquetaNueva = array('nombre' => $this->etiquetas[$i]);
+                $idNuevaEtiqueta = DB::table('etiquetas')->insertGetId($data_etiquetaNueva);
+
+                DB::table('entradas_etiquetas')->insert(
+                     ['id_entrada' => $this->id, 'id_etiqueta' => $idNuevaEtiqueta]
+                 );
+
+              } else {
+                //* LA ETIQUETA YA EXISTE EN LA BD */
+                DB::table('entradas_etiquetas')->insert(
+                     ['id_entrada' => $this->id, 'id_etiqueta' => $this->etiquetas[$i]]
+                 );
+              }
+
             }
 
             DB::table('entradas_entidades')->where('id_entrada', '=', $this->id)->delete();
@@ -144,15 +163,6 @@ class Entradas extends Model
              DB::table('entradas_entidades')->insert(
                   ['id_entrada' => $this->id, 'id_entidad' => $this->entidades[$i]]
               );
-            }
-
-            //GUARDAR NUEVAS etiquetas
-            for ($i=0;$i<count($nuevasetiquetas_array);$i++){
-              $data_etiquetaNueva = array('nombre' => $nuevasetiquetas_array[$i]);
-              $id_nuevaEtiqueta = DB::table('etiquetas')->insertGetId($data_etiquetaNueva);
-              DB::table('entradas_etiquetas')->insert(
-                   ['id_entrada' => $this->id, 'id_etiqueta' =>  $id_nuevaEtiqueta]
-               );
             }
 
             DB::commit();
@@ -182,8 +192,7 @@ class Entradas extends Model
 
     public function leerContenido(){
         $contenido =  DB::table('entradas')
-          ->join('fotos', 'entradas.foto', '=', 'fotos.id')
-          ->select('entradas.*', 'fotos.url')
+          ->select('entradas.*')
           ->where('entradas.id', '=', $this->id)
           ->get();
 

@@ -49,6 +49,7 @@ Route::get('administracio/entrada/llistat', array('uses' => 'EntradasController@
 Route::get('ajax/categories/llistaCategories', array('uses' => 'beCategoriesController@llistarCategoria')); //Mostrar formulario
 Route::post('ajax/categories/guardarCategoria', array('uses' => 'beCategoriesController@novaCategoria')); //Mostrar formulario
 Route::post('ajax/entradas/guardarEntrada', array('uses' => 'EntradasController@crearEntrada'));  //Guardar entrada
+Route::post('ajax/entradas/recargarEtiquetas', array('uses' => 'EntradasController@recargarListadoEtiquetas'));  //Guardar entrada
 
 
 /***** entitats *****/

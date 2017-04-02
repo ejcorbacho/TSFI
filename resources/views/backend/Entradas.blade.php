@@ -120,7 +120,7 @@
         </div>
 
         <!-- INICI PUBLICACIO -->
-        
+
         <div class="col-md-12 col-lg-3">
         	<div class="example-modal">
         		<div class="modal-content box">
@@ -212,7 +212,7 @@
   		<div class="example-modal">
               <div class="modal-content box">
                 <div class="modal-header">
-                  <h4 class="modal-title">Etiquetes</h4>
+                    <h4 class="modal-title">Etiquetes<div class="boton_ayuda" onclick="notificarAyudaEtiquetas()">(?)</div></h4>
   			  </div>
   			  <div  class="modal-body">
             <div id="dropdown_etiquetas"  class="dropdown-container">
@@ -247,7 +247,7 @@
   				    <input id="mainImageInput" name="mainImage" type="hidden">
                     <a href="javascript:void(0);" data-toggle="modal" data-target="#imageSelectionModal">
                         <div id="mainImage">
-                            @if (!empty($data[0]->foto))<img class="image_picker_image" src="{{$foto[0]->url}}" alt="{{$foto[0]->alt}}" width="200"></div> @endif
+                          @if (!empty($data[0]->foto))<img class="image_picker_image" src="{{$foto[0]->url}}" alt="{{$foto[0]->alt}}" width="200"> @endif
                         </div>
                     </a>
   					<a type="button" class="btn" data-toggle="modal" data-target="#imageSelectionModal">
@@ -258,10 +258,10 @@
   			  </div>
               </div>
   	    </div>
-        
-        
-        
-        
+
+
+
+
         <div class="col-md-12 col-lg-3">
   <div class="example-modal">
     <div class="modal-content box">
@@ -419,10 +419,10 @@
         </div>
     </div>
 <!-- END IMAGE SELECTION MODAL -->
-        
-        
-        
-        
+
+
+
+
         </div>
 
         <!-- FECHAS EVENTOS -->

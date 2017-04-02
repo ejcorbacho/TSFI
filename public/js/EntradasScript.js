@@ -18,7 +18,7 @@ var contadorEtiquetas = 0;
 
 //************* CUERPO PRINCIPAL DEL PROGRAMA *******************//
 $( document ).ready(function() {
-  habilitarFechas()
+  habilitarFechas();
 
   /********************************* LISTADO CATEGORIAS *******************************/
   $('#dropdown_categorias')
@@ -126,9 +126,8 @@ $( document ).ready(function() {
         success: function(data) {
           console.log(data);
           $('#idBD' ).val(data); /* GUARDAMOS LA ID DE LA BD EN EL FORMULARIO */
-
-          showSuccessAlert('Desat!');
-          recargarEtiquetas();
+          cargaTodasEtiquetasBD(data);
+          showSuccessAlert(data);
 
         },
         error: function(xhr, desc, err) {
@@ -138,6 +137,11 @@ $( document ).ready(function() {
     });
 
 });
+
+//**************** FUNCIONES DE AYUDA ***************************//
+function notificarAyudaEtiquetas(){
+    showSuccessAlert('Pots generar noves etiquetes amb ";" despres del literal');
+}
 //************* GUARDADO DE CONTENIDO         ******************//
 
 function guardarNuevaEtiqueta(){
@@ -147,11 +151,8 @@ function guardarNuevaEtiqueta(){
     if(contenido.substring(lon-1, lon) == ';'){
 
       var etiqueta = contenido.substring(0, lon-1);
-      etiquetasNuevas[contadorEtiquetas] = etiqueta;
-      contadorEtiquetas = contadorEtiquetas +1;
-      var etiquetasNuevas_json = JSON.stringify(etiquetasNuevas);
-      $('#etiquetasNuevas').val(etiquetasNuevas_json);
-      $('#selector_etiquetas_chosen .chosen-choices').prepend('<li class="search-choice"><span>' + etiqueta + '</span><a id="' + contadorEtiquetas + '" class="eliminar search-choice-close" ></a></li>');
+      recargarEtiquetas(etiqueta);
+
       $('#selector_etiquetas_chosen input[type="text"]').val('');
       console.log(etiqueta);
     }
@@ -294,15 +295,38 @@ function habilitarFechas(){
 }
 
 /*************************** ETIQUETAS *******************************/
-function recargarEtiquetas(){
+function recargarEtiquetas(etiquetaNueva){
 
-  for(var i= 0; i < etiquetasNuevas.length; i++){
-    var newOption = $('<option selected value="1">' + etiquetasNuevas[i] + '</option>');
+
+    var newOption = $('<option selected value="' + etiquetaNueva + '">' + etiquetaNueva + '</option>');
     $('#selector_etiquetas').append(newOption);
-  }
+
 
   $('#selector_etiquetas').trigger("chosen:updated");
-  etiquetasNuevas = [];
-  var etiquetasNuevas_json = JSON.stringify(etiquetasNuevas);
-  $('#etiquetasNuevas').val(etiquetasNuevas_json);
+}
+
+function cargaTodasEtiquetasBD(id){
+  $('#selector_etiquetas').empty();
+
+  $.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+  });
+  $.ajax({
+      type: "POST",
+      url: url + "ajax/entradas/recargarEtiquetas",
+      data: {id: id},
+      dataType: "html",
+      beforeSend: function(){
+      },
+      error: function(){
+          alert("error petición ajax");
+      },
+      success: function(data){
+        $('#selector_etiquetas').append(data);
+        $('#selector_etiquetas').trigger("chosen:updated");
+        	alert(data);
+      }
+    });
 }

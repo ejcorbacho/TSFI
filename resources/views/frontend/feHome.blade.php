@@ -22,7 +22,7 @@
           <link href="{{ asset('/css/calendar.css')}}" rel="stylesheet" >
       </head>
       <body>
-      <div class="col-md-12 col-lg-10 col-lg-offset-1">
+      <div class="col-md-12 col-lg-12 col-lg-offset-0">
       <!-- Portfolio Item Row -->
 
       <div class="row mainGridContainer">
@@ -137,7 +137,7 @@
   </div>
 <!-- /******************************************************************************************/-->
 
-      <div id="popularPostsSection" class="col-lg-10 col-lg-offset-1 col-md-12">
+      <div id="popularPostsSection" class="col-lg-12 col-lg-offset-0 col-md-12">
           <div id="popularPostsContainer" class="col-md-9 col-sm-12">
               <div class="popularPost">
                   <div class="popularPostImage col-md-4 col-sm-4 col-xs-12">

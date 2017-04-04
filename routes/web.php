@@ -41,6 +41,11 @@ Route::post('ajax/categories/llistarCategoriaPerTransferencia', 'beCategoriesCon
 Route::post('ajax/categories/transferirCategoria', 'beCategoriesController@transferirCategoria');
 
 
+// PAGINAS
+Route::get('paginas/pagina', 'fePaginasController@mostrarPagina');
+Route::get('administracio/pagines/nova', 'bePaginasController@mostrarPagina');
+
+
 Route::get('administracio/entrada/nova/', array('uses' => 'EntradasController@makeEntrada')); //Mostrar formulario
 Route::get('administracio/entrada/nova/{id}', array('uses' => 'EntradasController@editarEntrada')); //Mostrar formulario
 Route::get('administracio/entrada/llistat', array('uses' => 'EntradasController@llistarEntradas')); //Mostrar listado de entradas
@@ -49,6 +54,7 @@ Route::get('administracio/entrada/llistat', array('uses' => 'EntradasController@
 Route::get('ajax/categories/llistaCategories', array('uses' => 'beCategoriesController@llistarCategoria')); //Mostrar formulario
 Route::post('ajax/categories/guardarCategoria', array('uses' => 'beCategoriesController@novaCategoria')); //Mostrar formulario
 Route::post('ajax/entradas/guardarEntrada', array('uses' => 'EntradasController@crearEntrada'));  //Guardar entrada
+Route::post('ajax/entradas/recargarEtiquetas', array('uses' => 'EntradasController@recargarListadoEtiquetas'));  //Guardar entrada
 
 
 /***** entitats *****/

@@ -25,13 +25,13 @@
                     <div class="categoryPostInfo col-md-8 col-sm-8 col-xs-12">
                         <a class="categoryPostLink" href="../post/{{$unpost->id}}">
                         <h5 class="categoryPostCategory">
-                          {{$categoria->nombre}}
+                          @if(!empty($categoria->nombre))  {{$categoria->nombre}} @endif
                         </h5>
-                        <h1 class="titulo">{{$unpost->titulo}}</h1>
-                        <p class="categoryPostText">{{$unpost->resumen_largo}} </p>
+                        <h1 class="titulo">@if(!empty($unpost->titulo))  {{$unpost->titulo}} @endif</h1>
+                        <p class="categoryPostText">@if(!empty($unpost->resumen_largo)){{$unpost->resumen_largo}} @endif</p>
                         </a>
                         <div class="categoryPostData">
-                            <p class="col-md-3 col-sm-3 col-xs-3 categoryPostDate">{{$unpost->data_publicacion}}</p>
+                            <p class="col-md-3 col-sm-3 col-xs-3 categoryPostDate">{{ Carbon\Carbon::parse($unpost->data_publicacion)->format('d-m-Y') }}</p>
                             <span class="categoryPostDataSeparator">•</span>
                             <a href="https://facebook.com"><i class="fa fa-facebook-official categoryPostSocialIcon" aria-hidden="true"></i></a>
                             <a href="https://twitter.com/krabitzSDS"><i class="fa fa-twitter categoryPostSocialIcon" aria-hidden="true"></i></a>
@@ -44,18 +44,18 @@
                 <!-- final del bucle de posts -->
             </div>
             <div class="categoryPostsSidebar col-md-3 col-sm-12">                
-               @foreach($related as $info)
-                <h2>Related Posts</h2>
+              <h2>Posts Relacionats</h2>
+               @foreach($related as $info)                
                 <a href="../post/{{$info->id}}">
                     <div class="sidebarPost">
                         <img class="sidebarPostImg" src="{{$info->fotosUrl}}">
                         <div class="sidebarPostTitle">
-                            <p>{{$info->titulo}}</p>
+                            <p>@if(!empty($info->titulo)){{$info->titulo}} @endif </p>
                         </div>
                     </div>
                 </a>
                  @endforeach
-                <h3>Entitats Colaboradores</h3>
+                <h2>Entitats Colaboradores</h3>
                 <a href="#"><div class="sidebarLink" ></div></a>
                 <a href="#"><div class="sidebarLink" ></div></a>
                 <a href="#"><div class="sidebarLink" ></div></a>

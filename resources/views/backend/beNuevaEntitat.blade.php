@@ -57,17 +57,15 @@
                 <input id="mainImageInput" name="mainImage" type="hidden">
                 <a href="javascript:void(0);" data-toggle="modal" data-target="#imageSelectionModal">
                     <div id="mainImage">
-                        @if (!empty($data[0]->foto)) {
-                        !!html_entity_decode('<img class="image_picker_image" src="\TSFI\public\uploads\8A39.jpg" alt="1milTARJETAredondoBRILLOchento01" width="200"></div>'
-                    )!!} @endif
-            </div>
-            </a>
-            <a type="button" class="btn" data-toggle="modal" data-target="#imageSelectionModal">
-                + Editar imatge d'entitat
-            </a>
-            <div class="box-footer">
-                <button type="submit" class="btn btn-primary">Desar</button>
-            </div>
+                        @if (!empty($data[0]->foto)) {!!html_entity_decode('img')!!} @endif
+                    </div>
+                </a>
+                <a type="button" class="btn" data-toggle="modal" data-target="#imageSelectionModal">
+                    + Editar imatge d'entitat
+                </a>
+                <div class="box-footer">
+                    <button type="submit" class="btn btn-primary">Desar</button>
+                </div>
         </form>
     </div>
 </section>

@@ -192,7 +192,7 @@
           </a>
           <ul class="treeview-menu">
             <li><a href="{{ url('administracio/pagines/nova') }}"><i class="fa fa-circle-o"></i> Nova Pàgina</a></li>
-            <li><a href="pages/UI/icons.html"><i class="fa fa-circle-o"></i> Totes les Pàgines</a></li>
+            <li><a href="{{ url('administracio/pagines/llistat') }}"><i class="fa fa-circle-o"></i> Totes les Pàgines</a></li>
           </ul>
         </li>
 <!-- APARTADO ENTIDADES -->

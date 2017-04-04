@@ -11,7 +11,8 @@ class feEntitats extends Model
 
     public function LlistaTresEntitats(){
         $contenido =  DB::table('entidades')
-          ->select('entidades.*')
+          ->leftjoin('fotos','fotos.id', '=','entidades.foto' )
+          ->select('entidades.*', 'fotos.url as fotoentidad') 
           ->inRandomOrder()
           ->limit(3) 
           ->get();

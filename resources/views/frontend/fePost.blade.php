@@ -13,9 +13,9 @@
     <div class="col-lg-12 col-lg-offset-0 col-sm-12">
         <div class="postTitleContainer">
             <img src="{{$data->fotosUrl}}" alt="image placeholder" class="postTitleImg">
-            <h1 class="titol col-sm-6 col-sm-offset-3 col-xs-6 col-xs-offset-3">@if(!empty($data->titulo)) {{$data->titulo}}@endif</h1>
-            <h2 class="categoria col-sm-2 col-sm-offset-5 col-xs-2 col-xs-offset-5"><a id="link" href="../category/{{$data->idcat}}">@if(!empty($data->nombre)) {{$data->nombre}}@endif</a></h2>
-            <h3 class="autor col-sm-4 col-sm-offset-4 col-xs-4 col-xs-offset-4">@if(!empty($data->data_publicacion)) {{$data->data_publicacion}}@endif</h3>
+            <h1 class="titol col-sm-6 col-sm-offset-3 col-xs-6 col-xs-offset-3">@if(!empty($data->titulo)) {{$data->titulo}}</h1>@endif
+            @if(!empty($data->nombre)) <h2 class="categoria col-sm-2 col-sm-offset-5 col-xs-2 col-xs-offset-5"><a id="link" href="../category/{{$data->idcat}}">{{$data->nombre}}@endif</a></h2>
+            <h3 class="autor col-sm-4 col-sm-offset-4 col-xs-4 col-xs-offset-4">@if(!empty($data->data_publicacion)){{ Carbon\Carbon::parse($data->data_publicacion)->format('d-m-Y') }}@endif </h3>
         </div>
 
         <main class="col-md-9 col-sm-12 Post">
@@ -24,18 +24,18 @@
             </article>
         </main>
         <div class="categoryPostsSidebar col-md-3 col-sm-12">                
-                @foreach($related as $info)
-                <h2>Related Posts</h2>              
+               <h2>Posts Relacionats</h2>
+                @foreach($related as $info)              
                 <a href="../post/{{$info->id}}">
                     <div class="sidebarPost">
                         <img class="sidebarPostImg" src="{{$info->fotosUrl}}">
                         <div class="sidebarPostTitle">
-                            <p>{{$info->titulo}}</p>
+                            <p>@if(!empty($info->titulo)) {{$info->titulo}} @endif</p>
                         </div>
                     </div>
                 </a>
                  @endforeach
-                <h3>Entitats Colaboradores</h3>
+                <h2>Entitats Colaboradores</h3>
                 <a href="#"><div class="sidebarLink" ></div></a>
                 <a href="#"><div class="sidebarLink" ></div></a>
                 <a href="#"><div class="sidebarLink" ></div></a>

@@ -80,8 +80,16 @@ class EntradasController extends Controller
       }
 
       $this->mentradas->publico = Input::get('publico');
+      $this->mentradas->prioritat = Input::get('prioritat');
 
       /* TRATAR DATOS DE EVENTOS */
+      if(Input::get('evento_activo') == null)
+      {
+        $this->mentradas->evento = 0;
+      } else {
+        $this->mentradas->evento = Input::get('evento_activo');
+      }
+
       $fechas = Input::get('evento');
       $fecha1 = substr($fechas, 0, strpos($fechas, '-'));
       $fecha2 = substr($fechas, strpos($fechas, '-')+1, strlen($fechas));
@@ -89,6 +97,8 @@ class EntradasController extends Controller
       $fecha2 = date("Y-m-d", strtotime($fecha2));
       $this->mentradas->fecha1 = $fecha1;
       $this->mentradas->fecha2 = $fecha2;
+
+      $this->mentradas->localizacion = Input::get('localizacion');
 
       if($idPostBd == 0){
           $request = $this->mentradas->guardar();
@@ -206,7 +216,7 @@ class EntradasController extends Controller
   //Listar las entradas guardados en la BD
   public function llistarEntradas()
   {
-    $entradas = $this->mentradas->leerTodas();
+    $entradas = $this->mentradas->leerListadoEntradas();
     return view('backend.beTotesEntrades',['data'=> $entradas]);
   }
 }

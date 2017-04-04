@@ -19,6 +19,7 @@ var contadorEtiquetas = 0;
 //************* CUERPO PRINCIPAL DEL PROGRAMA *******************//
 $( document ).ready(function() {
   habilitarFechas();
+  habilitarEvento();
 
   /********************************* LISTADO CATEGORIAS *******************************/
   $('#dropdown_categorias')
@@ -280,7 +281,17 @@ function intentoPublicar(){
 }
 
 
+/*********************** FUNCIONES DE EVENTOS  **************************************/
+function habilitarEvento(){
 
+       if($("#evento_activo").is(':checked')) {
+           $('#opciones_evento').css('display', 'block');
+       } else {
+           $('#opciones_evento').css('display', 'none');
+       }
+
+
+}
 
 /*********************** FUNCIONES CON FECHAS **************************************/
 function habilitarFechas(){
@@ -321,12 +332,12 @@ function cargaTodasEtiquetasBD(id){
       beforeSend: function(){
       },
       error: function(){
-          alert("error petición ajax");
+          showErrorAlert("Error en la comunicació amb el servidor. Torna a intentar-ho!");
       },
       success: function(data){
         $('#selector_etiquetas').append(data);
         $('#selector_etiquetas').trigger("chosen:updated");
-        	alert(data);
+
       }
     });
 }

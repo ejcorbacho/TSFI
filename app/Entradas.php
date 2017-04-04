@@ -25,6 +25,9 @@ class Entradas extends Model
     public $fecha1;
     public $fecha2;
     public $imagen;
+    public $prioritat;
+    public $evento;
+    public $localizacion;
 
     public function guardar(){
       $data = array(
@@ -36,13 +39,13 @@ class Entradas extends Model
         'fecha1'=> $this->fecha1,
         'fecha2'=> $this->fecha2,
         'foto'=> $this->imagen,
-        'localizacion'=> '',
-        'esdeveniment'=> '0',
+        'localizacion'=> $this->localizacion,
+        'esdeveniment'=> $this->evento,
         'eliminado'=>'0',
         'publico'=> $this->publico,
         'data_publicacion' => $this->data_publicacion,
         'usuario_publicador'=> '1',
-        'relevancia'=> '1'
+        'relevancia'=> $this->prioritat
       );
 
 
@@ -112,13 +115,13 @@ class Entradas extends Model
         'fecha1'=> $this->fecha1,
         'fecha2'=> $this->fecha2,
         'foto'=> $this->imagen,
-        'localizacion'=> '',
-        'esdeveniment'=> '0',
+        'localizacion'=> $this->localizacion,
+        'esdeveniment'=> $this->evento,
         'eliminado'=>'0',
         'publico'=> $this->publico,
         'data_publicacion' => $this->data_publicacion,
         'usuario_publicador'=> '1',
-        'relevancia'=> '1'
+        'relevancia'=> $this->prioritat
       );
 
 
@@ -185,6 +188,14 @@ class Entradas extends Model
           ->leftjoin('categorias', 'categorias.id', '=', 'entradas_categorias.id_categoria')
           ->select('entradas.id','entradas.resumen_largo','entradas.titulo','entradas.data_publicacion', 'fotos.url',DB::raw('group_concat(categorias.nombre separator ", ") as categoriasDePost'))
           ->groupBy('entradas.id','entradas.resumen_largo','entradas.titulo','entradas.data_publicacion','fotos.url')
+          ->get();
+
+        return $contenido;
+    }
+
+    public function leerListadoEntradas(){
+        $contenido =  DB::table('entradas')
+          ->select('entradas.*')
           ->get();
 
         return $contenido;

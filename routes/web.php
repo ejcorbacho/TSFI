@@ -41,6 +41,11 @@ Route::post('ajax/categories/llistarCategoriaPerTransferencia', 'beCategoriesCon
 Route::post('ajax/categories/transferirCategoria', 'beCategoriesController@transferirCategoria');
 
 
+// PAGINAS
+Route::get('paginas/pagina', 'fePaginasController@mostrarPagina');
+Route::get('administracio/pagines/nova', 'bePaginasController@mostrarPagina');
+
+
 Route::get('administracio/entrada/nova/', array('uses' => 'EntradasController@makeEntrada')); //Mostrar formulario
 Route::get('administracio/entrada/nova/{id}', array('uses' => 'EntradasController@editarEntrada')); //Mostrar formulario
 Route::get('administracio/entrada/llistat', array('uses' => 'EntradasController@llistarEntradas')); //Mostrar listado de entradas

@@ -56,7 +56,6 @@ $(document).ready(function() {
         
         var id = $(e.currentTarget).parent().parent('tr').attr('categoryId');
         if (id != null) {
-//        e.preventDefault();
             console.log(id);
             $('#taulaDeCategories').attr('categoryToManage',id);
             $.ajax({
@@ -69,7 +68,7 @@ $(document).ready(function() {
                     if (data != 0) {
                         $('#modalEliminacioCategoriaContent').empty();
                         $('#modalEliminacioCategoria').modal('toggle');
-                        var html = '<table class="table table-hover table-striped">' +
+                        var html = '<table class="table table-hover table-striped" style="overflow: scroll;max-height: 200px">' +
                                 '<thead>' +
                                 '<tr>' +
                                 '<th>ID de Post</th>' +

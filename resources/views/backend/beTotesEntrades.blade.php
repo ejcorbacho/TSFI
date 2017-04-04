@@ -50,6 +50,24 @@
                       </div>
                   </div>
               </div>
+              <div id="modalConfirmacioEliminarEntrada" class="modal">
+                  <div class="modal-dialog">
+                      <div class="modal-content">
+                          <div class="modal-header">
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">×</span></button>
+                              <h4 class="modal-title">Atenció!</h4>
+                          </div>
+                          <div id="modalConfirmacioEliminarEntradaContent" class="modal-body">
+
+                          </div>
+                          <div class="modal-footer">
+                              <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cancel·la</button>
+                              <button type="button" class="btn btn-danger botoEliminarEntradaIntern">Eliminar</button>
+                          </div>
+                      </div>
+                  </div>
+              </div>
               <div class="box-body no-padding">
 
                   <div class="col-md-12 table-responsive">
@@ -65,26 +83,27 @@
                   <table id="taulaDePosts" class="table table-hover table-striped">
                       <thead>
                           <tr>
-                              <th></th>
                               <th>Títol</th>
                               <th>Resum</th>
                               <th>Categories</th>
                               <th>Data de publicació</th>
                               <th>Publicar a Twitter</th>
                               <th></th>
+                              <th></th>
                           </tr>
                       </thead>
 
                       <tbody>
                   @foreach($data as $dato)
-                  <tr>
-                      <td><input type="checkbox"></td>
-                      <td>{{ $dato->titulo }}</td>
-                      <td>{{ $dato->resumen_largo }}</td>
+                  <tr entradaId="{{ $dato->id }}">
+                      <!--<td><input type="checkbox"></td>-->
+                      <td class="nomEntrada">{{ $dato->titulo }}</td>
+                      <td class="campoResumenTablaPosts">{{ $dato->resumen_largo }}</td>
                       <td>{{ $dato->categoriasDePost }}</td>
                       <td>{{ Carbon\Carbon::parse($dato->data_publicacion)->format('d-m-Y') }}</td>
                       <td><i class="twitterIconDataTable fa fa-fw fa-twitter-square"></i></td>
                       <td><a href="{{ url('administracio/entrada/nova/' . $dato->id) }}">EDITAR</a></td>
+                      <td><button type="button" class="btn btn-default btn-sm botoEsborrarEntrades"><i class="fa fa-trash-o"></i></button></td>
                   </tr>
                   @endforeach
                   </tbody>

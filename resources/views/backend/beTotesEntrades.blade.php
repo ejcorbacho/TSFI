@@ -72,8 +72,8 @@
 
                   <div class="col-md-12 table-responsive">
                       <div class="mailbox-controls">
-                          <!-- Check all button -->
-                <button type="button" class="btn btn-default btn-sm checkbox-toggle"><i class="fa fa-square-o"></i></button>
+                          
+                
 
                 <div class="btn-group">
                   <button type="button" class="btn btn-default btn-sm"><i class="fa fa-trash-o"></i></button>

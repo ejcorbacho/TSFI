@@ -187,6 +187,7 @@ class Entradas extends Model
           ->leftjoin('entradas_categorias', 'entradas_categorias.id_entrada', '=', 'entradas.id')
           ->leftjoin('categorias', 'categorias.id', '=', 'entradas_categorias.id_categoria')
           ->select('entradas.id','entradas.resumen_largo','entradas.titulo','entradas.data_publicacion', 'fotos.url',DB::raw('group_concat(categorias.nombre separator ", ") as categoriasDePost'))
+          ->where('entradas.eliminado', '=', 0)
           ->groupBy('entradas.id','entradas.resumen_largo','entradas.titulo','entradas.data_publicacion','fotos.url')
           ->get();
 
@@ -205,6 +206,7 @@ class Entradas extends Model
         $contenido =  DB::table('entradas')
           ->select('entradas.*')
           ->where('entradas.id', '=', $this->id)
+          ->where('entradas.eliminado', '=', 0)
           ->get();
 
         return $contenido;
@@ -248,5 +250,22 @@ class Entradas extends Model
 
         return $contenido;
     }
-
+    public function ocultarEntrada(){
+        DB::beginTransaction();
+        try {
+            DB::table('entradas')
+            ->where('entradas.id', '=', $this->id)
+            ->update(['eliminado'=> 1]);
+            DB::commit();
+            return true;
+        } catch (\Illuminate\Database\QueryException $e) {
+            //return $e;
+            DB::rollback();
+            return false;
+        } catch (\Exception $e) {
+            //return $e;
+            DB::rollback();
+            return false;
+        }
+    }
 }

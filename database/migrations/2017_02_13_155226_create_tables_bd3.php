@@ -68,12 +68,8 @@ class CreateTablesBd3 extends Migration
             $table->increments('id');
             $table->string('titulo', 200);
             $table->string('subtitulo', 200);
-            $table->string('resumen_corto', 200);
-            $table->string('resumen_largo', 200);
             $table->string('contenido', 200);
-            $table->integer('visible');
             $table->integer('foto')->unsigned();
-            $table->integer('publico');
             $table->integer('usuario_publicador')->unsigned();
             $table->foreign('usuario_publicador')->references('id')->on('users');
             $table->foreign('foto')->references('id')->on('fotos');

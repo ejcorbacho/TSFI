@@ -62,8 +62,6 @@ class EntradasController extends Controller
       $this->mentradas->categorias = Input::get('categorias_seleccionadas');
       $this->mentradas->entidades = Input::get('entitats_seleccionadas');
       $this->mentradas->etiquetas = Input::get('etiquetas_seleccionadas');
-      $this->mentradas->etiquetasNuevas = Input::get('etiquetasNuevas');
-
       /* TRATAMOS DATOS DE LA IMAGEN */
 
       $this->mentradas->imagen = Input::get('mainImage');
@@ -82,8 +80,16 @@ class EntradasController extends Controller
       }
 
       $this->mentradas->publico = Input::get('publico');
+      $this->mentradas->prioritat = Input::get('prioritat');
 
       /* TRATAR DATOS DE EVENTOS */
+      if(Input::get('evento_activo') == null)
+      {
+        $this->mentradas->evento = 0;
+      } else {
+        $this->mentradas->evento = Input::get('evento_activo');
+      }
+
       $fechas = Input::get('evento');
       $fecha1 = substr($fechas, 0, strpos($fechas, '-'));
       $fecha2 = substr($fechas, strpos($fechas, '-')+1, strlen($fechas));
@@ -91,6 +97,8 @@ class EntradasController extends Controller
       $fecha2 = date("Y-m-d", strtotime($fecha2));
       $this->mentradas->fecha1 = $fecha1;
       $this->mentradas->fecha2 = $fecha2;
+
+      $this->mentradas->localizacion = Input::get('localizacion');
 
       if($idPostBd == 0){
           $request = $this->mentradas->guardar();
@@ -184,15 +192,31 @@ class EntradasController extends Controller
     $categorias = $this->categoriaMarcada($id);
     $etiquetas = $this->etiquetaMarcada($id);
     $entitats = $this->entidadMarcada($id);
-    $foto = $this->cImages->getOneImge($entradas[0]->foto);
+    if(!is_null($entradas[0]->foto)){
+      $foto = $this->cImages->getOneImge($entradas[0]->foto);
+    } else {
+      $foto = NULL;
+    }
 
     return view('backend.Entradas',['data'=>$entradas, 'categorias'=>$categorias, 'etiquetas'=>$etiquetas, 'entitats'=>$entitats, 'foto'=>$foto]);
   }
+  public function recargarListadoEtiquetas(){
+    $id_entrada = Input::get('id');
+    $etiquetas = $this->etiquetaMarcada($id_entrada);
 
+    $html = "";
+
+    for($i=0; $i < count($etiquetas); $i++){
+      $html = $html . '<option ';
+      if($etiquetas[$i]['seleccionado']){ $html = $html . 'selected '; };
+      $html = $html . 'value="' . $etiquetas[$i]['id'] . '">' . $etiquetas[$i]['nombre'] . '</option>';
+    }
+    return $html;
+  }
   //Listar las entradas guardados en la BD
   public function llistarEntradas()
   {
-    $entradas = $this->mentradas->leerTodas();
+    $entradas = $this->mentradas->leerListadoEntradas();
     return view('backend.beTotesEntrades',['data'=> $entradas]);
   }
 }

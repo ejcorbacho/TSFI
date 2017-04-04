@@ -166,3 +166,10 @@ textarea {
 .chosen-container{
     width: 100% !important;
 }
+
+/* BOTON PARA MOSTRAR AYUDAS */
+.boton_ayuda {
+  cursor: pointer;
+  float: right;
+  color: blue;  
+}

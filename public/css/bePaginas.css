@@ -1,0 +1,175 @@
+/* Formateamos el label que servirá de contenedor */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px !important;
+  height: 34px;
+
+}
+
+/* Ocultamos el checkbox html */
+.switch input {
+  display:none;
+}
+
+/* Formateamos la caja del interruptor sobre la cual se deslizará la perilla de control o slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: red;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+/* Pintamos la perilla de control o slider usando el selector before */
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+/* Cambiamos el color de fondo cuando el checkbox esta activado */
+input:checked + .slider {
+  background-color: green;
+}
+
+/* Deslizamos el slider a la derecha cuando el checkbox esta activado */
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Aplicamos efecto de bordes redondeados en slider y en el fondo del slider */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+.selector_publicado{
+  padding-top: 10px;
+  display: block;
+}
+.selector_publicado b{
+  position: relative;
+  margin: 5px;
+  bottom: 15px;
+}
+.box-header > div {
+  float: right;
+}
+
+
+textarea {
+  width: 100%;
+  resize:none;
+}
+
+/* FORMATEAR LISTADO CATEGORIAS */
+
+.noselect {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.dropdown-container {
+
+    position: absolute;
+    z-index: 900;
+    top: 5px;
+    width: 88%;
+    margin: 0px;
+    font-size: 14px;
+    background-color: white;
+}
+
+
+
+.dropdown-button {
+  position: relative;
+    width: 100%;
+    background: whitesmoke;
+    padding: 10px 12px;
+    cursor: pointer;
+    border: 1px solid lightgray;
+    box-sizing: border-box;
+
+    .dropdown-label, .dropdown-quantity {
+        float: left;
+    }
+
+    .dropdown-quantity {
+        margin-left: 4px;
+    }
+
+    .fa-filter {
+        float: right;
+    }
+}
+
+.dropdown-list {
+
+    width: 100%;
+    border: 1px solid lightgray;
+    border-top: none;
+    box-sizing: border-box;
+    padding: 10px 12px;
+
+
+
+
+}
+
+.dropdown-list ul {
+  padding: 5px;
+  margin-bottom: 0px;
+}
+
+.dropdown-list li {
+  list-style: none !important;
+}
+
+.dropdown-list input {
+  width: 100%;
+}
+
+
+
+.dropdown-list input[type="checkbox"] {
+  float: left;
+  width: 20px;
+}
+#dropdown_etiquetas{
+    z-index:0;
+}
+#selector_etiquetas{
+    z-index: 0;
+    width:100%;
+}
+.chosen-container{
+    width: 100% !important;
+}
+
+/* BOTON PARA MOSTRAR AYUDAS */
+.boton_ayuda {
+  cursor: pointer;
+  float: right;
+  color: blue;
+}

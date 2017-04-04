@@ -57,7 +57,7 @@
   		<div class="col-md-12 col-lg-9">
         <form id="formulario_entrada">
           <!-- general form elements -->
-            <input name="idBD" value="@if (!empty($data[0]->titulo)) {{ $data[0]->id }} @else {{ '0' }} @endif" id="idBD" type="hidden" value='0' />
+            <input name="idBD" value="@if (!empty($data[0]->titulo)) {{ $data[0]->id }} @else {{ '0' }} @endif" id="idBD" type="hidden"/>
             <div class="box box-primary">
               <div class="box-header with-border">
                 <h3 class="box-title">*TITOL I *SUBTITOL</h3>

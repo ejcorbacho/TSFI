@@ -39,14 +39,6 @@
                       <a href = "#" class="dropdown-toggle" data-toggle = "dropdown">
                          Java
                       </a>
-
-                     <div class = "dropdown-menu">
-                          <a href="#"><div class="item-submenu">item 1 </div></a>
-                          <a href="#"><div class="item-submenu">item 1 </div></a>
-                          <a href="#"><div class="item-submenu">item 1 </div></a>
-                          <a href="#"><div class="item-submenu">item 1 </div></a>
-                          <a href="#"><div class="item-submenu">item 1 </div></a>
-                      </div>
                    </li>
                 </ul>
                 <div class="col-lg-3 col-md-3 col-sm-3 item" id="buscador">
@@ -169,11 +161,15 @@
     <!-- ************************************** FOOTER ***************************************************-->
     <footer>
       <div id="contenido_pie">
-        Join our 868,629 subscribers and get access to the latest tools, freebies, product announcements and much more!
+        @if(isset($paginas))
+          @foreach($paginas as $pagina)
+            <a href="{{url('/pagines/'.$pagina->id)}}">{{ $pagina->titulo }}</a>
+          @endforeach
+        @endif
       </div>
       <hr />
       <ul id="items_menu_cms">
-        
+
       </ul>
       <div style="clear: both"></div>
       <div id="redes_sociales_footer">

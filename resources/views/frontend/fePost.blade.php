@@ -20,7 +20,7 @@
 
         <main class="col-md-9 col-sm-12 Post">
             <article class="col-sm-12 PostContent">
-                @if(!empty($data->contenido)) {{$data->contenido}}@endif
+                <p>@if(!empty($data->contenido)) {!!html_entity_decode($data->contenido)!!}@endif</p>
             </article>
         </main>
         <div class="categoryPostsSidebar col-md-3 col-sm-12">                

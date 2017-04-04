@@ -122,7 +122,7 @@
             <img class="img-responsive erc terc" src="@if(!empty($posts[5])){{$posts[5]->fotosUrl}}@endif" alt="@if(!empty($posts[5])){{$posts[5]->alt_foto }}@endif">
         <div class="maximolineas">
                 <h4>@if(!empty($posts[5]))
-                    @if(isset($posts[5]->nombre_categoria[0])){{$posts[3]->nombre_categoria[0]->nombre_categoria}} @endif
+                    @if(isset($posts[5]->nombre_categoria[0])){{$posts[5]->nombre_categoria[0]->nombre_categoria}} @endif
                 @endif</h4>
                 <h3>@if(!empty($posts[5])) {{$posts[5]->titulo}} @endif</h3>
                 <p>@if(!empty($posts[5])){!!html_entity_decode($posts[5]->contenido)!!} @endif</p>

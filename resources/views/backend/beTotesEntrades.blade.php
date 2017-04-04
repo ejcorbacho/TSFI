@@ -72,6 +72,7 @@
                               <th>Data de publicació</th>
                               <th>Publicar a Twitter</th>
                               <th></th>
+                              <th></th>
                           </tr>
                       </thead>
 
@@ -81,10 +82,11 @@
                       <td><input type="checkbox"></td>
                       <td>{{ $dato->titulo }}</td>
                       <td>{{ $dato->resumen_largo }}</td>
-                      <td>{{ $dato->categoriasDePost }}</td>
+                      <td>{{ $dato->titulo }}</td>
                       <td>{{ Carbon\Carbon::parse($dato->data_publicacion)->format('d-m-Y') }}</td>
                       <td><i class="twitterIconDataTable fa fa-fw fa-twitter-square"></i></td>
-                      <td><a href="{{ url('administracio/entrada/nova/' . $dato->id) }}">EDITAR</a></td>
+                      <td><a href="{{ url('administracio/entrada/nova/' . $dato->id) }}"><i class="fa fa-pencil-square" aria-hidden="true"></i></a></td>
+                      <td><a href="{{ url('administracio/entrada/nova/' . $dato->id) }}"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
                   </tr>
                   @endforeach
                   </tbody>

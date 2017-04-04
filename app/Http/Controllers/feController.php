@@ -40,33 +40,43 @@ class feController extends Controller
         }
         $related = $ocategories->MostrarPostsRelated($id);
         $paginas = $this->opaginashome->llegirTotes();
+        $categories = $ocategories->llegirTotes();
 
-
-        return view('frontend.feCategory',['categoria'=>$data[0], 'posts'=>$post, 'related'=>$related, 'paginas'=>$paginas]);
+        return view('frontend.feCategory',['categoria'=>$data[0], 'posts'=>$post, 'related'=>$related, 'categories'=>$categories]);
     }
     public function post($id) {
         $oentradas = new feEntrades;
+        $ocategories = new feCategories;
+
+        $categories = $ocategories->llegirTotes();
         $data = $oentradas->llegirEntrada($id);
             $paginas = $this->opaginashome->llegirTotes();
         $related = $oentradas->MostrarPostsRelated($id);
-        return view('frontend.fePost',['data'=>$data[0] , 'related'=>$related, 'paginas'=>$paginas]);
+        return view('frontend.fePost',['data'=>$data[0] , 'related'=>$related, 'paginas'=>$paginas, 'categories'=>$categories]);
     }
 
     public function pagines($id) {
+      $ocategories = new feCategories;
 
+      $categories = $ocategories->llegirTotes();
       $data = $this->opaginashome->llegirContingut($id);
       $paginas = $this->opaginashome->llegirTotes();
-      return view('frontend.fePaginas',['data'=>$data[0], 'paginas'=>$paginas]);
+      return view('frontend.fePaginas',['data'=>$data[0], 'paginas'=>$paginas, 'categories'=>$categories]);
 
     }
 
     public function index() {
 
       $oentradashome = new feHome;
+      $ocategories = new feCategories;
+
+      $categories = $ocategories->llegirTotes();
       $data = $oentradashome->MostrarEntradasHome();
       $paginas = $this->opaginashome->llegirTotes();
 
-      return view('frontend.feHome',['posts'=>$data, 'paginas'=>$paginas]);
+
+
+      return view('frontend.feHome',['posts'=>$data, 'paginas'=>$paginas, 'categories'=>$categories]);
 
     }
 

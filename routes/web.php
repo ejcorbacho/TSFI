@@ -55,6 +55,8 @@ Route::get('ajax/categories/llistaCategories', array('uses' => 'beCategoriesCont
 Route::post('ajax/categories/guardarCategoria', array('uses' => 'beCategoriesController@novaCategoria')); //Mostrar formulario
 Route::post('ajax/entradas/guardarEntrada', array('uses' => 'EntradasController@crearEntrada'));  //Guardar entrada
 Route::post('ajax/entradas/recargarEtiquetas', array('uses' => 'EntradasController@recargarListadoEtiquetas'));  //Guardar entrada
+Route::post('ajax/paginas/guardarPagina', array('uses' => 'bePaginasController@guardarBD'));  //Guardar entrada
+
 
 
 /***** entitats *****/

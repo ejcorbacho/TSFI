@@ -128,7 +128,7 @@ $( document ).ready(function() {
           console.log(data);
           $('#idBD' ).val(data); /* GUARDAMOS LA ID DE LA BD EN EL FORMULARIO */
           cargaTodasEtiquetasBD(data);
-          showSuccessAlert(data);
+          showSuccessAlert('Desat!');
 
         },
         error: function(xhr, desc, err) {

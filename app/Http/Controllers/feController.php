@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\feEntitats;
 use App\feEntrades;
+use App\Paginas;
 use App\feCategories;
 use App\feHome;
 use Illuminate\Http\Request;
@@ -14,6 +15,7 @@ class feController extends Controller
     private $oentradas;
     private $data;
     private $ocategories;
+    private $opaginashome;
     private $todosposts;
     private $valor;
 
@@ -22,6 +24,7 @@ class feController extends Controller
     public function __construct()
     {
         $this->oentitats = new feEntitats;
+        $this->opaginashome = new Paginas;
     }
 
 
@@ -49,8 +52,11 @@ class feController extends Controller
     public function index() {
     $oentradashome = new feHome;
     $data = $oentradashome->MostrarEntradasHome();
+
+    $paginas = $this->opaginashome->llegirTotes();
     //$related = $oentradashome->MostrarEntradasHome($id);
-    return view('frontend.feHome',['posts'=>$data]);
+    var_dump($paginas);
+    return view('frontend.feHome',['posts'=>$data, 'paginas'=>$paginas]);
     }
     //public function category($id) {
     //    $todosposts = new feCateogories;
@@ -74,5 +80,5 @@ class feController extends Controller
         $oentradashome = new feHome;
         return $oentradashome->getEventList();
     }
-     
+
 }

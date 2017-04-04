@@ -169,11 +169,13 @@
     <!-- ************************************** FOOTER ***************************************************-->
     <footer>
       <div id="contenido_pie">
-        Join our 868,629 subscribers and get access to the latest tools, freebies, product announcements and much more!
+        @foreach($paginas as $pagina)
+          <a href="">{{ $pagina->titulo }}</a>
+        @endforeach
       </div>
       <hr />
       <ul id="items_menu_cms">
-        
+
       </ul>
       <div style="clear: both"></div>
       <div id="redes_sociales_footer">

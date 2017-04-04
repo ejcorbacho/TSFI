@@ -216,7 +216,7 @@ class EntradasController extends Controller
   //Listar las entradas guardados en la BD
   public function llistarEntradas()
   {
-    $entradas = $this->mentradas->leerListadoEntradas();
+    $entradas = $this->mentradas->leerTodas();
     return view('backend.beTotesEntrades',['data'=> $entradas]);
   }
 }

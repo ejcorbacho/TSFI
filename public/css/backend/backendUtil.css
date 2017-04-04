@@ -14,3 +14,7 @@
 .inputTwitter{
     width: 100%;
 }
+.campoResumenTablaPosts{
+    max-width: 300px;
+    overflow: hidden;
+}

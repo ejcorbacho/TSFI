@@ -25,6 +25,6 @@ class beTwitterController extends Controller {
             $reply = $cb->statuses_update( 'status=' . urlencode( $status ) );
         }
 
-        return $reply;
+        return 'Molt bé, ha funcionat';
     }
 }

@@ -36,9 +36,14 @@
                 </a>
                 <ul class = "col-lg-6 col-md-6 col-sm-6 item" id="items_principales">
                    <li class="dropdown">
-                      <a href = "#" class="dropdown-toggle" data-toggle = "dropdown">
-                         Java
-                      </a>
+                       @if(isset($categories))
+                         @foreach($categories as $categoria)
+                           <a href = "{{url('/category/'.$categoria->id)}}" >
+                              {{ $categoria->nombre }}
+                           </a>
+                         @endforeach
+                       @endif
+
                    </li>
                 </ul>
                 <div class="col-lg-3 col-md-3 col-sm-3 item" id="buscador">

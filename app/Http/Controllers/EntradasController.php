@@ -213,6 +213,18 @@ class EntradasController extends Controller
     }
     return $html;
   }
+  public function ocultarEntrada()
+  {
+    $this->mentradas->id = Input::get('id');
+        //COMPOBAR SI ID ES NULL
+        if ($this->mentradas->ocultarEntrada()){
+          $mensaje = "Entrada Eliminada!";
+        } else {
+          $mensaje = "Error al eliminar!";
+          abort(500,"Error al eliminar!");
+        }
+        return json_encode($mensaje);
+  }
   //Listar las entradas guardados en la BD
   public function llistarEntradas()
   {

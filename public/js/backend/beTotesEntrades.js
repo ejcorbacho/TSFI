@@ -38,7 +38,7 @@ $(document).ready(function () {
         var id = $('#taulaDePosts').attr('postToManage');
         console.log(id);
         $.ajax({
-            url: '/TSFI/public/ajax/entrades/eliminarEntrada',
+            url: '/TSFI/public/ajax/entrades/ocultarEntrada',
             type: 'post',
             dataType: 'json',
             data: ({id: id}),

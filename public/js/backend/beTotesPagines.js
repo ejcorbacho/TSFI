@@ -6,10 +6,6 @@ $(document).ready(function () {
         "columns": [
             //{"orderable": false},
             {},
-            {},
-            {},
-            {},
-            {"orderable": false},
             {"orderable": false},
             {"orderable": false}
         ],
@@ -17,24 +13,24 @@ $(document).ready(function () {
     });
     
 
-    $('.botoEsborrarEntrades').on('click', function (e) {
-        var id = $(e.currentTarget).parent().parent('tr').attr('entradaId');
+    $('.botoEsborrarPagines').on('click', function (e) {
+        var id = $(e.currentTarget).parent().parent('tr').attr('paginaId');
         if (id != null) {
             console.log(id);
-            $('#taulaDePosts').attr('postToManage', id);
+            $('#taulaDePagines').attr('paginaAEditar', id);
 
-            $('#modalConfirmacioEliminarEntrada').modal('toggle');
-            $('#modalConfirmacioEliminarEntradaContent').empty();
-            var html = '<p entradaId="' + id + '">Estas segur de que vols eliminar la entrada "' + $('tr[entradaId="' + id + '"]').children('.nomEntrada').text() + '" ?</p>';
-            $('#modalConfirmacioEliminarEntradaContent').append(html);
+            $('#modalConfirmacioEliminarPagina').modal('toggle');
+            $('#modalConfirmacioEliminarPaginaContent').empty();
+            var html = '<p paginaId="' + id + '">Estas segur de que vols eliminar la entrada "' + $('tr[paginaId="' + id + '"]').children('.nomPagina').text() + '" ?</p>';
+            $('#modalConfirmacioEliminarPaginaContent').append(html);
             
         }
     });
-    $('.botoEliminarEntradaIntern').on('click', function (e) {
-        var id = $('#taulaDePosts').attr('postToManage');
+    $('.botoEliminarPaginaIntern').on('click', function (e) {
+        var id = $('#taulaDePagines').attr('paginaAEditar');
         console.log(id);
         $.ajax({
-            url: '/TSFI/public/ajax/entrades/ocultarEntrada',
+            url: '/TSFI/public/ajax/pagines/eliminar',
             type: 'post',
             dataType: 'json',
             data: ({id: id}),

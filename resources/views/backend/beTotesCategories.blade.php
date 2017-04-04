@@ -18,7 +18,7 @@
 <script src="{{asset('js/backend/jquery.dataTables.js')}}"></script>
 <script src="{{asset('js/backend/dataTables.bootstrap.min.js')}}"></script>
 <!--DATA TABLES-->
-<script src="{{asset('js/backend/beTotesPagines.js')}}"></script>
+<script src="{{asset('js/backend/beCategories.js')}}"></script>
 
 <body class="hold-transition skin-blue sidebar-mini">
 

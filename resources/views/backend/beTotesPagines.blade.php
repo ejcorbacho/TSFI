@@ -30,7 +30,7 @@
             <div class="col-md-12">
                 <div class="col-md-12 box box-primary">
                     <div class="box-header with-border">
-                        <h3 class="box-title">Categories</h3>
+                        <h3 class="box-title">Pàgines</h3>
                     </div>
                     <!-- /.box-header -->
 
@@ -38,26 +38,8 @@
 
                         <div class="">
                             <div class="mailbox-controls">
-                                <div id="modalEliminacioCategoria" class="modal">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">×</span></button>
-                                                <h4 class="modal-title">Atenció! Aquesta categoria conté entrades</h4>
-                                            </div>
-                                            <div id="modalEliminacioCategoriaContent" class="modal-body">
-                                                
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cancel·la</button>
-                                                <button type="button" id="botoMourePostsCategoria" class="btn btn-warning">Transferir entrades a una altre categoria</button>
-                                                <button type="button" class="btn btn-danger botoEliminarCategoriaIntern">Eliminar</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div id="modalConfirmacioEliminacioCategoria" class="modal">
+                                
+                                <div id="modalConfirmacioEliminarPagina" class="modal">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">
@@ -65,35 +47,17 @@
                                                     <span aria-hidden="true">×</span></button>
                                                 <h4 class="modal-title">Atenció!</h4>
                                             </div>
-                                            <div id="modalConfirmacioEliminacioCategoriaContent" class="modal-body">
+                                            <div id="modalConfirmacioEliminarPaginaContent" class="modal-body">
                                                 
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cancel·la</button>
-                                                <button type="button" class="btn btn-danger botoEliminarCategoriaIntern">Eliminar</button>
+                                                <button type="button" class="btn btn-danger botoEliminarPaginaIntern">Eliminar</button>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div id="modalMoureEntradesCategoria" class="modal">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">×</span></button>
-                                                <h4 class="modal-title">Selecciona la categoria a la que vols migrar les entrades</h4>
-                                            </div>
-                                            <div id="modalMoureEntradesCategoriaContent" class="modal-body">
-                                                
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cancel·la</button>
-                                                <button type="button" id="botoMourePostsCategoriaAra" class="btn btn-warning">Transferir entrades</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- /.pull-right -->
+                                
                             </div>
                             <table id="taulaDePagines" class="table table-hover table-striped">
                                 <thead>
@@ -105,10 +69,10 @@
                                 </thead>
                                 <tbody>
                                     @foreach($data as $dato)
-                                    <tr class="filaDeDadesCategoria" categoryId="{{ $dato->id }}">
-                                        <td class="nomCategoria">{{ $dato->titulo }}</td>
+                                    <tr class="filaDeDadesCategoria" paginaId="{{ $dato->id }}">
+                                        <td class="nomPagina">{{ $dato->titulo }}</td>
                                         <td><a href="{{ url('administracio/categoria/editar/' . $dato->id) }}">EDITAR</a></td>
-                                        <td><button type="button" class="btn btn-default btn-sm botoEsborrarCategories"><i class="fa fa-trash-o"></i></button></a></td>
+                                        <td><button type="button" class="btn btn-default btn-sm botoEsborrarPagines"><i class="fa fa-trash-o"></i></button></a></td>
                                     </tr>
                                     @endforeach
                                 </tbody>

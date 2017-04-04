@@ -40,6 +40,22 @@ class Paginas extends Model
 
 
     }
+    public function eliminar(){
+      
+        DB::beginTransaction();
+        try {
+            Paginas::where('id',$this->id)->delete();
+
+            DB::commit();
+           return true;
+        } catch (\Illuminate\Database\QueryException $e) {
+            DB::rollback();
+            return false;
+        } catch (\Exception $e) {
+            DB::rollback();
+            return false;
+        }
+    }
 
     public function actualizar(){
 

@@ -258,11 +258,18 @@
   			  </div>
               </div>
   	    </div>
+<<<<<<< HEAD
 
 
 
 
         <div class="col-md-12 col-lg-3">
+=======
+        </div>
+
+        <!-- FECHAS EVENTOS -->
+<div class="col-md-12 col-lg-3">
+>>>>>>> d99f63207cb4f339eec4bd4c715e0e860fa13e23
   <div class="example-modal">
     <div class="modal-content box">
       <div class="modal-header">
@@ -419,6 +426,7 @@
         </div>
     </div>
 <!-- END IMAGE SELECTION MODAL -->
+<<<<<<< HEAD
 
 
 
@@ -427,5 +435,7 @@
 
         <!-- FECHAS EVENTOS -->
 
+=======
+>>>>>>> d99f63207cb4f339eec4bd4c715e0e860fa13e23
 </div>
 @endsection

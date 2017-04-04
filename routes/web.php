@@ -44,6 +44,7 @@ Route::post('ajax/categories/transferirCategoria', 'beCategoriesController@trans
 // PAGINAS
 Route::get('paginas/pagina', 'fePaginasController@mostrarPagina');
 Route::get('administracio/pagines/nova', 'bePaginasController@mostrarPagina');
+Route::get('pagines/{id}', 'feController@pagines');
 
 
 Route::get('administracio/entrada/nova/', array('uses' => 'EntradasController@makeEntrada')); //Mostrar formulario

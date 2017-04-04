@@ -39,25 +39,37 @@ class feController extends Controller
             abort(404);
         }
         $related = $ocategories->MostrarPostsRelated($id);
+        $paginas = $this->opaginashome->llegirTotes();
 
-        return view('frontend.feCategory',['categoria'=>$data[0], 'posts'=>$post, 'related'=>$related]);
+
+        return view('frontend.feCategory',['categoria'=>$data[0], 'posts'=>$post, 'related'=>$related, 'paginas'=>$paginas]);
     }
     public function post($id) {
         $oentradas = new feEntrades;
         $data = $oentradas->llegirEntrada($id);
+            $paginas = $this->opaginashome->llegirTotes();
         $related = $oentradas->MostrarPostsRelated($id);
-        return view('frontend.fePost',['data'=>$data[0] , 'related'=>$related]);
+        return view('frontend.fePost',['data'=>$data[0] , 'related'=>$related, 'paginas'=>$paginas]);
+    }
+
+    public function pagines($id) {
+
+      $data = $this->opaginashome->llegirContingut($id);
+      $paginas = $this->opaginashome->llegirTotes();
+      return view('frontend.fePaginas',['data'=>$data[0], 'paginas'=>$paginas]);
+
     }
 
     public function index() {
-    $oentradashome = new feHome;
-    $data = $oentradashome->MostrarEntradasHome();
 
-    $paginas = $this->opaginashome->llegirTotes();
-    //$related = $oentradashome->MostrarEntradasHome($id);
-    var_dump($paginas);
-    return view('frontend.feHome',['posts'=>$data, 'paginas'=>$paginas]);
+      $oentradashome = new feHome;
+      $data = $oentradashome->MostrarEntradasHome();
+      $paginas = $this->opaginashome->llegirTotes();
+
+      return view('frontend.feHome',['posts'=>$data, 'paginas'=>$paginas]);
+
     }
+
     //public function category($id) {
     //    $todosposts = new feCateogories;
     //    $data = $todosposts->MostarPosts($id);

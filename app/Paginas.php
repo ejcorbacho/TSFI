@@ -19,7 +19,7 @@ class Paginas extends Model
         'titulo'=> $this->titulo,
         'subtitulo'=> $this->subtitulo,
         'contenido'=>  $this->contenido,
-        'foto'=> '1',
+        'foto'=>  $this->foto,
         'usuario_publicador'=> '1',
       );
 
@@ -47,7 +47,7 @@ class Paginas extends Model
         'titulo'=> $this->titulo,
         'subtitulo'=> $this->subtitulo,
         'contenido'=>  $this->contenido,
-        'foto'=> '1',
+        'foto'=>  $this->foto,
         'usuario_publicador'=> '1',
       );
 
@@ -70,10 +70,11 @@ class Paginas extends Model
 
 
 
-    public function leerContenido(){
-        $contenido =  DB::table('entradas')
-          ->select('entradas.*')
-          ->where('entradas.id', '=', $this->id)
+    public function llegirContingut($id){
+        $contenido =  DB::table('paginas')
+          ->leftjoin('fotos', 'paginas.foto', '=', 'fotos.id')
+          ->select('paginas.*', 'fotos.url as fotoUrl', 'fotos.alt')
+          ->where('paginas.id', '=', $id)
           ->get();
 
         return $contenido;
@@ -88,34 +89,6 @@ class Paginas extends Model
         return $contenido;
     }
 
-    public function getEvents() {
 
-    }
-    public function leerEtiquetasMarcadas($id){
-        $contenido =  DB::table('entradas_etiquetas')
-          ->select('entradas_etiquetas.id_etiqueta as id')
-          ->where('entradas_etiquetas.id_entrada', '=', $id)
-          ->get();
-
-        return $contenido;
-    }
-
-    public function leerEntidadesMarcadas($id){
-        $contenido =  DB::table('entradas_entidades')
-          ->select('entradas_entidades.id_entidad as id')
-          ->where('entradas_entidades.id_entrada', '=', $id)
-          ->get();
-
-        return $contenido;
-    }
-
-    public function leerCategoriasMarcadas($id){
-        $contenido =  DB::table('entradas_categorias')
-          ->select('entradas_categoria.id_categoria as id')
-          ->where('entradas_categoria.id_entrada', '=', $id)
-          ->get();
-
-        return $contenido;
-    }
 
 }

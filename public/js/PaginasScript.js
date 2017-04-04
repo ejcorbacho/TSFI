@@ -27,11 +27,11 @@ $( document ).ready(function() {
         success: function(data) {
           console.log(data);
           $('#idBD' ).val(data); /* GUARDAMOS LA ID DE LA BD EN EL FORMULARIO */
-          showSuccessAlert(data);
+          showSuccessAlert('Desat!');
 
         },
         error: function(xhr, desc, err) {
-          showErrorAlert(data);
+          showErrorAlert('Error al guardar!');
         }
     });
 

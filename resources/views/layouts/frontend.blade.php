@@ -169,9 +169,11 @@
     <!-- ************************************** FOOTER ***************************************************-->
     <footer>
       <div id="contenido_pie">
-        @foreach($paginas as $pagina)
-          <a href="">{{ $pagina->titulo }}</a>
-        @endforeach
+        @if(isset($paginas))
+          @foreach($paginas as $pagina)
+            <a href="{{url('/pagines/'.$pagina->id)}}">{{ $pagina->titulo }}</a>
+          @endforeach
+        @endif
       </div>
       <hr />
       <ul id="items_menu_cms">

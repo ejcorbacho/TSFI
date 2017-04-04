@@ -41,7 +41,7 @@ class bePaginasController extends Controller
 
       /* TRATAMOS DATOS DE LA IMAGEN */
 
-      $this->mpaginas->imagen = Input::get('mainImage');
+      $this->mpaginas->foto = Input::get('mainImage');
 
       if($idPostBd == 0){
           $request = $this->mpaginas->guardar();

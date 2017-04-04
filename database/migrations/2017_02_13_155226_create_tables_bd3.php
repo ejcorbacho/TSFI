@@ -69,7 +69,7 @@ class CreateTablesBd3 extends Migration
             $table->string('titulo', 200);
             $table->string('subtitulo', 200);
             $table->string('contenido', 200);
-            $table->integer('foto')->unsigned();
+            $table->integer('foto')->nullable()->unsigned();
             $table->integer('usuario_publicador')->unsigned();
             $table->foreign('usuario_publicador')->references('id')->on('users');
             $table->foreign('foto')->references('id')->on('fotos');

@@ -83,7 +83,7 @@ class Paginas extends Model
     public function llegirTotes() {
 
         $contenido = DB::table('paginas')
-                ->select( 'paginas.id', 'paginas.titulo')
+                ->select( 'paginas.*')
                 ->get();
 
         return $contenido;

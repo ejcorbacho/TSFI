@@ -95,7 +95,7 @@
                                 </div>
                                 <!-- /.pull-right -->
                             </div>
-                            <table id="taulaDeCategories" class="table table-hover table-striped">
+                            <table id="taulaDePagines" class="table table-hover table-striped">
                                 <thead>
                                     <tr>
                                         <th>Nom</th>
@@ -106,7 +106,7 @@
                                 <tbody>
                                     @foreach($data as $dato)
                                     <tr class="filaDeDadesCategoria" categoryId="{{ $dato->id }}">
-                                        <td class="nomCategoria">{{ $dato->nombre }}</td>
+                                        <td class="nomCategoria">{{ $dato->titulo }}</td>
                                         <td><a href="{{ url('administracio/categoria/editar/' . $dato->id) }}">EDITAR</a></td>
                                         <td><button type="button" class="btn btn-default btn-sm botoEsborrarCategories"><i class="fa fa-trash-o"></i></button></a></td>
                                     </tr>

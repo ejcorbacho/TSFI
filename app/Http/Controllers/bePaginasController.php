@@ -25,6 +25,12 @@ class bePaginasController extends Controller
     return view('backend.bePaginas');
   }
 
+  public function mostrarTotes()
+  {
+  
+    $data = $this->mpaginas->llegirTotes();
+    return view('backend.beTotesPagines',['data'=>$data]);
+  }
   //Guardar datos del formulario en la BD
   public function guardarBD()
   {

@@ -30,7 +30,7 @@ $(document).ready(function () {
         var id = $('#taulaDePagines').attr('paginaAEditar');
         console.log(id);
         $.ajax({
-            url: '/TSFI/public/ajax/pagines/eliminar',
+            url: urlPrincipal + 'ajax/pagines/eliminar',
             type: 'post',
             dataType: 'json',
             data: ({id: id}),
@@ -54,7 +54,7 @@ $(document).ready(function () {
         getDataOverAJAX('postToTwitter', text);
         /*
          $.ajax({
-         url: '/TSFI/public/ajax/categories/llistarCategoriaPerTransferencia',
+         url: urlPrincipal + 'ajax/categories/llistarCategoriaPerTransferencia',
          type: 'post',
          dataType: 'json',
          data: ({id: id}),
@@ -72,7 +72,7 @@ $(document).ready(function () {
 function getDataOverAJAX(route, data) {
     return $.ajax({
         type: 'GET',
-        url: '/TSFI/public/ajax/' + route,
+        url: urlPrincipal + 'ajax/' + route,
         data: {data: data}
     });
 }

@@ -1,7 +1,7 @@
 $(document).ready(function () {
 
     $.ajax({
-        url: '/TSFI/public/ajax/entitat/TresEntitats',
+        url: urlPrincipal + 'ajax/entitat/TresEntitats',
         type: 'get',
         success: function (data) {
             console.log(data);
@@ -12,7 +12,7 @@ $(document).ready(function () {
             console.log("Details: " + desc + "\nError:" + err);
         }});
     $.ajax({
-        url: '/TSFI/public/ajax/entitat/EntitatsFooter',
+        url: urlPrincipal + 'ajax/entitat/EntitatsFooter',
         type: 'get',
         success: function (data) {
             console.log(data);

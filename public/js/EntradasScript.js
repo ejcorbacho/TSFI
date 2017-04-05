@@ -1,5 +1,4 @@
 //************* DECLARAR VARIABLES             ******************//
-var url = "/TSFI/public/";
 var enviar = false;
 var maximoResumen = 500; /* CARACTERES MAXIMOS DE RESUMEN */
 var maximoTitulo = 60; /* CARACTERES MAXIMOS DE TITULO */
@@ -10,6 +9,7 @@ var hayContenido;
 var hayTitulo;
 var hayResumen;
 var vacio;
+var permitirPublicar;
 var notificarEntrada = true;
 var etiquetasNuevas = new Array();
 var contadorEtiquetas = 0;
@@ -17,12 +17,14 @@ var contadorEtiquetas = 0;
 
 //************* CUERPO PRINCIPAL DEL PROGRAMA *******************//
 $( document ).ready(function() {
-  habilitarFechas()
+  habilitarFechas();
+  habilitarEvento();
 
   /********************************* LISTADO CATEGORIAS *******************************/
   $('#dropdown_categorias')
   	.on('click', '#dropdown_button_categorias', function() {
-      	$('#dropdown_list_categorias').toggle();
+      	$('#dropdown_list_categorias').show();
+        $('#dropdown_search_categorias').focus();
   	})
   	.on('input', '#dropdown_search_categorias', function() {
       	var target = $(this);
@@ -40,12 +42,20 @@ $( document ).ready(function() {
           });
   	});
 
+    $('#dropdown_categorias').focusout( function() {
+        var $elem = $(this);
+        setTimeout(function () {
+        if (!$elem.find(':focus').length) {
+            $('#dropdown_list_categorias').hide();
+        }
+        }, 0);
+    });
     /********************************* LISTADO ETIQUETAS *******************************/
     var config = {
       '.chosen-select'           : {},
       '.chosen-select-deselect'  : {allow_single_deselect:true},
       '.chosen-select-no-single' : {disable_search_threshold:10},
-      '.chosen-select-no-results': {function(){alert('hola');}},
+      '.chosen-select-no-results': {function(){}},
       '.chosen-select-width'     : {width:"95%"}
     }
     for (var selector in config) {
@@ -73,7 +83,14 @@ $( document ).ready(function() {
                 $(this).toggle(match);
             });
     	});
-
+     $('#dropdown_entitats').focusout( function() {
+        var $elem = $(this);
+        setTimeout(function () {
+        if (!$elem.find(':focus').length) {
+            $('#dropdown_list_entitats').hide();
+        }
+        }, 0);
+    });
     /********************************* FUNCIONES DATEPICKER  ***********************************/
     var hoy = new Date();
     dia = hoy.getDate();
@@ -104,14 +121,13 @@ $( document ).ready(function() {
     });
 
     $("#formulario_entrada").ajaxForm({
-        url: url + '/ajax/entradas/guardarEntrada',
+        url: urlPrincipal + 'ajax/entradas/guardarEntrada',
         type: 'post',
         success: function(data) {
           console.log(data);
           $('#idBD' ).val(data); /* GUARDAMOS LA ID DE LA BD EN EL FORMULARIO */
-
+          cargaTodasEtiquetasBD(data);
           showSuccessAlert('Desat!');
-          recargarEtiquetas();
 
         },
         error: function(xhr, desc, err) {
@@ -121,6 +137,11 @@ $( document ).ready(function() {
     });
 
 });
+
+//**************** FUNCIONES DE AYUDA ***************************//
+function notificarAyudaEtiquetas(){
+    showSuccessAlert('Pots generar noves etiquetes amb ";" despres del literal');
+}
 //************* GUARDADO DE CONTENIDO         ******************//
 
 function guardarNuevaEtiqueta(){
@@ -130,11 +151,8 @@ function guardarNuevaEtiqueta(){
     if(contenido.substring(lon-1, lon) == ';'){
 
       var etiqueta = contenido.substring(0, lon-1);
-      etiquetasNuevas[contadorEtiquetas] = etiqueta;
-      contadorEtiquetas = contadorEtiquetas +1;
-      var etiquetasNuevas_json = JSON.stringify(etiquetasNuevas);
-      $('#etiquetasNuevas').val(etiquetasNuevas_json);
-      $('#selector_etiquetas_chosen .chosen-choices').prepend('<li class="search-choice"><span>' + etiqueta + '</span><a id="' + contadorEtiquetas + '" class="eliminar search-choice-close" ></a></li>');
+      recargarEtiquetas(etiqueta);
+
       $('#selector_etiquetas_chosen input[type="text"]').val('');
       console.log(etiqueta);
     }
@@ -195,23 +213,16 @@ function validarSubtitulo() {
 
 function validarContenido() {
   var longitud = getStats('contingut').chars;
-//  $("#notificaciones_contenido").empty();
-//  var restant = maximoContenido - longitud;
   if(longitud > 0){
     hayContenido = true;
   } else {
     hayContenido = false;
   }
-//  if (restant >= 0){
-//    return true;
-//  } else {
-//    $("#notificaciones_contenido").append("Máxim de contingut superat! (Sobren: " + Math.abs(restant) + " caracters)");
-//    return false;
-//  }
+
 }
 
 function validarTodoVacio(){
-  validarContenido();
+
   if(hayTitulo | haySubtitulo | hayResumen | hayContenido){
     return true;
   } else {
@@ -224,29 +235,62 @@ function validarTodoVacio(){
   }
 }
 
-function validarPublicar(){
-  if (validarResumen() & validarTitulo() & validarSubtitulo()) {
-    //$("#notificaciones_twitter").append("Si");
-  //  $('button[type="submit"]').removeAttr('disabled');
-  } else {
-    //$("#notificaciones_twitter ").append("No");
-  //  $('button[type="submit"]').attr('disabled','disabled');
-  }
+function validarFormulario(){
 
-    validarGuardar();
+    var caracteresTitulo = validarTitulo();         /* VALIDA SI LA CANTIDAD DE CARACTERES QUE HAY EN EL TITULO */
+    var caracteresSubtitulo = validarSubtitulo();   /* VALIDA SI LA CANTIDAD DE CARACTERES QUE HAY EN EL SUBTITULO */
+    var caracteresResumen = validarResumen();       /* VALIDA SI LA CANTIDAD DE CARACTERES QUE HAY EN EL RESUMEN */
+    validarContenido();                             /* VALIDA SI HAY CARACTERES EN LA CAJA DE CONTENIDO */
+
+    var camposInformados = validarTodoVacio();      /* VALIDA SI HAY ALGUN CAMPO INFORMADO */
+
+    var maximosRespetados = false;                  /* VALIDA SI LOS MAXIIMOS DE CARACTERES HAN SIDO RESPETADOS */
+    if(caracteresTitulo && caracteresSubtitulo && caracteresResumen) { maximosRespetados = true; }
+
+    var camposObligatorios =  validarCamposObligatorios(); /* VALIDA SI TODOS LOS CAMPOS OBLIGATORIOS ESTAN CUMPLIMENTADOS */
+
+    /* TRATAMIENTO PARA PERMITIR O NO EL GUARDADO */
+    if (maximosRespetados && camposInformados) {
+      $('button[type="submit"]').removeAttr('disabled');
+    } else {
+      $('button[type="submit"]').attr('disabled','disabled');
+    }
+
+    /* TRATAMIENTO PARA PERMITIR O NO LA PUBLICACION */
+    permitirPublicar = camposObligatorios;
+    if (!camposObligatorios && $("#visible").is(':checked')){
+      intentoPublicar();
+    }
 }
 
-function validarGuardar() {
-  if (validarTodoVacio()) {
-    //$("#notificaciones_twitter").append("Si");
-    $('button[type="submit"]').removeAttr('disabled');
+function validarCamposObligatorios(){
+  if(hayTitulo && haySubtitulo && hayResumen && hayContenido){
+    return true;
   } else {
-    //$("#notificaciones_twitter ").append("No");
-    $('button[type="submit"]').attr('disabled','disabled');
+    return false;
   }
 }
 
+function intentoPublicar(){
+  if(!permitirPublicar){
+    $("#visible").prop('checked', false);
+    showErrorAlert('No es permet publicar sense tots els camps obligatoris! (*)');
+  }
+  habilitarFechas();
+}
 
+
+/*********************** FUNCIONES DE EVENTOS  **************************************/
+function habilitarEvento(){
+
+       if($("#evento_activo").is(':checked')) {
+           $('#opciones_evento').css('display', 'block');
+       } else {
+           $('#opciones_evento').css('display', 'none');
+       }
+
+
+}
 
 /*********************** FUNCIONES CON FECHAS **************************************/
 function habilitarFechas(){
@@ -261,16 +305,38 @@ function habilitarFechas(){
 }
 
 /*************************** ETIQUETAS *******************************/
-function recargarEtiquetas(){
+function recargarEtiquetas(etiquetaNueva){
 
-  for(var i= 0; i < etiquetasNuevas.length; i++){
-    alert(etiquetasNuevas[i]);
-    var newOption = $('<option selected value="1">' + etiquetasNuevas[i] + '</option>');
+
+    var newOption = $('<option selected value="' + etiquetaNueva + '">' + etiquetaNueva + '</option>');
     $('#selector_etiquetas').append(newOption);
-  }
+
 
   $('#selector_etiquetas').trigger("chosen:updated");
-  etiquetasNuevas = [];
-  var etiquetasNuevas_json = JSON.stringify(etiquetasNuevas);
-  $('#etiquetasNuevas').val(etiquetasNuevas_json);
+}
+
+function cargaTodasEtiquetasBD(id){
+  $('#selector_etiquetas').empty();
+
+  $.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+  });
+  $.ajax({
+      type: "POST",
+      url: urlPrincipal + "ajax/entradas/recargarEtiquetas",
+      data: {id: id},
+      dataType: "html",
+      beforeSend: function(){
+      },
+      error: function(){
+          showErrorAlert("Error en la comunicació amb el servidor. Torna a intentar-ho!");
+      },
+      success: function(data){
+        $('#selector_etiquetas').append(data);
+        $('#selector_etiquetas').trigger("chosen:updated");
+
+      }
+    });
 }

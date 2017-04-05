@@ -22,7 +22,7 @@
           <link href="{{ asset('/css/calendar.css')}}" rel="stylesheet" >
       </head>
       <body>
-      <div class="col-md-12 col-lg-10 col-lg-offset-1">
+      <div class="col-md-12 col-lg-12 col-lg-offset-0">
       <!-- Portfolio Item Row -->
 
       <div class="row mainGridContainer">
@@ -58,8 +58,8 @@
         </a>
       </div>
       <div class="icons">
-        <i style="font-size:20px" class="fa espacio face">&#xf082;</i>
-        <i style="font-size:20px" class="fa espacio twit">&#xf099;</i>
+        <a style="font-size:20px" href="https://facebook.com" class="fa espacio">&#xf082;</a>
+        <a style="font-size:20px" href="https://twitter.com/krabitzSDS" class="fa espacio">&#xf099;</a>
       </div>
     </div>
 
@@ -76,8 +76,8 @@
         </a>
       </div>
       <div class="icons">
-        <i style="font-size:20px" class="fa espacio">&#xf082;</i>
-        <i style="font-size:20px" class="fa espacio">&#xf099;</i>
+        <a style="font-size:20px" href="https://facebook.com" class="fa espacio">&#xf082;</a>
+        <a style="font-size:20px" href="https://twitter.com/krabitzSDS" class="fa espacio">&#xf099;</a>
       </div>
     </div>
       <!--</div>
@@ -95,8 +95,8 @@
             </a>
        </div>
       <div class="icons">
-        <i style="font-size:20px" class="fa espacio">&#xf082;</i>
-        <i style="font-size:20px" class="fa espacio">&#xf099;</i>
+       <a style="font-size:20px" href="https://facebook.com" class="fa espacio">&#xf082;</a>
+       <a style="font-size:20px" href="https://twitter.com/krabitzSDS" class="fa espacio">&#xf099;</a>
       </div>
     </div>
 
@@ -112,8 +112,8 @@
             </a>
       </div>
       <div class="icons">
-        <i style="font-size:20px" class="fa espacio">&#xf082;</i>
-        <i style="font-size:20px" class="fa espacio">&#xf099;</i>
+        <a style="font-size:20px" href="https://facebook.com" class="fa espacio">&#xf082;</a>
+        <a style="font-size:20px" href="https://twitter.com/krabitzSDS" class="fa espacio">&#xf099;</a>
       </div>
     </div>
 
@@ -122,22 +122,22 @@
             <img class="img-responsive erc terc" src="@if(!empty($posts[5])){{$posts[5]->fotosUrl}}@endif" alt="@if(!empty($posts[5])){{$posts[5]->alt_foto }}@endif">
         <div class="maximolineas">
                 <h4>@if(!empty($posts[5]))
-                    @if(isset($posts[5]->nombre_categoria[0])){{$posts[3]->nombre_categoria[0]->nombre_categoria}} @endif
+                    @if(isset($posts[5]->nombre_categoria[0])){{$posts[5]->nombre_categoria[0]->nombre_categoria}} @endif
                 @endif</h4>
                 <h3>@if(!empty($posts[5])) {{$posts[5]->titulo}} @endif</h3>
                 <p>@if(!empty($posts[5])){!!html_entity_decode($posts[5]->contenido)!!} @endif</p>
             </a>
       </div>
       <div class="icons">
-        <i style="font-size:20px" class="fa espacio">&#xf082;</i>
-        <i style="font-size:20px" class="fa espacio">&#xf099;</i>
+        <a style="font-size:20px" href="https://facebook.com" class="fa espacio">&#xf082;</a>
+        <a style="font-size:20px" href="https://twitter.com/krabitzSDS" class="fa espacio">&#xf099;</a>
       </div>
     </div>
       </div>
   </div>
 <!-- /******************************************************************************************/-->
 
-      <div id="popularPostsSection" class="col-lg-10 col-lg-offset-1 col-md-12">
+      <div id="popularPostsSection" class="col-lg-12 col-lg-offset-0 col-md-12">
           <div id="popularPostsContainer" class="col-md-9 col-sm-12">
               <div class="popularPost">
                   <div class="popularPostImage col-md-4 col-sm-4 col-xs-12">
@@ -247,9 +247,10 @@
               </script>
 
 <!-- FI CALENDARI -->
+<!-- Entitats colaboradres -->
               <h2>Twitter</h2>
               <iframe id="twitter-widget-0" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true" class="twitter-timeline twitter-timeline-rendered" style="position: static; visibility: visible; display: inline-block; width: 400px; height: 400px; padding: 0px; border: none; max-width: 100%; min-width: 180px; margin-top: 0px; margin-bottom: 0px; min-height: 300px;" data-widget-id="585734069557792768" title="Twitter Timeline"></iframe>
-              <h2>Enlaces</h2>
+              <h2>Entitats Colaboradores</h2>
               <a href="#"><div class="sidebarLink" ></div></a>
               <a href="#"><div class="sidebarLink" ></div></a>
               <a href="#"><div class="sidebarLink" ></div></a>

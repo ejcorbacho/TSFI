@@ -38,12 +38,6 @@
 
                         <div class="">
                             <div class="mailbox-controls">
-                                <!-- Check all button -->
-                                <!--<button type="button" class="btn btn-default btn-sm checkbox-toggle"><i class="fa fa-square-o"></i></button>-->
-
-                                <div class="btn-group">
-                                    <button type="button" id="botoEsborrarCategories" class="btn btn-default btn-sm"><i class="fa fa-trash-o"></i></button>
-                                </div>
                                 <div id="modalEliminacioCategoria" class="modal">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
@@ -104,19 +98,17 @@
                             <table id="taulaDeCategories" class="table table-hover table-striped">
                                 <thead>
                                     <tr>
-                                        <th></th>
                                         <th>Nom</th>
-                                        <th>Categoria Pare</th>
+                                        <th></th>
                                         <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach($data as $dato)
                                     <tr class="filaDeDadesCategoria" categoryId="{{ $dato->id }}">
-                                        <td><input type="radio" name="categoryRadio" value="{{ $dato->id }}"></td>
                                         <td class="nomCategoria">{{ $dato->nombre }}</td>
-                                        <td class="pareCategoria">{{ $dato->id_padre }}</td>
                                         <td><a href="{{ url('administracio/categoria/editar/' . $dato->id) }}">EDITAR</a></td>
+                                        <td><button type="button" class="btn btn-default btn-sm botoEsborrarCategories"><i class="fa fa-trash-o"></i></button></a></td>
                                     </tr>
                                     @endforeach
                                 </tbody>

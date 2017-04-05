@@ -2,7 +2,7 @@ $(document).ready(function() {
 
 
     $("#formulariNovaCategoria").ajaxForm({
-        url: '/TSFI/public/ajax/categories/guardarCategoria',
+        url: urlPrincipal + 'ajax/categories/guardarCategoria',
         type: 'get',
         success: function(data) {
         console.log(data);
@@ -23,7 +23,7 @@ $(document).ready(function() {
         e.preventDefault();
         if ($("#formulariEditarCategoria").data("changed")) {
             $.ajax({
-            url: '/TSFI/public/ajax/categories/actualitzarCategoria',
+            url: urlPrincipal + 'ajax/categories/actualitzarCategoria',
             type: 'post',
             data: $("#formulariEditarCategoria").serialize(),
             success: function(data) {
@@ -42,24 +42,24 @@ $(document).ready(function() {
     });
     $('#taulaDeCategories').DataTable({
         "language": {
-            "url": "/TSFI/public/js/backend/dataTableCatalan.json"
+            "url": urlPrincipal + "js/backend/dataTableCatalan.json"
         },
         "columns": [
-            { "orderable": false },
-            {  },
             { },
+            { "orderable": false },
             { "orderable": false }
         ],
         
-        "order": [[1, 'asc']]
+        "order": [[0, 'asc']]
     });
-    $('#botoEsborrarCategories').on('click', function (e) {
-        var id = $('input[name=categoryRadio]:checked', '#taulaDeCategories').val();
+    $('.botoEsborrarCategories').on('click', function (e) {
+        
+        var id = $(e.currentTarget).parent().parent('tr').attr('categoryId');
         if (id != null) {
-//        e.preventDefault();
             console.log(id);
+            $('#taulaDeCategories').attr('categoryToManage',id);
             $.ajax({
-                url: '/TSFI/public/ajax/categories/llistarPostsDeCategoria',
+                url: urlPrincipal + 'ajax/categories/llistarPostsDeCategoria',
                 type: 'post',
                 dataType: 'json',
                 data: ({id: id}),
@@ -68,7 +68,7 @@ $(document).ready(function() {
                     if (data != 0) {
                         $('#modalEliminacioCategoriaContent').empty();
                         $('#modalEliminacioCategoria').modal('toggle');
-                        var html = '<table class="table table-hover table-striped">' +
+                        var html = '<table class="table table-hover table-striped" style="overflow: scroll;max-height: 200px">' +
                                 '<thead>' +
                                 '<tr>' +
                                 '<th>ID de Post</th>' +
@@ -99,11 +99,11 @@ $(document).ready(function() {
     });
 
     $('#botoMourePostsCategoria').on('click', function (e) {
-        var id = $('input[name=categoryRadio]:checked', '#taulaDeCategories').val();
+        var id = $('#taulaDeCategories').attr('categoryToManage');
         console.log($('tr[categoryId="' + id + '"]').children('.nomCategoria').text());
         console.log(id);
         $.ajax({
-            url: '/TSFI/public/ajax/categories/llistarCategoriaPerTransferencia',
+            url: urlPrincipal + 'ajax/categories/llistarCategoriaPerTransferencia',
             type: 'post',
             dataType: 'json',
             data: ({id: id}),
@@ -130,13 +130,13 @@ $(document).ready(function() {
     });
 
     $('#botoMourePostsCategoriaAra').on('click', function (e) {
-        var id = $('input[name=categoryRadio]:checked', '#taulaDeCategories').val();
+        var id = $('#taulaDeCategories').attr('categoryToManage');
         var id_destino = $('#CategoriaDesti').val();
 //        e.preventDefault();
         console.log(id);
         console.log(id_destino);
         $.ajax({
-            url: '/TSFI/public/ajax/categories/transferirCategoria',
+            url: urlPrincipal + 'ajax/categories/transferirCategoria',
             type: 'post',
             dataType: 'json',
             data: ({id: id, id_desti: id_destino}),
@@ -155,11 +155,11 @@ $(document).ready(function() {
         });
     });
     $('.botoEliminarCategoriaIntern').on('click', function (e) {
-        var id = $('input[name=categoryRadio]:checked', '#taulaDeCategories').val();
+        var id = $('#taulaDeCategories').attr('categoryToManage');
 //        e.preventDefault();
         console.log(id);
         $.ajax({
-            url: '/TSFI/public/ajax/categories/eliminarCategoria',
+            url: urlPrincipal + 'ajax/categories/eliminarCategoria',
             type: 'post',
             dataType: 'json',
             data: ({id: id}),
@@ -177,32 +177,11 @@ $(document).ready(function() {
             }
         });
     });
-        
-//        for (var i = 0; i < elements.length; i++) {
-//            console.log(elements[i].parentNode.parentNode.getAttribute('categoryId'));
-//            $.ajax({
-//            url: '/TSFI/public/ajax/categories/eliminarCategoria',
-//            type: 'post',
-//            dataType:'json',
-//            
-//            data: elements[i].parentNode.parentNode.getAttribute('categoryId'),
-//            success: function(data) {
-//            console.log(data);
-//            showSuccessAlert('Categoria eliminada correctament!');
-//            location.reload();
-//            },
-//            error: function(xhr, desc, err) {
-//              console.log(xhr);
-//              console.log("Details: " + desc + "\nError:" + err);
-//              showErrorAlert('Error en la eliminació de la nova categoria');
-//            }});
-//        
-//        }
     
 });
 function OcultarCategoria(id){
     $.ajax({
-            url: '/TSFI/public/ajax/categories/ocultarCategoria',
+            url: urlPrincipal + 'ajax/categories/ocultarCategoria',
             type: 'post',
             dataType:'json',
             data: ({id:id}),
@@ -218,9 +197,10 @@ function OcultarCategoria(id){
       });
 }
 function enviarPeticioPerEliminar() {
-    var id = $('input[name=categoryRadio]:checked', '#taulaDeCategories').val();
+    var id = $('#taulaDeCategories').attr('categoryToManage');
+
     $('#modalConfirmacioEliminacioCategoria').modal('toggle');
     $('#modalConfirmacioEliminacioCategoriaContent').empty();
-    var html = '<p>Estas segur de que vols eliminar la categoria "'+$('tr[categoryId="' + id + '"]').children('.nomCategoria').text()+'" ?</p>';
+    var html = '<p categoryId="'+ id +'">Estas segur de que vols eliminar la categoria "'+$('tr[categoryId="' + id + '"]').children('.nomCategoria').text()+'" ?</p>';
     $('#modalConfirmacioEliminacioCategoriaContent').append(html);
 }

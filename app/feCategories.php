@@ -24,7 +24,7 @@ class feCategories extends Model
 
     public function MostarPosts($id){
     $contenido =  DB::table('entradas')
-      ->join('fotos', 'entradas.foto', '=', 'fotos.id') 
+      ->join('fotos', 'entradas.foto', '=', 'fotos.id')
       ->join('entradas_categorias','entradas_categorias.id_entrada', '=','entradas.id' )
       ->select('fotos.id as fotoId', 'fotos.url as fotosUrl' , 'entradas.*')
       ->where('entradas_categorias.id_categoria', '=', $id)
@@ -35,15 +35,24 @@ class feCategories extends Model
 
     public function MostrarPostsRelated($id){
     $contenido =  DB::table('entradas')
-      ->join('fotos', 'entradas.foto', '=', 'fotos.id') 
+      ->join('fotos', 'entradas.foto', '=', 'fotos.id')
       ->join('entradas_categorias','entradas_categorias.id_entrada', '=','entradas.id' )
       ->select('fotos.id as fotoId', 'fotos.url as fotosUrl' , 'entradas.*')
       ->where('entradas_categorias.id_categoria', '=', $id)
-      ->inRandomOrder() 
+      ->inRandomOrder()
       ->limit(4)
       ->get();
 
     return $contenido;
+}
+
+public function llegirTotes(){
+  $contenido =  DB::table('categorias')
+  ->select('categorias.*')
+  ->where('categorias.eliminado', '=', '0')
+  ->get();
+
+  return $contenido;
 }
 
 }

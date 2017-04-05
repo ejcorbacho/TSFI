@@ -1,8 +1,7 @@
-/*
 $(document).ready(function () {
 
     $.ajax({
-        url: '/TSFI/public/ajax/entitat/TresEntitats',
+        url: urlPrincipal + 'ajax/entitat/TresEntitats',
         type: 'get',
         success: function (data) {
             console.log(data);
@@ -13,7 +12,7 @@ $(document).ready(function () {
             console.log("Details: " + desc + "\nError:" + err);
         }});
     $.ajax({
-        url: '/TSFI/public/ajax/entitat/EntitatsFooter',
+        url: urlPrincipal + 'ajax/entitat/EntitatsFooter',
         type: 'get',
         success: function (data) {
             console.log(data);
@@ -37,7 +36,7 @@ function mostrarEntitats(data) {
 
     for (var index = 0; index < ContingutEntitat.length; index++) {
         var element = ContingutEntitat[index];
-        element.innerHTML = '<img src="' + data[index].url + '">';
+        element.innerHTML = '<img src="' + data[index].fotoentidad + '">';
         //  element.innerHTML=data[index].nombre;
     }
 
@@ -48,11 +47,11 @@ function mostrarEntitatsFooter(data) {
     var ContingutEntitatFooter = $('#items_menu_cms');
 
     for (var index = 0; index < data.length; index++) {
-        var HTML = '<li>' + data[index].nombre + '</li>';
+        var HTML = '<li href="'+ data[index].url+'">' + data[index].nombre + '</li>';
         $("#items_menu_cms").append(HTML);
 
     }
 
 }
 
-*/
+

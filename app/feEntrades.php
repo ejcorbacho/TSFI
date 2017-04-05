@@ -11,9 +11,9 @@ class feEntrades extends Model
 
     public function llegirEntrada($id) {
         $contenido = DB::table('entradas')
-                ->join('fotos', 'entradas.foto', '=', 'fotos.id')
-                ->join('entradas_categorias', 'entradas_categorias.id_entrada', '=', 'entradas.id')
-                ->join('categorias', 'categorias.id', '=', 'entradas_categorias.id_categoria')
+                ->leftjoin('fotos', 'entradas.foto', '=', 'fotos.id')
+                ->leftjoin('entradas_categorias', 'entradas_categorias.id_entrada', '=', 'entradas.id')
+                ->leftjoin('categorias', 'categorias.id', '=', 'entradas_categorias.id_categoria')
                 ->select('entradas.*', 'categorias.nombre', 'categorias.id as idcat', 'fotos.id as fotoId', 'fotos.url as fotosUrl')
                 ->where('entradas.id', '=', $id)
                 ->get();

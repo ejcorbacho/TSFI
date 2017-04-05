@@ -24,10 +24,10 @@ tinyMCE.init({
     language: getLang(),
     setup: function(ed) {
         ed.on('keyup', function(e) {
-            validarPublicar();
+            validarFormulario();
         });
         ed.on('Init', function(e) {
-            validarPublicar();
+            validarFormulario();
         });
         ed.on('init', function(e) {
             validarContenido();

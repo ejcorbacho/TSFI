@@ -2,7 +2,7 @@ $(document).ready(function () {
 
 
     $("#formulariNovaEntitat").ajaxForm({
-        url: '/TSFI/public/ajax/entitat/guardarEntitat',
+        url: urlPrincipal + 'ajax/entitat/guardarEntitat',
         type: 'get',
         success: function (data) {
             console.log(data);

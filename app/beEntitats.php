@@ -12,11 +12,13 @@ class beEntitats extends Model
     public $nombre;
     public $url;
     public $son_colaboradoras;
+    public $foto;
 
     public function guardar(){
       $data = array(
         'nombre'=> $this->nombre,
         'url'=> $this->url,
+        'foto'=>$this->foto,
         'son_colaboradoras'=> $this->son_colaboradoras
       );
 

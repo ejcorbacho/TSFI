@@ -1,5 +1,4 @@
 //************* DECLARAR VARIABLES             ******************//
-var url = "/TSFI/public/";
 var enviar = false;
 var maximoResumen = 500; /* CARACTERES MAXIMOS DE RESUMEN */
 var maximoTitulo = 60; /* CARACTERES MAXIMOS DE TITULO */
@@ -122,7 +121,7 @@ $( document ).ready(function() {
     });
 
     $("#formulario_entrada").ajaxForm({
-        url: url + 'ajax/entradas/guardarEntrada',
+        url: urlPrincipal + 'ajax/entradas/guardarEntrada',
         type: 'post',
         success: function(data) {
           console.log(data);
@@ -326,7 +325,7 @@ function cargaTodasEtiquetasBD(id){
   });
   $.ajax({
       type: "POST",
-      url: url + "ajax/entradas/recargarEtiquetas",
+      url: urlPrincipal + "ajax/entradas/recargarEtiquetas",
       data: {id: id},
       dataType: "html",
       beforeSend: function(){

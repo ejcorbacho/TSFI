@@ -72,11 +72,11 @@
 
                   <div class="col-md-12 table-responsive">
                       <div class="mailbox-controls">
-                          
-                
+
+
 
                 <div class="btn-group">
-                  <button type="button" class="btn btn-default btn-sm"><i class="fa fa-trash-o"></i></button>
+                  <a href="http://www.google.com"><button type="button" class="btn btn-default btn-sm"><i class="fa fa-trash-o"></i> Paperera</button></a>
                 </div>
                 <!-- /.pull-right -->
               </div>

@@ -1,7 +1,7 @@
 $(document).ready(function () {
     $('#taulaDePosts').DataTable({
         "language": {
-            "url": "/TSFI/public/js/backend/dataTableCatalan.json"
+            "url": urlPrincipal + "js/backend/dataTableCatalan.json"
         },
         "columns": [
             //{"orderable": false},

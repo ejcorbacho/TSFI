@@ -1,5 +1,4 @@
 //************* DECLARAR VARIABLES             ******************//
-var url = "/TSFI/public/";
 var enviar = false;
 var maximoTitulo = 60; /* CARACTERES MAXIMOS DE TITULO */
 var maximoSubtitulo = 120; /* CARACTERES MAXIMOS DE SUBTITULO */
@@ -22,7 +21,7 @@ $( document ).ready(function() {
     });
 
     $("#formulario_entrada").ajaxForm({
-        url: url + 'ajax/paginas/guardarPagina',
+        url: urlPrincipal + 'ajax/paginas/guardarPagina',
         type: 'post',
         success: function(data) {
           console.log(data);

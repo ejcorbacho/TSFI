@@ -18,9 +18,8 @@ $(document).ready(function () {
 
     $('.twitterIconDataTable').on('click', function (e) {
         //codigo que necesites
-
+        console.log($(e.currentTarget).parent().closest(".nomEntrada").text());
         $("#modalPublicacionTwitter").modal('toggle');
-        $(".inputTwitter").val((e.currentTarget).closest('td.nomEntrada'));
     });
 
     $('.botoEsborrarEntrades').on('click', function (e) {

@@ -413,7 +413,7 @@ function renderResourceList( data ) {
 function getDataOverAJAX(route, data) {
     return $.ajax({
         type: 'GET',
-        url: '/TSFI/public/ajax/uploads/' + route,
+        url: urlPrincipal + 'ajax/uploads/' + route,
         data: {data: data}
     });
 }

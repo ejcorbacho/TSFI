@@ -18,7 +18,9 @@ $(document).ready(function () {
 
     $('.twitterIconDataTable').on('click', function (e) {
         //codigo que necesites
+
         $("#modalPublicacionTwitter").modal('toggle');
+        $(".inputTwitter").val((e.currentTarget).closest('td.nomEntrada'));
     });
 
     $('.botoEsborrarEntrades').on('click', function (e) {

@@ -15,7 +15,7 @@ Dropzone.options.imageSelectionUpload = {
 };
 
 Dropzone.options.resourceSelectionUpload = {
-    url: '/TSFI/public/administracio/uploadFile',
+    url:  urlPrincipal + 'administracio/uploadFile',
     success: function(file, response){
         startResourceList();
     },

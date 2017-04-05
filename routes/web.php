@@ -72,6 +72,7 @@ Route::get('ajax/analytics/getAgeBracketData', array('uses' => 'HomeController@g
 
 //Uploads
 Route::post('administracio/uploadFile', array('uses' => 'beImageController@uploadFile'));
+Route::get('ajax/uploads/getResourceList', array('uses' => 'beImageController@getResourceList'));
 
 //Images
 Route::get('ajax/uploads/getImageList', array('uses' => 'beImageController@getImageList'));

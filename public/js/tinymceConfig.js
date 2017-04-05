@@ -18,7 +18,8 @@ tinyMCE.init({
     ],
     content_css: [
         '//fonts.googleapis.com/css?family=Lato:300,300i,400,400i',
-        '//www.tinymce.com/css/codepen.min.css'
+        '//www.tinymce.com/css/codepen.min.css',
+        '/TSFI/public/css/backend/resources.css'
     ],
     language: getLang(),
     setup: function(ed) {

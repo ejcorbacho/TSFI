@@ -13,3 +13,11 @@ Dropzone.options.imageSelectionUpload = {
     },
     dictDefaultMessage: 'Arrossegui aquí les fotos a pujar'
 };
+
+Dropzone.options.resourceSelectionUpload = {
+    url: '/TSFI/public/administracio/uploadFile',
+    success: function(file, response){
+        startResourceList();
+    },
+    dictDefaultMessage: 'Arrossegui aquí els recursos a pujar'
+};

@@ -35,6 +35,9 @@
 <!-- Paginacio -->
 <script src="{{ asset('js/bootpag/bootpag.js') }}"></script>
 
+<link rel="stylesheet" href="{{ asset('css/backend/resources.css') }}">
+<script src="{{ asset('/js/backend/resources.js') }}"></script>
+<!-- Recursos -->
 <div class="">
       <!-- Main content -->
 
@@ -108,9 +111,12 @@
 
             <div class="box-body pad">
 
-              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#imageInsertionModal">
-                  Inserir imatges
-              </button>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#imageInsertionModal">
+                    Inserir imatges
+                </button>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#resourceSelectionModal">
+                    Inserir recursos
+                </button>
               <textarea name="contingut" id="contingut" onkeyup="validarFormulario()" onchange="validarFormulario()">@if(!empty($data[0]->contenido)){{$data[0]->contenido}}@endif</textarea>
             </div>
           </div>
@@ -442,15 +448,66 @@
         </div>
     </div>
 <!-- END IMAGE SELECTION MODAL -->
-
-
-
-
-
         </div>
 
-        <!-- FECHAS EVENTOS -->
+<!-- START RESOURCE SELECTION MODAL -->
+    <div class="modal fade" id="resourceSelectionModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        Gestió de recursos
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <div class="tabbable">
+                        <ul class="nav nav-tabs" data-tabs="tabs">
+                            <li id="tab1" class="active mytabs">
+                                <a href="#resourceSelectionTabOne" data-toggle="tab">
+                                    Biblioteca
+                                </a>
+                            </li>
+                            <li id="tab2" class="mytabs">
+                                <a href="#resourceSelectionTabTwo" data-toggle="tab">
+                                    Pujar recursos
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="resourceSelectionTabOne">
+                                <div class="filemanager">
+                                    <div class="search">
+                                        <input type="search" placeholder="Cerca recursos..." />
+                                    </div>
 
+                                    <div class="breadcrumbs"></div>
 
+                                    <ul class="data"></ul>
+
+                                    <div class="nothingfound">
+                                        <div class="nofiles"></div>
+                                        <span>No s'han trobat recursos.</span>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="resourceSelectionTabTwo">
+                                <form class="dropzone" id="resourceSelectionUpload">
+                                    <input name="_token" type="hidden" value="{!! csrf_token() !!}" />
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Tancar</button>
+                    <button id="insertResource" type="button" class="btn btn-primary">Desar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- END RESOURCE SELECTION MODAL -->
 </div>
 @endsection

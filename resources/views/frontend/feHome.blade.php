@@ -16,7 +16,7 @@
           <script src="{{ asset('fullcalendar-3.2.0/fullcalendar.min.js')}}"></script>
           <script src="{{ asset('fullcalendar-3.2.0/locale/ca.js')}}"></script>
           <script src="{{ asset('js/frontend/calendar.js')}}"></script>
-
+          <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
           <link href="{{ asset('fullcalendar-3.2.0/fullcalendar.min.css')}}" rel='stylesheet' />
           <link href="{{ asset('fullcalendar-3.2.0/fullcalendar.print.min.css')}}" rel='stylesheet' media='print' />
           <link href="{{ asset('/css/calendar.css')}}" rel="stylesheet" >
@@ -135,24 +135,28 @@
     </div>
       </div>
   </div>
-<!-- /******************************************************************************************/-->
+<!-- /**************************************OTROS POSTS NO DESTACADOS****************************************************/-->
 
       <div id="popularPostsSection" class="col-lg-12 col-lg-offset-0 col-md-12">
           <div id="popularPostsContainer" class="col-md-9 col-sm-12">
+              @for($i = 6 ; $i < count($posts) ; $i++)
               <div class="popularPost">
                   <div class="popularPostImage col-md-4 col-sm-4 col-xs-12">
-                      <a href="#">
-                          <img src="http://placehold.it/700x400" alt="image placeholder">
+                      <a href="{{ url('/post/' . $posts[$i]->id) }}">
+                          <img src="@if(!empty($posts[$i])){{$posts[$i]->fotosUrl}}@endif" alt="@if(!empty($posts[$i])){{$posts[$i]->alt_foto }}@endif">
                       </a>
                   </div>
                   <div class="popularPostInfo col-md-8 col-sm-8 col-xs-12">
-                      <a class="popularPostLink" href="#">
+                      <a class="popularPostLink" href="{{ url('/post/' . $posts[$i]->id) }}">
                       <h5 class="popularPostCategory">
-                          Categoría
+                        @if(!empty($posts[$i]))
+                            @if(isset($posts[$i]->nombre_categoria[0])){{$posts[$i]->nombre_categoria[0]->nombre_categoria}} @endif
+                        @endif</h4>
                       </h5>
-                      <h1>Titulo del post</h1>
-                      <p class="popularPostText">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam gravida cursus dolor in dictum. Curabitur facilisis erat purus, ut tincidunt enim tempor vel. Etiam sit amet mollis risus, eget consectetur nibh. Aliquam erat volutpat. Praesent ut porta magna. Fusce vel dictum arcu. Aenean sagittis, est quis hendrerit tempor, ante lacus sodales lorem, eu faucibus erat nisi interdum massa. Duis sapien est, pulvinar quis neque sed, dictum scelerisque orci. Sed pharetra, enim ac auctor condimentum, est libero rutrum nunc, id maximus diam turpis eget enim. Suspendisse eget sapien condimentum, pellentesque tortor a, volutpat quam.</p>
+                      <h1>@if(!empty($posts[$i])) {{$posts[$i]->titulo}} @endif</h1>
                       </a>
+                      <p>@if(!empty($posts[$i])){!!html_entity_decode($posts[$i]->contenido)!!} @endif</p>
+
                       <div class="popularPostData">
                           <p class="col-md-2 col-sm-2 col-xs-2 popularPostDate">19/02/16</p>
                           <span class="popularPostDataSeparator">•</span>
@@ -161,76 +165,8 @@
                       </div>
                   </div>
               </div>
-              <hr class="popularPostSeparator">
-              <div class="popularPost">
-                  <div class="popularPostImage col-md-4 col-sm-4 col-xs-12">
-                      <a href="#">
-                          <img src="http://placehold.it/700x400" alt="image placeholder">
-                      </a>
-                  </div>
-                  <div class="popularPostInfo col-md-8 col-sm-8 col-xs-12">
-                      <a class="popularPostLink" href="#">
-                      <h5 class="popularPostCategory">
-                          Categoría
-                      </h5>
-                      <h1>Titulo del post</h1>
-                      <p class="popularPostText">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam gravida cursus dolor in dictum. Curabitur facilisis erat purus, ut tincidunt enim tempor vel. Etiam sit amet mollis risus, eget consectetur nibh. Aliquam erat volutpat. Praesent ut porta magna. Fusce vel dictum arcu. Aenean sagittis, est quis hendrerit tempor, ante lacus sodales lorem, eu faucibus erat nisi interdum massa. Duis sapien est, pulvinar quis neque sed, dictum scelerisque orci. Sed pharetra, enim ac auctor condimentum, est libero rutrum nunc, id maximus diam turpis eget enim. Suspendisse eget sapien condimentum, pellentesque tortor a, volutpat quam.</p>
-                      </a>
-                      <div class="popularPostData">
-                          <p class="col-md-2 col-sm-2 col-xs-2 popularPostDate">19/02/16</p>
-                          <span class="popularPostDataSeparator">•</span>
-                          <a href="#"><i class="fa fa-facebook-official popularPostSocialIcon" aria-hidden="true"></i></a>
-                          <a href="#"><i class="fa fa-twitter popularPostSocialIcon" aria-hidden="true"></i></a>
-                      </div>
-                  </div>
-              </div>
-              <hr class="popularPostSeparator">
-              <div class="popularPost">
-                  <div class="popularPostImage col-md-4 col-sm-4 col-xs-12">
-                      <a href="#">
-                          <img src="http://placehold.it/700x400" alt="image placeholder">
-                      </a>
-                  </div>
-                  <div class="popularPostInfo col-md-8 col-sm-8 col-xs-12">
-                      <a class="popularPostLink" href="#">
-                      <h5 class="popularPostCategory">
-                          Categoría
-                      </h5>
-                      <h1>Titulo del post</h1>
-                      <p class="popularPostText">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam gravida cursus dolor in dictum. Curabitur facilisis erat purus, ut tincidunt enim tempor vel. Etiam sit amet mollis risus, eget consectetur nibh. Aliquam erat volutpat. Praesent ut porta magna. Fusce vel dictum arcu. Aenean sagittis, est quis hendrerit tempor, ante lacus sodales lorem, eu faucibus erat nisi interdum massa. Duis sapien est, pulvinar quis neque sed, dictum scelerisque orci. Sed pharetra, enim ac auctor condimentum, est libero rutrum nunc, id maximus diam turpis eget enim. Suspendisse eget sapien condimentum, pellentesque tortor a, volutpat quam.</p>
-                      </a>
-                      <div class="popularPostData">
-                          <p class="col-md-2 col-sm-2 col-xs-2 popularPostDate">19/02/16</p>
-                          <span class="popularPostDataSeparator">•</span>
-                          <a href="#"><i class="fa fa-facebook-official popularPostSocialIcon" aria-hidden="true"></i></a>
-                          <a href="#"><i class="fa fa-twitter popularPostSocialIcon" aria-hidden="true"></i></a>
-                      </div>
-                  </div>
-              </div>
-              <hr class="popularPostSeparator">
-              <div class="popularPost">
-                  <div class="popularPostImage col-md-4 col-sm-4 col-xs-12">
-                      <a href="#">
-                          <img src="http://placehold.it/700x400" alt="image placeholder">
-                      </a>
-                  </div>
-                  <div class="popularPostInfo col-md-8 col-sm-8 col-xs-12">
-                      <a class="popularPostLink" href="#">
-                      <h5 class="popularPostCategory">
-                          Categoría
-                      </h5>
-                      <h1>Titulo del post</h1>
-                      <p class="popularPostText">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam gravida cursus dolor in dictum. Curabitur facilisis erat purus, ut tincidunt enim tempor vel. Etiam sit amet mollis risus, eget consectetur nibh. Aliquam erat volutpat. Praesent ut porta magna. Fusce vel dictum arcu. Aenean sagittis, est quis hendrerit tempor, ante lacus sodales lorem, eu faucibus erat nisi interdum massa. Duis sapien est, pulvinar quis neque sed, dictum scelerisque orci. Sed pharetra, enim ac auctor condimentum, est libero rutrum nunc, id maximus diam turpis eget enim. Suspendisse eget sapien condimentum, pellentesque tortor a, volutpat quam.</p>
-                      </a>
-                      <div class="popularPostData">
-                          <p class="col-md-2 col-sm-2 col-xs-2 popularPostDate">19/02/16</p>
-                          <span class="popularPostDataSeparator">•</span>
-                          <a href="#"><i class="fa fa-facebook-official popularPostSocialIcon" aria-hidden="true"></i></a>
-                          <a href="#"><i class="fa fa-twitter popularPostSocialIcon" aria-hidden="true"></i></a>
-                      </div>
-                  </div>
-              </div>
-              <hr class="popularPostSeparator">
+             <hr class="popularPostSeparator">
+              @endfor             
           </div>
           <div id="popularPostsSidebar" class="col-md-3 col-sm-12">
               <h2>Calendari</h2>

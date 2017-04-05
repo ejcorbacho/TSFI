@@ -301,3 +301,19 @@ footer {
   color: orange;
   transition: all 0.2s ease-in-out;
 }
+
+#items_footer_a{
+    list-style: none;
+    text-transform: uppercase;
+    margin: auto;
+    margin-bottom: 15px;
+    color:orange;
+    margin-left: 10px;
+    font-family: Montserrat;
+    font-weight: bold;
+}
+#items_footer_a:hover{
+
+    color:white;
+    text-decoration: none;
+}

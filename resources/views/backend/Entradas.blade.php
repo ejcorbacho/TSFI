@@ -254,40 +254,46 @@
         </div>
   	<!-- END ETIQUETAS-->
   		  <div class="col-md-12 col-lg-3">
-  		<div class="example-modal">
-              <div class="modal-content box">
-                <div class="modal-header">
-                  <h4 class="modal-title">Imatge</h4>
-  			  </div>
-  			  <div class="modal-body">
-  				<div class="form-group ">
-  				    <input id="mainImageInput" name="mainImage" type="hidden">
-                    <a href="javascript:void(0);" data-toggle="modal" data-target="#imageSelectionModal">
-                        <div id="mainImage">
-                          @if (!empty($data[0]->foto))<img class="image_picker_image" src="{{$foto[0]->url}}" alt="{{$foto[0]->alt}}" width="200"> @endif
-                        </div>
-                    </a>
-  					<a type="button" class="btn" data-toggle="modal" data-target="#imageSelectionModal">
-  					    + Editar imatge destacada
-                    </a>
-  				</div>
+                      <div class="example-modal">
+                          <div class="modal-content box">
+                              <div class="modal-header">
+                                  <h4 class="modal-title">Imatge</h4>
+                              </div>
+                              <div class="modal-body">
+                                  <div class="form-group ">
+                                      <input id="mainImageInput" name="mainImage" type="hidden">
+                                      <a href="javascript:void(0);" data-toggle="modal" data-target="#imageSelectionModal">
+                                          <div id="mainImage">
+                                              @if (!empty($data[0]->foto))<img class="image_picker_image" src="{{$foto[0]->url}}" alt="{{$foto[0]->alt}}" width="200"> @endif
+                                          </div>
+                                      </a>
+                                      <a type="button" class="btn" data-toggle="modal" data-target="#imageSelectionModal">
+                                          + Editar imatge destacada
+                                      </a>
+                                  </div>
 
-  			  </div>
-              </div>
-  	    </div>
+                              </div>
+                          </div>
+                      </div>
+                  
 
 
 <!-- ***************** ESDEVENIMENTS *****************-->
 <div class="modal-content box">
-	<div class="modal-header">
-		<h4 class="modal-title">
-			Esdeveniment
-			<label class="switch">
-				<input id="evento_activo" name="evento_activo" value="1"  type="checkbox" @if (!empty($data[0]->esdeveniment)) {{ "checked='checked'"  }} @endif onchange="habilitarEvento()">
-				<div class="slider round"></div>
-			</label>
-		</h4>
-	</div>
+    <div class="modal-header">
+        <h4 class="modal-title">
+            Esdeveniment</h4>
+    </div>
+    <div class="modal-content" style="padding: 10px;">
+        <center>
+            <label class="switch">
+                <input id="evento_activo" name="evento_activo" value="1"  type="checkbox" @if (!empty($data[0]->esdeveniment)) {{ "checked='checked'"  }} @endif onchange="habilitarEvento()">
+                <div class="slider round"></div>
+            </label>
+        </center>
+    </div>
+
+    
 	<div id="opciones_evento">
 
 		<div class="modal-body">
@@ -310,6 +316,7 @@
 			<hr />
 		</div>
 	</div>
+</div>
 </div>
 <!-- ***************** ENTITATS... ****************** -->
 <div class="col-md-12 col-lg-3">

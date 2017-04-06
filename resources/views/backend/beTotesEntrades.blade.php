@@ -41,7 +41,7 @@
                               <h4 class="modal-title">Publicació a Twitter</h4>
                           </div>
                           <div id="modalPublicacionTwitterContent" class="modal-body">
-                              <input type="text"class="inputTwitter"></input>
+                              <input type="text"class="inputTwitter" type="text" maxlength="140"></input>
                           </div>
                           <div class="modal-footer">
                               <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cancel·la</button>

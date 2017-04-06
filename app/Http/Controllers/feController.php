@@ -42,6 +42,9 @@ class feController extends Controller
     public function post($id) {
         $oentradas = new feEntrades;
         $data = $oentradas->llegirEntrada($id);
+        if (count($data)<=0) {
+            abort(404);
+        }
         $related = $oentradas->MostrarPostsRelated($id);
         return view('frontend.fePost',['data'=>$data[0] , 'related'=>$related]);
     }

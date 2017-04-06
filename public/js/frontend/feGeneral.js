@@ -1,3 +1,5 @@
+
+/*
 $(document).ready(function () {
 
     $.ajax({
@@ -57,3 +59,4 @@ function mostrarEntitatsFooter(data) {
 }
 
 
+*/

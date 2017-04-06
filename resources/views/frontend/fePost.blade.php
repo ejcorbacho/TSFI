@@ -8,6 +8,14 @@
     <link rel="stylesheet" href="{{asset('/css/post.css')}}">
     <meta name="viewport" content="width=device-width, user-scalable=no"> </head>
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC8C2NIInthjdKLVEX0nrwh9OjmCd1JfOk&libraries=places" async defer></script>
+    <script src="{{ asset('js/frontend/map.js')}}"></script>
+
+    <style>
+        #map {
+            height: 400px;
+        }
+    </style>
 
 <body>
     <div class="col-lg-12 col-lg-offset-0 col-sm-12">
@@ -23,6 +31,9 @@
                 <p>@if(!empty($data->contenido)) {!!html_entity_decode($data->contenido)!!}@endif</p>
             </article>
         </main>
+        <div id="map" class="col-md-6 col-md-offset-2 col-sm-9 col-sm-offset-3">
+
+        </div>
         <div class="categoryPostsSidebar col-md-3 col-sm-12">                
                <h2>Posts Relacionats</h2>
                 @foreach($related as $info)              
@@ -42,6 +53,10 @@
         </div>
     </div>
 </body>
+
+<script>
+    var data = {!! json_encode($data) !!};
+</script>
 
 </html>
 @endsection

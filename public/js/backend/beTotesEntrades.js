@@ -18,9 +18,11 @@ $(document).ready(function () {
 
     $('.twitterIconDataTable').on('click', function (e) {
         //codigo que necesites
-
+        var id = $(e.currentTarget).parent().parent('tr').attr('entradaId');
+        console.log($(e.currentTarget).parent().siblings('td.nomEntrada').text());
+        $('.inputTwitter').val($(e.currentTarget).parent().siblings('td.nomEntrada').text()+ ', ' + 'llegeix més a: ' + nombreDominioGeneral + urlPrincipal + 'post/' + id  );
         $("#modalPublicacionTwitter").modal('toggle');
-        $(".inputTwitter").val((e.currentTarget).closest('td.nomEntrada'));
+        
     });
 
     $('.botoEsborrarEntrades').on('click', function (e) {

@@ -5,6 +5,7 @@ use App\Categories;
 use App\Entradas;
 use App\beEtiquetas;
 use App\beEntitats;
+use App\beAnalytics;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Input;
@@ -18,6 +19,7 @@ class EntradasController extends Controller
   private $categorias;
   private $etiquetas;
   private $oetiquetas;
+  private $oanalytics;
   private $cImages;
 
   private $mentitats; //* MODELO ENTITATS **/
@@ -29,6 +31,7 @@ class EntradasController extends Controller
     $this->ocategorias = new Categories;
     $this->oetiquetas = new beEtiquetas;
     $this->cImages = new beImageController;
+    $this->oanalytics = new beAnalytics;
     $this->mentitats = new beEntitats;
   }
 
@@ -200,6 +203,7 @@ class EntradasController extends Controller
 
     return view('backend.Entradas',['data'=>$entradas, 'categorias'=>$categorias, 'etiquetas'=>$etiquetas, 'entitats'=>$entitats, 'foto'=>$foto]);
   }
+
   public function recargarListadoEtiquetas(){
     $id_entrada = Input::get('id');
     $etiquetas = $this->etiquetaMarcada($id_entrada);
@@ -213,6 +217,7 @@ class EntradasController extends Controller
     }
     return $html;
   }
+
   public function ocultarEntrada()
   {
     $this->mentradas->id = Input::get('id');
@@ -229,6 +234,13 @@ class EntradasController extends Controller
   public function llistarEntradas()
   {
     $entradas = $this->mentradas->leerTodas();
-    return view('backend.beTotesEntrades',['data'=> $entradas]);
+
+    foreach ($entradas as $post) {
+        $postId = $post->id;
+        $views = $this->oanalytics->getPostViews($postId);
+        $post->views = $views[0];
+    }
+
+    return view('backend.beTotesEntrades',['data' => $entradas]);
   }
 }

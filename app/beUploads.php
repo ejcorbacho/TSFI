@@ -11,7 +11,7 @@ class beUploads extends Model {
     public function uploadFile() {
         $ds = DIRECTORY_SEPARATOR;
 
-        $storeFolder = __DIR__ . $ds . '..' . $ds . 'public' . $ds . 'uploads' . $ds;
+        $storeFolder = public_path() . $ds . 'uploads' . $ds;
 
         $targetFile = '';
 
@@ -41,10 +41,9 @@ class beUploads extends Model {
                 $serverFileName = $storeFolder . $ds . $originalFileName . "." . $extension;
             }
 
-
-
             if (move_uploaded_file($tempName,$serverFileName)) {
-                $serverFileName = substr($serverFileName, strpos($serverFileName, $ds.'TSFI'));
+                $serverFileName = '/cms' . $ds . substr($serverFileName, strpos($serverFileName, 'uploads'));
+                $serverFileName = str_replace("\\", "/", $serverFileName);
                 if ($isImage) {
                     if($this->insertAtDataBase($serverFileName, $originalFileName)) {
                         return $serverFileName;

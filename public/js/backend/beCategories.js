@@ -2,7 +2,7 @@ $(document).ready(function() {
 
 
     $("#formulariNovaCategoria").ajaxForm({
-        url: '/TSFI/public/ajax/categories/guardarCategoria',
+        url: urlPrincipal + 'ajax/categories/guardarCategoria',
         type: 'get',
         success: function(data) {
         console.log(data);
@@ -23,7 +23,7 @@ $(document).ready(function() {
         e.preventDefault();
         if ($("#formulariEditarCategoria").data("changed")) {
             $.ajax({
-            url: '/TSFI/public/ajax/categories/actualitzarCategoria',
+            url: urlPrincipal + 'ajax/categories/actualitzarCategoria',
             type: 'post',
             data: $("#formulariEditarCategoria").serialize(),
             success: function(data) {
@@ -42,7 +42,7 @@ $(document).ready(function() {
     });
     $('#taulaDeCategories').DataTable({
         "language": {
-            "url": "/TSFI/public/js/backend/dataTableCatalan.json"
+            "url": urlPrincipal + "js/backend/dataTableCatalan.json"
         },
         "columns": [
             { },
@@ -59,7 +59,7 @@ $(document).ready(function() {
             console.log(id);
             $('#taulaDeCategories').attr('categoryToManage',id);
             $.ajax({
-                url: '/TSFI/public/ajax/categories/llistarPostsDeCategoria',
+                url: urlPrincipal + 'ajax/categories/llistarPostsDeCategoria',
                 type: 'post',
                 dataType: 'json',
                 data: ({id: id}),
@@ -103,7 +103,7 @@ $(document).ready(function() {
         console.log($('tr[categoryId="' + id + '"]').children('.nomCategoria').text());
         console.log(id);
         $.ajax({
-            url: '/TSFI/public/ajax/categories/llistarCategoriaPerTransferencia',
+            url: urlPrincipal + 'ajax/categories/llistarCategoriaPerTransferencia',
             type: 'post',
             dataType: 'json',
             data: ({id: id}),
@@ -136,7 +136,7 @@ $(document).ready(function() {
         console.log(id);
         console.log(id_destino);
         $.ajax({
-            url: '/TSFI/public/ajax/categories/transferirCategoria',
+            url: urlPrincipal + 'ajax/categories/transferirCategoria',
             type: 'post',
             dataType: 'json',
             data: ({id: id, id_desti: id_destino}),
@@ -159,7 +159,7 @@ $(document).ready(function() {
 //        e.preventDefault();
         console.log(id);
         $.ajax({
-            url: '/TSFI/public/ajax/categories/eliminarCategoria',
+            url: urlPrincipal + 'ajax/categories/eliminarCategoria',
             type: 'post',
             dataType: 'json',
             data: ({id: id}),
@@ -181,7 +181,7 @@ $(document).ready(function() {
 });
 function OcultarCategoria(id){
     $.ajax({
-            url: '/TSFI/public/ajax/categories/ocultarCategoria',
+            url: urlPrincipal + 'ajax/categories/ocultarCategoria',
             type: 'post',
             dataType:'json',
             data: ({id:id}),

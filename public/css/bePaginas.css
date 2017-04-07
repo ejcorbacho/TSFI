@@ -4,7 +4,6 @@
   display: inline-block;
   width: 60px !important;
   height: 34px;
-  
 
 }
 
@@ -172,5 +171,5 @@ textarea {
 .boton_ayuda {
   cursor: pointer;
   float: right;
-  color: blue;  
+  color: blue;
 }

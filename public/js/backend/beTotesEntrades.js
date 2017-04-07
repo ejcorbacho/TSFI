@@ -1,7 +1,7 @@
 $(document).ready(function () {
     $('#taulaDePosts').DataTable({
         "language": {
-            "url": "/TSFI/public/js/backend/dataTableCatalan.json"
+            "url": urlPrincipal + "js/backend/dataTableCatalan.json"
         },
         "columns": [
             //{"orderable": false},
@@ -18,7 +18,12 @@ $(document).ready(function () {
 
     $('.twitterIconDataTable').on('click', function (e) {
         //codigo que necesites
+        var id = $(e.currentTarget).parent().parent('tr').attr('entradaId');
+        console.log($(e.currentTarget).parent().siblings('td.nomEntrada').text());
+        $('.inputTwitter').val($(e.currentTarget).parent().siblings('td.nomEntrada').text()+ ', ' + 'llegeix més a: ' + nombreDominioGeneral + urlPrincipal + 'post/' + id  );
+        validarTwitter();
         $("#modalPublicacionTwitter").modal('toggle');
+        
     });
 
     $('.botoEsborrarEntrades').on('click', function (e) {
@@ -38,7 +43,7 @@ $(document).ready(function () {
         var id = $('#taulaDePosts').attr('postToManage');
         console.log(id);
         $.ajax({
-            url: '/TSFI/public/ajax/entrades/eliminarEntrada',
+            url: urlPrincipal + 'ajax/entrades/ocultarEntrada',
             type: 'post',
             dataType: 'json',
             data: ({id: id}),
@@ -62,7 +67,7 @@ $(document).ready(function () {
         getDataOverAJAX('postToTwitter', text);
         /*
          $.ajax({
-         url: '/TSFI/public/ajax/categories/llistarCategoriaPerTransferencia',
+         url: urlPrincipal + 'ajax/categories/llistarCategoriaPerTransferencia',
          type: 'post',
          dataType: 'json',
          data: ({id: id}),
@@ -75,12 +80,29 @@ $(document).ready(function () {
          }});
          */
     });
+    $('.inputTwitter').on('keyup', function (e) {
+        validarTwitter();
+    });
 });
 
 function getDataOverAJAX(route, data) {
     return $.ajax({
         type: 'GET',
-        url: '/TSFI/public/ajax/' + route,
-        data: {data: data}
-    });
+        url: urlPrincipal + 'ajax/' + route,
+        data: {data: data},
+        success: function (data) {
+        showSuccessAlert('Pubicat a twitter correctament!');
+        $("#modalPublicacionTwitter").modal('hide');
+        },
+         error: function (xhr, desc, err) {
+         console.log(xhr);
+         console.log("Details: " + desc + "\nError:" + err);
+         }});
+    
+}
+function validarTwitter() {
+    var longitud = $(".inputTwitter").val().length;
+    var restant = 140 - longitud;
+    $(".charactersLeftTwitter ").empty();
+    $(".charactersLeftTwitter ").append("queden " + restant);
 }

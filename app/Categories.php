@@ -41,6 +41,7 @@ class Categories extends Model
       ->join('entradas_categorias','entradas_categorias.id_entrada', '=','entradas.id' )
       ->select('entradas.*')
       ->where('entradas_categorias.id_categoria', '=', $this->id)
+      ->where('entradas.eliminado', '=', 0)
       ->get();
     return $contenido;
 }

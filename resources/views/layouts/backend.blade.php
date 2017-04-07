@@ -4,6 +4,8 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>TSFI ADMIN</title>
+  <!-- URL DE ACCESO CON AJAX -->
+  <script src="{{asset('js/globales.js')}}"></script>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 
@@ -191,8 +193,8 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="pages/UI/general.html"><i class="fa fa-circle-o"></i> Nova Pàgina</a></li>
-            <li><a href="pages/UI/icons.html"><i class="fa fa-circle-o"></i> Totes les Pàgines</a></li>
+            <li><a href="{{ url('administracio/pagines/nova') }}"><i class="fa fa-circle-o"></i> Nova Pàgina</a></li>
+            <li><a href="{{ url('administracio/pagines/llistat') }}"><i class="fa fa-circle-o"></i> Totes les Pàgines</a></li>
           </ul>
         </li>
 <!-- APARTADO ENTIDADES -->
@@ -277,7 +279,7 @@
 
     <!--  SCRIPTS  -->
     <!--  SCRIPT GENERAL  -->
-    
+
     <script src="{{asset('js/backend/bootstrap-select.js')}}"></script>
     <script src="{{asset('js/backend/backendUtil.js')}}"></script>
 

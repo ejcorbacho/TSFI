@@ -11,33 +11,45 @@ class beUploads extends Model {
     public function uploadFile() {
         $ds = DIRECTORY_SEPARATOR;
 
-        $storeFolder = __DIR__ . $ds . '..' . $ds . 'public' . $ds . 'uploads' . $ds;
+        $storeFolder = public_path() . $ds . 'uploads' . $ds;
 
         $targetFile = '';
 
         if (isset($_FILES) && !empty($_FILES)) {
+
             $originalFileName = $_FILES['file']['name'];
             $extension = pathinfo($originalFileName, PATHINFO_EXTENSION);
             $originalFileName = pathinfo($originalFileName, PATHINFO_FILENAME);
 
+            $extensions = array('jpg', 'jpeg', 'png', 'gif', 'bmp', 'ico');
+
+            $isImage = in_array(strtolower($extension), $extensions);
+
+            $serverFileName;
+
             $tempName = $_FILES['file']['tmp_name'];
 
-            $serverFileName = tempnam($storeFolder, '');
-            unlink($serverFileName);
+            if ($isImage) {
+                $storeFolder .= 'images' . $ds;
 
-            $serverFileName = str_replace(".tmp", "." . $extension, $serverFileName);
+                $serverFileName = tempnam($storeFolder, '');
+                unlink($serverFileName);
+
+                $serverFileName = str_replace(".tmp", "." . $extension, $serverFileName);
+            } else {
+                $storeFolder .= 'files' . $ds;
+                $serverFileName = $storeFolder . $ds . $originalFileName . "." . $extension;
+            }
 
             if (move_uploaded_file($tempName,$serverFileName)) {
-                $extensions = array('jpg', 'jpeg', 'png', 'gif', 'bmp');
-                if (in_array(strtolower($extension), $extensions)) {
-                    $serverFileName = substr($serverFileName, strpos($serverFileName, $ds.'TSFI'));
+                $serverFileName = '/cms' . $ds . substr($serverFileName, strpos($serverFileName, 'uploads'));
+                $serverFileName = str_replace("\\", "/", $serverFileName);
+                if ($isImage) {
                     if($this->insertAtDataBase($serverFileName, $originalFileName)) {
                         return $serverFileName;
                     } else {
-                        return '0';
+                        return $serverFileName;
                     }
-                } else {
-                    //Fer algo amb els arxius que no siguin fotos
                 }
             } else {
                 return '1';

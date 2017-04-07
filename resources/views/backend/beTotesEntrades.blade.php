@@ -41,7 +41,8 @@
                               <h4 class="modal-title">Publicació a Twitter</h4>
                           </div>
                           <div id="modalPublicacionTwitterContent" class="modal-body">
-                              <input type="text"class="inputTwitter"></input>
+                              <textarea type="text" class="inputTwitter" type="text" maxlength="140"></textarea>
+                              <p class="charactersLeftTwitter"></p>
                           </div>
                           <div class="modal-footer">
                               <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cancel·la</button>
@@ -72,11 +73,11 @@
 
                   <div class="col-md-12 table-responsive">
                       <div class="mailbox-controls">
-                          <!-- Check all button -->
-                <button type="button" class="btn btn-default btn-sm checkbox-toggle"><i class="fa fa-square-o"></i></button>
+
+
 
                 <div class="btn-group">
-                  <button type="button" class="btn btn-default btn-sm"><i class="fa fa-trash-o"></i></button>
+                  <a href="http://www.google.com"><button type="button" class="btn btn-default btn-sm"><i class="fa fa-trash-o"></i> Paperera</button></a>
                 </div>
                 <!-- /.pull-right -->
               </div>
@@ -87,6 +88,7 @@
                               <th>Resum</th>
                               <th>Categories</th>
                               <th>Data de publicació</th>
+                              <th>Visites</th>
                               <th>Publicar a Twitter</th>
                               <th></th>
                               <th></th>
@@ -101,6 +103,7 @@
                       <td class="campoResumenTablaPosts">{{ $dato->resumen_largo }}</td>
                       <td>{{ $dato->categoriasDePost }}</td>
                       <td>{{ Carbon\Carbon::parse($dato->data_publicacion)->format('d-m-Y') }}</td>
+                      <td>{{ $dato->views }}</td>
                       <td><i class="twitterIconDataTable fa fa-fw fa-twitter-square"></i></td>
                       <td><a href="{{ url('administracio/entrada/nova/' . $dato->id) }}">EDITAR</a></td>
                       <td><button type="button" class="btn btn-default btn-sm botoEsborrarEntrades"><i class="fa fa-trash-o"></i></button></td>

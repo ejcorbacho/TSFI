@@ -57,4 +57,23 @@ class beEntitats extends Model
 
         return $contenido;
     }
+    public function eliminarEntitat(){
+        DB::beginTransaction();
+        try {
+            DB::table('entidades')
+            ->where('entidades.id', '=', $this->id)
+            ->update(['eliminado'=> 1]);
+            
+            DB::commit();
+            return true;
+        } catch (\Illuminate\Database\QueryException $e) {
+            //return $e;
+            DB::rollback();
+            return false;
+        } catch (\Exception $e) {
+            //return $e;
+            DB::rollback();
+            return false;
+        }
+    }
 }

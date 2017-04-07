@@ -18,7 +18,7 @@
 <script src="{{asset('js/backend/jquery.dataTables.js')}}"></script>
 <script src="{{asset('js/backend/dataTables.bootstrap.min.js')}}"></script>
 <!--DATA TABLES-->
-<script src="{{asset('js/backend/beTotesPagines.js')}}"></script>
+<script src="{{asset('js/backend/beTotesEntitats.js')}}"></script>
 
 <body class="hold-transition skin-blue sidebar-mini">
 
@@ -30,7 +30,7 @@
             <div class="col-md-12">
                 <div class="col-md-12 box box-primary">
                     <div class="box-header with-border">
-                        <h3 class="box-title">Pàgines</h3>
+                        <h3 class="box-title">Entitats</h3>
                     </div>
                     <!-- /.box-header -->
 
@@ -70,7 +70,7 @@
                                 <tbody>
                                     @foreach($data as $dato)
                                     <tr class="filaDeDadesCategoria" paginaId="{{ $dato->id }}">
-                                        <td class="nomPagina">{{ $dato->titulo }}</td>
+                                        <td class="nomPagina">{{ $dato->nombre }}</td>
                                         <td><a href="{{ url('administracio/categoria/editar/' . $dato->id) }}">EDITAR</a></td>
                                         <td><button type="button" class="btn btn-default btn-sm botoEsborrarPagines"><i class="fa fa-trash-o"></i></button></a></td>
                                     </tr>

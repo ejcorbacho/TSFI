@@ -71,7 +71,7 @@
                                     @foreach($data as $dato)
                                     <tr class="filaDeDadesCategoria" paginaId="{{ $dato->id }}">
                                         <td class="nomPagina">{{ $dato->titulo }}</td>
-                                        <td><a href="{{ url('administracio/categoria/editar/' . $dato->id) }}">EDITAR</a></td>
+                                        <td><a href="{{ url('administracio/pagines/nova/' . $dato->id) }}">EDITAR</a></td>
                                         <td><button type="button" class="btn btn-default btn-sm botoEsborrarPagines"><i class="fa fa-trash-o"></i></button></a></td>
                                     </tr>
                                     @endforeach

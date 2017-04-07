@@ -208,7 +208,7 @@
                  </a>
                  <ul class="treeview-menu">
                    <li><a href="{{ url('administracio/entitats/nova') }}"><i class="fa fa-circle-o"></i> Nova entitat</a></li>
-                   <li><a href="#"><i class="fa fa-circle-o"></i> Totes les entitats</a></li>
+                   <li><a href="{{ url('administracio/entitats/totes') }}"><i class="fa fa-circle-o"></i> Totes les entitats</a></li>
                  </ul>
                </li>
  <!-- APARTADO MENUS -->

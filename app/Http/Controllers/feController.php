@@ -51,6 +51,9 @@ class feController extends Controller
         $categories = $ocategories->llegirTotes();
         $data = $oentradas->llegirEntrada($id);
             $paginas = $this->opaginashome->llegirTotes();
+        if (count($data)<=0) {
+            abort(404);
+        }
         $related = $oentradas->MostrarPostsRelated($id);
         return view('frontend.fePost',['data'=>$data[0] , 'related'=>$related, 'paginas'=>$paginas, 'categories'=>$categories]);
     }

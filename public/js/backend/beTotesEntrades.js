@@ -18,9 +18,12 @@ $(document).ready(function () {
 
     $('.twitterIconDataTable').on('click', function (e) {
         //codigo que necesites
-
+        var id = $(e.currentTarget).parent().parent('tr').attr('entradaId');
+        console.log($(e.currentTarget).parent().siblings('td.nomEntrada').text());
+        $('.inputTwitter').val($(e.currentTarget).parent().siblings('td.nomEntrada').text()+ ', ' + 'llegeix més a: ' + nombreDominioGeneral + urlPrincipal + 'post/' + id  );
+        validarTwitter();
         $("#modalPublicacionTwitter").modal('toggle');
-        $(".inputTwitter").val((e.currentTarget).closest('td.nomEntrada'));
+        
     });
 
     $('.botoEsborrarEntrades').on('click', function (e) {
@@ -77,12 +80,29 @@ $(document).ready(function () {
          }});
          */
     });
+    $('.inputTwitter').on('keyup', function (e) {
+        validarTwitter();
+    });
 });
 
 function getDataOverAJAX(route, data) {
     return $.ajax({
         type: 'GET',
         url: urlPrincipal + 'ajax/' + route,
-        data: {data: data}
-    });
+        data: {data: data},
+        success: function (data) {
+        showSuccessAlert('Pubicat a twitter correctament!');
+        $("#modalPublicacionTwitter").modal('hide');
+        },
+         error: function (xhr, desc, err) {
+         console.log(xhr);
+         console.log("Details: " + desc + "\nError:" + err);
+         }});
+    
+}
+function validarTwitter() {
+    var longitud = $(".inputTwitter").val().length;
+    var restant = 140 - longitud;
+    $(".charactersLeftTwitter ").empty();
+    $(".charactersLeftTwitter ").append("queden " + restant);
 }

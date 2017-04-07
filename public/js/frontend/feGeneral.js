@@ -1,3 +1,5 @@
+
+/*
 $(document).ready(function () {
 
     $.ajax({
@@ -47,11 +49,14 @@ function mostrarEntitatsFooter(data) {
     var ContingutEntitatFooter = $('#items_menu_cms');
 
     for (var index = 0; index < data.length; index++) {
-        var HTML = '<li href="'+ data[index].url+'">' + data[index].nombre + '</li>';
+        if(data[index].son_colaboradoras == 1){
+        var HTML = '<a id="items_footer_a" href="'+ data[index].url+'">' + data[index].nombre + '</a>';
         $("#items_menu_cms").append(HTML);
+        }
 
     }
 
 }
 
 
+*/

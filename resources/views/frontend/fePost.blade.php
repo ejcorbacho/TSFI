@@ -24,7 +24,7 @@
             </article>
         </main>
         <div class="categoryPostsSidebar col-md-3 col-sm-12">                
-               <h2>Posts Relacionats</h2>
+               @if(count($related)!=0)<h2>Posts Relacionats</h2> @endif
                 @foreach($related as $info)              
                 <a href="../post/{{$info->id}}">
                     <div class="sidebarPost">

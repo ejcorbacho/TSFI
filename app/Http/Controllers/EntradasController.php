@@ -230,6 +230,20 @@ class EntradasController extends Controller
         }
         return json_encode($mensaje);
   }
+
+  public function restaurarEntrada()
+  {
+    $this->mentradas->id = Input::get('id');
+        //COMPOBAR SI ID ES NULL
+        if ($this->mentradas->restaurarEntrada()){
+          $mensaje = "Entrada Restaurada!";
+        } else {
+          $mensaje = "Error al restaurar!";
+          abort(500,"Error al restaurar!");
+        }
+        return json_encode($mensaje);
+  }
+
   //Listar las entradas guardados en la BD
   public function llistarEntradas()
   {
@@ -243,4 +257,11 @@ class EntradasController extends Controller
 
     return view('backend.beTotesEntrades',['data' => $entradas]);
   }
+
+
+    public function llistarEntradasPaperera()
+    {
+      $entradas = $this->mentradas->leerTodasPapelera();
+      return view('backend.beTotesEntradesPaperera',['data'=> $entradas]);
+    }
 }

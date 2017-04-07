@@ -194,6 +194,19 @@ class Entradas extends Model
         return $contenido;
     }
 
+    public function leerTodasPapelera(){
+        $contenido =  DB::table('entradas')
+          ->leftjoin('fotos', 'entradas.foto', '=', 'fotos.id')
+          ->leftjoin('entradas_categorias', 'entradas_categorias.id_entrada', '=', 'entradas.id')
+          ->leftjoin('categorias', 'categorias.id', '=', 'entradas_categorias.id_categoria')
+          ->select('entradas.id','entradas.resumen_largo','entradas.titulo','entradas.data_publicacion', 'fotos.url',DB::raw('group_concat(categorias.nombre separator ", ") as categoriasDePost'))
+          ->where('entradas.eliminado', '=', 1)
+          ->groupBy('entradas.id','entradas.resumen_largo','entradas.titulo','entradas.data_publicacion','fotos.url')
+          ->get();
+
+        return $contenido;
+    }
+
     public function leerListadoEntradas(){
         $contenido =  DB::table('entradas')
           ->select('entradas.*')
@@ -268,4 +281,24 @@ class Entradas extends Model
             return false;
         }
     }
+
+    public function restaurarEntrada(){
+        DB::beginTransaction();
+        try {
+            DB::table('entradas')
+            ->where('entradas.id', '=', $this->id)
+            ->update(['eliminado'=> 0]);
+            DB::commit();
+            return true;
+        } catch (\Illuminate\Database\QueryException $e) {
+            //return $e;
+            DB::rollback();
+            return false;
+        } catch (\Exception $e) {
+            //return $e;
+            DB::rollback();
+            return false;
+        }
+    }
+
 }

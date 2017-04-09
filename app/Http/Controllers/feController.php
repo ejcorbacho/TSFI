@@ -86,7 +86,7 @@ class feController extends Controller
       $paginas = $this->opaginashome->llegirTotes();
 
 
-
+    //   return $data;
       return view('frontend.feHome',['posts'=>$data, 'paginas'=>$paginas, 'categories'=>$categories]);
 
     }

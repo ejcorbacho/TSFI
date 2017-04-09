@@ -33,7 +33,6 @@
                         <div class="categoryPostData">
                             <p class="col-md-3 col-sm-3 col-xs-3 categoryPostDate">{{ Carbon\Carbon::parse($unpost->data_publicacion)->format('d-m-Y') }}</p>
                             <span class="categoryPostDataSeparator">•</span>
-                            <a href="https://facebook.com"><i class="fa fa-facebook-official categoryPostSocialIcon" aria-hidden="true"></i></a>
                             <a href="https://twitter.com/krabitzSDS"><i class="fa fa-twitter categoryPostSocialIcon" aria-hidden="true"></i></a>
                         </div>
                     </div>

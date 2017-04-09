@@ -1,36 +1,38 @@
 $(document).ready(function () {
-    $('#taulaDePagines').DataTable({
+    $('#taulaDePosts').DataTable({
         "language": {
             "url": urlPrincipal + "js/backend/dataTableCatalan.json"
         },
         "columns": [
             //{"orderable": false},
             {},
-            {"orderable": false},
+            {},
+            {},
+            {},
             {"orderable": false}
         ],
         "order": [[0, 'asc']]
     });
-    
 
-    $('.botoEsborrarPagines').on('click', function (e) {
-        var id = $(e.currentTarget).parent().parent('tr').attr('paginaId');
+
+    $('.botoEsborrarEntrades').on('click', function (e) {
+        var id = $(e.currentTarget).parent().parent('tr').attr('entradaId');
         if (id != null) {
             console.log(id);
-            $('#taulaDePagines').attr('paginaAEditar', id);
+            $('#taulaDePosts').attr('postToManage', id);
 
-            $('#modalConfirmacioEliminarPagina').modal('toggle');
-            $('#modalConfirmacioEliminarPaginaContent').empty();
-            var html = '<p paginaId="' + id + '">Estas segur de que vols eliminar la pàgina "' + $('tr[paginaId="' + id + '"]').children('.nomPagina').text() + '" ?</p>';
-            $('#modalConfirmacioEliminarPaginaContent').append(html);
-            
+            $('#modalConfirmacioEliminarEntrada').modal('toggle');
+            $('#modalConfirmacioEliminarEntradaContent').empty();
+            var html = '<p entradaId="' + id + '">Estas segur de que vols restaurar la entrada "' + $('tr[entradaId="' + id + '"]').children('.nomEntrada').text() + '" ?</p>';
+            $('#modalConfirmacioEliminarEntradaContent').append(html);
+
         }
     });
-    $('.botoEliminarPaginaIntern').on('click', function (e) {
-        var id = $('#taulaDePagines').attr('paginaAEditar');
+    $('.botoEliminarEntradaIntern').on('click', function (e) {
+        var id = $('#taulaDePosts').attr('postToManage');
         console.log(id);
         $.ajax({
-            url: urlPrincipal + 'ajax/pagines/eliminar',
+            url: urlPrincipal + 'ajax/entrades/restaurarEntrada',
             type: 'post',
             dataType: 'json',
             data: ({id: id}),
@@ -48,6 +50,7 @@ $(document).ready(function () {
             }
         });
     });
+    
     $('.botoPublicarTwitterIntern').on('click', function (e) {
         var text = $('.inputTwitter').val();
 

@@ -60,3 +60,14 @@ function mostrarEntitatsFooter(data) {
 
 
 */
+$(document).ready(function () {
+    $('#changeCookieTodos').on('click', function (e) {
+        document.cookie = "CookiePublico=todos";
+    });
+    $('#changeCookieAlumnos').on('click', function (e) {
+        document.cookie = "CookiePublico=alumnos";
+    });
+    $('#changeCookieProfesores').on('click', function (e) {
+        document.cookie = "CookiePublico=profesores";
+    });
+});

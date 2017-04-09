@@ -44,8 +44,10 @@ class Paginas extends Model
       
         DB::beginTransaction();
         try {
-            Paginas::where('id',$this->id)->delete();
-
+            //Paginas::where('id',$this->id)->delete();
+            DB::table('paginas')
+            ->where('paginas.id', '=', $this->id)
+            ->update(['eliminado'=> 1]);
             DB::commit();
            return true;
         } catch (\Illuminate\Database\QueryException $e) {

@@ -71,10 +71,24 @@ class CreateTablesBd3 extends Migration
             $table->string('contenido', 200);
             $table->integer('foto')->nullable()->unsigned();
             $table->integer('usuario_publicador')->unsigned();
+            $table->tinyInteger('eliminado');
             $table->foreign('usuario_publicador')->references('id')->on('users');
             $table->foreign('foto')->references('id')->on('fotos');
             $table->timestamps();
         });
+
+        Schema::create('notificaciones', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('titulo', 200)->nullable();
+            $table->string('contenido', 200);
+            $table->string('mail', 200);
+            $table->string('nombre', 200);
+            $table->integer('visto');
+            $table->integer('id_relacion')->nullable();
+            $table->datetime('fecha');
+            $table->timestamps();
+        });
+
 
         Schema::create('categorias', function (Blueprint $table) {
             $table->increments('id');
@@ -125,6 +139,7 @@ class CreateTablesBd3 extends Migration
             $table->string('nombre',200);
             $table->integer('son_colaboradoras');
             $table->string('url',500);
+            $table->tinyInteger('eliminado');
             $table->integer('foto')->unsigned();
             $table->foreign('foto')->references('id')->on('fotos');
             $table->timestamps();

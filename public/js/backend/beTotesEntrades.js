@@ -11,6 +11,7 @@ $(document).ready(function () {
             {},
             {"orderable": false},
             {"orderable": false},
+            {"orderable": false},
             {"orderable": false}
         ],
         "order": [[0, 'asc']]

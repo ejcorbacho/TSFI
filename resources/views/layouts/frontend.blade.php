@@ -9,13 +9,26 @@
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Oxygen|Poppins" rel="stylesheet">
     <link href="{{ asset('css/layout.css') }}" rel="stylesheet" type="text/css">
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="{{ asset('js/menu_superior.js') }}"></script>
     <script src="{{ asset('js/jquery-3.1.1.min.js') }}"></script>
     <script src="{{ asset('js/frontend/feGeneral.js') }}"></script>
+    <link rel="stylesheet" href="{{asset('css/backend/backendUtil.css')}}">
+    <script src="{{asset('js/backend/backendUtil.js')}}"></script>
   </head>
   <body>
+
+   <div id="topSuccessMessage" class="alert alert-success alerta">
+   </div>
+   <div id="topErrorMessage" class="alert alert-danger alerta">
+   </div>
+   <div id="topWarningMessage" class="alert alert-warning alerta">
+   </div>
+
       <script>
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -32,10 +45,15 @@
           <nav class = "col-md-12 col-sm-12 col-lg-12 hidden-xs" id="menu_superior">
             <div class="row">
                 <a href="{{url('/')}}">
-                <div class="col-lg-3 col-md-3 col-sm-3 item" id="logotipo">
+                <div class="col-lg-2 col-md-2 col-sm-2 item" id="logotipo">
                     TSFI
                 </div>
                 </a>
+                <div class="col-lg-1 col-md-1 col-sm-1">
+                    <button id="changeCookieTodos">Todos</button>
+                    <button id="changeCookieAlumnos">Alumnos</button>
+                    <button id="changeCookieProfesores">Profesores</button>
+                </div>
                 <ul class = "col-lg-6 col-md-6 col-sm-6 item" id="items_principales">
                    <li class="dropdown">
                        @if(isset($categories))
@@ -45,7 +63,8 @@
                            </a>
                          @endforeach
                        @endif
-
+                       <a href = "{{url('/enviaentrada')}}" >Envia una entrada</a>
+                       <a href = "{{url('/contacta')}}" >Contacta</a>
                    </li>
                 </ul>
                 <div class="col-lg-3 col-md-3 col-sm-3 item" id="buscador">

@@ -1,0 +1,284 @@
+@extends('layouts.frontend')
+
+@section('content')
+<link href="{{ asset('css/tinymce.css') }}" rel="stylesheet" type="text/css">
+<meta name="csrf-token" content="{{ csrf_token() }}">
+
+<!-- CAPTCHA -->
+<script src='https://www.google.com/recaptcha/api.js'></script>
+
+
+<!-- Càrrega d'arxius -->
+<script type="text/javascript" src="{{ asset('js/dropzone/dropzone.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/backend/dropzoneConfig.js') }}"></script>
+<link rel="stylesheet" href="{{ asset('css/dropzone/dropzone.css') }}">
+<link rel="stylesheet" href="{{ asset('css/image-picker/image-picker.css') }}">
+
+
+<script type="text/javascript" src="{{ asset('js/frontend/feEntradas.js') }}"></script>
+<script src="{{ asset('js/tinymce/tinymce/tinymce.dev.js') }}"></script>
+<script src="{{ asset('js/tinymceConfig.js') }}"></script>
+
+<!-- Image gallery -->
+<script src="{{ asset('js/image-picker/image-picker.js') }}"></script>
+<script src="{{ asset('js/backend/imageGallery.js') }}"></script>
+<link rel="stylesheet" href="{{ asset('css/imageGallery.css') }}">
+
+<!-- Paginacio -->
+<script src="{{ asset('js/bootpag/bootpag.js') }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/3.51/jquery.form.min.js"></script> <!-- formulario AJAX -->
+<script>
+    window.Laravel = {!! json_encode([
+        'csrfToken' => csrf_token(),
+    ]) !!};
+</script>
+<!-- CSRF Token -->
+<script type="text/javascript">
+  $.ajaxSetup({
+      headers: {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      }
+  });
+</script>
+<meta name="csrf-token" content="{{ csrf_token() }}">
+<div class="">
+      <!-- Main content -->
+
+      <!-- Content Header (Page header) -->
+      <section class="content-header">
+        <h1>
+          Gestió d'entrades
+        </h1>
+
+      </section>
+
+      <!-- Main content -->
+      <section class="content">
+        <div class="row">
+  		<div class="col-md-12 col-lg-9">
+        <form method="POST" action="{{url('/entradaGuardada')}}">
+          <!-- general form elements -->
+          <input type="hidden" name="_token" value="{{ csrf_token() }}">
+            <div class="box box-primary">
+              <div class="box-header with-border">
+                <h3 class="box-title">*TITOL I *SUBTITOL</h3>
+                <div>&nbspcaracters</div>
+                <div id="notificaciones_subtitulo"></div>
+                <div>&nbspcaracters&nbsp<b>· Subtitol:&nbsp</b></div>
+                <div id="notificaciones_titulo"></div>
+                <div id="notificaciones_nom"></div>
+                <div id="notificaciones_email"></div>
+                <div><b>Titol:&nbsp</b></div>
+              </div>
+                <div class="box-body">
+
+  				<div class="form-group">
+
+                      <input type="text" name="titulo" id="titulo" class="form-control" placeholder="Introdueix el titol" onkeyup="validarFormulario()" />
+
+                  </div>
+  				<div class="form-group">
+
+                    <input type="text" name="subtitulo" id="subtitulo" class="form-control" placeholder="Introdueix el subtitol" onkeyup="validarFormulario()" />
+                    <input type="text" name="nom" id="nom" class="form-control" placeholder="Introdueix el nom" onkeyup="validarFormulario()" />
+                    <input type="text" name="email" id="email" class="form-control" placeholder="Introdueix el email" onkeyup="validarFormulario()" />
+                  </div>
+                </div>
+
+            </div>
+
+        <!-- INICIO CAJA RESUM llarg  -->
+
+          <div class="box box-primary">
+            <div class="box-header">
+              <h3 class="box-title">*RESUM</h3>
+              <div>&nbspcaracters</div>
+              <div id="notificaciones_resumen"></div>
+              <div><b>Resum:&nbsp</b></div>
+            </div>
+
+            <div class="box-body pad">
+              <textarea name="resum" id="resum" onkeyup="validarFormulario()" onchange="validarFormulario()">@if (!empty($data[0]->resumen_largo)) {{ $data[0]->resumen_largo  }} @endif</textarea>
+            </div>
+          </div>
+
+          <!-- FIN CAJA RESUM llarg -->
+          <!-- INICIO CAJA CONTINGUT  -->
+
+          <div class="box box-primary">
+            <div class="box-header">
+              <h3 class="box-title">*CONTINGUT</h3>
+              <div id="notificaciones_contenido"></div>
+            </div>
+
+            <div class="box-body pad">
+
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#imageInsertionModal">
+                  Inserir imatges
+              </button>
+              <textarea name="contingut" id="contingut" onkeyup="validarFormulario()" onchange="validarFormulario()">@if(!empty($data[0]->contenido)){{$data[0]->contenido}}@endif</textarea>
+            </div>
+          </div>
+
+        <!-- FIN CAJA CONTINGUT -->
+
+        </div>
+
+        <!-- INICI PUBLICACIO -->
+
+        <div class="col-md-12 col-lg-3">
+        	<div class="example-modal">
+        		<div class="modal-content box">
+        			<div class="modal-header">
+        				<div class="box-header">
+        					<h4 class="modal-title">PUBLICACIO</h4>
+        				</div>
+
+        				<button type="submit" value="Guardar" class="btn btn-primary pull-right" />Guardar</button>
+        			</div>
+        		</div>
+        	</div>
+        </div>
+
+
+          <!-- FI publicacio-->
+
+  		  <div class="col-md-12 col-lg-3">
+  		<div class="example-modal">
+              <div class="modal-content box">
+                <div class="modal-header">
+                  <h4 class="modal-title">Imatge</h4>
+  			  </div>
+  			  <div class="modal-body">
+  				<div class="form-group ">
+  				    <input id="mainImageInput" name="mainImage" type="hidden">
+                    <a href="javascript:void(0);" data-toggle="modal" data-target="#imageSelectionModal">
+                        <div id="mainImage">
+                          @if (!empty($data[0]->foto))<img class="image_picker_image" src="{{$foto[0]->url}}" alt="{{$foto[0]->alt}}" width="200"> @endif
+                        </div>
+                    </a>
+  					<a type="button" class="btn" data-toggle="modal" data-target="#imageSelectionModal">
+  					    + Editar imatge destacada
+                    </a>
+  				</div>
+
+  			  </div>
+              </div>
+  	    </div>
+
+
+      </form>
+
+<!-- START IMAGE INSERTION MODAL -->
+    <div class="modal fade" id="imageInsertionModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        Gestió d'imatges
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <div class="tabbable">
+                        <ul class="nav nav-tabs" data-tabs="tabs">
+                            <li id="tab1" class="active mytabs">
+                                <a href="#imageInsertionTabOne" data-toggle="tab">
+                                    Biblioteca
+                                </a>
+                            </li>
+                            <li id="tab2" class="mytabs">
+                                <a href="#imageInsertionTabTwo" data-toggle="tab">
+                                    Pujar imatges
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="imageInsertionTabOne">
+                                <div class="picker insertion">
+                                    <select id="imageInsertionSelector" class="image-picker" multiple="multiple"></select>
+                                </div>
+                                <p id="imageInsertionGallery" style="text-align:center">
+
+                                </p>
+                            </div>
+                            <div class="tab-pane" id="imageInsertionTabTwo">
+                                <form class="dropzone" id="imageInsertionUpload">
+                                    <input name="_token" type="hidden" value="{!! csrf_token() !!}" />
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Tancar</button>
+                    <button id="insertImages" type="button" class="btn btn-primary">Inserir seleccionats</button>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- END IMAGE INSERTION MODAL -->
+
+<!-- START IMAGE SELECTION MODAL -->
+    <div class="modal fade" id="imageSelectionModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        Gestió d'imatges
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <div class="tabbable">
+                        <ul class="nav nav-tabs" data-tabs="tabs">
+                            <li id="tab1" class="active mytabs">
+                                <a href="#imageSelectionTabOne" data-toggle="tab">
+                                    Biblioteca
+                                </a>
+                            </li>
+                            <li id="tab2" class="mytabs">
+                                <a href="#imageSelectionTabTwo" data-toggle="tab">
+                                    Pujar imatges
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="imageSelectionTabOne">
+                                <div class="picker selection">
+                                    <select id="imageSelectionSelector" class="image-insertion"></select>
+                                </div>
+                                <p id="imageSelectionGallery" style="text-align:center">
+
+                                </p>
+                            </div>
+                            <div class="tab-pane" id="imageSelectionTabTwo">
+                                <form class="dropzone" id="imageSelectionUpload">
+                                    <input name="_token" type="hidden" value="{!! csrf_token() !!}" />
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Tancar</button>
+                    <button id="setImage" type="button" class="btn btn-primary">Desar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- END IMAGE SELECTION MODAL -->
+
+
+
+
+
+        </div>
+
+        <!-- FECHAS EVENTOS -->
+
+
+</div>
+@endsection

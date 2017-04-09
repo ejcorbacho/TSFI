@@ -5,6 +5,7 @@ use App\Categories;
 use App\Entradas;
 use App\beEtiquetas;
 use App\beEntitats;
+use App\beNotificaciones;
 use App\beAnalytics;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
@@ -16,6 +17,7 @@ class EntradasController extends Controller
 {
   private $mentradas; //* MODEL ENTRADAS **/
   private $ocategorias;
+  private $onotificaciones;
   private $categorias;
   private $etiquetas;
   private $oetiquetas;
@@ -33,16 +35,17 @@ class EntradasController extends Controller
     $this->cImages = new beImageController;
     $this->oanalytics = new beAnalytics;
     $this->mentitats = new beEntitats;
+    $this->onotificaciones = new beNotificaciones;
   }
 
   //Mostrar formulario para crear client
   public function makeEntrada()
   {
-      $categorias = $this->categoriaMarcada('-1');
+    $categorias = $this->categoriaMarcada('-1');
     $etiquetas = $this->etiquetaMarcada('-1');
     $entitats = $this->entidadMarcada('-1');
-
-    return view('backend.Entradas',['categorias'=>$categorias, 'etiquetas'=>$etiquetas, 'entitats'=>$entitats]);
+    $notificaciones = $this->onotificaciones->leerTodas();
+    return view('backend.Entradas',['categorias'=>$categorias, 'etiquetas'=>$etiquetas, 'entitats'=>$entitats, 'notificaciones'=>$notificaciones]);
   }
 
   //Guardar datos del formulario en la BD
@@ -196,7 +199,7 @@ class EntradasController extends Controller
     $etiquetas = $this->etiquetaMarcada($id);
     $entitats = $this->entidadMarcada($id);
     if(!is_null($entradas[0]->foto)){
-      $foto = $this->cImages->getOneImge($entradas[0]->foto);
+      $foto = $this->cImages->getOneImage($entradas[0]->foto);
     } else {
       $foto = NULL;
     }
@@ -230,6 +233,20 @@ class EntradasController extends Controller
         }
         return json_encode($mensaje);
   }
+
+  public function restaurarEntrada()
+  {
+    $this->mentradas->id = Input::get('id');
+        //COMPOBAR SI ID ES NULL
+        if ($this->mentradas->restaurarEntrada()){
+          $mensaje = "Entrada Restaurada!";
+        } else {
+          $mensaje = "Error al restaurar!";
+          abort(500,"Error al restaurar!");
+        }
+        return json_encode($mensaje);
+  }
+
   //Listar las entradas guardados en la BD
   public function llistarEntradas()
   {
@@ -243,4 +260,11 @@ class EntradasController extends Controller
 
     return view('backend.beTotesEntrades',['data' => $entradas]);
   }
+
+
+    public function llistarEntradasPaperera()
+    {
+      $entradas = $this->mentradas->leerTodasPapelera();
+      return view('backend.beTotesEntradesPaperera',['data'=> $entradas]);
+    }
 }

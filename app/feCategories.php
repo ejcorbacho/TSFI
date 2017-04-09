@@ -17,6 +17,7 @@ class feCategories extends Model
           //->join('entradas', 'entradas_categorias.id_entradas', '=', 'entradas.id' )
           ->select('categorias.*')
           ->where('categorias.id', '=', $id)
+          ->where('categorias.eliminado', '=', '0')
           ->get();
 
         return $contenido;
@@ -24,7 +25,7 @@ class feCategories extends Model
 
     public function MostarPosts($id){
     $contenido =  DB::table('entradas')
-      ->join('fotos', 'entradas.foto', '=', 'fotos.id')
+      ->leftjoin('fotos', 'entradas.foto', '=', 'fotos.id')
       ->join('entradas_categorias','entradas_categorias.id_entrada', '=','entradas.id' )
       ->select('fotos.id as fotoId', 'fotos.url as fotosUrl' , 'entradas.*')
       ->where('entradas_categorias.id_categoria', '=', $id)
@@ -50,6 +51,18 @@ public function llegirTotes(){
   $contenido =  DB::table('categorias')
   ->select('categorias.*')
   ->where('categorias.eliminado', '=', '0')
+  ->get();
+
+  return $contenido;
+}
+public function llegirTotesPerMenu(){
+  $contenido =  DB::table('categorias')
+  ->join('entradas_categorias','entradas_categorias.id_categoria', '=','categorias.id' )
+  ->join('entradas', 'entradas_categorias.id_entrada', '=', 'entradas.id' )
+  ->select('categorias.nombre','categorias.id')
+  ->where('categorias.eliminado', '=', '0')
+  ->where('entradas.eliminado', '=', '0')
+  ->groupBy('categorias.nombre','categorias.id')
   ->get();
 
   return $contenido;

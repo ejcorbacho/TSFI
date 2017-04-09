@@ -26,7 +26,7 @@ class beImageController extends Controller {
     }
 
     public function getOneImage($imageId) {
-        return($this->uploads->getOneImage($imageId));
+        return($this->uploads->getOneImge($imageId));
     }
 
     public function getResourceList() {

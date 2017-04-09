@@ -28,6 +28,8 @@ class Entradas extends Model
     public $prioritat;
     public $evento;
     public $localizacion;
+    public $nom;
+    public $email;
 
     public function guardar(){
       $data = array(
@@ -181,6 +183,61 @@ class Entradas extends Model
 
     }
 
+    public function guardarfe(){
+      $data = array(
+        'titulo'=> $this->titulo,
+        'subtitulo'=> $this->subtitulo,
+        'resumen_largo'=> $this->resumen_largo,
+        'contenido'=>  $this->contenido,
+        'visible'=> '0',
+        'publico'=> '0',
+        'relevancia'=> '5',
+        'esdeveniment'=> '0',
+        'eliminado'=>'0',
+        'usuario_publicador'=> '1',
+      );
+
+
+        DB::beginTransaction();
+        try {
+
+            //$post = Entradas::insert($data);
+            $this->id = DB::table('entradas')->insertGetId($data);
+
+            $dia_actual = date("d");
+            $mes_actual = date("m");
+            $any_actual = date("Y");
+            $hora_actual = date("H");
+            $minuto_actual = date("i");
+
+            $fecha_actual = $any_actual . '-' . $mes_actual . '-' . $dia_actual . ' ' . $hora_actual . ':' . $minuto_actual . ':00';
+
+            //guardo la notificaciones
+            $data = array(
+              'contenido'=> '@novaentrada',
+              'mail'=> $this->email,
+              'nombre'=> $this->nom,
+              'visto'=>  '0',
+              'id_relacion'=> $this->id,
+              'fecha'=> $fecha_actual,
+            );
+
+            DB::table('notificaciones')->insert($data);
+
+            DB::commit();
+           return $this->id;
+        } catch (\Illuminate\Database\QueryException $e) {
+            DB::rollback();
+            return '-1';
+        } catch (\Exception $e) {
+            DB::rollback();
+            return '-1';
+        }
+
+
+    }
+
+
     public function leerTodas(){
         $contenido =  DB::table('entradas')
           ->leftjoin('fotos', 'entradas.foto', '=', 'fotos.id')
@@ -188,6 +245,19 @@ class Entradas extends Model
           ->leftjoin('categorias', 'categorias.id', '=', 'entradas_categorias.id_categoria')
           ->select('entradas.id','entradas.resumen_largo','entradas.titulo','entradas.data_publicacion', 'fotos.url',DB::raw('group_concat(categorias.nombre separator ", ") as categoriasDePost'))
           ->where('entradas.eliminado', '=', 0)
+          ->groupBy('entradas.id','entradas.resumen_largo','entradas.titulo','entradas.data_publicacion','fotos.url')
+          ->get();
+
+        return $contenido;
+    }
+
+    public function leerTodasPapelera(){
+        $contenido =  DB::table('entradas')
+          ->leftjoin('fotos', 'entradas.foto', '=', 'fotos.id')
+          ->leftjoin('entradas_categorias', 'entradas_categorias.id_entrada', '=', 'entradas.id')
+          ->leftjoin('categorias', 'categorias.id', '=', 'entradas_categorias.id_categoria')
+          ->select('entradas.id','entradas.resumen_largo','entradas.titulo','entradas.data_publicacion', 'fotos.url',DB::raw('group_concat(categorias.nombre separator ", ") as categoriasDePost'))
+          ->where('entradas.eliminado', '=', 1)
           ->groupBy('entradas.id','entradas.resumen_largo','entradas.titulo','entradas.data_publicacion','fotos.url')
           ->get();
 
@@ -268,4 +338,24 @@ class Entradas extends Model
             return false;
         }
     }
+
+    public function restaurarEntrada(){
+        DB::beginTransaction();
+        try {
+            DB::table('entradas')
+            ->where('entradas.id', '=', $this->id)
+            ->update(['eliminado'=> 0]);
+            DB::commit();
+            return true;
+        } catch (\Illuminate\Database\QueryException $e) {
+            //return $e;
+            DB::rollback();
+            return false;
+        } catch (\Exception $e) {
+            //return $e;
+            DB::rollback();
+            return false;
+        }
+    }
+
 }

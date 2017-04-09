@@ -5,6 +5,7 @@ use App\Categories;
 use App\Entradas;
 use App\beEtiquetas;
 use App\beEntitats;
+use App\beNotificaciones;
 use App\beAnalytics;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
@@ -16,6 +17,7 @@ class EntradasController extends Controller
 {
   private $mentradas; //* MODEL ENTRADAS **/
   private $ocategorias;
+  private $onotificaciones;
   private $categorias;
   private $etiquetas;
   private $oetiquetas;
@@ -33,16 +35,17 @@ class EntradasController extends Controller
     $this->cImages = new beImageController;
     $this->oanalytics = new beAnalytics;
     $this->mentitats = new beEntitats;
+    $this->onotificaciones = new beNotificaciones;
   }
 
   //Mostrar formulario para crear client
   public function makeEntrada()
   {
-      $categorias = $this->categoriaMarcada('-1');
+    $categorias = $this->categoriaMarcada('-1');
     $etiquetas = $this->etiquetaMarcada('-1');
     $entitats = $this->entidadMarcada('-1');
-
-    return view('backend.Entradas',['categorias'=>$categorias, 'etiquetas'=>$etiquetas, 'entitats'=>$entitats]);
+    $notificaciones = $this->onotificaciones->leerTodas();
+    return view('backend.Entradas',['categorias'=>$categorias, 'etiquetas'=>$etiquetas, 'entitats'=>$entitats, 'notificaciones'=>$notificaciones]);
   }
 
   //Guardar datos del formulario en la BD

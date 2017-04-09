@@ -17,8 +17,18 @@
     <script src="{{ asset('js/menu_superior.js') }}"></script>
     <script src="{{ asset('js/jquery-3.1.1.min.js') }}"></script>
     <script src="{{ asset('js/frontend/feGeneral.js') }}"></script>
+    <link rel="stylesheet" href="{{asset('css/backend/backendUtil.css')}}">
+    <script src="{{asset('js/backend/backendUtil.js')}}"></script>
   </head>
   <body>
+
+   <div id="topSuccessMessage" class="alert alert-success alerta">
+   </div>
+   <div id="topErrorMessage" class="alert alert-danger alerta">
+   </div>
+   <div id="topWarningMessage" class="alert alert-warning alerta">
+   </div>
+
       <script>
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -54,6 +64,7 @@
                          @endforeach
                        @endif
                        <a href = "{{url('/enviaentrada')}}" >Envia una entrada</a>
+                       <a href = "{{url('/contacta')}}" >Contacta</a>
                    </li>
                 </ul>
                 <div class="col-lg-3 col-md-3 col-sm-3 item" id="buscador">

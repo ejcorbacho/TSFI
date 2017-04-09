@@ -77,6 +77,19 @@ class CreateTablesBd3 extends Migration
             $table->timestamps();
         });
 
+        Schema::create('notificaciones', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('titulo', 200)->nullable();
+            $table->string('contenido', 200);
+            $table->string('mail', 200);
+            $table->string('nombre', 200);
+            $table->integer('visto');
+            $table->integer('id_relacion')->nullable();
+            $table->datetime('fecha');
+            $table->timestamps();
+        });
+
+
         Schema::create('categorias', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nombre', 200)->unique();

@@ -15,7 +15,7 @@
 <link rel="stylesheet" href="{{ asset('css/image-picker/image-picker.css') }}">
 
 
-<script type="text/javascript" src="{{ asset('js/frontend/feEntradas.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/frontend/feContacta.js') }}"></script>
 <script src="{{ asset('js/tinymce/tinymce/tinymce.dev.js') }}"></script>
 <script src="{{ asset('js/tinymceConfig.js') }}"></script>
 
@@ -56,7 +56,7 @@
       <section class="content">
         <div class="row">
   		<div class="col-md-12 col-lg-9">
-        <form method="POST" action="{{url('/entradaGuardada')}}">
+        <form method="POST" action="{{url('/contactaGuardat')}}">
           <!-- general form elements -->
           <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <div class="box box-primary">
@@ -79,7 +79,7 @@
                   </div>
   				<div class="form-group">
 
-                    <input type="text" name="subtitulo" id="subtitulo" class="form-control" placeholder="Introdueix el subtitol" onkeyup="validarFormulario()" />
+
                     <input type="text" name="nom" id="nom" class="form-control" placeholder="Introdueix el nom" onkeyup="validarFormulario()" />
                     <input type="text" name="email" id="email" class="form-control" placeholder="Introdueix el email" onkeyup="validarFormulario()" />
                   </div>
@@ -98,7 +98,7 @@
             </div>
 
             <div class="box-body pad">
-              <textarea name="resum" id="resum" onkeyup="validarFormulario()" onchange="validarFormulario()">@if (!empty($data[0]->resumen_largo)) {{ $data[0]->resumen_largo  }} @endif</textarea>
+
             </div>
           </div>
 

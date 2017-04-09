@@ -117,7 +117,8 @@
           </li>
           <!-- Control Sidebar Toggle Button -->
           <li>
-            <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+            <a href="#" data-toggle="control-sidebar"><i class="fa fa-bell" aria-hidden="true"></i>
+            </a>
           </li>
         </ul>
       </div>
@@ -269,7 +270,32 @@
 
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
-
+    <hr />
+    @if(isset($notificaciones)) @if(!empty($notificaciones))
+      @foreach($notificaciones as $notificacion)
+        @if($notificacion->contenido == '@novaentrada')
+          <a href="{{url('/administracio/entrada/nova/' . $notificacion->id_relacion)}}">
+        @else
+          <a href="#">
+        @endif
+        <li >
+          @if($notificacion->contenido == '@novaentrada')
+            Nova entrada rebuda! <br />
+            Revisa-la per publicar-la
+          @else
+            Nou missatge de contacte <br />
+            {{$notificacion->titulo}}
+          @endif
+          <br />
+          {{$notificacion->fecha}}
+          <hr />
+        </li>
+      </a>
+      @endforeach
+      <li>
+        Veure més..
+      </li>
+    @endif @endif
   </aside>
 
   <div class="control-sidebar-bg"></div>

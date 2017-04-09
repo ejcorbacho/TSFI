@@ -27,6 +27,7 @@ public function MostrarEntradasHome(){
       ->leftjoin('fotos', 'entradas.foto', '=', 'fotos.id')
       ->select('fotos.id as fotoId', 'fotos.alt as alt_foto', 'fotos.url as fotosUrl' , 'entradas.*', 'entradas.id as id_entrada')
       ->where('entradas.visible','=',1)
+      ->where('entradas.eliminado','=',0)
       ->orderBy('entradas.data_publicacion', 'DESC')
       ->get();
 

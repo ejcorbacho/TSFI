@@ -21,6 +21,7 @@ class Paginas extends Model
         'contenido'=>  $this->contenido,
         'foto'=>  $this->foto,
         'usuario_publicador'=> '1',
+        'eliminado'=>'0'
       );
 
 

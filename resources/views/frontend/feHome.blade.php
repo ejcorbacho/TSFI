@@ -26,6 +26,7 @@
       <!-- Portfolio Item Row -->
 
       <div class="row mainGridContainer">
+      @if(!empty($posts[0]))
           <!-- 1 APARTADO PRINCIPAL-->
           <div class="col-md-8 img-relative marginBotForSec">
             @if(!empty($posts[0]))<a href="{{ url('/post/' . $posts[0]->id) }}">@endif
@@ -43,7 +44,9 @@
         </div>
       </div>
     </div>
+    @endif
     <!-- 2 APARTADOS DE DERECHA-->
+@if(!empty($posts[1]))
     <div class="col-sm-8 col-md-4 marginBotForSec">
       @if(!empty($posts[1]))<a href="{{ url('/post/' . $posts[1]->id) }}">@endif
         <img class="img-responsive erc sec" src="@if(!empty($posts[1])){{$posts[1]->fotosUrl}}@endif" alt="@if(!empty($posts[1])){{$posts[1]->alt_foto }}@endif">
@@ -60,7 +63,8 @@
         </div>
       </div>
     </div>
-
+@endif
+@if(!empty($posts[2]))
     <div class="col-sm-4 col-md-4 marginBotForSec">
                          @if(!empty($posts[2]))<a href="{{ url('/post/' . $posts[2]->id) }}">@endif
         <img class="img-responsive erc sec" src="@if(!empty($posts[2])){{$posts[2]->fotosUrl}}@endif" alt="@if(!empty($posts[2])){{$posts[2]->alt_foto }}@endif">
@@ -80,6 +84,8 @@
       <!--</div>
       <div class="row mainGridContainer">-->
           <!-- 3 APARTADOS DE ABAJO-->
+@endif
+@if(!empty($posts[3]))
      <div class="col-sm-4 rango">
                 @if(!empty($posts[3]))<a href="{{ url('/post/' . $posts[3]->id) }}">@endif
             <img class="img-responsive erc terc" src="@if(!empty($posts[3])){{$posts[3]->fotosUrl}}@endif" alt="@if(!empty($posts[3])){{$posts[3]->alt_foto }}@endif">
@@ -96,7 +102,8 @@
             </div>
        </div>
     </div>
-
+@endif
+@if(!empty($posts[4]))
     <div class="col-sm-4 rango">
                 @if(!empty($posts[4]))<a href="{{ url('/post/' . $posts[4]->id) }}">@endif
             <img class="img-responsive erc terc" src="@if(!empty($posts[4])){{$posts[4]->fotosUrl}}@endif" alt="@if(!empty($posts[4])){{$posts[4]->alt_foto }}@endif">
@@ -114,7 +121,8 @@
             </div>
         </div>
     </div>
-
+@endif
+@if(!empty($posts[5]))
               <div class="col-sm-4 rango">
                 @if(!empty($posts[5]))<a href="{{ url('/post/' . $posts[5]->id) }}">@endif
             <img class="img-responsive erc terc" src="@if(!empty($posts[5])){{$posts[5]->fotosUrl}}@endif" alt="@if(!empty($posts[5])){{$posts[5]->alt_foto }}@endif">
@@ -133,6 +141,7 @@
     </div>
       </div>
   </div>
+@endif
 <!-- /**************************************OTROS POSTS NO DESTACADOS****************************************************/-->
 
       <div id="popularPostsSection" class="col-lg-12 col-lg-offset-0 col-md-12">
@@ -190,7 +199,9 @@
               <a href="#"><div class="sidebarLink" ></div></a>
 
           </div>
+          
       </div>
+
   </body>
 </html>
 @endsection

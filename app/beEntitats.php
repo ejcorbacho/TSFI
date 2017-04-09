@@ -19,7 +19,8 @@ class beEntitats extends Model
         'nombre'=> $this->nombre,
         'url'=> $this->url,
         'foto'=>$this->foto,
-        'son_colaboradoras'=> $this->son_colaboradoras
+        'son_colaboradoras'=> $this->son_colaboradoras,
+        'eliminado'=> '0'
       );
 
 

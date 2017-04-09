@@ -65,12 +65,27 @@ class beEntitatsController extends Controller
     {
         return view('backend.beNuevaEntitat');
     }
-
+    public function eliminarEntitat()
+    {
+        $this->oentitats->id = Input::get('id');
+        //COMPOBAR SI ID ES NULL
+        if ($this->oentitats->eliminarEntitat()){
+          $mensaje = "Enitat Eliminada!";
+        } else {
+          $mensaje = "Error al eliminar!";
+          abort(500,"Error al eliminar!");
+        }
+        return json_encode($mensaje);
+    }
+    
     public function llistarEnitats()
     {
       return($this->oentitats->llistarTotesEntitats());
 
     }
-    
+    public function totesEntitats()
+    {
+      return view('backend.beTotesEntitats',['data'=>$this->oentitats->llistarTotesEntitats()]);
+    }
     
 }

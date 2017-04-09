@@ -21,7 +21,7 @@ $(document).ready(function () {
 
             $('#modalConfirmacioEliminarPagina').modal('toggle');
             $('#modalConfirmacioEliminarPaginaContent').empty();
-            var html = '<p paginaId="' + id + '">Estas segur de que vols eliminar la pàgina "' + $('tr[paginaId="' + id + '"]').children('.nomPagina').text() + '" ?</p>';
+            var html = '<p paginaId="' + id + '">Estas segur de que vols eliminar la entitat "' + $('tr[paginaId="' + id + '"]').children('.nomPagina').text() + '" ?</p>';
             $('#modalConfirmacioEliminarPaginaContent').append(html);
             
         }
@@ -30,7 +30,7 @@ $(document).ready(function () {
         var id = $('#taulaDePagines').attr('paginaAEditar');
         console.log(id);
         $.ajax({
-            url: urlPrincipal + 'ajax/pagines/eliminar',
+            url: urlPrincipal + 'ajax/entitat/eliminarEntitat',
             type: 'post',
             dataType: 'json',
             data: ({id: id}),

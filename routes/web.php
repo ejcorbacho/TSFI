@@ -64,7 +64,8 @@ Route::post('ajax/pagines/eliminar', array('uses' => 'bePaginasController@elimin
 Route::post('ajax/paginas/guardarPagina', array('uses' => 'bePaginasController@guardarBD'));  //Guardar entrada
 Route::post('ajax/entrades/restaurarEntrada', array('uses' => 'EntradasController@restaurarEntrada'));  //Guardar entrada
 
-Route::post('ajax/feentradas/guardarEntrada', array('uses' => 'feEntradasController@guardarNuevaEntrada'));  //Guardar entrada FRONTEND
+Route::post('informarContenido', array('uses' => 'feEntradasController@aceptarCaptcha'));  //Guardar entrada FRONTEND
+Route::post('entradaGuardada', array('uses' => 'feEntradasController@guardarEntrada'));  //Guardar entrada FRONTEND
 
 /***** entitats *****/
 

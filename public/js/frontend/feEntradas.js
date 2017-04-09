@@ -4,6 +4,10 @@ var maximoResumen = 500; /* CARACTERES MAXIMOS DE RESUMEN */
 var maximoTitulo = 60; /* CARACTERES MAXIMOS DE TITULO */
 var maximoSubtitulo = 120; /* CARACTERES MAXIMOS DE SUBTITULO */
 var maximoContenido = 0; /* CARACTERES MAXIMOS DE CONTENIDO */
+var maximoNom = 50;
+var maximoEmail = 50;
+var hayEmail;
+var hayNom;
 var haySubtitulo;
 var hayContenido;
 var hayTitulo;
@@ -41,6 +45,15 @@ $( document ).ready(function() {
 
 //************* GUARDADO DE CONTENIDO         ******************//
 
+function enviarFormularioCaptcha(){
+  var captcha =  $('#g-recaptcha-response').val();
+  if(captcha == ''){
+    showErrorAlert('Verifica que no ets un robot!');
+    return false;
+  } else {
+    return true;
+  }
+}
 
 
 function validarResumen() {
@@ -59,6 +72,47 @@ function validarResumen() {
     return false;
   }
 }
+
+function validarNom() {
+  var longitud = $("#nom").val().length;
+  $("#notificaciones_nom").empty();
+  var restant = maximoNom - longitud;
+  $("#notificaciones_nom ").append("queden " + restant);
+  if(longitud > 0){
+    hayNom = true;
+  } else {
+    hayNom = false;
+  }
+  if (restant >= 0){
+    return true;
+  } else {
+    return false;
+  }
+}
+
+function validarEmail() {
+  var longitud = $("#email").val().length;
+  $("#notificaciones_email").empty();
+  var restant = maximoEmail - longitud;
+
+  //comprovar si realmente es un email
+  emailRegex = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
+
+  if(!emailRegex.test($("#email").val())){
+    $("#notificaciones_email").append("Introdueix un email vàlid!");
+    hayEmail = false;
+  } else {
+    $("#notificaciones_email").append("queden " + restant);
+    hayEmail = true;
+  }
+
+  if (restant >= 0){
+    return true;
+  } else {
+    return false;
+  }
+}
+
 
 function validarTitulo() {
   var longitud = $("#titulo").val().length;
@@ -110,11 +164,13 @@ function validarFormulario(){
     var caracteresTitulo = validarTitulo();         /* VALIDA SI LA CANTIDAD DE CARACTERES QUE HAY EN EL TITULO */
     var caracteresSubtitulo = validarSubtitulo();   /* VALIDA SI LA CANTIDAD DE CARACTERES QUE HAY EN EL SUBTITULO */
     var caracteresResumen = validarResumen();       /* VALIDA SI LA CANTIDAD DE CARACTERES QUE HAY EN EL RESUMEN */
+    var caracteresNom = validarNom();               /* VALIDA SI LA CANTIDAD DE CARACTERES QUE HAY EN EL NOMBRE */
+    var caracteresEmail = validarEmail();           /* VALIDA SI LA CANTIDAD DE CARACTERES QUE HAY EN EL EMAIL */
     validarContenido();                             /* VALIDA SI HAY CARACTERES EN LA CAJA DE CONTENIDO */
 
 
     var maximosRespetados = false;                  /* VALIDA SI LOS MAXIIMOS DE CARACTERES HAN SIDO RESPETADOS */
-    if(caracteresTitulo && caracteresSubtitulo && caracteresResumen) { maximosRespetados = true; }
+    if(caracteresTitulo && caracteresSubtitulo && caracteresResumen && caracteresNom && caracteresEmail) { maximosRespetados = true; }
 
     var camposObligatorios =  validarCamposObligatorios(); /* VALIDA SI TODOS LOS CAMPOS OBLIGATORIOS ESTAN CUMPLIMENTADOS */
 
@@ -128,7 +184,7 @@ function validarFormulario(){
 }
 
 function validarCamposObligatorios(){
-  if(hayTitulo && haySubtitulo && hayResumen && hayContenido){
+  if(hayTitulo && haySubtitulo && hayResumen && hayContenido && hayNom && hayEmail){
     return true;
   } else {
     return false;

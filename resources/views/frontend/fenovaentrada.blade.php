@@ -27,6 +27,20 @@
 <!-- Paginacio -->
 <script src="{{ asset('js/bootpag/bootpag.js') }}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/3.51/jquery.form.min.js"></script> <!-- formulario AJAX -->
+<script>
+    window.Laravel = {!! json_encode([
+        'csrfToken' => csrf_token(),
+    ]) !!};
+</script>
+<!-- CSRF Token -->
+<script type="text/javascript">
+  $.ajaxSetup({
+      headers: {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      }
+  });
+</script>
+<meta name="csrf-token" content="{{ csrf_token() }}">
 <div class="">
       <!-- Main content -->
 
@@ -42,9 +56,9 @@
       <section class="content">
         <div class="row">
   		<div class="col-md-12 col-lg-9">
-        <form id="formulario_entrada">
+        <form method="POST" action="{{url('/entradaGuardada')}}">
           <!-- general form elements -->
-            <input name="idBD" value="@if (!empty($data[0]->titulo)) {{ $data[0]->id }} @else {{ '0' }} @endif" id="idBD" type="hidden"/>
+          <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <div class="box box-primary">
               <div class="box-header with-border">
                 <h3 class="box-title">*TITOL I *SUBTITOL</h3>
@@ -52,18 +66,22 @@
                 <div id="notificaciones_subtitulo"></div>
                 <div>&nbspcaracters&nbsp<b>· Subtitol:&nbsp</b></div>
                 <div id="notificaciones_titulo"></div>
+                <div id="notificaciones_nom"></div>
+                <div id="notificaciones_email"></div>
                 <div><b>Titol:&nbsp</b></div>
               </div>
                 <div class="box-body">
 
   				<div class="form-group">
 
-                      <input type="text" name="titulo" value="@if (!empty($data[0]->titulo)) {{ $data[0]->titulo }} @endif" id="titulo" class="form-control" placeholder="Introdueix el titol" onkeyup="validarFormulario()" />
+                      <input type="text" name="titulo" id="titulo" class="form-control" placeholder="Introdueix el titol" onkeyup="validarFormulario()" />
 
                   </div>
   				<div class="form-group">
 
-                    <input type="text" name="subtitulo" value="@if (!empty($data[0]->subtitulo)) {{ $data[0]->subtitulo  }} @endif" id="subtitulo" class="form-control" placeholder="Introdueix el subtitol" onkeyup="validarFormulario()" />
+                    <input type="text" name="subtitulo" id="subtitulo" class="form-control" placeholder="Introdueix el subtitol" onkeyup="validarFormulario()" />
+                    <input type="text" name="nom" id="nom" class="form-control" placeholder="Introdueix el nom" onkeyup="validarFormulario()" />
+                    <input type="text" name="email" id="email" class="form-control" placeholder="Introdueix el email" onkeyup="validarFormulario()" />
                   </div>
                 </div>
 
@@ -116,8 +134,6 @@
         					<h4 class="modal-title">PUBLICACIO</h4>
         				</div>
 
-                <div class="g-recaptcha" data-sitekey="6Leo3hsUAAAAANAbZtLYWR-17zXp1oEurbVzOr5z"></div>
-        				<button type="button" class="btn btn-default pull-left" data-dismiss="modal">Vista previa</button>
         				<button type="submit" value="Guardar" class="btn btn-primary pull-right" />Guardar</button>
         			</div>
         		</div>

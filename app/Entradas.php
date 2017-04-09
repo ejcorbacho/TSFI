@@ -28,6 +28,8 @@ class Entradas extends Model
     public $prioritat;
     public $evento;
     public $localizacion;
+    public $nom;
+    public $email;
 
     public function guardar(){
       $data = array(
@@ -180,6 +182,61 @@ class Entradas extends Model
         }
 
     }
+
+    public function guardarfe(){
+      $data = array(
+        'titulo'=> $this->titulo,
+        'subtitulo'=> $this->subtitulo,
+        'resumen_largo'=> $this->resumen_largo,
+        'contenido'=>  $this->contenido,
+        'visible'=> '0',
+        'publico'=> '0',
+        'relevancia'=> '5',
+        'esdeveniment'=> '0',
+        'eliminado'=>'0',
+        'usuario_publicador'=> '1',
+      );
+
+
+        DB::beginTransaction();
+        try {
+
+            //$post = Entradas::insert($data);
+            $this->id = DB::table('entradas')->insertGetId($data);
+
+            $dia_actual = date("d");
+            $mes_actual = date("m");
+            $any_actual = date("Y");
+            $hora_actual = date("H");
+            $minuto_actual = date("i");
+
+            $fecha_actual = $any_actual . '-' . $mes_actual . '-' . $dia_actual . ' ' . $hora_actual . ':' . $minuto_actual . ':00';
+
+            //guardo la notificaciones
+            $data = array(
+              'contenido'=> '@novaentrada',
+              'mail'=> $this->email,
+              'nombre'=> $this->nom,
+              'visto'=>  '0',
+              'id_relacion'=> $this->id,
+              'fecha'=> $fecha_actual,
+            );
+
+            DB::table('notificaciones')->insert($data);
+
+            DB::commit();
+           return $this->id;
+        } catch (\Illuminate\Database\QueryException $e) {
+            DB::rollback();
+            return '-1';
+        } catch (\Exception $e) {
+            DB::rollback();
+            return '-1';
+        }
+
+
+    }
+
 
     public function leerTodas(){
         $contenido =  DB::table('entradas')

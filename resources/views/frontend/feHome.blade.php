@@ -16,6 +16,7 @@
           <script src="{{ asset('fullcalendar-3.2.0/fullcalendar.min.js')}}"></script>
           <script src="{{ asset('fullcalendar-3.2.0/locale/ca.js')}}"></script>
           <script src="{{ asset('js/frontend/calendar.js')}}"></script>
+          <script src="{{ asset('js/frontend/twitter.js')}}"></script>
           <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
           <link href="{{ asset('fullcalendar-3.2.0/fullcalendar.min.css')}}" rel='stylesheet' />
           <link href="{{ asset('fullcalendar-3.2.0/fullcalendar.print.min.css')}}" rel='stylesheet' media='print' />
@@ -40,7 +41,14 @@
             </a>
         </div>
         <div class="icons">
-            <i style="font-size:20px" href="https://twitter.com/krabitzSDS" class="fa">&#xf099;</i>@if(isset($posts[0]->data_publicacion)) <span>•</span> {{Carbon\Carbon::parse($posts[0]->data_publicacion)->format('d-m-Y')}}@endif
+            @if(isset($posts[0]->titulo))
+                <a class="twitter-share-button" href="https://twitter.com/intent/tweet?text={{$posts[0]->titulo}} &url=http://localhost/cms/post/{{$posts[0]->id}}&hashtags=TSFI">
+                    Tweet
+                </a>
+            @endif
+            @if(isset($posts[0]->data_publicacion))
+                <span>•</span> {{Carbon\Carbon::parse($posts[0]->data_publicacion)->format('d-m-Y')}}
+            @endif
         </div>
       </div>
     </div>
@@ -59,7 +67,14 @@
         </a>
         </div>
         <div class="icons">
-            <i style="font-size:20px" href="https://twitter.com/krabitzSDS" class="fa">&#xf099;</i>@if(isset($posts[1]->data_publicacion)) <span>•</span> {{Carbon\Carbon::parse($posts[1]->data_publicacion)->format('d-m-Y')}}@endif
+            @if(isset($posts[1]->titulo))
+                <a class="twitter-share-button" href="https://twitter.com/intent/tweet?text={{$posts[1]->titulo}} &url=http://localhost/cms/post/{{$posts[1]->id}}&hashtags=TSFI">
+                    Tweet
+                </a>
+            @endif
+            @if(isset($posts[1]->data_publicacion))
+                <span>•</span> {{Carbon\Carbon::parse($posts[1]->data_publicacion)->format('d-m-Y')}}
+            @endif
         </div>
       </div>
     </div>
@@ -77,7 +92,14 @@
         </a>
         </div>
         <div class="icons">
-            <i style="font-size:20px" href="https://twitter.com/krabitzSDS" class="fa">&#xf099;</i> @if(isset($posts[2]->data_publicacion)) <span>•</span> {{Carbon\Carbon::parse($posts[2]->data_publicacion)->format('d-m-Y')}}@endif
+            @if(isset($posts[2]->titulo))
+                <a class="twitter-share-button" href="https://twitter.com/intent/tweet?text={{$posts[2]->titulo}} &url=http://localhost/cms/post/{{$posts[2]->id}}&hashtags=TSFI">
+                    Tweet
+                </a>
+            @endif
+            @if(isset($posts[2]->data_publicacion))
+                <span>•</span> {{Carbon\Carbon::parse($posts[2]->data_publicacion)->format('d-m-Y')}}
+            @endif
         </div>
       </div>
     </div>
@@ -98,7 +120,14 @@
                 </a>
             </div>
             <div class="icons">
-                <i style="font-size:20px" href="https://twitter.com/krabitzSDS" class="fa">&#xf099;</i> @if(isset($posts[3]->data_publicacion)) <span>•</span> {{Carbon\Carbon::parse($posts[3]->data_publicacion)->format('d-m-Y')}}@endif
+                @if(isset($posts[3]->titulo))
+                    <a class="twitter-share-button" href="https://twitter.com/intent/tweet?text={{$posts[3]->titulo}} &url=http://localhost/cms/post/{{$posts[3]->id}}&hashtags=TSFI">
+                        Tweet
+                    </a>
+                @endif
+                @if(isset($posts[3]->data_publicacion))
+                    <span>•</span> {{Carbon\Carbon::parse($posts[3]->data_publicacion)->format('d-m-Y')}}
+                @endif
             </div>
        </div>
     </div>
@@ -117,7 +146,14 @@
             </div>
         
             <div class="icons">
-                <i style="font-size:20px" href="https://twitter.com/krabitzSDS" class="fa">&#xf099;</i> @if(isset($posts[4]->data_publicacion)) <span>•</span> {{Carbon\Carbon::parse($posts[4]->data_publicacion)->format('d-m-Y')}}@endif
+                @if(isset($posts[4]->titulo))
+                    <a class="twitter-share-button" href="https://twitter.com/intent/tweet?text={{$posts[4]->titulo}} &url=http://localhost/cms/post/{{$posts[4]->id}}&hashtags=TSFI">
+                        Tweet
+                    </a>
+                @endif
+                @if(isset($posts[4]->data_publicacion))
+                    <span>•</span> {{Carbon\Carbon::parse($posts[4]->data_publicacion)->format('d-m-Y')}}
+                @endif
             </div>
         </div>
     </div>
@@ -135,7 +171,14 @@
             </a>
             </div>
             <div class="icons">
-                <i style="font-size:20px" href="https://twitter.com/krabitzSDS" class="fa">&#xf099;</i>@if(isset($posts[5]->data_publicacion)) <span>•</span> {{Carbon\Carbon::parse($posts[5]->data_publicacion)->format('d-m-Y')}}@endif
+                @if(isset($posts[5]->titulo))
+                    <a class="twitter-share-button" href="https://twitter.com/intent/tweet?text={{$posts[5]->titulo}} &url=http://localhost/cms/post/{{$posts[5]->id}}&hashtags=TSFI">
+                        Tweet
+                    </a>
+                @endif
+                @if(isset($posts[5]->data_publicacion))
+                    <span>•</span> {{Carbon\Carbon::parse($posts[5]->data_publicacion)->format('d-m-Y')}}
+                @endif
             </div>
       </div>
     </div>
@@ -168,7 +211,9 @@
                           <p class="col-md-2 col-sm-2 col-xs-2 popularPostDate">19/02/16</p>
                           <span class="popularPostDataSeparator">•</span>
                           <!--<a href="#"><i class="fa fa-facebook-official popularPostSocialIcon" aria-hidden="true"></i></a>-->
-                          <a href="#"><i class="fa fa-twitter popularPostSocialIcon" aria-hidden="true"></i></a>
+                          <a class="twitter-share-button" href="https://twitter.com/intent/tweet?text={{$posts[5]->titulo}} &url=http://localhost/cms/post/{{$posts[5]->id}}&hashtags=TSFI">
+                              Tweet
+                          </a>
                       </div>
                   </div>
               </div>
@@ -176,20 +221,17 @@
               @endfor             
           </div>
           <div id="popularPostsSidebar" class="col-md-3 col-sm-12">
-              <h2>Calendari</h2>
+
 <!-- INICI CALENDARI -->
-              <!--ANTIC
-              <iframe src="https://calendar.google.com/calendar/embed?src=kravitz.sds%40gmail.com&ctz=Europe/Madrid" style="border: 0" width="100%" height="250px" frameborder="0" scrolling="no"></iframe>
-              -->
+  <h2>Calendari</h2>
+  <div id='calendar'></div>
 
-              <div id='calendar'></div>
-
-              <script async defer src="https://apis.google.com/js/api.js"
-                      onload="this.onload=function(){};handleClientLoad()"
-                      onreadystatechange="if (this.readyState === 'complete') this.onload()">
-              </script>
-
+  <script async defer src="https://apis.google.com/js/api.js"
+          onload="this.onload=function(){};handleClientLoad()"
+          onreadystatechange="if (this.readyState === 'complete') this.onload()">
+  </script>
 <!-- FI CALENDARI -->
+
 <!-- Entitats colaboradres -->
               <h2>Twitter</h2>
               <iframe id="twitter-widget-0" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true" class="twitter-timeline twitter-timeline-rendered" style="position: static; visibility: visible; display: inline-block; width: 400px; height: 400px; padding: 0px; border: none; max-width: 100%; min-width: 180px; margin-top: 0px; margin-bottom: 0px; min-height: 300px;" data-widget-id="585734069557792768" title="Twitter Timeline"></iframe>

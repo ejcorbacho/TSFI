@@ -9,6 +9,9 @@
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Oxygen|Poppins" rel="stylesheet">
     <link href="{{ asset('css/layout.css') }}" rel="stylesheet" type="text/css">
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="{{ asset('js/menu_superior.js') }}"></script>
@@ -32,10 +35,15 @@
           <nav class = "col-md-12 col-sm-12 col-lg-12 hidden-xs" id="menu_superior">
             <div class="row">
                 <a href="{{url('/')}}">
-                <div class="col-lg-3 col-md-3 col-sm-3 item" id="logotipo">
+                <div class="col-lg-2 col-md-2 col-sm-2 item" id="logotipo">
                     TSFI
                 </div>
                 </a>
+                <div class="col-lg-1 col-md-1 col-sm-1">
+                    <button id="changeCookieTodos">Todos</button>
+                    <button id="changeCookieAlumnos">Alumnos</button>
+                    <button id="changeCookieProfesores">Profesores</button>
+                </div>
                 <ul class = "col-lg-6 col-md-6 col-sm-6 item" id="items_principales">
                    <li class="dropdown">
                        @if(isset($categories))

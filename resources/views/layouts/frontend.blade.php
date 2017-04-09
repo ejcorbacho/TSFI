@@ -56,6 +56,7 @@
                          @endforeach
                        @endif
                        <a href = "{{url('/enviaentrada')}}" >Envia una entrada</a>
+                       <a href = "{{url('/contacta')}}" >Contacta</a>
                    </li>
                 </ul>
                 <div class="col-lg-3 col-md-3 col-sm-3 item" id="buscador">

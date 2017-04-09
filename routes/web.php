@@ -48,6 +48,7 @@ Route::get('administracio/pagines/llistat', 'bePaginasController@mostrarTotes');
 Route::get('pagines/{id}', 'feController@pagines');
 
 Route::get('enviaentrada', 'feEntradasController@mostrarpagina');
+Route::get('contacta', 'feContactaController@mostrarpagina');
 
 
 Route::get('administracio/entrada/nova/', array('uses' => 'EntradasController@makeEntrada')); //Mostrar formulario
@@ -66,6 +67,8 @@ Route::post('ajax/entrades/restaurarEntrada', array('uses' => 'EntradasControlle
 
 Route::post('informarContenido', array('uses' => 'feEntradasController@aceptarCaptcha'));  //Guardar entrada FRONTEND
 Route::post('entradaGuardada', array('uses' => 'feEntradasController@guardarEntrada'));  //Guardar entrada FRONTEND
+
+Route::post('contactaGuardat', array('uses' => 'feContactaController@guardarContacta'));  //Guardar entrada FRONTEND
 
 /***** entitats *****/
 

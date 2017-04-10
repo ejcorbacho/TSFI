@@ -232,10 +232,15 @@
   </script>
 <!-- FI CALENDARI -->
 
-<!-- Entitats colaboradres -->
-              <h2>Twitter</h2>
-              <iframe id="twitter-widget-0" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true" class="twitter-timeline twitter-timeline-rendered" style="position: static; visibility: visible; display: inline-block; width: 400px; height: 400px; padding: 0px; border: none; max-width: 100%; min-width: 180px; margin-top: 0px; margin-bottom: 0px; min-height: 300px;" data-widget-id="585734069557792768" title="Twitter Timeline"></iframe>
-              <h2>Entitats Colaboradores</h2>
+<!-- INICI TWITTER -->
+<h2>Twitter</h2>
+<div id="twitter">
+    <a class="twitter-timeline" href="https://twitter.com/fundacioBCNfp" data-height="100%">Tweets by fundacioBCNfp</a>
+    <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+</div>
+<!-- FI TWTTTER -->
+
+<!-- Entitats colaboradres --><h2>Entitats Colaboradores</h2>
               <a href="#"><div class="sidebarLink" ></div></a>
               <a href="#"><div class="sidebarLink" ></div></a>
               <a href="#"><div class="sidebarLink" ></div></a>

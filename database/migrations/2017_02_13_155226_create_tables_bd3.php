@@ -89,7 +89,6 @@ class CreateTablesBd3 extends Migration
             $table->timestamps();
         });
 
-
         Schema::create('categorias', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nombre', 200)->unique();
@@ -125,6 +124,7 @@ class CreateTablesBd3 extends Migration
             $table->string('nombre',200);
             $table->timestamps();
         });
+		
         Schema::create('entradas_etiquetas', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('id_entrada')->unsigned();
@@ -145,13 +145,18 @@ class CreateTablesBd3 extends Migration
             $table->timestamps();
         });
 
-
         Schema::create('entradas_entidades', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('id_entrada')->unsigned();
             $table->integer('id_entidad')->unsigned();
             $table->foreign('id_entrada')->references('id')->on('entradas');
             $table->foreign('id_entidad')->references('id')->on('entidades');
+            $table->timestamps();
+        });
+		
+		Schema::create('rellevancia', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('valor');
             $table->timestamps();
         });
 

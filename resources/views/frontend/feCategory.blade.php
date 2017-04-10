@@ -54,10 +54,9 @@
                     </div>
                 </a>
                  @endforeach
-                <h2>Entitats Colaboradores</h3>
-                <a href="#"><div class="sidebarLink" ></div></a>
-                <a href="#"><div class="sidebarLink" ></div></a>
-                <a href="#"><div class="sidebarLink" ></div></a>
+                <div id="entitatsColaboradores">
+                
+                </div>
             </div>
         </div>
     </body>

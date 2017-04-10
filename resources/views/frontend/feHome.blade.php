@@ -33,9 +33,11 @@
               <img class="img-responsive erc max" src="@if(!empty($posts[0])){{$posts[0]->fotosUrl}}@endif" alt="@if(!empty($posts[0])){{$posts[0]->alt_foto }}@endif">
       <div class="maximolineas">
         <div>
+            
                 <h4>@if(!empty($posts[0]))
                     @if(isset($posts[0]->nombre_categoria[0])){{$posts[0]->nombre_categoria[0]->nombre_categoria}} @endif
                 @endif</h4>
+                
                 <h3>@if(!empty($posts[0])) {{$posts[0]->titulo}} @endif</h3>
             </a>
         </div>
@@ -115,7 +117,6 @@
                 <h3>@if(!empty($posts[4])) {{$posts[4]->titulo}} @endif</h3>
             </a>
             </div>
-        
             <div class="icons">
                 <i style="font-size:20px" href="https://twitter.com/krabitzSDS" class="fa">&#xf099;</i> @if(isset($posts[4]->data_publicacion)) <span>•</span> {{Carbon\Carbon::parse($posts[4]->data_publicacion)->format('d-m-Y')}}@endif
             </div>
@@ -158,7 +159,7 @@
                       <h5 class="popularPostCategory">
                         @if(!empty($posts[$i]))
                             @if(isset($posts[$i]->nombre_categoria[0])){{$posts[$i]->nombre_categoria[0]->nombre_categoria}} @endif
-                        @endif</h4>
+                        @endif
                       </h5>
                       <h1>@if(!empty($posts[$i])) {{$posts[$i]->titulo}} @endif</h1>
                       </a>
@@ -193,11 +194,9 @@
 <!-- Entitats colaboradres -->
               <h2>Twitter</h2>
               <iframe id="twitter-widget-0" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true" class="twitter-timeline twitter-timeline-rendered" style="position: static; visibility: visible; display: inline-block; width: 400px; height: 400px; padding: 0px; border: none; max-width: 100%; min-width: 180px; margin-top: 0px; margin-bottom: 0px; min-height: 300px;" data-widget-id="585734069557792768" title="Twitter Timeline"></iframe>
-              <h2>Entitats Colaboradores</h2>
-              <a href="#"><div class="sidebarLink" ></div></a>
-              <a href="#"><div class="sidebarLink" ></div></a>
-              <a href="#"><div class="sidebarLink" ></div></a>
-
+              <div id="entitatsColaboradores">
+                
+              </div>
           </div>
           
       </div>

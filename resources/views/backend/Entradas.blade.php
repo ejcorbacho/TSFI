@@ -80,12 +80,12 @@
 
   				<div class="form-group">
 
-                      <input type="text" name="titulo" value="@if (!empty($data[0]->titulo)) {{ $data[0]->titulo }} @endif" id="titulo" class="form-control" placeholder="Introdueix el titol" onkeyup="validarFormulario()" />
+                      <input type="text" name="titulo" value="@if (!empty($data[0]->titulo)) {{$data[0]->titulo}} @endif" id="titulo" class="form-control" placeholder="Introdueix el titol" onkeyup="validarFormulario()" />
 
                   </div>
   				<div class="form-group">
 
-                    <input type="text" name="subtitulo" value="@if (!empty($data[0]->subtitulo)) {{ $data[0]->subtitulo  }} @endif" id="subtitulo" class="form-control" placeholder="Introdueix el subtitol" onkeyup="validarFormulario()" />
+                    <input type="text" name="subtitulo" value="@if (!empty($data[0]->subtitulo)) {{$data[0]->subtitulo}} @endif" id="subtitulo" class="form-control" placeholder="Introdueix el subtitol" onkeyup="validarFormulario()" />
                   </div>
                 </div>
 
@@ -231,7 +231,7 @@
           </div>
   	<!-- END Categories -->
       <input type="hidden" value="" id="etiquetasNuevas" class="etiquetasNuevas" name="etiquetasNuevas" />
-  	  <div class="col-md-12 col-lg-3">
+  	  <div style="z-index:1;" class="col-md-12 col-lg-3">
   		<div class="example-modal">
               <div class="modal-content box">
                 <div class="modal-header">
@@ -240,7 +240,7 @@
   			  <div  class="modal-body">
             <div id="dropdown_etiquetas"  class="dropdown-container">
 
-                <select name="etiquetas_seleccionadas[]" id="selector_etiquetas" data-placeholder="Introdueix tags aqui" multiple class="chosen-select" tabindex="8">
+                <select name="etiquetas_seleccionadas[]" id="selector_etiquetas" data-placeholder="Introdueix tags aqui" multiple class="chosen-select" tabindex="8" >
                   @foreach($etiquetas as $etiqueta)
 
                     <option @if ($etiqueta['seleccionado'])) {{ 'selected'}} @endif  value="{{$etiqueta['id']}}">{{$etiqueta['nombre']}}</option>

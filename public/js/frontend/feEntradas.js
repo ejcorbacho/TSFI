@@ -1,6 +1,6 @@
 //************* DECLARAR VARIABLES             ******************//
 var enviar = false;
-var maximoResumen = 500; /* CARACTERES MAXIMOS DE RESUMEN */
+var maximoResumen = 200; /* CARACTERES MAXIMOS DE RESUMEN */
 var maximoTitulo = 60; /* CARACTERES MAXIMOS DE TITULO */
 var maximoSubtitulo = 120; /* CARACTERES MAXIMOS DE SUBTITULO */
 var maximoContenido = 0; /* CARACTERES MAXIMOS DE CONTENIDO */

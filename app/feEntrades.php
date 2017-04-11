@@ -20,6 +20,16 @@ class feEntrades extends Model
 
         return $contenido;
     }
+    public function llegirEtiquetesDePost($id) {
+        $contenido = DB::table('entradas')
+                ->leftjoin('entradas_etiquetas', 'entradas_etiquetas.id_entrada', '=', 'entradas.id')
+                ->leftjoin('etiquetas', 'etiquetas.id', '=', 'entradas_etiquetas.id_etiqueta')
+                ->select('etiquetas.*')
+                ->where('entradas.id', '=', $id)
+                ->get();
+
+        return $contenido;
+    }
 
     public function MostrarPostsRelated($id){
     $contenido =  DB::table('entradas')

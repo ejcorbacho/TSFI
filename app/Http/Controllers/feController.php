@@ -55,7 +55,8 @@ class feController extends Controller
     public function post($id) {
         $oentradas = new feEntrades;
         $ocategories = new feCategories;
-
+        
+        $etiquetas = $oentradas->llegirEtiquetesDePost($id);
         $categories = $ocategories->llegirTotesPerMenu();
         $data = $oentradas->llegirEntrada($id);
             $paginas = $this->opaginashome->llegirTotes();
@@ -63,7 +64,7 @@ class feController extends Controller
             abort(404);
         }
         $related = $oentradas->MostrarPostsRelated($id);
-        return view('frontend.fePost',['data'=>$data[0] , 'related'=>$related, 'paginas'=>$paginas, 'categories'=>$categories]);
+        return view('frontend.fePost',['data'=>$data[0] , 'related'=>$related, 'paginas'=>$paginas, 'categories'=>$categories, 'etiquetas'=>$etiquetas ]);
     }
 
     public function pagines($id) {

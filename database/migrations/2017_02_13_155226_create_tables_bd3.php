@@ -57,6 +57,7 @@ class CreateTablesBd3 extends Migration
             $table->integer('esdeveniment');
             $table->datetime('fecha1')->nullable();
             $table->datetime('fecha2')->nullable();
+            $table->integer('notificar')->nullable()->unsigned();
             $table->integer('eliminado');
             $table->integer('usuario_publicador')->unsigned();
             $table->foreign('usuario_publicador')->references('id')->on('users');

@@ -59,6 +59,7 @@ class EntradasController extends Controller
       /* TRATAMOS EL CONTENIDO DEL POST */
 
       $this->mentradas->titulo = Input::get('titulo');
+      $tituloNot = Input::get('titulo');
       $this->mentradas->subtitulo = Input::get('subtitulo');
       $this->mentradas->resumen_largo = Input::get('resum');
       $this->mentradas->contenido = Input::get('contingut');
@@ -81,8 +82,10 @@ class EntradasController extends Controller
       if(Input::get('visible') == null)
       {
         $this->mentradas->visible = 0;
+        $visibleNot = false;
       } else {
         $this->mentradas->visible = Input::get('visible');
+        $visibleNot = true;
       }
 
       $this->mentradas->publico = Input::get('publico');
@@ -118,10 +121,40 @@ class EntradasController extends Controller
           if($request == '-1'){
             abort(500);
           } else {
+            if($this->mentradas->notificar($idPostBd) && $visibleNot){
+
+              $datos_envio = $this->mentradas->notificarPublicacion($idPostBd);
+
+              $titulo = 'Post publicat';
+              $nombre = $datos_envio->nombre;
+
+              $asunto = 'La entrada ha estat publicada';
+              $contenido = 'Hola! La entrada ' . $tituloNot . ' ha estat publicada! <br /> Pots consultarlo a la nostra plana web.<br /> Aquest es un correu automàtic, si us plau, no el contestis.';
+
+              $destinatario = $datos_envio->mail;
+
+              $this->enviarMail($asunto, $contenido, $destinatario);
+
+              $this->mentradas->noNotificarEntradas($idPostBd);
+            }
             return $request;
           }
       }
 
+
+  }
+
+  public function enviarMail($asunto, $contenido, $destinatario){
+
+    //cabecera
+    $headers = "MIME-Version: 1.0\r\n";
+    $headers .= "Content-type: text/html; charset=iso-8859-1\r\n";
+    //dirección del remitente
+    $headers .= "From: TSFI < TSFI.no_reply >\r\n";
+    //Enviamos el mensaje a tu_dirección_email
+    $enviado = mail($destinatario,$asunto,$contenido,$headers);
+
+    return $enviado;
 
   }
 

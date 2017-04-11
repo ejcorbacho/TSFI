@@ -25,17 +25,19 @@ class bePaginasController extends Controller
     return view('backend.bePaginas');
   }
 
+
+
   public function mostrarTotes()
   {
-  
+
     $data = $this->mpaginas->llegirTotes();
     return view('backend.beTotesPagines',['data'=>$data]);
   }
-  
+
   public function eliminar()
   {
     $this->mpaginas->id = Input::get('id');
-    
+
     if ($this->mpaginas->eliminar()){
           $mensaje = "Pàgina Eliminada!";
         } else {
@@ -45,7 +47,7 @@ class bePaginasController extends Controller
         return json_encode($mensaje);
     return $mensaje;
   }
-  
+
   //Guardar datos del formulario en la BD
   public function guardarBD()
   {

@@ -34,9 +34,11 @@
               <img class="img-responsive erc max" src="@if(!empty($posts[0])){{$posts[0]->fotosUrl}}@endif" alt="@if(!empty($posts[0])){{$posts[0]->alt_foto }}@endif">
       <div class="maximolineas">
         <div>
+            
                 <h4>@if(!empty($posts[0]))
                     @if(isset($posts[0]->nombre_categoria[0])){{$posts[0]->nombre_categoria[0]->nombre_categoria}} @endif
                 @endif</h4>
+                
                 <h3>@if(!empty($posts[0])) {{$posts[0]->titulo}} @endif</h3>
             </a>
         </div>
@@ -144,7 +146,6 @@
                 <h3>@if(!empty($posts[4])) {{$posts[4]->titulo}} @endif</h3>
             </a>
             </div>
-        
             <div class="icons">
                 @if(isset($posts[4]->titulo))
                     <a class="twitter-share-button" href="https://twitter.com/intent/tweet?text={{$posts[4]->titulo}} &url=http://localhost/cms/post/{{$posts[4]->id}}&hashtags=TSFI">
@@ -201,7 +202,7 @@
                       <h5 class="popularPostCategory">
                         @if(!empty($posts[$i]))
                             @if(isset($posts[$i]->nombre_categoria[0])){{$posts[$i]->nombre_categoria[0]->nombre_categoria}} @endif
-                        @endif</h4>
+                        @endif
                       </h5>
                       <h1>@if(!empty($posts[$i])) {{$posts[$i]->titulo}} @endif</h1>
                       </a>
@@ -240,11 +241,9 @@
 </div>
 <!-- FI TWTTTER -->
 
-<!-- Entitats colaboradres --><h2>Entitats Colaboradores</h2>
-              <a href="#"><div class="sidebarLink" ></div></a>
-              <a href="#"><div class="sidebarLink" ></div></a>
-              <a href="#"><div class="sidebarLink" ></div></a>
-
+              <div id="entitatsColaboradores">
+                
+              </div>
           </div>
           
       </div>

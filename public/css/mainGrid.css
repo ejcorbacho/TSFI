@@ -10,9 +10,10 @@
 
 .mainGridContainer{
 	margin-top:10px;
-	padding-left:30px;
+	padding-left:15px;
 	padding-right:15px;
 }
+
 .portfolio-item {
     margin-bottom: 0px;
 }
@@ -29,7 +30,7 @@
 }  
 .maximolineas{
 	
-	max-height:140px;
+	max-height:160px;
 	overflow:hidden;
 	background-color:black;
 	color:white;

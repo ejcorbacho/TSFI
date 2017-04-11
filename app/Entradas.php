@@ -194,6 +194,7 @@ class Entradas extends Model
         'relevancia'=> '5',
         'esdeveniment'=> '0',
         'eliminado'=>'0',
+        'notificar'=>'1',
         'usuario_publicador'=> '1',
       );
 
@@ -303,6 +304,28 @@ class Entradas extends Model
         return $contenido;
     }
 
+    public function notificar($id){
+      $contenido =  DB::table('entradas')
+        ->select('entradas.notificar')
+        ->where('entradas.id', '=', $id)
+        ->first();
+
+      if($contenido->notificar == 1){
+        return true;
+      } else {
+        return false;
+      }
+    }
+
+    public function notificarPublicacion($id){
+      $contenido =  DB::table('notificaciones')
+        ->select('notificaciones.*')
+        ->where('notificaciones.contenido', '=', '@novaentrada')
+        ->where('notificaciones.id_relacion', '=', $id)
+        ->first();
+
+        return $contenido;
+    }
     public function leerEntidadesMarcadas($id){
         $contenido =  DB::table('entradas_entidades')
           ->select('entradas_entidades.id_entidad as id')
@@ -320,6 +343,13 @@ class Entradas extends Model
 
         return $contenido;
     }
+
+    public function noNotificarEntradas($id){
+      DB::table('entradas')
+      ->where('entradas.id', '=', $id)
+      ->update(['notificar'=> 0]);
+    }
+
     public function ocultarEntrada(){
         DB::beginTransaction();
         try {

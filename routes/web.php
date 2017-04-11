@@ -44,6 +44,7 @@ Route::post('ajax/categories/transferirCategoria', 'beCategoriesController@trans
 // PAGINAS
 Route::get('paginas/pagina', 'fePaginasController@mostrarPagina');
 Route::get('administracio/pagines/nova', 'bePaginasController@mostrarPagina');
+Route::get('administracio/pagines/nova/{id}', 'bePaginasController@mostrarPagina');
 Route::get('administracio/pagines/llistat', 'bePaginasController@mostrarTotes');
 Route::get('pagines/{id}', 'feController@pagines');
 

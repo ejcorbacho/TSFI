@@ -65,9 +65,9 @@
   <header class="main-header">
 
     <!-- Logo -->
-    <a href="./administracio" class="logo">
+    <a href="{{ url('administracio') }}" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>A</b>LT</span>
+      <span class="logo-mini">TSFI</span>
       <!-- logo for regular state and mobile devices -->
       <span class="logo-lg"><b>TSFI</b></span>
     </a>
@@ -165,7 +165,7 @@
           </a>
           <ul class="treeview-menu">
             <li><a href="{{ url('administracio/entrada/nova') }}"><i class="fa fa-circle-o"></i> Nova Entrada</a></li>
-            <li><a href="{{ url('administracio/entrada/llistat') }}"><i class="fa fa-circle-o"></i> Entrades </a></li>
+            <li><a href="{{ url('administracio/entrada/llistat') }}"><i class="fa fa-circle-o"></i> Totes les Entrades </a></li>
           </ul>
         </li>
  <!-- APARTADO CATEGORIAS -->
@@ -209,7 +209,7 @@
                  </a>
                  <ul class="treeview-menu">
                    <li><a href="{{ url('administracio/entitats/nova') }}"><i class="fa fa-circle-o"></i> Nova entitat</a></li>
-                   <li><a href="#"><i class="fa fa-circle-o"></i> Totes les entitats</a></li>
+                   <li><a href="{{ url('administracio/entitats/totes') }}"><i class="fa fa-circle-o"></i> Totes les entitats</a></li>
                  </ul>
                </li>
  <!-- APARTADO MENUS -->

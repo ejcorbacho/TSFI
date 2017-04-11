@@ -5,9 +5,10 @@
 }
 
 img {
-  width:100px;
-  height:100px;
-  background: url(http://goo.gl/vyAs27) ;
+  background: url(http://shashgrewal.com/wp-content/uploads/2015/05/default-placeholder.png) no-repeat center center ;
+  
+  background-size: cover;
+
 }
 
 #menu_superior{

@@ -19,7 +19,8 @@ class beEntitats extends Model
         'nombre'=> $this->nombre,
         'url'=> $this->url,
         'foto'=>$this->foto,
-        'son_colaboradoras'=> $this->son_colaboradoras
+        'son_colaboradoras'=> $this->son_colaboradoras,
+        'eliminado'=> '0'
       );
 
 
@@ -56,5 +57,24 @@ class beEntitats extends Model
           ->get();
 
         return $contenido;
+    }
+    public function eliminarEntitat(){
+        DB::beginTransaction();
+        try {
+            DB::table('entidades')
+            ->where('entidades.id', '=', $this->id)
+            ->update(['eliminado'=> 1]);
+            
+            DB::commit();
+            return true;
+        } catch (\Illuminate\Database\QueryException $e) {
+            //return $e;
+            DB::rollback();
+            return false;
+        } catch (\Exception $e) {
+            //return $e;
+            DB::rollback();
+            return false;
+        }
     }
 }

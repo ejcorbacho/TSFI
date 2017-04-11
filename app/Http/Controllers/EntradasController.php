@@ -232,7 +232,7 @@ class EntradasController extends Controller
     $etiquetas = $this->etiquetaMarcada($id);
     $entitats = $this->entidadMarcada($id);
     if(!is_null($entradas[0]->foto)){
-      $foto = $this->cImages->getOneImge($entradas[0]->foto);
+      $foto = $this->cImages->getOneImage($entradas[0]->foto);
     } else {
       $foto = NULL;
     }

@@ -18,13 +18,21 @@ class feController extends Controller
     private $opaginashome;
     private $todosposts;
     private $valor;
-
+    private $cookiePublico;
     private $oentitats;
 
     public function __construct()
     {
         $this->oentitats = new feEntitats;
         $this->opaginashome = new Paginas;
+//        $request = new Request;
+//        $request->cookie('name');
+//        return response('Hello World')->cookie('nombre', 'valor', 1);
+        if (!isset($_COOKIE["CookiePublico"])) {
+            setcookie("CookiePublico", 'todos', time()+200);
+        }else{
+            $cookiePublico = $_COOKIE["CookiePublico"];
+        }
     }
 
 
@@ -40,7 +48,7 @@ class feController extends Controller
         }
         $related = $ocategories->MostrarPostsRelated($id);
         $paginas = $this->opaginashome->llegirTotes();
-        $categories = $ocategories->llegirTotes();
+        $categories = $ocategories->llegirTotesPerMenu();
 
         return view('frontend.feCategory',['categoria'=>$data[0], 'posts'=>$post, 'related'=>$related, 'categories'=>$categories]);
     }
@@ -48,7 +56,7 @@ class feController extends Controller
         $oentradas = new feEntrades;
         $ocategories = new feCategories;
 
-        $categories = $ocategories->llegirTotes();
+        $categories = $ocategories->llegirTotesPerMenu();
         $data = $oentradas->llegirEntrada($id);
             $paginas = $this->opaginashome->llegirTotes();
         if (count($data)<=0) {
@@ -61,7 +69,7 @@ class feController extends Controller
     public function pagines($id) {
       $ocategories = new feCategories;
 
-      $categories = $ocategories->llegirTotes();
+      $categories = $ocategories->llegirTotesPerMenu();
       $data = $this->opaginashome->llegirContingut($id);
       $paginas = $this->opaginashome->llegirTotes();
       return view('frontend.fePaginas',['data'=>$data[0], 'paginas'=>$paginas, 'categories'=>$categories]);
@@ -73,12 +81,12 @@ class feController extends Controller
       $oentradashome = new feHome;
       $ocategories = new feCategories;
 
-      $categories = $ocategories->llegirTotes();
+      $categories = $ocategories->llegirTotesPerMenu();
       $data = $oentradashome->MostrarEntradasHome();
       $paginas = $this->opaginashome->llegirTotes();
 
 
-
+    //   return $data;
       return view('frontend.feHome',['posts'=>$data, 'paginas'=>$paginas, 'categories'=>$categories]);
 
     }

@@ -40,6 +40,24 @@ class beEntitats extends Model
         }
     }
 
+    public function llegirEntitatPerId($id){
+        $contenido =  DB::table('entidades')
+          ->leftJoin('fotos', 'fotos.id', '=', 'entidades.foto')
+          ->select('entidades.*', 'fotos.id as fotoId', 'fotos.url as fotoUrl', 'fotos.alt as fotoAlt')
+          ->where('entidades.id', '=', $id)
+          ->where('entidades.eliminado', '!=', 1)
+          ->get();
+
+        return $contenido;
+    }
+
+    public function actualitzarEntitat(){
+            $contenido =  DB::table('entidades')
+              ->where('entidades.id', '=', $this->id)
+              ->update(['nombre'=> $this->nombre, 'url' => $this->url, 'son_colaboradoras' => $this->son_colaboradoras, 'foto' => $this->foto]);
+            return $contenido;
+        }
+
     public function llistarTotesEntitats(){
         $contenido =  DB::table('entidades')
           ->select('entidades.*')

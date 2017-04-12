@@ -34,7 +34,7 @@ $(document).ready(function() {
             error: function(xhr, desc, err) {
               console.log(xhr);
               console.log("Details: " + desc + "\nError:" + err);
-              showErrorAlert('Error en la edició de la nova categoria');
+              showErrorAlert('Error en la edició de la categoria');
             }});
         }else {
             showWarningAlert("No has canviat res!");

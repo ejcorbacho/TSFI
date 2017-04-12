@@ -18,58 +18,57 @@
 <script src="{{ asset('js/bootpag/bootpag.js') }}"></script>
 
 <!-- Content Header (Page header) -->
-<section class="content-header">
-    <h1>
-        Afegir Entitat
-        <small></small>
-    </h1>
-    <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Categoria</a></li>
-        <li class="active">Nova Entiat</li>
-    </ol>
-</section>
-
-<!-- Main content -->
-<section class="content">
-    <div class="box box-primary">
+      <section class="content-header">
+        <h1>
+          Editar Entitat
+          <small></small>
         </h1>
-        <!--<div class="box-header with-border">
-          <h3 class="box-title">Quick Example</h3>
-        </div>-->
-        <!-- /.box-header -->
-        <!-- form start -->
-        <form id="formulariNovaEntitat">
-            <div class="box-body">
-                <div class="form-group">
-                    <label>Nom de l'entitat</label>
-                    <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Inserta el nom de l'entitat" required>
-                </div>
-                <div class="form-group">
-                    <label>Url de l'entitat</label>
-                    <input type="text" class="form-control" id="url" name="url" placeholder="Inserta la URL de l'entitat" required>
-                </div>
-                
-                <div class="checkbox">
-                    <label><input id="colab" type="checkbox" name="colab">Son Colaboradors</label>
-                </div>
+        <ol class="breadcrumb">
+          <li><a href="#"><i class="fa fa-dashboard"></i>Entitat</a></li>
+          <li class="active">Editar Entitat</li>
+        </ol>
+      </section>
 
-                <!-- /.box-body -->
-                <input id="mainImageInput" name="mainImage" type="hidden">
-                <a href="javascript:void(0);" data-toggle="modal" data-target="#imageSelectionModal">
-                    <div id="mainImage">
+        <!-- Main content -->
+        <section class="content">
+            <div class="box box-primary">
+                <!-- form start -->
+                <form id="formulariEditarEntitat">
+                    <div class="box-body">
+                        <div class="form-group">
+                        <input type="hidden" class="form-control" id="id" name="id" value="{{ $data[0]->id }}">
 
+                        <label>Nom de la categoria</label>
+
+                        <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Inserta el nom de l'entitat" value="@if (!empty($data[0]->nombre)){{$data[0]->nombre}}@endif">
+
+                        <div class="form-group">
+                            <label>Url de l'entitat</label>
+                            <input type="text" class="form-control" id="url" name="url" placeholder="Inserta la URL de l'entitat" required value="@if (!empty($data[0]->url)){{$data[0]->url}}@endif">
+                        </div>
+
+                        <div class="checkbox">
+                            <label><input id="colab" type="checkbox" name="colab" value="@if (!empty($data[0]->son_colaboradoras)){{$data[0]->son_colaboradoras}}@endif">Son Colaboradors</label>
+                        </div>
+
+                        <!-- /.box-body -->
+                        <input id="mainImageInput" name="mainImage" type="hidden" value="@if (!empty($data[0]->foto)){{$data[0]->foto}}@endif">
+                        <a href="javascript:void(0);" data-toggle="modal" data-target="#imageSelectionModal">
+                            <div id="mainImage">
+                                @if (!empty($data[0]->fotoId))<img src="{{$data[0]->fotoUrl}}" alt="{{$data[0]->fotoAlt}}" width="200"> @endif
+                            </div>
+                        </a>
+                        <a type="button" class="btn" data-toggle="modal" data-target="#imageSelectionModal">
+                            + Editar imatge d'entitat
+                        </a>
+                        </div>
+
+                        <div class="box-footer">
+                        <button id="submitEditEntitat" type="submit" class="btn btn-primary">Guardar</button>
                     </div>
-                </a>
-                <a type="button" class="btn" data-toggle="modal" data-target="#imageSelectionModal">
-                    + Editar imatge d'entitat
-                </a>
-                <div class="box-footer">
-                    <button type="submit" class="btn btn-primary">Desar</button>
-                </div>
+                </form>
             </div>
-        </form>
-    </div>
-</section>
+        </section>
 
 <!-- START IMAGE SELECTION MODAL -->
 <div class="modal fade" id="imageSelectionModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

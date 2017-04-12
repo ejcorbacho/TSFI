@@ -61,6 +61,7 @@ class beEntitats extends Model
     public function llistarTotesEntitats(){
         $contenido =  DB::table('entidades')
           ->select('entidades.*')
+          ->where('eliminado', '=', 0)
           ->inRandomOrder()
           ->get();
 
@@ -70,6 +71,7 @@ class beEntitats extends Model
      public function LlistaTresEntitats(){
         $contenido =  DB::table('entidades')
           ->select('entidades.*')
+          ->where('eliminado', '=', 0)
           ->inRandomOrder()
           ->limit(3)
           ->get();

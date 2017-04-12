@@ -44,7 +44,7 @@ Route::post('ajax/categories/transferirCategoria', 'beCategoriesController@trans
 // PAGINAS
 Route::get('paginas/pagina', 'fePaginasController@mostrarPagina');
 Route::get('administracio/pagines/nova', 'bePaginasController@mostrarPagina');
-Route::get('administracio/pagines/nova/{id}', 'bePaginasController@mostrarPagina');
+Route::get('administracio/pagines/nova/{id}', 'bePaginasController@editarPagina');
 Route::get('administracio/pagines/llistat', 'bePaginasController@mostrarTotes');
 Route::get('pagines/{id}', 'feController@pagines');
 
@@ -56,6 +56,13 @@ Route::get('administracio/entrada/nova/', array('uses' => 'EntradasController@ma
 Route::get('administracio/entrada/nova/{id}', array('uses' => 'EntradasController@editarEntrada')); //Mostrar formulario
 Route::get('administracio/entrada/llistat', array('uses' => 'EntradasController@llistarEntradas')); //Mostrar listado de entradas
 Route::get('administracio/entrada/paperera', array('uses' => 'EntradasController@llistarEntradasPaperera')); //Mostrar listado de entradas
+
+
+
+
+/******** NOTIFICACIONES ***********/
+Route::get('administracio/notificacions', array('uses' => 'beNotificaciones@mostrarGrid')); //Mostrar formulario
+
 
 //******* RUTAS AJAX ***********/
 Route::get('ajax/categories/llistaCategories', array('uses' => 'beCategoriesController@llistarCategoria')); //Mostrar formulario

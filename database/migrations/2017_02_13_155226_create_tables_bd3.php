@@ -3,7 +3,9 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
-
+//inserts:
+use Illuminate\Support\Facades\DB;
+use Illuminate\Foundation\Auth\RegistersUsers;
 class CreateTablesBd3 extends Migration
 {
     /**
@@ -160,6 +162,14 @@ class CreateTablesBd3 extends Migration
             $table->integer('valor');
             $table->timestamps();
         });
+        //Insert Data:
+        DB::table('users')->insert(
+        array(
+            'name' => 'Admin',
+            'email' => 'admin@tsfisds.com',
+            'password' => bcrypt('Tsfi2017')
+            )
+        );
 
     }
 

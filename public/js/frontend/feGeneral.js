@@ -69,4 +69,64 @@ $(document).ready(function () {
     $('#changeCookieProfesores').on('click', function (e) {
         document.cookie = "CookiePublico=profesores";
     });
+    
+
 });
+
+//Buscador-----------
+$(document).ready(function () {
+    
+    $('#caja_buscador').on('keyup', function (e) {
+        $.ajax({
+         url: urlPrincipal + 'ajax/searchByTag',
+         type: 'get',
+         dataType: 'json',
+         data: ({data: $('#caja_buscador').val()}),
+         success: function (busqueda) {
+            console.log(busqueda);
+            if(busqueda.total > 0){
+                console.log('hola');
+                var html = '';
+                for(var i=0; busqueda.total > i ;i++){
+                    console.log('bu');
+                    html= html +'<div class="resultadoDeBusqueda">';
+                    html = html + '<h5 style="position:absolute">' + busqueda.data[i].titulo + '</h5>';
+                    html = html + '<ul class="tags tagsBuscador" style="width: 100%;">';
+                    for(var c=0; busqueda.data[i].tags.length > c ;c++){
+                        html = html + '<li><a href="#" class="tag tagBuscador">' + busqueda.data[i].tags[c].nombre + '</a></li>';
+                    }
+                    html = html + '</ul>';
+                    html = html + '</div>';
+                }
+                $('.resultadosDeBusqueda').html(html);
+            }
+
+         },
+         error: function (xhr, desc, err) {
+         console.log(xhr);
+         console.log("Details: " + desc + "\nError:" + err);
+        }});
+        
+
+
+
+
+        // var busqueda = getDataOverAJAX('searchByTag',$('#caja_buscador').val());
+        // console.log(busqueda);
+        // if(busqueda.total > 0){
+
+        // }
+
+
+    });
+});
+function searchByTag( route, data) {
+    return $.ajax({
+        type: 'GET',
+        url: urlPrincipal + 'ajax/' + route,
+        data: {data: data}
+    });
+}
+function mostrarResultados(){
+
+}

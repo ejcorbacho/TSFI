@@ -179,7 +179,7 @@
           </a>
           <ul class="treeview-menu">
             <li><a href="{{ url('/administracio/categoria/nova') }}"><i class="fa fa-circle-o"></i> Nova Categoria</a></li>
-            <!--<li><a href="{{ url('/administracio/categoria/editar') }}"><i class="fa fa-circle-o"></i> Editar Categoria </a></li>-->
+            <!--<li><a href="{{ url('/administracio/entitat/editar') }}"><i class="fa fa-circle-o"></i> Editar Categoria </a></li>-->
             <li><a href="{{ url('/administracio/categoria/llistat') }}"><i class="fa fa-circle-o"></i> Totes Les Categories</a></li>
           </ul>
         </li>

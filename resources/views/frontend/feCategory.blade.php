@@ -9,6 +9,7 @@
         <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Paytone+One" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Archivo+Black" rel="stylesheet">
+        <script src="{{ asset('js/frontend/twitter.js')}}"></script>
         <meta name="viewport" content="width=device-width, user-scalable=no">
     </head>
     <body>
@@ -33,7 +34,11 @@
                         <div class="categoryPostData">
                             <p class="col-md-3 col-sm-3 col-xs-3 categoryPostDate">{{ Carbon\Carbon::parse($unpost->data_publicacion)->format('d-m-Y') }}</p>
                             <span class="categoryPostDataSeparator">•</span>
-                            <a href="https://twitter.com/krabitzSDS"><i class="fa fa-twitter categoryPostSocialIcon" aria-hidden="true"></i></a>
+                            @if(isset($unpost->titulo))
+                                <a class="twitter-share-button" href="https://twitter.com/intent/tweet?text={{$unpost->titulo}} &url=http://localhost/cms/post/{{$unpost->id}}&hashtags=TSFI">
+                                    Tweet
+                                </a>
+                            @endif
                         </div>
                     </div>
                 </div>

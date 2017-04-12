@@ -270,7 +270,7 @@
                                       <input id="mainImageInput" name="mainImage" type="hidden">
                                       <a href="javascript:void(0);" data-toggle="modal" data-target="#imageSelectionModal">
                                           <div id="mainImage">
-                                              @if (!empty($data[0]->foto))<img class="image_picker_image" src="{{$foto[0]->url}}" alt="{{$foto[0]->alt}}" width="200"> @endif
+                                              @if (!empty($data[0]->foto))<img src="{{$foto[0]->url}}" alt="{{$foto[0]->alt}}" width="200"> @endif
                                           </div>
                                       </a>
                                       <a type="button" class="btn" data-toggle="modal" data-target="#imageSelectionModal">

@@ -13,10 +13,14 @@ use View;
 class bePaginasController extends Controller
 {
 
+  private $cImages;
+  private $mpaginas;
+
   public function __construct()
   {
     $this->middleware('auth');
     $this->mpaginas = new Paginas;
+    $this->cImages = new beImageController;
   }
 
 
@@ -25,6 +29,20 @@ class bePaginasController extends Controller
     return view('backend.bePaginas');
   }
 
+  public function editarPagina($id)
+  {
+
+    $this->mpaginas->id = $id;
+    $paginas = $this->mpaginas->llegirContingut($id);
+
+    if(!is_null($paginas[0]->foto)){
+      $foto = $this->cImages->getOneImage($paginas[0]->foto);
+    } else {
+      $foto = NULL;
+    }
+
+    return view('backend.bePaginas',['data'=>$paginas, 'foto'=>$foto]);
+  }
 
 
   public function mostrarTotes()
@@ -47,6 +65,7 @@ class bePaginasController extends Controller
         return json_encode($mensaje);
     return $mensaje;
   }
+
 
   //Guardar datos del formulario en la BD
   public function guardarBD()

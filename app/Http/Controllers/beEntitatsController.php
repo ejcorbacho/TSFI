@@ -18,20 +18,6 @@ class beEntitatsController extends Controller
         $this->oentitats = new beEntitats;
     }
 
-   /* public function novaCategoria()
-    {
-        $data = $this->ocategories->llegirCategoriesSensePare();
-        
-//        $this->ocategories->nombre = Input::get('nombre');
-//        $this->ocategories->id_padre = Input::get('idPare');  
-//        //falta un if de comprobacion que esta en entradas controller
-//        if ($this->ocategories->guardar()){
-//          $this->salida_vista['mensaje'] = "Guardat!";
-//        } else {
-//          $this->salida_vista['mensaje'] = "Error al guardar!";
-//        }
-        return view('backend.beNovaCategoria',['data'=>$data]);
-    }*/
     public function guardarNovaEntitat()
     {
         $this->oentitats->nombre = Input::get('nombre');
@@ -54,13 +40,39 @@ class beEntitatsController extends Controller
         }
         return $this->salida_vista['mensaje'];
     }
-    
-   /* 
-    public function llistarCategoria()
-    {
-      return($this->ocategories->llistarTotes());
 
-    }*/
+    public function editarEntitat($id)
+    {
+        $data = $this->oentitats->llegirEntitatPerId($id);
+
+        return view('backend.beEditarEntitat',['data'=>$data]);
+    }
+
+    public function actualitzarEntitat()
+    {
+        $this->oentitats->id = Input::get('id');
+        $this->oentitats->nombre = Input::get('nombre');
+        $this->oentitats->url = Input::get('url');
+        $this->oentitats->son_colaboradoras = Input::get('colab');
+        $this->oentitats->foto = Input::get('mainImage');
+
+        if($this->oentitats->son_colaboradoras ){ // comprobacion de si es o no colaboardor
+            $this->oentitats->son_colaboradoras = 1;
+
+        }else{
+            $this->oentitats->son_colaboradoras = 0;
+        }
+
+        //COMPOBAR SI ID ES NULL
+        if ($this->oentitats->actualitzarEntitat()){
+          $mensaje = "Guardat!";
+        } else {
+          $mensaje = "Error al guardar!";
+          abort(500,"Error al guardar!");
+        }
+        return $mensaje;
+    }
+
     public function NovaEntitat()
     {
         return view('backend.beNuevaEntitat');

@@ -83,10 +83,13 @@ Route::post('contactaGuardat', array('uses' => 'feContactaController@guardarCont
 
 Route::get('administracio/entitats/nova', 'beEntitatsController@NovaEntitat');
 Route::get('administracio/entitats/totes', array('uses' => 'beEntitatsController@totesEntitats'));
+Route::get('administracio/entitats/editar/{id}', array('uses' => 'beEntitatsController@editarEntitat')); //Mostrar formulario
 Route::get('ajax/entitat/guardarEntitat', array('uses' => 'beEntitatsController@guardarNovaEntitat'));
+Route::post('ajax/entitat/actualitzarEntitat', 'beEntitatsController@actualitzarEntitat');
 Route::get('ajax/entitat/llistatEntitats', array('uses' => 'beEntitatsController@llistarEnitats'));
 Route::post('ajax/entitat/eliminarEntitat', array('uses' => 'beEntitatsController@eliminarEntitat'));
 Route::get('ajax/entitat/TresEntitats', array('uses' => 'feController@TresEnitats'));
+
 /***entitats footer ***/
 Route::get('ajax/entitat/EntitatsFooter', array('uses' => 'feController@FooterEntitats'));
 

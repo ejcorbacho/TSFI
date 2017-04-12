@@ -85,10 +85,21 @@ $(document).ready(function () {
          success: function (busqueda) {
             console.log(busqueda);
             if(busqueda.total > 0){
-                
+                console.log('hola');
+                var html = '';
+                for(var i=0; busqueda.total > i ;i++){
+                    console.log('bu');
+                    html= html +'<div class="resultadoDeBusqueda">';
+                    html = html + '<h5 style="position:absolute">' + busqueda.data[i].titulo + '</h5>';
+                    html = html + '<ul class="tags tagsBuscador" style="width: 100%;">';
+                    for(var c=0; busqueda.data[i].tags.length > c ;c++){
+                        html = html + '<li><a href="#" class="tag tagBuscador">' + busqueda.data[i].tags[c].nombre + '</a></li>';
+                    }
+                    html = html + '</ul>';
+                    html = html + '</div>';
+                }
+                $('.resultadosDeBusqueda').html(html);
             }
-
-
 
          },
          error: function (xhr, desc, err) {

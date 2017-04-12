@@ -87,7 +87,6 @@
                     <input type="text" id="caja_buscador" placeholder="Cerca"/>
                     <div class="resultadosDeBusqueda">
                         <div class="resultadoDeBusqueda">
-                          
                             <h5 style="position:absolute">La taula sectorial amplia la seva llista de membres</h5>
                           
                             <ul class="tags tagsBuscador" style="width: 100%;">

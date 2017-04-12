@@ -5,7 +5,7 @@ use App\Categories;
 use App\Entradas;
 use App\beEtiquetas;
 use App\beEntitats;
-use App\beNotificaciones;
+use App\Notificaciones;
 use App\beAnalytics;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
@@ -35,7 +35,7 @@ class EntradasController extends Controller
     $this->cImages = new beImageController;
     $this->oanalytics = new beAnalytics;
     $this->mentitats = new beEntitats;
-    $this->onotificaciones = new beNotificaciones;
+    $this->onotificaciones = new Notificaciones;
   }
 
   //Mostrar formulario para crear client

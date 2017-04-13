@@ -62,7 +62,8 @@ class beEntitatsController extends Controller
         }else{
             $this->oentitats->son_colaboradoras = 0;
         }
-
+        $this->oentitats->actualitzarEntitat();
+        /*
         //COMPOBAR SI ID ES NULL
         if ($this->oentitats->actualitzarEntitat()){
           $mensaje = "Guardat!";
@@ -71,6 +72,7 @@ class beEntitatsController extends Controller
           abort(500,"Error al guardar!");
         }
         return $mensaje;
+        */
     }
 
     public function NovaEntitat()

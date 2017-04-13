@@ -60,14 +60,22 @@
 
 
 $(document).ready(function () {
+
+    var d = new Date();
+    d.setTime(d.getTime() + (60*24*60*60*1000));
+    var expires = "expires="+ d.toUTCString();
+
     $('#changeCookieTodos').on('click', function (e) {
-        document.cookie = "CookiePublico=todos";
+        document.cookie = "CookiePublico=todos;" + expires + "; path=/cms";
+        location.reload();
     });
     $('#changeCookieAlumnos').on('click', function (e) {
-        document.cookie = "CookiePublico=alumnos";
+        document.cookie = "CookiePublico=alumnos;" + expires + "; path=/cms";
+        location.reload();
     });
     $('#changeCookieProfesores').on('click', function (e) {
-        document.cookie = "CookiePublico=profesores";
+        document.cookie = "CookiePublico=profesores;" + expires + "; path=/cms";
+        location.reload();
     });
     
 

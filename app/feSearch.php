@@ -21,10 +21,10 @@ class feSearch extends Model {
             ->whereIn('t.nombre', $requestTags)
             ->where('e.visible', '=', '1')
             ->where('e.eliminado', '=', '0')
-            ->select(['e.id', 'e.titulo', 'e.data_publicacion' DB::raw('COUNT(t.id) AS found_tags_number')])
-            ->groupBy('e.id','e.titulo')
+            ->select(['e.id', 'e.titulo', 'e.data_publicacion', DB::raw('COUNT(t.id) AS found_tags_number')])
+            ->groupBy('e.id','e.titulo','e.data_publicacion')
             ->orderBy('found_tags_number', 'DESC')
-            ->paginate(10);zº
+            ->paginate(10);
 
         foreach ($posts as $k => $post) {
             $posts[$k]->tags = DB::table('etiquetas as t')

@@ -36,13 +36,9 @@
               <img class="img-responsive erc max" src="@if(!empty($posts[0])){{$posts[0]->fotosUrl}}@endif" alt="@if(!empty($posts[0])){{$posts[0]->alt_foto }}@endif">
       <div class="maximolineas">
         <div>
-            
-                <h4>@if(!empty($posts[0]))
-                    @if(isset($posts[0]->nombre_categoria[0])){{$posts[0]->nombre_categoria[0]->nombre_categoria}} @endif
-                @endif</h4>
-                
-                <h3>@if(!empty($posts[0])) {{$posts[0]->titulo}} @endif</h3>
-            </a>
+            @if(isset($posts[0]->nombre_categoria[0]) && !empty($posts[0]->nombre_categoria[0]->idCategoria))<a href="{{ url('/category/' . $posts[0]->nombre_categoria[0]->idCategoria) }}"><h4>{{$posts[0]->nombre_categoria[0]->nombre_categoria}} </h4></a>@endif
+            @if(!empty($posts[0])) <h3>{{$posts[0]->titulo}} </h3>@endif
+        </a>
         </div>
         <div class="icons">
             @if(isset($posts[0]->titulo))
@@ -64,10 +60,8 @@
         <img class="img-responsive erc sec" src="@if(!empty($posts[1])){{$posts[1]->fotosUrl}}@endif" alt="@if(!empty($posts[1])){{$posts[1]->alt_foto }}@endif">
       <div class="maximolineas">
         <div>
-            <h4>@if(!empty($posts[1]))
-                @if(isset($posts[1]->nombre_categoria[0])){{$posts[1]->nombre_categoria[0]->nombre_categoria}} @endif
-            @endif</h4>
-            <h3>@if(!empty($posts[1])) {{$posts[1]->titulo}} @endif</h3>
+            @if(isset($posts[1]->nombre_categoria[0]) && !empty($posts[1]->nombre_categoria[0]->idCategoria))<a href="{{ url('/category/' . $posts[1]->nombre_categoria[0]->idCategoria) }}"><h4>{{$posts[1]->nombre_categoria[0]->nombre_categoria}} </h4></a>@endif
+            @if(!empty($posts[1])) <h3>{{$posts[1]->titulo}} </h3>@endif
         </a>
         </div>
         <div class="icons">
@@ -85,14 +79,12 @@
 @endif
 @if(!empty($posts[2]))
     <div class="col-sm-4 col-md-4 marginBotForSec">
-                         @if(!empty($posts[2]))<a href="{{ url('/post/' . $posts[2]->id) }}">@endif
+        @if(!empty($posts[2]))<a href="{{ url('/post/' . $posts[2]->id) }}">@endif
         <img class="img-responsive erc sec" src="@if(!empty($posts[2])){{$posts[2]->fotosUrl}}@endif" alt="@if(!empty($posts[2])){{$posts[2]->alt_foto }}@endif">
       <div class="maximolineas">
         <div>
-            <h4>@if(!empty($posts[2]))
-                @if(isset($posts[2]->nombre_categoria[0])){{$posts[2]->nombre_categoria[0]->nombre_categoria}} @endif
-            @endif</h4>
-            <h3>@if(!empty($posts[2])) {{$posts[2]->titulo}} @endif</h3>
+            @if(isset($posts[2]->nombre_categoria[0]) && !empty($posts[2]->nombre_categoria[0]->idCategoria))<a href="{{ url('/category/' . $posts[2]->nombre_categoria[0]->idCategoria) }}"><h4>{{$posts[2]->nombre_categoria[0]->nombre_categoria}} </h4></a>@endif
+            @if(!empty($posts[2])) <h3>{{$posts[2]->titulo}} </h3>@endif
         </a>
         </div>
         <div class="icons">
@@ -117,10 +109,8 @@
             <img class="img-responsive erc terc" src="@if(!empty($posts[3])){{$posts[3]->fotosUrl}}@endif" alt="@if(!empty($posts[3])){{$posts[3]->alt_foto }}@endif">
         <div class="maximolineas">
             <div>
-                <h4>@if(!empty($posts[3]))
-                    @if(isset($posts[3]->nombre_categoria[0])){{$posts[3]->nombre_categoria[0]->nombre_categoria}} @endif
-                @endif</h4>
-                <h3>@if(!empty($posts[3])) {{$posts[3]->titulo}} @endif</h3>
+                @if(isset($posts[3]->nombre_categoria[0]) && !empty($posts[3]->nombre_categoria[0]->idCategoria))<a href="{{ url('/category/' . $posts[3]->nombre_categoria[0]->idCategoria) }}"><h4>{{$posts[3]->nombre_categoria[0]->nombre_categoria}} </h4></a>@endif
+                @if(!empty($posts[3])) <h3>{{$posts[3]->titulo}} </h3>@endif
                 </a>
             </div>
             <div class="icons">
@@ -142,10 +132,8 @@
             <img class="img-responsive erc terc" src="@if(!empty($posts[4])){{$posts[4]->fotosUrl}}@endif" alt="@if(!empty($posts[4])){{$posts[4]->alt_foto }}@endif">
         <div class="maximolineas">
             <div>
-                <h4>@if(!empty($posts[4]))
-                    @if(isset($posts[4]->nombre_categoria[0])){{$posts[4]->nombre_categoria[0]->nombre_categoria}} @endif
-                @endif</h4>
-                <h3>@if(!empty($posts[4])) {{$posts[4]->titulo}} @endif</h3>
+                @if(isset($posts[4]->nombre_categoria[0]) && !empty($posts[4]->nombre_categoria[0]->idCategoria))<a href="{{ url('/category/' . $posts[4]->nombre_categoria[0]->idCategoria) }}"><h4>{{$posts[4]->nombre_categoria[0]->nombre_categoria}} </h4></a>@endif
+                @if(!empty($posts[4])) <h3>{{$posts[4]->titulo}} </h3>@endif
             </a>
             </div>
             <div class="icons">
@@ -167,10 +155,8 @@
             <img class="img-responsive erc terc" src="@if(!empty($posts[5])){{$posts[5]->fotosUrl}}@endif" alt="@if(!empty($posts[5])){{$posts[5]->alt_foto }}@endif">
         <div class="maximolineas">
             <div>
-                <h4>@if(!empty($posts[5]))
-                    @if(isset($posts[5]->nombre_categoria[0])){{$posts[5]->nombre_categoria[0]->nombre_categoria}} @endif
-                @endif</h4>
-                <h3>@if(!empty($posts[5])) {{$posts[5]->titulo}} @endif</h3>
+                @if(isset($posts[5]->nombre_categoria[0]) && !empty($posts[5]->nombre_categoria[0]->idCategoria))<a href="{{ url('/category/' . $posts[5]->nombre_categoria[0]->idCategoria) }}"><h4>{{$posts[5]->nombre_categoria[0]->nombre_categoria}} </h4></a>@endif
+                @if(!empty($posts[5])) <h3>{{$posts[5]->titulo}} </h3>@endif
             </a>
             </div>
             <div class="icons">
@@ -201,14 +187,18 @@
                   </div>
                   <div class="popularPostInfo col-md-8 col-sm-8 col-xs-12">
                       <a class="popularPostLink" href="{{ url('/post/' . $posts[$i]->id) }}">
-                      <h5 class="popularPostCategory">
-                        @if(!empty($posts[$i]))
-                            @if(isset($posts[$i]->nombre_categoria[0])){{$posts[$i]->nombre_categoria[0]->nombre_categoria}} @endif
+                     
+                        @if(isset($posts[$i]->nombre_categoria[0]))
+                         <a href="{{ url('/category/' . $posts[$i]->nombre_categoria[0]->idCategoria) }}">
+                         <h5 class="popularPostCategory">
+                            {{$posts[$i]->nombre_categoria[0]->nombre_categoria}} 
+                        </h5>
+                        </a>
                         @endif
-                      </h5>
-                      <h1>@if(!empty($posts[$i])) {{$posts[$i]->titulo}} @endif</h1>
+                      
+                      <h1>@if(!empty($posts[$i]->titulo)) {{$posts[$i]->titulo}} @endif</h1>
                       </a>
-                      <p>@if(!empty($posts[$i])){!!html_entity_decode($posts[$i]->contenido)!!} @endif</p>
+                      <p>@if(!empty($posts[$i]->resumen_largo)){!!html_entity_decode($posts[$i]->resumen_largo)!!} @endif</p>
 
                       <div class="popularPostData">
                           <p class="col-md-2 col-sm-2 col-xs-2 popularPostDate"> {{Carbon\Carbon::parse($posts[$i]->data_publicacion)->format('d-m-Y')}}</p>

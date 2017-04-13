@@ -87,6 +87,11 @@
                     <input type="text" id="caja_buscador" placeholder="Cerca"/>
                     <div class="resultadosDeBusqueda">
                         <div class="resultadoDeBusqueda">
+                            <h5 style="position:absolute">No hem trobat res que coincideixi amb els paràmetres de cerca especificats... :( </h5>
+                        </div>
+                        <hr class="hrBuscador">
+                        <!--<div class="resultadoDeBusqueda">
+                          
                             <h5 style="position:absolute">La taula sectorial amplia la seva llista de membres</h5>
                           
                             <ul class="tags tagsBuscador" style="width: 100%;">
@@ -94,25 +99,23 @@
                                 <li><a href="#" class="tag tagBuscador">ho</a></li>
                                 <li><a href="#" class="tag tagBuscador">lets</a></li>
                                 <li><a href="#" class="tag tagBuscador">go</a></li>
+                                <li><a href="#" class="tag tagBuscador">lets</a></li>
+                                <li><a href="#" class="tag tagBuscador">go</a></li>
                             </ul>
                         </div>
+                        <hr class="hrBuscador">
                         <div class="resultadoDeBusqueda">
-                          
                             <h5 style="position:absolute">La taula sectorial amplia la seva llista de membres</h5>
-                          
                             <ul class="tags tagsBuscador" style="width: 100%;">
                                 <li><a href="#" class="tag tagBuscador">hey</a></li>
                                 <li><a href="#" class="tag tagBuscador">ho</a></li>
                                 <li><a href="#" class="tag tagBuscador">lets</a></li>
                                 <li><a href="#" class="tag tagBuscador">go</a></li>
-                                <li><a href="#" class="tag tagBuscador">lets</a></li>
-                                <li><a href="#" class="tag tagBuscador">go</a></li>
                             </ul>
                         </div>
+                        <hr class="hrBuscador">
                         <div class="resultadoDeBusqueda">
-                          
                             <h5 style="position:absolute">La taula sectorial amplia la seva llista de membres</h5>
-                          
                             <ul class="tags tagsBuscador" style="width: 100%;">
                                 <li><a href="#" class="tag tagBuscador">hey</a></li>
                                 <li><a href="#" class="tag tagBuscador">ho</a></li>
@@ -120,6 +123,57 @@
                                 <li><a href="#" class="tag tagBuscador">go</a></li>
                             </ul>
                         </div>
+                        <hr class="hrBuscador">
+                        <div class="resultadoDeBusqueda">
+                            <h5 style="position:absolute">La taula sectorial amplia la seva llista de membres</h5>
+                            <ul class="tags tagsBuscador" style="width: 100%;">
+                                <li><a href="#" class="tag tagBuscador">hey</a></li>
+                                <li><a href="#" class="tag tagBuscador">ho</a></li>
+                                <li><a href="#" class="tag tagBuscador">lets</a></li>
+                                <li><a href="#" class="tag tagBuscador">go</a></li>
+                            </ul>
+                        </div>
+                        <hr class="hrBuscador">
+                        <div class="resultadoDeBusqueda">
+                            <h5 style="position:absolute">La taula sectorial amplia la seva llista de membres</h5>
+                            <ul class="tags tagsBuscador" style="width: 100%;">
+                                <li><a href="#" class="tag tagBuscador">hey</a></li>
+                                <li><a href="#" class="tag tagBuscador">ho</a></li>
+                                <li><a href="#" class="tag tagBuscador">lets</a></li>
+                                <li><a href="#" class="tag tagBuscador">go</a></li>
+                            </ul>
+                        </div>
+                        <hr class="hrBuscador">
+                        <div class="resultadoDeBusqueda">
+                            <h5 style="position:absolute">La taula sectorial amplia la seva llista de membres</h5>
+                            <ul class="tags tagsBuscador" style="width: 100%;">
+                                <li><a href="#" class="tag tagBuscador">hey</a></li>
+                                <li><a href="#" class="tag tagBuscador">ho</a></li>
+                                <li><a href="#" class="tag tagBuscador">lets</a></li>
+                                <li><a href="#" class="tag tagBuscador">go</a></li>
+                            </ul>
+                        </div>
+                        <hr class="hrBuscador">
+                        <div class="resultadoDeBusqueda">
+                            <h5 style="position:absolute">La taula sectorial amplia la seva llista de membres</h5>
+                            <ul class="tags tagsBuscador" style="width: 100%;">
+                                <li><a href="#" class="tag tagBuscador">hey</a></li>
+                                <li><a href="#" class="tag tagBuscador">ho</a></li>
+                                <li><a href="#" class="tag tagBuscador">lets</a></li>
+                                <li><a href="#" class="tag tagBuscador">go</a></li>
+                            </ul>
+                        </div>
+                        <hr class="hrBuscador">
+                        <div class="resultadoDeBusqueda">
+                            <h5 style="position:absolute">La taula sectorial amplia la seva llista de membres</h5>
+                            <ul class="tags tagsBuscador" style="width: 100%;">
+                                <li><a href="#" class="tag tagBuscador">hey</a></li>
+                                <li><a href="#" class="tag tagBuscador">ho</a></li>
+                                <li><a href="#" class="tag tagBuscador">lets</a></li>
+                                <li><a href="#" class="tag tagBuscador">go</a></li>
+                            </ul>
+                        </div>
+                        <hr class="hrBuscador">-->
                     </div>
                   </div>
                   <div id="boton_bucador">

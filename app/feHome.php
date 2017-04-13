@@ -17,6 +17,7 @@ class feHome extends Model
           //->join('entradas', 'entradas_categorias.id_entradas', '=', 'entradas.id' )
           ->select('entradas.*')
           ->where('entradas.id', '=', $id)
+          ->where('entradas.eliminado','=',0)
           ->get();
 
         return $contenido;
@@ -36,8 +37,9 @@ public function MostrarEntradasHome(){
       $contenidos[$k]->nombre_categoria = DB::table('entradas')
         ->join('entradas_categorias','entradas_categorias.id_entrada', '=','entradas.id' )
         ->join('categorias','categorias.id', '=','entradas_categorias.id_categoria' )
-        ->where('entradas.id', '=', $contenidos[$k]->id_entrada)       
-        ->select('categorias.nombre as nombre_categoria')
+        ->where('entradas.id', '=', $contenidos[$k]->id_entrada)
+        ->where('categorias.eliminado','=', 0)    
+        ->select('categorias.nombre as nombre_categoria' , 'categorias.id as idCategoria')
         ->get();
     }
 

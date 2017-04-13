@@ -55,7 +55,7 @@
 <body>
 <h1>{{ trans('WHOOOPS!!') }}</h1>
 <p>{{ trans('404') }}</p>
-<p class="textp">La pàgina sol·licitada no es trobar en el nostre servidor</p>
+<p class="textp">La pàgina sol·licitada no es pot trobar en el nostre servidor!</p>
 
 </body>
 </html

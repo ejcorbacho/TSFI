@@ -18,9 +18,11 @@ class feSearch extends Model {
         $posts = DB::table('etiquetas as t')
             ->join('entradas_etiquetas as et', 't.id', '=', 'et.id_etiqueta')
             ->leftJoin('entradas as e', 'e.id', '=', 'et.id_entrada')
-            ->WhereIn('t.nombre', $requestTags)
-            ->select(['e.id', 'e.titulo', DB::raw('COUNT(t.id) AS found_tags_number')])
-            ->groupBy('e.id','e.titulo')
+            ->whereIn('t.nombre', $requestTags)
+            ->where('e.visible', '=', '1')
+            ->where('e.eliminado', '=', '0')
+            ->select(['e.id', 'e.titulo', 'e.data_publicacion', DB::raw('COUNT(t.id) AS found_tags_number')])
+            ->groupBy('e.id','e.titulo','e.data_publicacion')
             ->orderBy('found_tags_number', 'DESC')
             ->paginate(10);
 

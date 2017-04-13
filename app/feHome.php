@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 class feHome extends Model
 {
     protected $table = 'entradas';
-
+    public $publico;
         public function llegirCategories($id){
         $contenido =  DB::table('entradas')
           //->join('fotos', 'entradas.foto', '=', 'fotos.id')
@@ -17,6 +17,7 @@ class feHome extends Model
           //->join('entradas', 'entradas_categorias.id_entradas', '=', 'entradas.id' )
           ->select('entradas.*')
           ->where('entradas.id', '=', $id)
+          ->where('entradas.eliminado','=',0)
           ->get();
 
         return $contenido;
@@ -25,10 +26,11 @@ class feHome extends Model
 public function MostrarEntradasHome(){
   $contenidos = DB::table('entradas')
       ->leftJoin('fotos', 'entradas.foto', '=', 'fotos.id')
-      ->leftJoin('rellevancia as r', 'r.id', '=', 'entradas.id')
+      ->leftJoin('rellevancia as r', 'r.id', '=', 'entradas.relevancia')
       ->select('fotos.id as fotoId', 'fotos.alt as alt_foto', 'fotos.url as fotosUrl' , 'entradas.*', 'entradas.id as id_entrada')
       ->where('entradas.visible','=',1)
       ->where('entradas.eliminado','=',0)
+      ->whereIn('entradas.publico', $this->publico)
       ->orderByRaw('date_add(entradas.data_publicacion, INTERVAL r.valor DAY) DESC, entradas.data_publicacion DESC')
       ->get();
 
@@ -36,8 +38,9 @@ public function MostrarEntradasHome(){
       $contenidos[$k]->nombre_categoria = DB::table('entradas')
         ->join('entradas_categorias','entradas_categorias.id_entrada', '=','entradas.id' )
         ->join('categorias','categorias.id', '=','entradas_categorias.id_categoria' )
-        ->where('entradas.id', '=', $contenidos[$k]->id_entrada)       
-        ->select('categorias.nombre as nombre_categoria')
+        ->where('entradas.id', '=', $contenidos[$k]->id_entrada)
+        ->where('categorias.eliminado','=', 0)
+        ->select('categorias.nombre as nombre_categoria' , 'categorias.id as idCategoria')
         ->get();
     }
 

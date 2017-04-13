@@ -20,24 +20,36 @@ class feController extends Controller
     private $valor;
     private $cookiePublico;
     private $oentitats;
+    private $publico;
 
     public function __construct()
     {
         $this->oentitats = new feEntitats;
         $this->opaginashome = new Paginas;
-//        $request = new Request;
-//        $request->cookie('name');
-//        return response('Hello World')->cookie('nombre', 'valor', 1);
         if (!isset($_COOKIE["CookiePublico"])) {
-            setcookie("CookiePublico", 'todos', time()+200);
+
+            setcookie("CookiePublico", 'todos', time() + (60*60*24*60),'/cms');
+            $this->publico = array( 0=>0 , 1=>1 , 2=>2 );
         }else{
             $cookiePublico = $_COOKIE["CookiePublico"];
+            switch ($cookiePublico) {
+                case 'alumnos':
+                    $this->publico = array( 0=>1 , 1=>0 );
+                    break;
+                case 'profesores':
+                    $this->publico = array( 0=>2 , 1=>0 );
+                    break;
+                default :
+                    $this->publico = array( 0=>0 , 1=>1 , 2=>2 );
+                    break;
+            }
         }
     }
 
 
     public function category($id) {
         $ocategories = new feCategories;
+        $ocategories->publico = $this->publico;
         $data = $ocategories->llegirCategories($id);
         if (count($data)<=0) {
             abort(404);
@@ -55,7 +67,9 @@ class feController extends Controller
     public function post($id) {
         $oentradas = new feEntrades;
         $ocategories = new feCategories;
-        
+
+        $oentradas->publico = $this->publico;
+
         $etiquetas = $oentradas->llegirEtiquetesDePost($id);
         $categories = $ocategories->llegirTotesPerMenu();
         $data = $oentradas->llegirEntrada($id);
@@ -78,9 +92,10 @@ class feController extends Controller
     }
 
     public function index() {
-
+    
       $oentradashome = new feHome;
       $ocategories = new feCategories;
+      $oentradashome->publico = $this->publico;
 
       $categories = $ocategories->llegirTotesPerMenu();
       $data = $oentradashome->MostrarEntradasHome();

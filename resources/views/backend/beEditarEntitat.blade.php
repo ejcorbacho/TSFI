@@ -48,7 +48,11 @@
                         </div>
 
                         <div class="checkbox">
-                            <label><input id="colab" type="checkbox" name="colab" value="@if (!empty($data[0]->son_colaboradoras)){{$data[0]->son_colaboradoras}}@endif">Son Colaboradors</label>
+                            <label><input id="colab" type="checkbox" name="colab" "@if (!empty($data[0]->son_colaboradoras))
+                                @if ($data[0]->son_colaboradoras == 1)
+                                    {{"checked=checked"}}
+                                @endif
+                            @endif">Son Colaboradors</label>
                         </div>
 
                         <!-- /.box-body -->
@@ -69,7 +73,6 @@
                 </form>
             </div>
         </section>
-
 <!-- START IMAGE SELECTION MODAL -->
 <div class="modal fade" id="imageSelectionModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">

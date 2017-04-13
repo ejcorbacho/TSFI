@@ -145,6 +145,10 @@ img {
   padding: 15px !important;
   
 }
+.hrBuscador{
+  border-color: white !important;
+  border-width: 1px !important;
+}
 
 #caja_buscador{
   padding: 15px;
@@ -397,4 +401,7 @@ footer {
 
 .tag:hover::after {
    border-left-color: #F2CB4B; 
+}
+.btn-o > a{
+  background-color: orange !important;
 }

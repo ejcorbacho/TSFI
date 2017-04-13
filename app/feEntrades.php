@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 class feEntrades extends Model
 {
     protected $table = 'entradas';
-
+    public $publico;
     public function llegirEntrada($id) {
         $contenido = DB::table('entradas')
                 ->leftjoin('fotos', 'entradas.foto', '=', 'fotos.id')
@@ -16,6 +16,9 @@ class feEntrades extends Model
                 ->leftjoin('categorias', 'categorias.id', '=', 'entradas_categorias.id_categoria')
                 ->select('entradas.*', 'categorias.nombre', 'categorias.id as idcat', 'fotos.id as fotoId', 'fotos.url as fotosUrl')
                 ->where('entradas.id', '=', $id)
+                ->where('entradas.visible','=',1)
+                ->where('entradas.eliminado','=',0)
+                ->whereIn('entradas.publico', $this->publico)
                 ->get();
 
         return $contenido;
@@ -26,6 +29,7 @@ class feEntrades extends Model
                 ->leftjoin('etiquetas', 'etiquetas.id', '=', 'entradas_etiquetas.id_etiqueta')
                 ->select('etiquetas.*')
                 ->where('entradas.id', '=', $id)
+                ->where('entradas.eliminado','=',0)
                 ->get();
 
         return $contenido;
@@ -37,6 +41,9 @@ class feEntrades extends Model
       ->join('entradas_categorias','entradas_categorias.id_entrada', '=','entradas.id' )
       ->select('fotos.id as fotoId', 'fotos.url as fotosUrl' , 'entradas.*')
       ->where('entradas_categorias.id_categoria', '=', $id)
+      ->where('entradas.visible','=',1)
+      ->where('entradas.eliminado','=',0)
+      ->whereIn('entradas.publico', $this->publico)
       ->inRandomOrder() 
       ->limit(4)
       ->get();

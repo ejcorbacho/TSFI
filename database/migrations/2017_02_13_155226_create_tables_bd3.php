@@ -170,6 +170,22 @@ class CreateTablesBd3 extends Migration
             'password' => bcrypt('Tsfi2017')
             )
         );
+		
+		DB::table('rellevancia')->insert(
+        array(
+            'valor' => '0',
+            )
+        );
+		DB::table('rellevancia')->insert(
+        array(
+            'valor' => '5',
+            )
+        );
+		DB::table('rellevancia')->insert(
+        array(
+            'valor' => '10',
+            )
+        );
 
     }
 

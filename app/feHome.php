@@ -26,11 +26,11 @@ class feHome extends Model
 public function MostrarEntradasHome(){
   $contenidos = DB::table('entradas')
       ->leftJoin('fotos', 'entradas.foto', '=', 'fotos.id')
-      ->leftJoin('rellevancia as r', 'r.id', '=', 'entradas.id')
+      ->leftJoin('rellevancia as r', 'r.id', '=', 'entradas.relevancia')
       ->select('fotos.id as fotoId', 'fotos.alt as alt_foto', 'fotos.url as fotosUrl' , 'entradas.*', 'entradas.id as id_entrada')
       ->where('entradas.visible','=',1)
       ->where('entradas.eliminado','=',0)
-      ->orderByRaw('date_sub(entradas.data_publicacion, INTERVAL r.valor DAY) ASC, entradas.data_publicacion ASC')
+      ->orderByRaw('date_add(entradas.data_publicacion, INTERVAL r.valor DAY) DESC, entradas.data_publicacion DESC')
       ->get();
 
     foreach ($contenidos as $k => $contenido) {

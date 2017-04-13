@@ -179,6 +179,7 @@
       <div id="popularPostsSection" class="col-lg-12 col-lg-offset-0 col-md-12">
           <div id="popularPostsContainer" class="col-md-9 col-sm-12">
               @for($i = 6 ; $i < count($posts) ; $i++)
+              @if(!empty($posts[$i]))
               <div class="popularPost">
                   <div class="popularPostImage col-md-4 col-sm-4 col-xs-12">
                       <a href="{{ url('/post/' . $posts[$i]->id) }}">
@@ -186,7 +187,7 @@
                       </a>
                   </div>
                   <div class="popularPostInfo col-md-8 col-sm-8 col-xs-12">
-                      <a class="popularPostLink" href="{{ url('/post/' . $posts[$i]->id) }}">
+                      
                      
                         @if(isset($posts[$i]->nombre_categoria[0]))
                          <a href="{{ url('/category/' . $posts[$i]->nombre_categoria[0]->idCategoria) }}">
@@ -195,11 +196,11 @@
                         </h5>
                         </a>
                         @endif
-                      
+                      <a class="popularPostLink" href="{{ url('/post/' . $posts[$i]->id) }}">
                       <h1>@if(!empty($posts[$i]->titulo)) {{$posts[$i]->titulo}} @endif</h1>
-                      </a>
+                      
                       <p>@if(!empty($posts[$i]->resumen_largo)){!!html_entity_decode($posts[$i]->resumen_largo)!!} @endif</p>
-
+                      </a>
                       <div class="popularPostData">
                           <p class="col-md-2 col-sm-2 col-xs-2 popularPostDate"> {{Carbon\Carbon::parse($posts[$i]->data_publicacion)->format('d-m-Y')}}</p>
                           <span class="popularPostDataSeparator">•</span>
@@ -211,7 +212,8 @@
                   </div>
               </div>
              <hr class="popularPostSeparator">
-              @endfor             
+             @endif
+            @endfor             
           </div>
           <div id="popularPostsSidebar" class="col-md-3 col-sm-12">
 

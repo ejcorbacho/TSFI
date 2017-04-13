@@ -21,6 +21,8 @@
           <link href="{{ asset('fullcalendar-3.2.0/fullcalendar.min.css')}}" rel='stylesheet' />
           <link href="{{ asset('fullcalendar-3.2.0/fullcalendar.print.min.css')}}" rel='stylesheet' media='print' />
           <link href="{{ asset('/css/calendar.css')}}" rel="stylesheet" >
+
+          <!-- Missatge de cookies -->
       </head>
       <body>
       <div class="col-md-12 col-lg-12 col-lg-offset-0">
@@ -199,10 +201,10 @@
                       <p>@if(!empty($posts[$i]->resumen_largo)){!!html_entity_decode($posts[$i]->resumen_largo)!!} @endif</p>
 
                       <div class="popularPostData">
-                          <p class="col-md-2 col-sm-2 col-xs-2 popularPostDate">19/02/16</p>
+                          <p class="col-md-2 col-sm-2 col-xs-2 popularPostDate"> {{Carbon\Carbon::parse($posts[$i]->data_publicacion)->format('d-m-Y')}}</p>
                           <span class="popularPostDataSeparator">•</span>
                           <!--<a href="#"><i class="fa fa-facebook-official popularPostSocialIcon" aria-hidden="true"></i></a>-->
-                          <a class="twitter-share-button" href="https://twitter.com/intent/tweet?text={{$posts[5]->titulo}} &url=http://localhost/cms/post/{{$posts[5]->id}}&hashtags=TSFI">
+                          <a class="twitter-share-button" href="https://twitter.com/intent/tweet?text={{$posts[$i]->titulo}} &url=http://localhost/cms/post/{{$posts[$i]->id}}&hashtags=TSFI">
                               Tweet
                           </a>
                       </div>

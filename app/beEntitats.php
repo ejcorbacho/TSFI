@@ -43,7 +43,7 @@ class beEntitats extends Model
     public function llegirEntitatPerId($id){
         $contenido =  DB::table('entidades')
           ->leftJoin('fotos', 'fotos.id', '=', 'entidades.foto')
-          ->select('entidades.*', 'fotos.id as fotoId', 'fotos.url as fotoUrl', 'fotos.alt as fotoAlt')
+          ->select('entidades.*', 'fotos.id as fotoId', 'fotos.url as fotoUrl', 'fotos.alt as fotoAlt', 'son_colaboradoras')
           ->where('entidades.id', '=', $id)
           ->where('entidades.eliminado', '!=', 1)
           ->get();

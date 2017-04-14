@@ -22,7 +22,7 @@
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
   <link rel="stylesheet" href="{{asset('dist/css/skins/_all-skins.min.css')}}">
-
+  <link rel="stylesheet" href="{{asset('css/backend/notificacions.css')}}">
   <!-- jQuery 3.3.1 -->
 	<script src="{{asset('js/jquery-3.1.1.min.js')}}"></script>
 <!-- Bootstrap 3.3.6 -->
@@ -270,16 +270,23 @@
 
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
+    <ul class="slide_notificaciones">
     <hr />
+
     @if(isset($notificaciones)) @if(!empty($notificaciones))
       @foreach($notificaciones as $notificacion)
-        @if($notificacion->contenido == '@novaentrada')
+        @if($notificacion->titulo == '@reportePost')
+          <a href="{{url('/administracio/notificacio/' . $notificacion->id)}}">
+        @elseif($notificacion->contenido == '@novaentrada')
           <a href="{{url('/administracio/entrada/nova/' . $notificacion->id_relacion)}}">
         @else
-          <a href="#">
+          <a href="{{url('/administracio/notificacio/' . $notificacion->id)}}">
         @endif
         <li >
-          @if($notificacion->contenido == '@novaentrada')
+          @if($notificacion->titulo == '@reportePost')
+            Nou report rebut! <br />
+            Revisa'l per corretgir-lo
+          @elseif($notificacion->contenido == '@novaentrada')
             Nova entrada rebuda! <br />
             Revisa-la per publicar-la
           @else
@@ -295,6 +302,7 @@
       <li>
         <a href="{{url('/administracio/notificacions')}}">Veure més..</a>
       </li>
+    </ul>
     @endif @endif
   </aside>
 

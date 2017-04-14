@@ -18,28 +18,6 @@ var vacio;
 //************* CUERPO PRINCIPAL DEL PROGRAMA *******************//
 $( document ).ready(function() {
 
-    /********************************* FUNCIONES BOTON GUARDAR  ***********************************/
-    $.ajaxSetup({
-      headers: {
-          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-      }
-    });
-
-    $("#formulario_entrada").ajaxForm({
-        url: urlPrincipal + 'ajax/feentradas/guardarEntrada',
-        type: 'post',
-        data:  {captcha: $('#g-recaptcha-response').val()},
-        success: function(data) {
-
-          alert(data);
-
-        },
-        error: function(xhr, desc, err) {
-
-          alert('Error al guardar!');
-        }
-    });
-
 });
 
 
@@ -105,7 +83,7 @@ function validarEmail() {
     $("#notificaciones_email").append("queden " + restant);
     hayEmail = true;
   }
-  
+
   if (restant >= 0){
     return true;
   } else {

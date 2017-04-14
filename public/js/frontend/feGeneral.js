@@ -65,26 +65,63 @@ $(document).ready(function () {
     d.setTime(d.getTime() + (60*24*60*60*1000));
     var expires = "expires="+ d.toUTCString();
 
-    $('#changeCookieTodos').on('click', function (e) {
+    $('.changeCookieTodos').on('click', function (e) {
         document.cookie = "CookiePublico=todos;" + expires + "; path=/cms";
         location.reload();
     });
-    $('#changeCookieAlumnos').on('click', function (e) {
+    $('.changeCookieAlumnos').on('click', function (e) {
         document.cookie = "CookiePublico=alumnos;" + expires + "; path=/cms";
         location.reload();
     });
-    $('#changeCookieProfesores').on('click', function (e) {
+    $('.changeCookieProfesores').on('click', function (e) {
         document.cookie = "CookiePublico=profesores;" + expires + "; path=/cms";
         location.reload();
     });
     
 
 });
+//Mensaje de cookies:
+$(document).ready(function () {
+    console.log(getCookie('cookieMessage'));
+    if (getCookie("cookieMessage")=="1") {
+        var d = new Date();
+        d.setTime(d.getTime() + (120*24*60*60*1000));
+        var expires = "expires="+ d.toUTCString();
+        document.cookie = "cookieMessage=1;" + expires + "; path=/cms";
+        $('.cookiesMessage').show();
+    }
 
+    $('#acceptCookies').on('click', function (e) {
+        var d = new Date();
+        d.setTime(d.getTime() + (120*24*60*60*1000));
+        var expires = "expires="+ d.toUTCString();
+        document.cookie = "cookieMessage=0;" + expires + "; path=/cms";
+        $('.cookiesMessage').hide();
+    });
+
+    
+
+});
+function getCookie(cname) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for(var i = 0; i <ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
 //Buscador-----------
 $(document).ready(function () {
     
     $('#caja_buscador').on('keyup', function (e) {
+        if ($('#caja_buscador').val()!='') {
         $.ajax({
          url: urlPrincipal + 'ajax/searchByTag',
          type: 'get',
@@ -97,12 +134,13 @@ $(document).ready(function () {
                 //console.log('hola');
                 for(var i=0; busqueda.total > i ;i++){
                     //console.log('bu');
+                    html = html + '<a href="'+urlPrincipal+'post/'+ busqueda.data[i].id +'">';
                     html= html +'<div class="resultadoDeBusqueda">';
                     html = html + '<h5 style="position:absolute">' + busqueda.data[i].titulo + ' • <span>' + busqueda.data[i].data_publicacion + '</span></h5>';
                     html = html + '<ul class="tags tagsBuscador" style="width: 100%;">';
                     try {
                         for(var c=0; busqueda.data[i].tags.length > c ;c++){
-                            html = html + '<li><a href="#" class="tag tagBuscador">' + busqueda.data[i].tags[c].nombre + '</a></li>';
+                            html = html + '<li><a href="'+urlPrincipal+'post/'+ busqueda.data[i].id +'" class="tag tagBuscador">' + busqueda.data[i].tags[c].nombre + '</a></li>';
                         }
                     } catch (error) {
                         console.log('no hay tags');
@@ -110,6 +148,7 @@ $(document).ready(function () {
                     
                     html = html + '</ul>';
                     html = html + '</div>';
+                    html = html + '</a>';
                     html = html + '<hr class="hrBuscador">';
                 }
                 $('.resultadosDeBusqueda').html(html);
@@ -126,19 +165,65 @@ $(document).ready(function () {
          console.log(xhr);
          console.log("Details: " + desc + "\nError:" + err);
         }});
-        
-
-
-
-
-        // var busqueda = getDataOverAJAX('searchByTag',$('#caja_buscador').val());
-        // console.log(busqueda);
-        // if(busqueda.total > 0){
-
-        // }
-
-
+        }else{
+             $('.resultadosDeBusqueda').html('');
+        }
     });
+//BUSCADOR MOBIL
+$('#inputBuscador_responsive').on('keyup', function (e) {
+    
+    if ($('#inputBuscador_responsive').val()!='') {
+        $.ajax({
+         url: urlPrincipal + 'ajax/searchByTag',
+         type: 'get',
+         dataType: 'json',
+         data: ({data: $('#inputBuscador_responsive').val()}),
+         success: function (busqueda) {
+            console.log(busqueda);
+            var html='';
+            if(busqueda.total > 0){
+                //console.log('hola');
+                for(var i=0; busqueda.total > i ;i++){
+                    //console.log('bu');
+                    html = html + '<a href="'+urlPrincipal+'post/'+ busqueda.data[i].id +'">';
+                    html= html +'<div class="resultadoDeBusquedaMobil">';
+                    html = html + '<h5>' + busqueda.data[i].titulo + ' • <span>' + busqueda.data[i].data_publicacion + '</span></h5>';
+                    html = html + '<ul class="tags tagsBuscador" style="width: 100%;">';
+                    try {
+                        for(var c=0; busqueda.data[i].tags.length > c ;c++){
+                            html = html + '<li><a href="'+urlPrincipal+'post/'+ busqueda.data[i].id +'" class="tag tagBuscador">' + busqueda.data[i].tags[c].nombre + '</a></li>';
+                        }
+                    } catch (error) {
+                        console.log('no hay tags');
+                    }
+                    
+                    html = html + '</ul>';
+                    html = html + '</div>';
+                    html = html + '</a>';
+                    html = html + '<hr class="hrBuscador">';
+                }
+                $('.resultadosDeBusquedaMobil').html(html);
+            }else{
+                html= html +'<div class="resultadoDeBusquedaMobil">';
+                html = html + '<h5 >No hem trobat res que coincideixi amb els paràmetres de cerca especificats... :( </h5>';
+                html = html + '</div>';
+                html = html + '<hr class="hrBuscador">';
+                $('.resultadosDeBusquedaMobil').html(html);
+            }
+
+         },
+         error: function (xhr, desc, err) {
+         console.log(xhr);
+         console.log("Details: " + desc + "\nError:" + err);
+        }});
+    }else{
+        $('.resultadosDeBusquedaMobil').html('');
+    }
+});
+
+
+
+    
 });
 function searchByTag( route, data) {
     return $.ajax({
@@ -150,11 +235,3 @@ function searchByTag( route, data) {
 function mostrarResultados(){
 
 }
-function isset(variable_name) {
-    try {
-         if (typeof(eval(variable_name)) != 'undefined')
-         if (eval(variable_name) != null)
-         return true;
-     } catch(e) { }
-    return false;
-   }

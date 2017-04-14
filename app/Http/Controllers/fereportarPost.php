@@ -33,7 +33,7 @@ class fereportarPost extends Controller {
 
     public function mostrarCaptcha($id_post) {
 
-        $categories = $this->ocategories->llegirTotes();
+        $categories = $this->ocategories->llegirTotesPerMenu();
         $paginas = $this->opaginashome->llegirTotes();
         $entitats = $entitats = $this->oentitats->LlistaFooterEntitats();
 
@@ -42,7 +42,7 @@ class fereportarPost extends Controller {
 
     public function informarReporte() {
 
-        $categories = $this->ocategories->llegirTotes();
+        $categories = $this->ocategories->llegirTotesPerMenu();
         $paginas = $this->opaginashome->llegirTotes();
         $entitats = $entitats = $this->oentitats->LlistaFooterEntitats();
         $id_post = Input::get('id_post');
@@ -82,11 +82,11 @@ class fereportarPost extends Controller {
           $destinatario = Input::get('email');
 
           if ($this->oreporte->guardarfe()=='-1'){
-            $categories = $this->ocategories->llegirTotes();
+            $categories = $this->ocategories->llegirTotesPerMenu();
             $paginas = $this->opaginashome->llegirTotes();
             return view('frontend.feerror',['paginas'=>$paginas, 'categories'=>$categories]);
           } else {
-            $categories = $this->ocategories->llegirTotes();
+            $categories = $this->ocategories->llegirTotesPerMenu();
             $paginas = $this->opaginashome->llegirTotes();
             $this->enviarMail($asunto, $contenido, $destinatario);
 

@@ -25,11 +25,25 @@
           <!-- Missatge de cookies -->
       </head>
       <body>
+<!--@if(!isset($_GET['page']))
+    {{$pagina = 1}}
+@else
+    {{$pagina = $_GET['page']}}
+@endif
+
+@if( $pagina==1)
+    {{$primeraPagina=1}}
+@else
+    {{$primeraPagina=0}}
+@endif-->
+
+
+@if($primeraPagina==1)
       <div class="col-md-12 col-lg-12 col-lg-offset-0">
       <!-- Portfolio Item Row -->
 
       <div class="row mainGridContainer">
-      @if(!empty($posts[0]))
+    @if(!empty($posts[0]))
           <!-- 1 APARTADO PRINCIPAL-->
           <div class="col-md-8 img-relative marginBotForSec">
             @if(!empty($posts[0]))<a href="{{ url('/post/' . $posts[0]->id) }}">@endif
@@ -179,11 +193,14 @@
       </div>
   </div>
 @endif
+@endif
+
 <!-- /**************************************OTROS POSTS NO DESTACADOS****************************************************/-->
 
       <div id="popularPostsSection" class="col-lg-12 col-lg-offset-0 col-md-12" style="padding-left:0px;padding-right:0px;">
           <div id="popularPostsContainer" class="col-md-9 col-sm-12">
-              @for($i = 6 ; $i < count($posts) ; $i++)
+              <!--@if($primeraPagina==1){{$i = 6}} @else {{$i = 0}}@endif-->
+              @for($i; $i < count($posts) ; $i++)
               @if(!empty($posts[$i]))
               <div class="popularPost">
                   <div class="popularPostImage col-md-4 col-sm-4 col-xs-12">
@@ -218,8 +235,10 @@
               </div>
              <hr class="popularPostSeparator">
              @endif
-            @endfor             
+            @endfor  
+            <?php echo $posts->render(); ?>           
           </div>
+          
           <div id="popularPostsSidebar" class="col-md-3 col-sm-12">
 
 <!-- INICI CALENDARI -->

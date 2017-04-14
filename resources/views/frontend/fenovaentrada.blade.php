@@ -103,7 +103,10 @@
               </button>
               <textarea name="contingut" id="contingut" onkeyup="validarFormulario()" onchange="validarFormulario()"></textarea>
             </div>
-            <button type="submit" value="Guardar" class="btn btn-primary" />Enviar</button>
+            <div class="col-md-12">
+              <center><button type="submit" value="Guardar" class="btn btn-primary" />Enviar</button></center>
+            </div>
+
           </div>
         </form>
       </div>

@@ -64,22 +64,6 @@ function validarEmail() {
 }
 
 
-function validarTitulo() {
-  var longitud = $("#titulo").val().length;
-  $("#notificaciones_titulo ").empty();
-  var restant = maximoTitulo - longitud;
-  $("#notificaciones_titulo ").append("queden " + restant);
-  if(longitud > 0){
-    hayTitulo = true;
-  } else {
-    hayTitulo = false;
-  }
-  if (restant >= 0){
-    return true;
-  } else {
-    return false;
-  }
-}
 
 
 function validarContenido() {
@@ -95,14 +79,13 @@ function validarContenido() {
 
 function validarFormulario(){
 
-    var caracteresTitulo = validarTitulo();         /* VALIDA SI LA CANTIDAD DE CARACTERES QUE HAY EN EL TITULO */
     var caracteresNom = validarNom();               /* VALIDA SI LA CANTIDAD DE CARACTERES QUE HAY EN EL NOMBRE */
     var caracteresEmail = validarEmail();           /* VALIDA SI LA CANTIDAD DE CARACTERES QUE HAY EN EL EMAIL */
     validarContenido();                             /* VALIDA SI HAY CARACTERES EN LA CAJA DE CONTENIDO */
 
 
     var maximosRespetados = false;                  /* VALIDA SI LOS MAXIIMOS DE CARACTERES HAN SIDO RESPETADOS */
-    if(caracteresTitulo && caracteresNom && caracteresEmail) { maximosRespetados = true; }
+    if(caracteresNom && caracteresEmail) { maximosRespetados = true; }
 
     var camposObligatorios =  validarCamposObligatorios(); /* VALIDA SI TODOS LOS CAMPOS OBLIGATORIOS ESTAN CUMPLIMENTADOS */
 
@@ -116,7 +99,7 @@ function validarFormulario(){
 }
 
 function validarCamposObligatorios(){
-  if(hayTitulo && hayContenido && hayNom && hayEmail){
+  if(hayContenido && hayNom && hayEmail){
     return true;
   } else {
     return false;

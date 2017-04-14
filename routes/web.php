@@ -57,8 +57,10 @@ Route::get('administracio/entrada/nova/{id}', array('uses' => 'EntradasControlle
 Route::get('administracio/entrada/llistat', array('uses' => 'EntradasController@llistarEntradas')); //Mostrar listado de entradas
 Route::get('administracio/entrada/paperera', array('uses' => 'EntradasController@llistarEntradasPaperera')); //Mostrar listado de entradas
 
-
-
+/******** REPORTAR UN POST ***********/
+Route::get('/reportarPost/{id}', ['uses' =>'fereportarPost@mostrarCaptcha']);
+Route::post('/informarReporte', ['uses' =>'fereportarPost@informarReporte']);
+Route::post('/reportGuardar', ['uses' =>'fereportarPost@guardarReport']);
 
 /******** NOTIFICACIONES ***********/
 Route::get('administracio/notificacions', array('uses' => 'beNotificaciones@mostrarGrid')); //Mostrar formulario

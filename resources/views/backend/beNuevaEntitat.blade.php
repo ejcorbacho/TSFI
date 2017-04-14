@@ -48,7 +48,7 @@
                     <label>Url de l'entitat</label>
                     <input type="text" class="form-control" id="url" name="url" placeholder="Inserta la URL de l'entitat" required>
                 </div>
-                
+
                 <div class="checkbox">
                     <label><input id="colab" type="checkbox" name="colab">Son Colaboradors</label>
                 </div>

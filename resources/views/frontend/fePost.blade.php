@@ -45,20 +45,23 @@
             <div id="map" class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
 
             </div>
+            <div class="col-md-9">
+              <a href="{{url('/reportarPost/' . $data->id)}}">Reportar aquest post per ser incorrecte o inapropiat</a>
+            </div>
         </main>
         <div class="categoryPostsSidebar col-md-3 col-sm-12">
             @if(count($etiquetas)>0 && !is_null($etiquetas[0]->nombre))
             <div>
                 <h2>Etiquetes</h2>
                 <ul class="tags" style="width: 100%;">
-                    @foreach($etiquetas as $etiqueta) 
+                    @foreach($etiquetas as $etiqueta)
                     <li><a href="#" class="tag">{{$etiqueta->nombre}}</a></li>
                     @endforeach
                 </ul>
             </div>
             @endif
                @if(count($related)!=0)<h2>Posts Relacionats</h2> @endif
-                @foreach($related as $info)              
+                @foreach($related as $info)
                 <a href="../post/{{$info->id}}">
                     <div class="sidebarPost">
                         <img class="sidebarPostImg" src="{{$info->fotosUrl}}">
@@ -69,7 +72,7 @@
                 </a>
                  @endforeach
                 <div id="entitatsColaboradores">
-                
+
                 </div>
         </div>
     </div>

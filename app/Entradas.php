@@ -244,9 +244,9 @@ class Entradas extends Model
           ->leftjoin('fotos', 'entradas.foto', '=', 'fotos.id')
           ->leftjoin('entradas_categorias', 'entradas_categorias.id_entrada', '=', 'entradas.id')
           ->leftjoin('categorias', 'categorias.id', '=', 'entradas_categorias.id_categoria')
-          ->select('entradas.id','entradas.resumen_largo','entradas.titulo','entradas.data_publicacion', 'fotos.url',DB::raw('group_concat(categorias.nombre separator ", ") as categoriasDePost'))
+          ->select('entradas.id', 'entradas.visitas', 'entradas.resumen_largo','entradas.titulo','entradas.data_publicacion', 'fotos.url',DB::raw('group_concat(categorias.nombre separator ", ") as categoriasDePost'))
           ->where('entradas.eliminado', '=', 0)
-          ->groupBy('entradas.id','entradas.resumen_largo','entradas.titulo','entradas.data_publicacion','fotos.url')
+          ->groupBy('entradas.id','entradas.resumen_largo','entradas.titulo','entradas.data_publicacion','fotos.url', 'entradas.visitas')
           ->get();
 
         return $contenido;

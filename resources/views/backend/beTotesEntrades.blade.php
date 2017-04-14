@@ -103,7 +103,7 @@
                       <td class="campoResumenTablaPosts">{{ $dato->resumen_largo }}</td>
                       <td>{{ $dato->categoriasDePost }}</td>
                       <td>{{ Carbon\Carbon::parse($dato->data_publicacion)->format('d-m-Y') }}</td>
-                      <td>{{ $dato->views }}</td>
+                      <td>{{ $dato->visitas }}</td>
                       <td><i class="twitterIconDataTable fa fa-fw fa-twitter-square"></i></td>
                       <td><a href="{{ url('administracio/entrada/nova/' . $dato->id) }}">EDITAR</a></td>
                       <td><button type="button" class="btn btn-default btn-sm botoEsborrarEntrades"><i class="fa fa-trash-o"></i></button></td>

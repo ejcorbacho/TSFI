@@ -135,8 +135,10 @@
 
 }
 .categoryPostCategory{
- color:#fab23a;
- font-size:14px;
- font-family: 'Paytone One', sans-serif;
+    color: orange;
+    font-size: 18px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    letter-spacing: 1.2px;
 
 }

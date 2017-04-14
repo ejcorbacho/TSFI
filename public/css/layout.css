@@ -183,6 +183,10 @@ img {
   padding: 15px !important;
   
 }
+.resultadoDeBusqueda > h5 > span{
+  font-size: 12px !important;
+  
+}
 .hrBuscador{
   border-color: white !important;
   border-width: 1px !important;

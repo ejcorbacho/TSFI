@@ -71,7 +71,7 @@ class CreateTablesBd3 extends Migration
             $table->increments('id');
             $table->string('titulo', 200);
             $table->string('subtitulo', 200);
-            $table->string('contenido', 200);
+            $table->longText('contenido');
             $table->integer('foto')->nullable()->unsigned();
             $table->integer('usuario_publicador')->unsigned();
             $table->tinyInteger('eliminado');

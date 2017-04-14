@@ -26,9 +26,9 @@
             @if(!empty($data->titulo))<h1> {{$data->titulo}}</h1>@endif
             @if(!empty($data->nombre)) <h2 class="categoria"><a id="link" href="../category/{{$data->idcat}}">{{$data->nombre}}</a></h2>@endif
             @if(!empty($data->data_publicacion))
-                <div class="autorContainer"><h3 class="autor">{{ Carbon\Carbon::parse($data->data_publicacion)->format('d-m-Y') }}</h3>
+                <div class="autorContainer"><h3 class="autor">{{ Carbon\Carbon::parse($data->data_publicacion)->format('d-m-Y') }} • </h3>
                 @if(isset($data->titulo))
-                    <a class="twitter-share-button" href="https://twitter.com/intent/tweet?text={{$data->titulo}} &url=http://localhost/cms/post/{{$data->id}}&hashtags=TSFI">
+                    <a style="margin-top:5px;" class="twitter-share-button" href="https://twitter.com/intent/tweet?text={{$data->titulo}} &url=http://localhost/cms/post/{{$data->id}}&hashtags=TSFI">
                         Tweet
                     </a>
                 @endif

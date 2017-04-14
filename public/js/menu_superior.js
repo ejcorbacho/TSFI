@@ -18,7 +18,7 @@ var menu_mostrado = 0;
       $("#contenido_menu_responsive").fadeIn(500);
       $("#boton_desplegar_menu").removeClass("fa-bars");
       $("#boton_desplegar_menu").addClass("fa-times");
-      $('#caja_buscador').focus();
+      $('#caja_buscador').click();
 
       menu_mostrado = 1;
     } else {

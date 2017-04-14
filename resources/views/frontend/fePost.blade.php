@@ -32,6 +32,9 @@
                         Tweet
                     </a>
                 @endif
+                @if($data->esdeveniment==1 && !is_null($data->fecha1) && !is_null($data->fecha2))
+                <h3 class="autor"> • Esdeveniment del {{Carbon\Carbon::parse($data->fecha1)->format('d-m-Y')}} al {{Carbon\Carbon::parse($data->fecha2)->format('d-m-Y')}}</h3>
+                @endif
                 </div>
             @endif
             </div>

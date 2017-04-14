@@ -100,9 +100,14 @@ $(document).ready(function () {
                     html= html +'<div class="resultadoDeBusqueda">';
                     html = html + '<h5 style="position:absolute">' + busqueda.data[i].titulo + ' • <span>' + busqueda.data[i].data_publicacion + '</span></h5>';
                     html = html + '<ul class="tags tagsBuscador" style="width: 100%;">';
-                    for(var c=0; busqueda.data[i].tags.length > c ;c++){
-                        html = html + '<li><a href="#" class="tag tagBuscador">' + busqueda.data[i].tags[c].nombre + '</a></li>';
+                    try {
+                        for(var c=0; busqueda.data[i].tags.length > c ;c++){
+                            html = html + '<li><a href="#" class="tag tagBuscador">' + busqueda.data[i].tags[c].nombre + '</a></li>';
+                        }
+                    } catch (error) {
+                        console.log('no hay tags');
                     }
+                    
                     html = html + '</ul>';
                     html = html + '</div>';
                     html = html + '<hr class="hrBuscador">';
@@ -145,3 +150,11 @@ function searchByTag( route, data) {
 function mostrarResultados(){
 
 }
+function isset(variable_name) {
+    try {
+         if (typeof(eval(variable_name)) != 'undefined')
+         if (eval(variable_name) != null)
+         return true;
+     } catch(e) { }
+    return false;
+   }

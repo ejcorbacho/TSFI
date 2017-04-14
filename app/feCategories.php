@@ -70,6 +70,7 @@ public function llegirTotesPerMenu(){
   ->select('categorias.nombre','categorias.id')
   ->where('categorias.eliminado', '=', '0')
   ->where('entradas.eliminado', '=', '0')
+  ->where('entradas.visible', '=', '1')
   ->groupBy('categorias.nombre','categorias.id')
   ->get();
 

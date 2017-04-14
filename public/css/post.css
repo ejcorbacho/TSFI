@@ -27,9 +27,10 @@ body  {
          padding: 8px;
  }
  .autor  {
-         margin-top:8px; 
+         margin-top:0px; 
          color:  white;
          font-size:  18px;
+         margin-right: 6px;
  }
  .autorContainer{
      display: flex;

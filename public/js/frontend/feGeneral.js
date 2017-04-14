@@ -94,11 +94,11 @@ $(document).ready(function () {
             console.log(busqueda);
             var html='';
             if(busqueda.total > 0){
-                console.log('hola');
+                //console.log('hola');
                 for(var i=0; busqueda.total > i ;i++){
-                    console.log('bu');
+                    //console.log('bu');
                     html= html +'<div class="resultadoDeBusqueda">';
-                    html = html + '<h5 style="position:absolute">' + busqueda.data[i].titulo + '</h5>';
+                    html = html + '<h5 style="position:absolute">' + busqueda.data[i].titulo + ' • <span>' + busqueda.data[i].data_publicacion + '</span></h5>';
                     html = html + '<ul class="tags tagsBuscador" style="width: 100%;">';
                     for(var c=0; busqueda.data[i].tags.length > c ;c++){
                         html = html + '<li><a href="#" class="tag tagBuscador">' + busqueda.data[i].tags[c].nombre + '</a></li>';

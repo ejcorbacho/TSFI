@@ -61,8 +61,9 @@ class feController extends Controller
         $related = $ocategories->MostrarPostsRelated($id);
         $paginas = $this->opaginashome->llegirTotes();
         $categories = $ocategories->llegirTotesPerMenu();
+        $entitats = $this->oentitats->LlistaFooterEntitats();
 
-        return view('frontend.feCategory',['categoria'=>$data[0], 'posts'=>$post, 'related'=>$related, 'categories'=>$categories]);
+        return view('frontend.feCategory',['categoria'=>$data[0], 'posts'=>$post, 'related'=>$related, 'categories'=>$categories, 'entitats'=>$entitats, 'paginas'=>$paginas]);
     }
     public function post($id) {
         $oentradas = new feEntrades;
@@ -71,15 +72,20 @@ class feController extends Controller
         $oentradas->publico = $this->publico;
 
         $etiquetas = $oentradas->llegirEtiquetesDePost($id);
-        $etiquetas = $oentradas->incrementarVista($id);
+        $oentradas->incrementarVista($id);
         $categories = $ocategories->llegirTotesPerMenu();
+        $entitats = $this->oentitats->LlistaFooterEntitats();
         $data = $oentradas->llegirEntrada($id);
-            $paginas = $this->opaginashome->llegirTotes();
+        $paginas = $this->opaginashome->llegirTotes();
+
+        $entitats_col = $this->oentitats->llistarEntiatsCol($id);
+        $related = $oentradas->MostrarPostsRelated($data[0]->idcat);
+
         if (count($data)<=0) {
             abort(404);
         }
-        $related = $oentradas->MostrarPostsRelated($id);
-        return view('frontend.fePost',['data'=>$data[0] , 'related'=>$related, 'paginas'=>$paginas, 'categories'=>$categories, 'etiquetas'=>$etiquetas ]);
+
+        return view('frontend.fePost',['data'=>$data[0] , 'entitats_col'=>$entitats_col, 'related'=>$related, 'paginas'=>$paginas, 'categories'=>$categories, 'etiquetas'=>$etiquetas, 'entitats'=>$entitats]);
     }
 
     public function pagines($id) {
@@ -88,7 +94,8 @@ class feController extends Controller
       $categories = $ocategories->llegirTotesPerMenu();
       $data = $this->opaginashome->llegirContingut($id);
       $paginas = $this->opaginashome->llegirTotes();
-      return view('frontend.fePaginas',['data'=>$data[0], 'paginas'=>$paginas, 'categories'=>$categories]);
+      $entitats = $this->oentitats->LlistaFooterEntitats();
+      return view('frontend.fePaginas',['data'=>$data[0], 'paginas'=>$paginas, 'categories'=>$categories, 'entitats'=>$entitats]);
 
     }
 
@@ -101,10 +108,11 @@ class feController extends Controller
       $categories = $ocategories->llegirTotesPerMenu();
       $data = $oentradashome->MostrarEntradasHome();
       $paginas = $this->opaginashome->llegirTotes();
+      $entitats = $this->oentitats->LlistaFooterEntitats();
 
 
     //   return $data;
-      return view('frontend.feHome',['posts'=>$data, 'paginas'=>$paginas, 'categories'=>$categories]);
+      return view('frontend.feHome',['posts'=>$data, 'paginas'=>$paginas, 'categories'=>$categories, 'entitats'=>$entitats]);
 
     }
 

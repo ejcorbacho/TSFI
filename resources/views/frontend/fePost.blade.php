@@ -45,9 +45,14 @@
                 <p>@if(!empty($data->contenido)) {!!html_entity_decode($data->contenido)!!}@endif</p>
             </article>
         <hr/>
-            <div id="map" class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
+        @if(!empty($data->esdeveniment))
+          @if($data->esdeveniment == 1)
+            @if($data->localizacion != NULL)
+              <div id="map" class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1"></div>
+            @endif
+          @endif
+        @endif
 
-            </div>
             <div class="col-md-9">
               <a href="{{url('/reportarPost/' . $data->id)}}">Reportar aquest post per ser incorrecte o inapropiat</a>
             </div>
@@ -63,20 +68,34 @@
                 </ul>
             </div>
             @endif
-               @if(count($related)!=0)<h2>Posts Relacionats</h2> @endif
+              @if(isset($related))
+               @if(count($related)>0)<h2>Entrades relacionades</h2> @endif
                 @foreach($related as $info)
-                <a href="../post/{{$info->id}}">
-                    <div class="sidebarPost">
-                        <img class="sidebarPostImg" src="{{$info->fotosUrl}}">
-                        <div class="sidebarPostTitle">
-                            <p>@if(!empty($info->titulo)) {{$info->titulo}} @endif</p>
+                  @if($info->id_entrada != $data->id_entrada_m)
+                    <a href="{{$info->id_entrada}}">
+                        <div class="sidebarPost">
+                            <img class="sidebarPostImg" src="@if(!empty($info->fotosUrl)){{$info->fotosUrl}}@endif">
+                            <div class="sidebarPostTitle">
+                                <p>@if(!empty($info->titulo)) {{$info->titulo}} @endif</p>
+                            </div>
                         </div>
-                    </div>
-                </a>
+                    </a>
+                    @endif
                  @endforeach
-                <div id="entitatsColaboradores">
-
-                </div>
+                @endif
+                 @if(isset($entitats_col))
+                   @if(count($entitats_col)>0 && !is_null($entitats_col[0]->nombre))<h2>Entitats col·laboradores</h2> @endif
+                    @foreach($entitats_col as $entitat_col)
+                    <a href="{{ $entitat_col->url}}">
+                        <div class="sidebarPost">
+                            <img class="sidebarPostImg" alt="{{$entitat_col->fotoALT}}" src="{{$entitat_col->fotoURL}}">
+                            <div class="sidebarPostTitle">
+                                <p>@if(!empty($entitat_col->nombre)) {{$entitat_col->nombre}} @endif</p>
+                            </div>
+                        </div>
+                    </a>
+                 @endforeach
+                @endif
         </div>
     </div>
 </body>

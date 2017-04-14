@@ -1,0 +1,45 @@
+footer {
+  color: white;
+  font-family: Roboto;
+  padding: 0px;
+    background-color: #1C2227;
+}
+
+
+footer a{
+  color: orange;
+  text-transform: uppercase;
+}
+
+footer a:hover {
+  color: white;
+  text-decoration: none;
+}
+
+#texto_footer{
+  font-size: 25px;
+    background-color: #1C2227;
+  padding-top: 10px;
+  font-weight: bold;
+}
+
+#paginas_footer {
+  padding-top: 10px;
+    background-color: #1C2227;
+  font-size: 20px;
+}
+
+#entidades_footer {
+  padding-top: 10px;
+  margin-bottom: 0px;
+    background-color: #1C2227;
+  font-size: 15px;
+}
+
+#redes_sociales_footer {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  background-color: #1C2227;
+  margin-right: 0px;
+  margin-left: 0px;
+}

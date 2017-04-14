@@ -204,7 +204,7 @@ class EntradasController extends Controller
   //comprobar si una categoria esta marcada o no
   public function categoriaMarcada($id){
      $todasCategorias = $this->ocategorias->llistarTotes()->toArray();
-     $categoriasMarcadas = $this->mentradas->leerEntidadesMarcadas($id);
+     $categoriasMarcadas = $this->mentradas->leerCategoriasMarcadas($id);
 
      $ACategoriasMarcadas = array();
      $categoriasConMarcado = array();

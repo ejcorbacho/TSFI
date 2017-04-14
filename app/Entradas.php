@@ -337,8 +337,8 @@ class Entradas extends Model
 
     public function leerCategoriasMarcadas($id){
         $contenido =  DB::table('entradas_categorias')
-          ->select('entradas_categoria.id_categoria as id')
-          ->where('entradas_categoria.id_entrada', '=', $id)
+          ->select('entradas_categorias.id_categoria as id')
+          ->where('entradas_categorias.id_entrada', '=', $id)
           ->get();
 
         return $contenido;

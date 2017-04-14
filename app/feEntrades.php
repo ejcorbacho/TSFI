@@ -14,7 +14,7 @@ class feEntrades extends Model
                 ->leftjoin('fotos', 'entradas.foto', '=', 'fotos.id')
                 ->leftjoin('entradas_categorias', 'entradas_categorias.id_entrada', '=', 'entradas.id')
                 ->leftjoin('categorias', 'categorias.id', '=', 'entradas_categorias.id_categoria')
-                ->select('entradas.*', 'categorias.nombre', 'categorias.id as idcat', 'fotos.id as fotoId', 'fotos.url as fotosUrl')
+                ->select('entradas.*', 'entradas.id as id_entrada_m', 'categorias.nombre', 'categorias.id as idcat', 'fotos.id as fotoId', 'fotos.url as fotosUrl')
                 ->where('entradas.id', '=', $id)
                 ->where('entradas.visible','=',1)
                 ->where('entradas.eliminado','=',0)
@@ -49,9 +49,9 @@ class feEntrades extends Model
 
     public function MostrarPostsRelated($id){
     $contenido =  DB::table('entradas')
-      ->join('fotos', 'entradas.foto', '=', 'fotos.id')
+      ->leftjoin('fotos', 'entradas.foto', '=', 'fotos.id')
       ->join('entradas_categorias','entradas_categorias.id_entrada', '=','entradas.id' )
-      ->select('fotos.id as fotoId', 'fotos.url as fotosUrl' , 'entradas.*')
+      ->select('fotos.id as fotoId', 'fotos.url as fotosUrl' , 'entradas.*', 'entradas.id as id_entrada')
       ->where('entradas_categorias.id_categoria', '=', $id)
       ->where('entradas.visible','=',1)
       ->where('entradas.eliminado','=',0)

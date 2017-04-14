@@ -9,9 +9,10 @@
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Oxygen|Poppins" rel="stylesheet">
     <link href="{{ asset('css/layout.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('css/fefooter.css') }}" rel="stylesheet" type="text/css">
 
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-    
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="{{ asset('js/menu_superior.js') }}"></script>
@@ -57,7 +58,7 @@
                   </ul>
                 </div>
                 <ul class="" id="items_principales">
-                   
+
                        @if(isset($categories))
                          @foreach($categories as $categoria)
                          <li class="dropdown">
@@ -94,9 +95,9 @@
                         </div>
                         <hr class="hrBuscador">
                         <!--<div class="resultadoDeBusqueda">
-                          
+
                             <h5 style="position:absolute">La taula sectorial amplia la seva llista de membres</h5>
-                          
+
                             <ul class="tags tagsBuscador" style="width: 100%;">
                                 <li><a href="#" class="tag tagBuscador">hey</a></li>
                                 <li><a href="#" class="tag tagBuscador">ho</a></li>
@@ -279,19 +280,28 @@
 
     <!-- ************************************** FOOTER ***************************************************-->
     <footer>
-      <div id="contenido_pie">
+      <div id="texto_footer">
+        <center><span style="color: orange">TSFI</span> · TAULA SECTORIAL DE FORMACIÓ INDUSTRIAL</center>
+      </div>
+      <hr />
+      <div id="paginas_footer">
         @if(isset($paginas))
+        ·
           @foreach($paginas as $pagina)
-            <a href="{{url('/pagines/'.$pagina->id)}}">{{ $pagina->titulo }}</a>
+            <a href="{{url('/pagines/'.$pagina->id)}}">{{ $pagina->titulo }}</a> ·
           @endforeach
         @endif
       </div>
-      <hr />
-      <ul id="items_menu_cms">
-        <a></a>
+      <ul id="entidades_footer">
+        @if(isset($entitats))
+          ·
+          @foreach($entitats as $entitat)
+            <a href="{{$entitat->url}}">{{ $entitat->nombre }}</a> ·
+          @endforeach
+        @endif
       </ul>
       <div style="clear: both"></div>
-      <div id="redes_sociales_footer">
+        <div id="redes_sociales_footer">
         <i class="fa fa-facebook-official" aria-hidden="true"></i>
         <i class="fa fa-twitter" aria-hidden="true"></i>
         <i class="fa fa-envelope-o" aria-hidden="true"></i>

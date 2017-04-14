@@ -35,16 +35,28 @@ class feEntrades extends Model
         return $contenido;
     }
 
+    public function incrementarVista($id) {
+        $visitas = DB::table('entradas')
+                ->select('entradas.visitas')
+                ->where('entradas.id', '=', $id)
+                ->first();
+
+        (int)$visitas_final = (int)$visitas->visitas +1;
+
+        DB::table('entradas')->where('id', '=', $id)->update(['visitas'=>(int)$visitas_final]);
+
+    }
+
     public function MostrarPostsRelated($id){
     $contenido =  DB::table('entradas')
-      ->join('fotos', 'entradas.foto', '=', 'fotos.id') 
+      ->join('fotos', 'entradas.foto', '=', 'fotos.id')
       ->join('entradas_categorias','entradas_categorias.id_entrada', '=','entradas.id' )
       ->select('fotos.id as fotoId', 'fotos.url as fotosUrl' , 'entradas.*')
       ->where('entradas_categorias.id_categoria', '=', $id)
       ->where('entradas.visible','=',1)
       ->where('entradas.eliminado','=',0)
       ->whereIn('entradas.publico', $this->publico)
-      ->inRandomOrder() 
+      ->inRandomOrder()
       ->limit(4)
       ->get();
 

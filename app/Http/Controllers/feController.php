@@ -71,6 +71,7 @@ class feController extends Controller
         $oentradas->publico = $this->publico;
 
         $etiquetas = $oentradas->llegirEtiquetesDePost($id);
+        $etiquetas = $oentradas->incrementarVista($id);
         $categories = $ocategories->llegirTotesPerMenu();
         $data = $oentradas->llegirEntrada($id);
             $paginas = $this->opaginashome->llegirTotes();
@@ -92,7 +93,7 @@ class feController extends Controller
     }
 
     public function index() {
-    
+
       $oentradashome = new feHome;
       $ocategories = new feCategories;
       $oentradashome->publico = $this->publico;

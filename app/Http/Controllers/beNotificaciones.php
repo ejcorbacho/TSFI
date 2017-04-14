@@ -16,9 +16,16 @@ class beNotificaciones extends Controller {
 
     //Image uploading
     public function mostrarGrid() {
-        $data = $this->mnotificaciones->leerTodas();
-        return view('backend.beTotesNotificaciones',['data'=>$data, 'notificaciones'=>$data]);
+        $notificaciones = $this->mnotificaciones->leerTodas();
+        $data = $this->mnotificaciones->leerTodasSinLimite();
+        return view('backend.beTotesNotificaciones',['data'=>$data, 'notificaciones'=>$notificaciones]);
     }
 
+    public function veureNotificacio($id) {
+        $notificaciones = $this->mnotificaciones->leerTodas();
+        $data = $this->mnotificaciones->leerNotificacion($id);
+
+        return view('backend.beVeureNotificacio',['dato'=>$data, 'notificaciones'=>$notificaciones]);
+    }
 
 }

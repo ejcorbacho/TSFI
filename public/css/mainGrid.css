@@ -10,8 +10,8 @@
 
 .mainGridContainer{
 	margin-top:10px;
-	padding-left:15px;
-	padding-right:15px;
+	/*padding-left:15px;
+	padding-right:15px;*/
 }
 
 .portfolio-item {
@@ -30,7 +30,7 @@
 }  
 .maximolineas{
 	
-	max-height:160px;
+	max-height:185px;
 	overflow:hidden;
 	background-color:black;
 	color:white;
@@ -119,15 +119,6 @@
 }
 
 
-/****HOVER***/
-.item:hover {
-	opacity:0.85;
-	color:yellow;
-	cursor: pointer;
-	-webkit-transform: scale(3);
-    -moz-transform: scale(3);
-    -ms-transform: scale(3);
-    transform: scale(1.1);
-}
+
 
 

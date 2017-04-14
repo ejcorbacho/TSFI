@@ -48,13 +48,21 @@ img {
 
 #menu_superior #items_principales li a{
   text-decoration: none;
-  color: white;
+  color: orange;
+  font-family: Roboto;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  opacity: 1;
 }
 
 #menu_superior #items_principales li a:hover{
-  color: rgb(223, 227, 229);
+  color: white;
+  transition: all 0.2s ease-in-out;
 }
-
+#items_principales{
+  flex-wrap: wrap;
+}
 #menu_superior #logotipo {
   display: flex;
   padding-left: 15px;
@@ -63,13 +71,43 @@ img {
   color: white;
   font-size: 40px;
 }
-
+.aluProfContainer{
+    color: white;
+    cursor: pointer;
+}
+.ULaluProf{
+    display: flex;
+    align-items: center;
+    height: 60px;
+    justify-content: center;
+    max-width: 100px;
+    margin-left: 10px !important;
+    margin-right: 10px !important;
+    flex-wrap: wrap;
+    font-family: Roboto,sans-serif;
+}
+.LIaluProf{
+  width: 100%;
+    margin-left: 5px !important;
+    margin-right: 5px !important;
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+}
+.LIaluProf:hover{
+    color: orange;
+    transition: all 0.2s ease-in-out;
+}
 #menu_superior #logotipo:hover {
 
   transition: all 0.5s ease-in-out;
   color: orange;
 }
 
+.rowDeNavbar{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
 
 
 .dropdown-menu{

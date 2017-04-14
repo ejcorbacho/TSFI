@@ -43,29 +43,32 @@
         <div class="row" id="cabecera_superior"></div>
         <div class="row">
           <nav class = "col-md-12 col-sm-12 col-lg-12 hidden-xs" id="menu_superior">
-            <div class="row">
+            <div class="rowDeNavbar">
                 <a href="{{url('/')}}">
-                <div class="col-lg-2 col-md-2 col-sm-2 item" id="logotipo">
+                <div class="" id="logotipo">
                     TSFI
                 </div>
                 </a>
-                <div class="col-lg-1 col-md-1 col-sm-1">
-                    <button id="changeCookieTodos">Todos</button>
-                    <button id="changeCookieAlumnos">Alumnos</button>
-                    <button id="changeCookieProfesores">Profesores</button>
+                <div class="aluProfContainer">
+                  <ul class="ULaluProf">
+                    <li class="LIaluProf" id="changeCookieAlumnos">>Alumnos</li>
+                    <li class="LIaluProf" id="changeCookieProfesores">>Profesores</li>
+                    <li class="LIaluProf" id="changeCookieTodos">>Todos</li>
+                  </ul>
                 </div>
-                <ul class = "col-lg-6 col-md-6 col-sm-6 item" id="items_principales">
-                   <li class="dropdown">
+                <ul class="" id="items_principales">
+                   
                        @if(isset($categories))
                          @foreach($categories as $categoria)
+                         <li class="dropdown">
                            <a href = "{{url('/category/'.$categoria->id)}}" >
                               {{ $categoria->nombre }}
                            </a>
+                         </li>
                          @endforeach
                        @endif
-                       <a href = "{{url('/enviaentrada')}}" >Envia una entrada</a>
-                       <a href = "{{url('/contacta')}}" >Contacta</a>
-                   </li>
+                       <li class="dropdown"><a href = "{{url('/enviaentrada')}}" >Envia una entrada</a></li>
+                       <li class="dropdown"><a href = "{{url('/contacta')}}" >Contacta</a></li>
                 </ul>
                 <div class="col-lg-3 col-md-3 col-sm-3 item" id="buscador">
 

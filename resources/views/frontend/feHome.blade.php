@@ -181,7 +181,7 @@
 @endif
 <!-- /**************************************OTROS POSTS NO DESTACADOS****************************************************/-->
 
-      <div id="popularPostsSection" class="col-lg-12 col-lg-offset-0 col-md-12">
+      <div id="popularPostsSection" class="col-lg-12 col-lg-offset-0 col-md-12" style="padding-left:0px;padding-right:0px;">
           <div id="popularPostsContainer" class="col-md-9 col-sm-12">
               @for($i = 6 ; $i < count($posts) ; $i++)
               @if(!empty($posts[$i]))

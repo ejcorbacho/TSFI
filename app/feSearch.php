@@ -24,6 +24,7 @@ class feSearch extends Model {
             ->orWhere('e.contenido','like','%'.$filters.'%')
             ->where('e.visible', '=', '1')
             ->where('e.eliminado', '=', '0')
+            ->where('e.data_publicacion', '<=' , date('Y-m-d H:i:s'))
             ->select(['e.id', 'e.titulo', 'e.data_publicacion' , DB::raw('IFNULL(COUNT(t.id),0) AS found_tags_number')])
             ->groupBy('e.id','e.titulo','e.data_publicacion')
             ->orderBy('found_tags_number', 'DESC')

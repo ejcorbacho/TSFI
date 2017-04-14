@@ -183,7 +183,6 @@
                   </p>
                 </center>
                 <hr />
-        				<button type="button" class="btn btn-default pull-left" data-dismiss="modal">Vista previa</button>
         				<button type="submit" value="Guardar" class="btn btn-primary pull-right" />Guardar</button>
         			</div>
         		</div>

@@ -125,7 +125,7 @@ img {
 
 #componentes_buscador *{
   text-transform: uppercase;
-  margin-top: 18px;
+  /*margin-top: 18px;*/
   background-color: #424242;
   font-family: 'Oxygen', sans-serif;
   font-size: 14px;
@@ -133,11 +133,27 @@ img {
   color: white;
   border: solid 0px;
 }
+.resultadosDeBusqueda{
+    position: relative;
+    bottom: -100%;
+    
+    width: 100%;
 
+}
+.resultadoDeBusqueda{
+  width: 100%;
+  padding: 15px !important;
+  
+}
+.hrBuscador{
+  border-color: white !important;
+  border-width: 1px !important;
+}
 
 #caja_buscador{
-  padding-left: 5px;
-  width: 260px;
+  padding: 15px;
+  width: 100%;
+  height: 100%;
   float:left;
   color: white;
 }
@@ -331,13 +347,13 @@ footer {
 }
 
 .tag {
-  background: orange;
+  background: orange !important;
   border-radius: 3px 0 0 3px;
   color: white;
   display: inline-block;
-  height: 26px;
+  height: 26px !important;
   line-height: 26px;
-  padding: 0 20px 0 23px;
+  padding: 0 20px 0 23px !important;
   position: relative;
   margin: 0 10px 10px 0;
   text-decoration: none;
@@ -349,7 +365,7 @@ footer {
   border-radius: 10px;
   box-shadow: inset 0 1px rgba(0, 0, 0, 0.25);
   content: '';
-  height: 6px;
+  height: 6px !important;
   left: 10px;
   position: absolute;
   width: 6px;
@@ -358,14 +374,24 @@ footer {
 
 .tag::after {
   background: #fff;
-  border-bottom: 13px solid transparent;
-  border-left: 10px solid orange;
-  border-top: 13px solid transparent;
+  border-bottom: 13px solid transparent !important;
+  border-left: 10px solid orange !important;
+  border-top: 13px solid transparent !important;
   content: '';
   position: absolute;
   right: 0;
   top: 0;
 }
+.tagBuscador::after {
+  background: #424242 !important;
+}
+.tagBuscador {
+  margin: 4px !important;
+}
+.tagsBuscador{
+  margin-top: 45px !important;
+}
+
 
 .tag:hover {
   background-color: #F2CB4B;
@@ -375,4 +401,7 @@ footer {
 
 .tag:hover::after {
    border-left-color: #F2CB4B; 
+}
+.btn-o > a{
+  background-color: orange !important;
 }

@@ -28,11 +28,15 @@
     height: 100%;
     max-height: 250px;
 }
+.popularPost a{
+    text-decoration: none;
+}
 .popularPostInfo > a > h1 {
     margin-top: 8px;
     font-weight: 600;
-    
+
 }
+
 .popularPostInfo  h5 {
     color:orange;
     font-weight: 600;
@@ -40,9 +44,9 @@
 }
 .popularPostText{
     color:black;
-    height:15%;
+    max-height:14%;
     overflow:hidden;
-    margin-bottom:0px;
+    margin-bottom:15px;
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp:6;
@@ -74,7 +78,7 @@
 
 .popularPostDate{
     padding: 0px;
-    width: 70px;
+    width: 85px;
 }
 .popularPostSeparator{
     margin: 0px;

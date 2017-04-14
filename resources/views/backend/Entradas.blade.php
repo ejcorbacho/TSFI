@@ -177,8 +177,8 @@
                     <i class="fa fa-fw fa-arrows"></i><b>Prioritat</b><br />
                     <select id="prioritat" name="prioritat">
                       <option  @if (empty($data[0]->prioritat)) {{ ""  }} @elseif ($data[0]->prioritat == '1') {{ "selected=selected"}} @endif  value="1">Baixa</option>
-                      <option  @if (empty($data[0]->prioritat)) {{ "selected=selected"  }} @elseif ($data[0]->prioritat == '5') {{ "selected=selected"}} @endif value="5">Mitja </option>
-                      <option  @if (empty($data[0]->prioritat)) {{ ""  }} @elseif ($data[0]->prioritat == '10') {{ "selected=selected"}} @endif  value="10"> Alta </option>
+                      <option  @if (empty($data[0]->prioritat)) {{ "selected=selected"  }} @elseif ($data[0]->prioritat == '2') {{ "selected=selected"}} @endif value="2">Mitja </option>
+                      <option  @if (empty($data[0]->prioritat)) {{ ""  }} @elseif ($data[0]->prioritat == '3') {{ "selected=selected"}} @endif  value="3"> Alta </option>
                     </select>
                   </p>
                 </center>
@@ -270,7 +270,7 @@
                                       <input id="mainImageInput" name="mainImage" type="hidden">
                                       <a href="javascript:void(0);" data-toggle="modal" data-target="#imageSelectionModal">
                                           <div id="mainImage">
-                                              @if (!empty($data[0]->foto))<img class="image_picker_image" src="{{$foto[0]->url}}" alt="{{$foto[0]->alt}}" width="200"> @endif
+                                              @if (!empty($data[0]->foto))<img src="{{$foto[0]->url}}" alt="{{$foto[0]->alt}}" width="200"> @endif
                                           </div>
                                       </a>
                                       <a type="button" class="btn" data-toggle="modal" data-target="#imageSelectionModal">

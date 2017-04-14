@@ -293,7 +293,7 @@
       </a>
       @endforeach
       <li>
-        Veure més..
+        <a href="{{url('/administracio/notificacions')}}">Veure més..</a>
       </li>
     @endif @endif
   </aside>

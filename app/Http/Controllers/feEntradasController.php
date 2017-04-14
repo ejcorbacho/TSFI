@@ -31,7 +31,7 @@ class feEntradasController extends Controller {
 
     public function mostrarpagina() {
 
-        $categories = $this->ocategories->llegirTotes();
+        $categories = $this->ocategories->llegirTotesPerMenu();
         $paginas = $this->opaginashome->llegirTotes();
 
         return view('frontend.fecaptcha',['paginas'=>$paginas, 'categories'=>$categories]);
@@ -44,16 +44,16 @@ class feEntradasController extends Controller {
 
       if(isset($captcha)){
         if(!empty($captcha)){
-          $categories = $this->ocategories->llegirTotes();
+          $categories = $this->ocategories->llegirTotesPerMenu();
           $paginas = $this->opaginashome->llegirTotes();
           return view('frontend.fenovaentrada',['paginas'=>$paginas, 'categories'=>$categories]);
         } else {
-          $categories = $this->ocategories->llegirTotes();
+          $categories = $this->ocategories->llegirTotesPerMenu();
           $paginas = $this->opaginashome->llegirTotes();
           return view('frontend.fecaptcha',['paginas'=>$paginas, 'categories'=>$categories]);
         }
       } else {
-        $categories = $this->ocategories->llegirTotes();
+        $categories = $this->ocategories->llegirTotesPerMenu();
         $paginas = $this->opaginashome->llegirTotes();
         return view('frontend.fecaptcha',['paginas'=>$paginas, 'categories'=>$categories]);
       }
@@ -96,11 +96,11 @@ class feEntradasController extends Controller {
           $destinatario = Input::get('email');
 
           if ($this->mentradas->guardarfe()=='-1'){
-            $categories = $this->ocategories->llegirTotes();
+            $categories = $this->ocategories->llegirTotesPerMenu();
             $paginas = $this->opaginashome->llegirTotes();
             return view('frontend.feerror',['paginas'=>$paginas, 'categories'=>$categories]);
           } else {
-            $categories = $this->ocategories->llegirTotes();
+            $categories = $this->ocategories->llegirTotesPerMenu();
             $paginas = $this->opaginashome->llegirTotes();
             $this->enviarMail($asunto, $contenido, $destinatario);
 

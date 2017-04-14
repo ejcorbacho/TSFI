@@ -287,8 +287,8 @@ class EntradasController extends Controller
 
     foreach ($entradas as $post) {
         $postId = $post->id;
-        $views = $this->oanalytics->getPostViews($postId);
-        $post->views = $views[0];
+        // $views = $this->oanalytics->getPostViews($postId);
+        // $post->views = $views[0];
     }
 
     return view('backend.beTotesEntrades',['data' => $entradas]);

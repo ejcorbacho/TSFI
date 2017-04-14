@@ -32,7 +32,7 @@ public function MostrarEntradasHome(){
       ->where('entradas.eliminado','=',0)
       ->whereIn('entradas.publico', $this->publico)
       ->orderByRaw('date_add(entradas.data_publicacion, INTERVAL r.valor DAY) DESC, entradas.data_publicacion DESC')
-      ->get();
+      ->paginate(12);
 
     foreach ($contenidos as $k => $contenido) {
       $contenidos[$k]->nombre_categoria = DB::table('entradas')

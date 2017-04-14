@@ -51,13 +51,12 @@
                 </a>
                 <div class="aluProfContainer">
                   <ul class="ULaluProf">
-                    <li class="LIaluProf" id="changeCookieAlumnos">>Alumnos</li>
-                    <li class="LIaluProf" id="changeCookieProfesores">>Profesores</li>
-                    <li class="LIaluProf" id="changeCookieTodos">>Todos</li>
+                    <li class="LIaluProf changeCookieAlumnos">>Alumnos</li>
+                    <li class="LIaluProf changeCookieProfesores">>Profesores</li>
+                    <li class="LIaluProf changeCookieTodos">>Todos</li>
                   </ul>
                 </div>
                 <ul class="" id="items_principales">
-                   
                        @if(isset($categories))
                          @foreach($categories as $categoria)
                          <li class="dropdown">
@@ -193,13 +192,20 @@
 
         <div class="row">
           <nav class = "hidden-md hidden-sm hidden-lg col-xs-12" id="menu_superior">
-            <div class="row">
+            <div class="rowDeNavbar">
+              <a href="{{url('/')}}">
                 <div class="col-xs-3 item" id="logotipo">
-                  TSFI
+                    TSFI
                 </div>
-                <ul class = "col-xs-6 item" id="">
+              </a>
 
-                </ul>
+                <div class="aluProfContainer">
+                  <ul class="ULaluProf">
+                    <li class="LIaluProf changeCookieAlumnos">>Alumnos</li>
+                    <li class="LIaluProf changeCookieProfesores">>Profesores</li>
+                    <li class="LIaluProf changeCookieTodos">>Todos</li>
+                  </ul>
+                </div>
 
                 <div class="col-xs-3 item" id="buscador">
                   <div id="boton_menu">
@@ -212,8 +218,8 @@
         <div class="row">
           <div class="col-xs-12 hidden-md hidden-sm hidden-lg col-xs-12 "id="contenido_menu_responsive">
             <div id="buscador_responsive">
-              <input type="text" placeholder="Cerca"/>
-              <select>
+              <input id="inputBuscador_responsive" type="text" placeholder="Cerca"/>
+              <!--<select>
                 <option> item</option>
                 <option> item</option>
                 <option> item</option>
@@ -221,54 +227,30 @@
                 <option> item</option>
                 <option> item</option>
                 <option> item</option>
-              </select>
+              </select>-->
             </div>
             <div class="items_menu_responsive">
-              <div class="item_menu_responsive"> item </div>
-              <div class="item_menu_responsive"> item </div>
-              <div class="item_menu_responsive"> item </div>
-              <div class="item_menu_responsive"> item </div>
-              <div class="item_menu_responsive"> item </div>
-              <div class="item_menu_responsive"> item </div>
-              <div class="item_menu_responsive"> item </div>
-              <div class="item_menu_responsive"> item </div>
-              <div class="item_menu_responsive"> item </div>
-              <div class="item_menu_responsive"> item </div>
-              <div class="item_menu_responsive"> item </div>
-              <div class="item_menu_responsive"> item </div>
-              <div class="item_menu_responsive"> item </div>
-              <div class="item_menu_responsive"> item </div>
-              <div class="item_menu_responsive"> item </div>
-              <div class="item_menu_responsive"> item </div>
-              <div class="item_menu_responsive"> item </div>
-              <div class="item_menu_responsive"> item </div>
-              <div class="item_menu_responsive"> item </div>
-              <div class="item_menu_responsive"> item </div>
-              <div class="item_menu_responsive"> item </div>
-              <div class="item_menu_responsive"> item </div>
-              <div class="item_menu_responsive"> item </div>
-              <div class="item_menu_responsive"> item </div>
-              <div class="item_menu_responsive"> item </div>
-              <div class="item_menu_responsive"> item </div>
-              <div class="item_menu_responsive"> item </div>
-              <div class="item_menu_responsive"> item </div>
-              <div class="item_menu_responsive"> item </div>
-              <div class="item_menu_responsive"> item </div>
-              <div class="item_menu_responsive"> item </div>
-              <div class="item_menu_responsive"> item </div>
-              <div class="item_menu_responsive"> item </div>
-              <div class="item_menu_responsive"> item </div>
-              <div class="item_menu_responsive"> item </div>
-              <div class="item_menu_responsive"> item </div>
-              <div class="item_menu_responsive"> item </div>
-              <div class="item_menu_responsive"> item </div>
-              <div class="item_menu_responsive"> item </div>
-              <div class="item_menu_responsive"> item </div>
-              <div class="item_menu_responsive"> item </div>
-              <div class="item_menu_responsive"> item </div>
-              <div style="clear: both"></div>
-            </div>
+              
+                <div class="resultadosDeBusquedaMobil">
 
+                </div>
+                <h3>Apartats</h3>
+                  <ul class="ulCategoriesBuscadorMobil" >
+                       @if(isset($categories))
+                         @foreach($categories as $categoria)
+                         <li class="dropdown">
+                           <a href = "{{url('/category/'.$categoria->id)}}" >
+                              > {{ $categoria->nombre }}
+                           </a>
+                         </li>
+                         @endforeach
+                       @endif
+                       <li class="dropdown"><a href = "{{url('/enviaentrada')}}" >> Envia una entrada</a></li>
+                       <li class="dropdown"><a href = "{{url('/contacta')}}" >> Contacta</a></li>
+                  </ul>
+                    
+            </div>
+              
           </div>
         </div>
 
@@ -277,6 +259,10 @@
     <!-- ************************************* FI MENU GRAN **********************************************-->
     @yield('content')
 
+    <!-- ************************************** COOKIES ***************************************************-->
+    <div class="cookiesMessage">
+      <p>Aquesta pagina fa servir cookies própies i de tercers per millorar la teva experiéncia, apreta el botó per acceptar-ho</p><div id="acceptCookies">Accepto</div>
+    </div>
     <!-- ************************************** FOOTER ***************************************************-->
     <footer>
       <div id="contenido_pie">

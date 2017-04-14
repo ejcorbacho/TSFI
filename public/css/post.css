@@ -65,6 +65,7 @@ body  {
         -webkit-box-orient: vertical;
         text-overflow: ellipsis;
         font-family: 'Montserrat', sans-serif;
+        word-wrap: break-word;
 }
  aside {
          background-color:  black;

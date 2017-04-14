@@ -31,6 +31,7 @@ body  {
          color:  white;
          font-size:  18px;
          margin-right: 6px;
+         margin-left: 6px;
  }
  .autorContainer{
      display: flex;
@@ -62,7 +63,6 @@ body  {
         margin-bottom:0px;
         display: -webkit-box;
         -webkit-box-orient: vertical;
-        -webkit-line-clamp:6;
         text-overflow: ellipsis;
         font-family: 'Montserrat', sans-serif;
 }

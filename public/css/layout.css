@@ -6,7 +6,7 @@
 
 img {
   background: url(http://shashgrewal.com/wp-content/uploads/2015/05/default-placeholder.png) no-repeat center center ;
-  
+
   background-size: cover;
 
 }
@@ -98,9 +98,13 @@ img {
     transition: all 0.2s ease-in-out;
 }
 #menu_superior #logotipo:hover {
-
+  text-decoration: none;
   transition: all 0.5s ease-in-out;
   color: orange;
+}
+
+#menu_superior #logotipo a:hover{
+  text-decoration: none;
 }
 
 .rowDeNavbar{
@@ -174,7 +178,7 @@ img {
 .resultadosDeBusqueda{
     position: relative;
     bottom: -100%;
-    
+
     width: 100%;
 
 }
@@ -188,7 +192,7 @@ img {
 .resultadoDeBusqueda{
   width: 100%;
   padding: 15px !important;
-  
+
 }
 .resultadoDeBusquedaMobil{
   
@@ -208,7 +212,7 @@ img {
 }
 .resultadoDeBusqueda > h5 > span{
   font-size: 12px !important;
-  
+
 }
 .hrBuscador{
   border-color: white !important;
@@ -416,12 +420,12 @@ footer {
 .tags {
   list-style: none;
   margin: 0;
-  overflow: hidden; 
+  overflow: hidden;
   padding: 0;
 }
 
 .tags li {
-  float: left; 
+  float: left;
 }
 
 .tag {
@@ -478,7 +482,7 @@ footer {
 }
 
 .tag:hover::after {
-   border-left-color: #F2CB4B; 
+   border-left-color: #F2CB4B;
 }
 .btn-o > a{
   background-color: orange !important;
@@ -509,4 +513,11 @@ footer {
 }
 .fc-view{
   z-index: 20 !important;
+}
+.rowDeNavbar a{
+  text-decoration: none !important;
+}
+
+.rowDeNavbar a:hover{
+  text-decoration: none !important;
 }

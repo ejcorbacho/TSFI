@@ -41,15 +41,15 @@ class feCategories extends Model
 
     public function MostrarPostsRelated($id){
     $contenido =  DB::table('entradas')
-      ->join('fotos', 'entradas.foto', '=', 'fotos.id')
+      ->leftjoin('fotos', 'entradas.foto', '=', 'fotos.id')
       ->join('entradas_categorias','entradas_categorias.id_entrada', '=','entradas.id' )
       ->select('fotos.id as fotoId', 'fotos.url as fotosUrl' , 'entradas.*')
       ->where('entradas_categorias.id_categoria', '=', $id)
       ->where('entradas.visible','=',1)
       ->where('entradas.eliminado','=',0)
       ->whereIn('entradas.publico', $this->publico)
-      ->inRandomOrder()
-      ->limit(4)
+      ->orderByRaw('entradas.visitas DESC')
+      ->limit(5)
       ->get();
 
     return $contenido;

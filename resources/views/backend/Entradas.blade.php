@@ -183,7 +183,6 @@
                   </p>
                 </center>
                 <hr />
-        				<button type="button" class="btn btn-default pull-left" data-dismiss="modal">Vista previa</button>
         				<button type="submit" value="Guardar" class="btn btn-primary pull-right" />Guardar</button>
         			</div>
         		</div>
@@ -267,7 +266,7 @@
                               </div>
                               <div class="modal-body">
                                   <div class="form-group ">
-                                      <input id="mainImageInput" name="mainImage" type="hidden">
+                                      <input id="mainImageInput" name="mainImage" value="@if(!empty($data[0]->foto)){{$data[0]->foto}}@endif" type="hidden">
                                       <a href="javascript:void(0);" data-toggle="modal" data-target="#imageSelectionModal">
                                           <div id="mainImage">
                                               @if (!empty($data[0]->foto))<img src="{{$foto[0]->url}}" alt="{{$foto[0]->alt}}" width="200"> @endif
@@ -281,7 +280,7 @@
                               </div>
                           </div>
                       </div>
-                  
+
 
 
 <!-- ***************** ESDEVENIMENTS *****************-->
@@ -299,7 +298,7 @@
         </center>
     </div>
 
-    
+
 	<div id="opciones_evento">
 
 		<div class="modal-body">

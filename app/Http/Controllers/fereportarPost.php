@@ -18,6 +18,7 @@ class fereportarPost extends Controller {
     private $opaginashome;
     private $ocontacta;
     private $mnotificaciones;
+    private $oentradas;
 
     public function __construct()
     {
@@ -25,6 +26,7 @@ class fereportarPost extends Controller {
       $this->opaginashome = new Paginas;
       $this->oreporte = new ReportarPost;
       $this->mnotificaciones = new Notificaciones;
+      $this->oentitats = new feEntitats;
 
     }
 
@@ -33,17 +35,19 @@ class fereportarPost extends Controller {
 
         $categories = $this->ocategories->llegirTotesPerMenu();
         $paginas = $this->opaginashome->llegirTotes();
+        $entitats = $entitats = $this->oentitats->LlistaFooterEntitats();
 
-        return view('frontend.fecaptchaReportar',['paginas'=>$paginas, 'categories'=>$categories, 'id_post'=>$id_post]);
+        return view('frontend.fecaptchaReportar',['paginas'=>$paginas, 'categories'=>$categories, 'id_post'=>$id_post, 'entitats'=>$entitats]);
     }
 
     public function informarReporte() {
 
         $categories = $this->ocategories->llegirTotesPerMenu();
         $paginas = $this->opaginashome->llegirTotes();
+        $entitats = $entitats = $this->oentitats->LlistaFooterEntitats();
         $id_post = Input::get('id_post');
 
-        return view('frontend.feinformarReporte',['paginas'=>$paginas, 'categories'=>$categories, 'id_post'=>$id_post]);
+        return view('frontend.feinformarReporte',['paginas'=>$paginas, 'categories'=>$categories, 'id_post'=>$id_post, 'entitats'=>$entitats]);
     }
 
     public function enviarMail($asunto, $contenido, $destinatario){
@@ -68,6 +72,7 @@ class fereportarPost extends Controller {
           $this->oreporte->email = Input::get('email');
           $this->oreporte->id = Input::get('id_post');
 
+          $entitats = $entitats = $this->oentitats->LlistaFooterEntitats();
           $titulo = Input::get('titulo');
           $nombre = Input::get('nom');
 
@@ -90,7 +95,7 @@ class fereportarPost extends Controller {
               $this->enviarMail('Nou contacte!', 'Han contactat mitjançant la pàgina web!', $admnistrador->email);
             }
 
-            return view('frontend.feagradecimento',['paginas'=>$paginas, 'categories'=>$categories]);
+            return view('frontend.feagradecimento',['paginas'=>$paginas, 'categories'=>$categories, 'entitats'=>$entitats]);
           };
       }
 

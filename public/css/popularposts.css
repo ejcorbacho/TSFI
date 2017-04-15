@@ -45,7 +45,7 @@
     letter-spacing: 1.2px;
 }
 .popularPostText{
-    color:black;
+    color:#777;;
     max-height:14%;
     overflow:hidden;
     margin-bottom:15px;
@@ -53,6 +53,7 @@
     -webkit-box-orient: vertical;
     -webkit-line-clamp:6;
     text-overflow: ellipsis;
+    font-family: 'Montserrat',sans-serif;
 }
 .popularPostData{
     height: 20px;

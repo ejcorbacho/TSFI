@@ -18,6 +18,7 @@ class feContactaController extends Controller {
     private $opaginashome;
     private $ocontacta;
     private $mnotificaciones;
+    private $oentitats;
 
     public function __construct()
     {
@@ -25,6 +26,7 @@ class feContactaController extends Controller {
       $this->opaginashome = new Paginas;
       $this->ocontacta = new Contacta;
       $this->mnotificaciones = new Notificaciones;
+       $this->oentitats = new feEntitats;
 
     }
 
@@ -33,8 +35,9 @@ class feContactaController extends Controller {
 
         $categories = $this->ocategories->llegirTotesPerMenu();
         $paginas = $this->opaginashome->llegirTotes();
+        $entitats = $this->oentitats->LlistaFooterEntitats();
 
-        return view('frontend.feformularioContacta',['paginas'=>$paginas, 'categories'=>$categories]);
+        return view('frontend.feformularioContacta',['paginas'=>$paginas, 'categories'=>$categories, 'entitats'=>$entitats]);
     }
 
 
@@ -72,8 +75,10 @@ class feContactaController extends Controller {
           if ($this->ocontacta->guardarfe()=='-1'){
             $categories = $this->ocategories->llegirTotesPerMenu();
             $paginas = $this->opaginashome->llegirTotes();
-            return view('frontend.feerror',['paginas'=>$paginas, 'categories'=>$categories]);
+            $entitats = $this->oentitats->LlistaFooterEntitats();
+            return view('frontend.feerror',['paginas'=>$paginas, 'categories'=>$categories, 'entitats'=>$entitats]);
           } else {
+            $entitats = $this->oentitats->LlistaFooterEntitats();
             $categories = $this->ocategories->llegirTotesPerMenu();
             $paginas = $this->opaginashome->llegirTotes();
             $this->enviarMail($asunto, $contenido, $destinatario);
@@ -83,7 +88,7 @@ class feContactaController extends Controller {
               $this->enviarMail('Nou contacte!', 'Han contactat mitjançant la pàgina web!', $admnistrador->email);
             }
 
-            return view('frontend.feagradecimento',['paginas'=>$paginas, 'categories'=>$categories]);
+            return view('frontend.feagradecimento',['entitats'=>$entitats, 'paginas'=>$paginas, 'categories'=>$categories]);
           };
       }
 

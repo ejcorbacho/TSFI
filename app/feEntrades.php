@@ -18,6 +18,7 @@ class feEntrades extends Model
                 ->where('entradas.id', '=', $id)
                 ->where('entradas.visible','=',1)
                 ->where('entradas.eliminado','=',0)
+                ->where('entradas.data_publicacion', '<=' , date('Y-m-d H:i:s'))
                 ->whereIn('entradas.publico', $this->publico)
                 ->get();
 
@@ -30,6 +31,7 @@ class feEntrades extends Model
                 ->select('etiquetas.*')
                 ->where('entradas.id', '=', $id)
                 ->where('entradas.eliminado','=',0)
+                ->where('entradas.data_publicacion', '<=' , date('Y-m-d H:i:s'))
                 ->get();
 
         return $contenido;
@@ -55,6 +57,7 @@ class feEntrades extends Model
       ->where('entradas_categorias.id_categoria', '=', $id)
       ->where('entradas.visible','=',1)
       ->where('entradas.eliminado','=',0)
+      ->where('entradas.data_publicacion', '<=' , date('Y-m-d H:i:s'))
       ->whereIn('entradas.publico', $this->publico)
       ->inRandomOrder()
       ->limit(4)

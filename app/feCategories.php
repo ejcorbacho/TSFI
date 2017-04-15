@@ -32,6 +32,7 @@ class feCategories extends Model
       ->where('entradas_categorias.id_categoria', '=', $id)
       ->where('entradas.visible','=',1)
       ->where('entradas.eliminado','=',0)
+      ->where('entradas.data_publicacion', '<=' , date('Y-m-d H:i:s'))
       ->whereIn('entradas.publico', $this->publico)
       ->orderByRaw('date_add(entradas.data_publicacion, INTERVAL r.valor DAY) DESC, entradas.data_publicacion DESC')
       ->paginate(5);
@@ -47,6 +48,7 @@ class feCategories extends Model
       ->where('entradas_categorias.id_categoria', '=', $id)
       ->where('entradas.visible','=',1)
       ->where('entradas.eliminado','=',0)
+      ->where('entradas.data_publicacion', '<=' , date('Y-m-d H:i:s'))
       ->whereIn('entradas.publico', $this->publico)
       ->orderByRaw('entradas.visitas DESC')
       ->limit(5)
@@ -71,6 +73,7 @@ public function llegirTotesPerMenu(){
   ->where('categorias.eliminado', '=', '0')
   ->where('entradas.eliminado', '=', '0')
   ->where('entradas.visible', '=', '1')
+  ->where('entradas.data_publicacion', '<=' , date('Y-m-d H:i:s'))
   ->groupBy('categorias.nombre','categorias.id')
   ->get();
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use App\Notificaciones;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -21,7 +22,7 @@ class RegisterController extends Controller
     */
 
     use RegistersUsers;
-
+    private $onotificaciones;
     /**
      * Where to redirect users after registration.
      *
@@ -37,6 +38,7 @@ class RegisterController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->onotificaciones = new Notificaciones;
     }
 
     /**

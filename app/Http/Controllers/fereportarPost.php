@@ -19,6 +19,7 @@ class fereportarPost extends Controller {
     private $ocontacta;
     private $mnotificaciones;
     private $oentradas;
+    private $oentitats;
 
     public function __construct()
     {

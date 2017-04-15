@@ -38,7 +38,7 @@
 
                         <div class="">
                             <div class="mailbox-controls">
-                                
+
                                 <div id="modalConfirmacioEliminarPagina" class="modal">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
@@ -48,7 +48,7 @@
                                                 <h4 class="modal-title">Atenció!</h4>
                                             </div>
                                             <div id="modalConfirmacioEliminarPaginaContent" class="modal-body">
-                                                
+
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cancel·la</button>
@@ -57,7 +57,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                
+
                             </div>
                             <table id="taulaDePagines" class="table table-hover table-striped">
                                 <thead>
@@ -91,68 +91,6 @@
     </section>
     <!-- /.content -->
 
-
-
-
-
-
-
-    <!-- Slimscroll -->
-    <script src="../../plugins/slimScroll/jquery.slimscroll.min.js"></script>
-    <!-- FastClick -->
-    <script src="../../plugins/fastclick/fastclick.js"></script>
-    <!-- AdminLTE App -->
-    <script src="../../dist/js/app.min.js"></script>
-    <!-- iCheck -->
-    <script src="../../plugins/iCheck/icheck.min.js"></script>
-    <!-- Page Script -->
-    <script>
-$(function () {
-    //Enable iCheck plugin for checkboxes
-    //iCheck for checkbox and radio inputs
-    $('.mailbox-messages input[type="checkbox"]').iCheck({
-        checkboxClass: 'icheckbox_flat-blue',
-        radioClass: 'iradio_flat-blue'
-    });
-
-    //Enable check and uncheck all functionality
-    $(".checkbox-toggle").click(function () {
-        var clicks = $(this).data('clicks');
-        if (clicks) {
-            //Uncheck all checkboxes
-            $(".mailbox-messages input[type='checkbox']").iCheck("uncheck");
-            $(".fa", this).removeClass("fa-check-square-o").addClass('fa-square-o');
-        } else {
-            //Check all checkboxes
-            $(".mailbox-messages input[type='checkbox']").iCheck("check");
-            $(".fa", this).removeClass("fa-square-o").addClass('fa-check-square-o');
-        }
-        $(this).data("clicks", !clicks);
-    });
-
-    //Handle starring for glyphicon and font awesome
-    $(".mailbox-star").click(function (e) {
-        e.preventDefault();
-        //detect type
-        var $this = $(this).find("a > i");
-        var glyph = $this.hasClass("glyphicon");
-        var fa = $this.hasClass("fa");
-
-        //Switch states
-        if (glyph) {
-            $this.toggleClass("glyphicon-star");
-            $this.toggleClass("glyphicon-star-empty");
-        }
-
-        if (fa) {
-            $this.toggleClass("fa-star");
-            $this.toggleClass("fa-star-o");
-        }
-    });
-});
-    </script>
-    <!-- AdminLTE for demo purposes -->
-    <script src="../../dist/js/demo.js"></script>
 </body>
-</html>
+
 @endsection

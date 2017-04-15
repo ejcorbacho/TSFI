@@ -30,6 +30,7 @@ h1 {
 .formulario_nova_entrada h5 {
   float: left;
   font-weight: bold;
+  margin-right: 15px;
 }
 
 .formulario_nova_entrada h6 {

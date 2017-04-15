@@ -49,7 +49,7 @@ class feContactaController extends Controller {
       //dirección del remitente
       $headers .= "From: TSFI < TSFI.no_reply >\r\n";
       //Enviamos el mensaje a tu_dirección_email
-      $enviado = true; /*mail($destinatario,$asunto,$contenido,$headers);*/
+      $enviado = mail($destinatario,$asunto,$contenido,$headers);
 
       return $enviado;
 

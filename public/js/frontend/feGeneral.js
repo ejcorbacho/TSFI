@@ -83,11 +83,13 @@ $(document).ready(function () {
 //Mensaje de cookies:
 $(document).ready(function () {
     console.log(getCookie('cookieMessage'));
-    if (getCookie("cookieMessage")=="1") {
+    if (getCookie("cookieMessage")=="") {
         var d = new Date();
         d.setTime(d.getTime() + (120*24*60*60*1000));
         var expires = "expires="+ d.toUTCString();
         document.cookie = "cookieMessage=1;" + expires + "; path=/cms";
+        $('.cookiesMessage').show();
+    }else if(getCookie("cookieMessage")=="1"){
         $('.cookiesMessage').show();
     }
 

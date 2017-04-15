@@ -76,6 +76,10 @@
 	transition: all 0.5s ease-in-out;
 	
 }
+.icons > iframe{
+	padding-top: 5px;
+	height: 25px !important;
+}
 .espacio{
 	padding:5px 0px 5px 10px;
 	color:white;	

@@ -9,7 +9,6 @@ class beImageController extends Controller {
     private $uploads;
 
     public function __construct() {
-        $this->middleware('auth');
         $this->uploads = new beUploads;
     }
 

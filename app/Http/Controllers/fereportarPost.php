@@ -59,7 +59,7 @@ class fereportarPost extends Controller {
       //dirección del remitente
       $headers .= "From: TSFI < TSFI.no_reply >\r\n";
       //Enviamos el mensaje a tu_dirección_email
-      $enviado = true; /*mail($destinatario,$asunto,$contenido,$headers);*/
+      $enviado = mail($destinatario,$asunto,$contenido,$headers);
 
       return $enviado;
 
@@ -77,8 +77,8 @@ class fereportarPost extends Controller {
           $titulo = Input::get('titulo');
           $nombre = Input::get('nom');
 
-          $asunto = 'Nova entrada rebuda!';
-          $contenido = 'Hola ' . $nombre . '! Hem rebut la seva consulta sobre ' . $titulo . '. La contestarem en el menor temps possible. Gràcies! <br /> Aquest es un correu automàtic, si us plau, no el contestis.';
+          $asunto = 'Report rebut!';
+          $contenido = 'Hola ' . $nombre . '! Hem rebut un nou report sobre una entrada. Ho revisarem i li contestarem en el menor temps possible. Gràcies! <br /> Aquest es un correu automàtic, si us plau, no el contestis.';
 
           $destinatario = Input::get('email');
 

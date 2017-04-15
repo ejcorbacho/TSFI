@@ -1,64 +1,3 @@
-
-
-// $(document).ready(function () {
-
-//     $.ajax({
-//         url: urlPrincipal + 'ajax/entitat/TresEntitats',
-//         type: 'get',
-//         success: function (data) {
-//             console.log(data);
-//             mostrarEntitats(data);
-//         },
-//         error: function (xhr, desc, err) {
-//             console.log(xhr);
-//             console.log("Details: " + desc + "\nError:" + err);
-//         }});
-//     $.ajax({
-//         url: urlPrincipal + 'ajax/entitat/EntitatsFooter',
-//         type: 'get',
-//         success: function (data) {
-//             console.log(data);
-//             mostrarEntitatsFooter(data);
-//         },
-//         error: function (xhr, desc, err) {
-//             console.log(xhr);
-//             console.log("Details: " + desc + "\nError:" + err);
-//         }});
-
-
-
-
-// });
-
-// function mostrarEntitats(data) {
-//     if(data.length>0){
-//         var div = document.getElementById('entitatsColaboradores');
-//         var html;
-//         console.log(data.length);
-//         div.innerHTML = '<h2>Entitats Colaboradores</h2>';
-//         for (var index = 0; index < data.length; index++) {
-//             html = div.innerHTML;
-//             div.innerHTML = html + '<a href="' + data[index].url + '"><div class="sidebarLink"><img src="' + data[index].fotoentidad + '"></div></a>';
-//         }
-//     }
-// }
-
-// function mostrarEntitatsFooter(data) {
-
-//     var ContingutEntitatFooter = $('#items_menu_cms');
-
-//     for (var index = 0; index < data.length; index++) {
-//         if(data[index].son_colaboradoras == 1){
-//         var HTML = '<a id="items_footer_a" href="'+ data[index].url+'">' + data[index].nombre + '</a>';
-//         $("#items_menu_cms").append(HTML);
-//         }
-
-//     }
-
-// }
-
-
-
 $(document).ready(function () {
 
     var d = new Date();
@@ -82,7 +21,7 @@ $(document).ready(function () {
 });
 //Mensaje de cookies:
 $(document).ready(function () {
-    console.log(getCookie('cookieMessage'));
+    // console.log(getCookie('cookieMessage'));
     if (getCookie("cookieMessage")=="") {
         var d = new Date();
         d.setTime(d.getTime() + (120*24*60*60*1000));
@@ -134,7 +73,7 @@ $(document).ready(function () {
             var html='';
             if(busqueda.total > 0){
                 //console.log('hola');
-                for(var i=0; busqueda.total > i ;i++){
+                for(var i=0; busqueda.total > i && busqueda.per_page > i  ;i++){
                     //console.log('bu');
                     html = html + '<a href="'+urlPrincipal+'post/'+ busqueda.data[i].id +'">';
                     html= html +'<div class="resultadoDeBusqueda">';
@@ -185,7 +124,7 @@ $('#inputBuscador_responsive').on('keyup', function (e) {
             var html='';
             if(busqueda.total > 0){
                 //console.log('hola');
-                for(var i=0; busqueda.total > i ;i++){
+                for(var i=0; busqueda.total > i && busqueda.per_page > i ;i++){
                     //console.log('bu');
                     html = html + '<a href="'+urlPrincipal+'post/'+ busqueda.data[i].id +'">';
                     html= html +'<div class="resultadoDeBusquedaMobil">';

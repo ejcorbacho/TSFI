@@ -9,6 +9,8 @@
         <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Paytone+One" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Archivo+Black" rel="stylesheet">
+        <!--entitats colaboradores-->
+          <script src="{{ asset('js/frontend/mostrarEntitats.js')}}"></script>
         <script src="{{ asset('js/frontend/twitter.js')}}"></script>
         <meta name="viewport" content="width=device-width, user-scalable=no">
     </head>

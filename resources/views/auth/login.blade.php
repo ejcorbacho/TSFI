@@ -57,7 +57,7 @@
         <div class="col-xs-8">
           <div class="checkbox icheck">
             <label>
-              <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Recorda'm
+              <!--<input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Recorda'm-->
               <input type="hidden" name="_token" value="{{ csrf_token() }}">
             </label>
           </div>
@@ -70,7 +70,7 @@
       </div>
     </form>
 
-    <a href="{{ url('/password/reset') }}">He oblidat la meva contrasenya</a><br>
+    <!--<a href="{{ url('/password/reset') }}">He oblidat la meva contrasenya</a><br>-->
 
   </div>
 

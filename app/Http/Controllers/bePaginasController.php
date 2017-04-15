@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Paginas;
+
+use App\Notificaciones;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Input;
@@ -15,18 +17,22 @@ class bePaginasController extends Controller
 
   private $cImages;
   private $mpaginas;
+  private $onotificaciones;
+
 
   public function __construct()
   {
     $this->middleware('auth');
     $this->mpaginas = new Paginas;
     $this->cImages = new beImageController;
+    $this->onotificaciones = new Notificaciones;
   }
 
 
   public function mostrarPagina()
   {
-    return view('backend.bePaginas');
+    $notificaciones = $this->onotificaciones->leerTodas();
+    return view('backend.bePaginas', ['notificaciones'=>$notificaciones]);
   }
 
   public function editarPagina($id)
@@ -34,6 +40,7 @@ class bePaginasController extends Controller
 
     $this->mpaginas->id = $id;
     $paginas = $this->mpaginas->llegirContingut($id);
+    $notificaciones = $this->onotificaciones->leerTodas();
 
     if(!is_null($paginas[0]->foto)){
       $foto = $this->cImages->getOneImage($paginas[0]->foto);
@@ -41,7 +48,7 @@ class bePaginasController extends Controller
       $foto = NULL;
     }
 
-    return view('backend.bePaginas',['data'=>$paginas, 'foto'=>$foto]);
+    return view('backend.bePaginas',['data'=>$paginas, 'foto'=>$foto, 'notificaciones'=>$notificaciones]);
   }
 
 
@@ -49,7 +56,8 @@ class bePaginasController extends Controller
   {
 
     $data = $this->mpaginas->llegirTotes();
-    return view('backend.beTotesPagines',['data'=>$data]);
+    $notificaciones = $this->onotificaciones->leerTodas();
+    return view('backend.beTotesPagines',['data'=>$data, 'notificaciones'=>$notificaciones]);
   }
 
   public function eliminar()

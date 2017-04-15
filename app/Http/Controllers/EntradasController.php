@@ -236,8 +236,8 @@ class EntradasController extends Controller
     } else {
       $foto = NULL;
     }
-
-    return view('backend.Entradas',['data'=>$entradas, 'categorias'=>$categorias, 'etiquetas'=>$etiquetas, 'entitats'=>$entitats, 'foto'=>$foto]);
+    $notificaciones = $this->onotificaciones->leerTodas();
+    return view('backend.Entradas',['data'=>$entradas, 'categorias'=>$categorias, 'notificaciones'=>$notificaciones, 'etiquetas'=>$etiquetas, 'entitats'=>$entitats, 'foto'=>$foto]);
   }
 
   public function recargarListadoEtiquetas(){
@@ -290,14 +290,17 @@ class EntradasController extends Controller
         // $views = $this->oanalytics->getPostViews($postId);
         // $post->views = $views[0];
     }
+    $notificaciones = $this->onotificaciones->leerTodas();
 
-    return view('backend.beTotesEntrades',['data' => $entradas]);
+    return view('backend.beTotesEntrades',['data' => $entradas, 'notificaciones'=>$notificaciones]);
   }
 
 
     public function llistarEntradasPaperera()
     {
       $entradas = $this->mentradas->leerTodasPapelera();
-      return view('backend.beTotesEntradesPaperera',['data'=> $entradas]);
+      $notificaciones = $this->onotificaciones->leerTodas();
+
+      return view('backend.beTotesEntradesPaperera',['data'=> $entradas, 'notificaciones'=>$notificaciones]);
     }
 }

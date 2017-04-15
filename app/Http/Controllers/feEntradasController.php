@@ -19,11 +19,13 @@ class feEntradasController extends Controller {
     private $opaginashome;
     private $mentradas; //* MODEL ENTRADAS **/
     private $mnotificaciones;
+    private $oentitats;
 
     public function __construct()
     {
       $this->mentradas = new Entradas;
       $this->ocategories = new feCategories;
+      $this->oentitats = new feEntitats;
       $this->opaginashome = new Paginas;
       $this->mnotificaciones = new Notificaciones;
     }
@@ -33,8 +35,9 @@ class feEntradasController extends Controller {
 
         $categories = $this->ocategories->llegirTotesPerMenu();
         $paginas = $this->opaginashome->llegirTotes();
+        $entitats = $this->oentitats->LlistaFooterEntitats();
 
-        return view('frontend.fecaptcha',['paginas'=>$paginas, 'categories'=>$categories]);
+        return view('frontend.fecaptcha',['paginas'=>$paginas, 'entitats'=>$entitats, 'categories'=>$categories]);
     }
 
     public function aceptarCaptcha() {
@@ -46,16 +49,19 @@ class feEntradasController extends Controller {
         if(!empty($captcha)){
           $categories = $this->ocategories->llegirTotesPerMenu();
           $paginas = $this->opaginashome->llegirTotes();
-          return view('frontend.fenovaentrada',['paginas'=>$paginas, 'categories'=>$categories]);
+          $entitats = $this->oentitats->LlistaFooterEntitats();
+          return view('frontend.fenovaentrada',['paginas'=>$paginas, 'entitats'=>$entitats, 'categories'=>$categories]);
         } else {
           $categories = $this->ocategories->llegirTotesPerMenu();
           $paginas = $this->opaginashome->llegirTotes();
-          return view('frontend.fecaptcha',['paginas'=>$paginas, 'categories'=>$categories]);
+          $entitats = $this->oentitats->LlistaFooterEntitats();
+          return view('frontend.fecaptcha',['paginas'=>$paginas, 'entitats'=>$entitats, 'categories'=>$categories]);
         }
       } else {
         $categories = $this->ocategories->llegirTotesPerMenu();
         $paginas = $this->opaginashome->llegirTotes();
-        return view('frontend.fecaptcha',['paginas'=>$paginas, 'categories'=>$categories]);
+        $entitats = $this->oentitats->LlistaFooterEntitats();
+        return view('frontend.fecaptcha',['paginas'=>$paginas, 'entitats'=>$entitats, 'categories'=>$categories]);
       }
 
 
@@ -98,8 +104,10 @@ class feEntradasController extends Controller {
           if ($this->mentradas->guardarfe()=='-1'){
             $categories = $this->ocategories->llegirTotesPerMenu();
             $paginas = $this->opaginashome->llegirTotes();
-            return view('frontend.feerror',['paginas'=>$paginas, 'categories'=>$categories]);
+            $entitats = $this->oentitats->LlistaFooterEntitats();
+            return view('frontend.feerror',['paginas'=>$paginas, 'entitats'=>$entitats, 'categories'=>$categories]);
           } else {
+            $entitats = $this->oentitats->LlistaFooterEntitats();
             $categories = $this->ocategories->llegirTotesPerMenu();
             $paginas = $this->opaginashome->llegirTotes();
             $this->enviarMail($asunto, $contenido, $destinatario);
@@ -108,7 +116,7 @@ class feEntradasController extends Controller {
             foreach($administradores as $admnistrador){
               $this->enviarMail('Nova Entrada', 'Han enviat una nova entrada!', $admnistrador->email);
             }
-            return view('frontend.feagradecimento',['paginas'=>$paginas, 'categories'=>$categories]);
+            return view('frontend.feagradecimento',['paginas'=>$paginas, 'entitats'=>$entitats, 'categories'=>$categories]);
           };
       }
 

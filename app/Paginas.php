@@ -42,7 +42,7 @@ class Paginas extends Model
 
     }
     public function eliminar(){
-      
+
         DB::beginTransaction();
         try {
             //Paginas::where('id',$this->id)->delete();

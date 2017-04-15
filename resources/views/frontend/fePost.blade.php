@@ -24,7 +24,16 @@
             <img src="{{$data->fotosUrl}}" alt="image placeholder" class="postTitleImg">
             <div class="titol col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1">
             @if(!empty($data->titulo))<h1> {{$data->titulo}}</h1>@endif
-            @if(!empty($data->nombre)) <h2 class="categoria"><a id="link" href="../category/{{$data->idcat}}">{{$data->nombre}}</a></h2>@endif
+            @if(!empty($categoriesDePost[0]))
+                <h2 class="categoria">
+                @for ($i = 0; $i < count($categoriesDePost); $i++)
+                    <a id="link" href="../category/{{$categoriesDePost[$i]->idcat}}">{{$categoriesDePost[$i]->nombre}}@if($i != (count($categoriesDePost)-1)) |@endif</a>
+                @endfor
+                @foreach($categoriesDePost as $categoria)
+                    
+                @endforeach
+                </h2>
+             @endif
             @if(!empty($data->data_publicacion))
                 <div class="autorContainer"><h3 class="autor">{{ Carbon\Carbon::parse($data->data_publicacion)->format('d-m-Y') }} • </h3>
                 @if(isset($data->titulo))

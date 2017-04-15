@@ -17,6 +17,8 @@ class VerifyCsrfToken extends BaseVerifier
         '/contactaGuardat',
         '/informarReporte',
         '/reportarPost',
-        '/reportGuardar'
+        '/reportGuardar',
+        '/administracio/uploadFile',
+        '/ajax/uploads/getResourceList'
     ];
 }

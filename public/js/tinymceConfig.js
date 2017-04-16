@@ -6,7 +6,8 @@ tinyMCE.init({
         'advlist autolink lists link image charmap print preview hr anchor pagebreak',
         'searchreplace wordcount visualblocks visualchars code fullscreen',
         'insertdatetime media nonbreaking save table contextmenu directionality',
-        'emoticons template paste textcolor colorpicker textpattern imagetools codesample toc'
+        'emoticons template paste textcolor colorpicker textpattern imagetools codesample toc',
+        'link image code'
     ],
     toolbar1: 'undo redo | insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
     //toolbar2: 'print preview media | forecolor backcolor emoticons | codesample',
@@ -21,6 +22,9 @@ tinyMCE.init({
         '//www.tinymce.com/css/codepen.min.css',
         '/TSFI/public/css/backend/resources.css'
     ],
+    relative_urls : false,
+    remove_script_host : false,
+    convert_urls : true,
     language: getLang(),
     setup: function(ed) {
         ed.on('keyup', function(e) {

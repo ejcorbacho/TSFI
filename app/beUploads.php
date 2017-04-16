@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use URL;
 
 class beUploads extends Model {
     protected $table = 'fotos';
@@ -42,7 +43,7 @@ class beUploads extends Model {
             }
 
             if (move_uploaded_file($tempName, $serverFileName)) {
-                $serverFileName = '/cms' . $ds . substr($serverFileName, strpos($serverFileName, 'uploads'));
+                $serverFileName = URL::to('/') . $ds . substr($serverFileName, strpos($serverFileName, 'uploads'));
                 $serverFileName = str_replace("\\", "/", $serverFileName);
                 if ($isImage) {
                     if($this->insertAtDataBase($serverFileName, $originalFileName)) {

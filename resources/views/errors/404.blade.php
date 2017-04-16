@@ -53,9 +53,17 @@
     </style>
 </head>
 <body>
-<h1>{{ trans('WHOOOPS!!') }}</h1>
+<h1>{{ trans('Ups!') }}</h1>
 <p>{{ trans('404') }}</p>
-<p class="textp">La pàgina sol·licitada no es trobar en el nostre servidor</p>
-
+<p class="textp">La pàgina sol·licitada no es pot trobar en el nostre servidor!</p>
+<script src="{{asset('js/globales.js')}}"></script>
+<script src="{{ asset('js/jquery-3.1.1.min.js') }}"></script>
+<script>
+    $(document).ready(function () {
+        window.setTimeout( function(){
+            window.location = urlPrincipal;
+        }, 3000 );
+    });
+</script>
 </body>
 </html

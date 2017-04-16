@@ -19,11 +19,13 @@ class feEntradasController extends Controller {
     private $opaginashome;
     private $mentradas; //* MODEL ENTRADAS **/
     private $mnotificaciones;
+    private $oentitats;
 
     public function __construct()
     {
       $this->mentradas = new Entradas;
       $this->ocategories = new feCategories;
+      $this->oentitats = new feEntitats;
       $this->opaginashome = new Paginas;
       $this->mnotificaciones = new Notificaciones;
     }
@@ -31,10 +33,11 @@ class feEntradasController extends Controller {
 
     public function mostrarpagina() {
 
-        $categories = $this->ocategories->llegirTotes();
+        $categories = $this->ocategories->llegirTotesPerMenu();
         $paginas = $this->opaginashome->llegirTotes();
+        $entitats = $this->oentitats->LlistaFooterEntitats();
 
-        return view('frontend.fecaptcha',['paginas'=>$paginas, 'categories'=>$categories]);
+        return view('frontend.fecaptcha',['paginas'=>$paginas, 'entitats'=>$entitats, 'categories'=>$categories]);
     }
 
     public function aceptarCaptcha() {
@@ -44,18 +47,21 @@ class feEntradasController extends Controller {
 
       if(isset($captcha)){
         if(!empty($captcha)){
-          $categories = $this->ocategories->llegirTotes();
+          $categories = $this->ocategories->llegirTotesPerMenu();
           $paginas = $this->opaginashome->llegirTotes();
-          return view('frontend.fenovaentrada',['paginas'=>$paginas, 'categories'=>$categories]);
+          $entitats = $this->oentitats->LlistaFooterEntitats();
+          return view('frontend.fenovaentrada',['paginas'=>$paginas, 'entitats'=>$entitats, 'categories'=>$categories]);
         } else {
-          $categories = $this->ocategories->llegirTotes();
+          $categories = $this->ocategories->llegirTotesPerMenu();
           $paginas = $this->opaginashome->llegirTotes();
-          return view('frontend.fecaptcha',['paginas'=>$paginas, 'categories'=>$categories]);
+          $entitats = $this->oentitats->LlistaFooterEntitats();
+          return view('frontend.fecaptcha',['paginas'=>$paginas, 'entitats'=>$entitats, 'categories'=>$categories]);
         }
       } else {
-        $categories = $this->ocategories->llegirTotes();
+        $categories = $this->ocategories->llegirTotesPerMenu();
         $paginas = $this->opaginashome->llegirTotes();
-        return view('frontend.fecaptcha',['paginas'=>$paginas, 'categories'=>$categories]);
+        $entitats = $this->oentitats->LlistaFooterEntitats();
+        return view('frontend.fecaptcha',['paginas'=>$paginas, 'entitats'=>$entitats, 'categories'=>$categories]);
       }
 
 
@@ -72,7 +78,7 @@ class feEntradasController extends Controller {
         //dirección del remitente
         $headers .= "From: TSFI < TSFI.no_reply >\r\n";
         //Enviamos el mensaje a tu_dirección_email
-        $enviado = true; /*mail($destinatario,$asunto,$contenido,$headers);*/
+        $enviado = mail($destinatario,$asunto,$contenido,$headers);
 
         return $enviado;
 
@@ -96,11 +102,13 @@ class feEntradasController extends Controller {
           $destinatario = Input::get('email');
 
           if ($this->mentradas->guardarfe()=='-1'){
-            $categories = $this->ocategories->llegirTotes();
+            $categories = $this->ocategories->llegirTotesPerMenu();
             $paginas = $this->opaginashome->llegirTotes();
-            return view('frontend.feerror',['paginas'=>$paginas, 'categories'=>$categories]);
+            $entitats = $this->oentitats->LlistaFooterEntitats();
+            return view('frontend.feerror',['paginas'=>$paginas, 'entitats'=>$entitats, 'categories'=>$categories]);
           } else {
-            $categories = $this->ocategories->llegirTotes();
+            $entitats = $this->oentitats->LlistaFooterEntitats();
+            $categories = $this->ocategories->llegirTotesPerMenu();
             $paginas = $this->opaginashome->llegirTotes();
             $this->enviarMail($asunto, $contenido, $destinatario);
 
@@ -108,7 +116,7 @@ class feEntradasController extends Controller {
             foreach($administradores as $admnistrador){
               $this->enviarMail('Nova Entrada', 'Han enviat una nova entrada!', $admnistrador->email);
             }
-            return view('frontend.feagradecimento',['paginas'=>$paginas, 'categories'=>$categories]);
+            return view('frontend.feagradecimento',['paginas'=>$paginas, 'entitats'=>$entitats, 'categories'=>$categories]);
           };
       }
 

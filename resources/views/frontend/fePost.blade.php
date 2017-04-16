@@ -24,13 +24,25 @@
             <img src="{{$data->fotosUrl}}" alt="image placeholder" class="postTitleImg">
             <div class="titol col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1">
             @if(!empty($data->titulo))<h1> {{$data->titulo}}</h1>@endif
-            @if(!empty($data->nombre)) <h2 class="categoria"><a id="link" href="../category/{{$data->idcat}}">{{$data->nombre}}</a></h2>@endif
+            @if(!empty($categoriesDePost[0]))
+                <h2 class="categoria">
+                @for ($i = 0; $i < count($categoriesDePost); $i++)
+                    <a id="link" href="../category/{{$categoriesDePost[$i]->idcat}}">{{$categoriesDePost[$i]->nombre}}@if($i != (count($categoriesDePost)-1)) |@endif</a>
+                @endfor
+                @foreach($categoriesDePost as $categoria)
+                    
+                @endforeach
+                </h2>
+             @endif
             @if(!empty($data->data_publicacion))
-                <div class="autorContainer"><h3 class="autor">{{ Carbon\Carbon::parse($data->data_publicacion)->format('d-m-Y') }}</h3>
+                <div class="autorContainer"><h3 class="autor">{{ Carbon\Carbon::parse($data->data_publicacion)->format('d-m-Y') }} • </h3>
                 @if(isset($data->titulo))
-                    <a class="twitter-share-button" href="https://twitter.com/intent/tweet?text={{$data->titulo}} &url=http://localhost/cms/post/{{$data->id}}&hashtags=TSFI">
+                    <a style="margin-top:5px;" class="twitter-share-button" href="https://twitter.com/intent/tweet?text={{$data->titulo}} &url=http://localhost/cms/post/{{$data->id}}&hashtags=TSFI">
                         Tweet
                     </a>
+                @endif
+                @if($data->esdeveniment==1 && !is_null($data->fecha1) && !is_null($data->fecha2))
+                <h3 class="autor"> • Esdeveniment del {{Carbon\Carbon::parse($data->fecha1)->format('d-m-Y')}} al {{Carbon\Carbon::parse($data->fecha2)->format('d-m-Y')}}</h3>
                 @endif
                 </div>
             @endif
@@ -42,8 +54,16 @@
                 <p>@if(!empty($data->contenido)) {!!html_entity_decode($data->contenido)!!}@endif</p>
             </article>
         <hr/>
-            <div id="map" class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
+        @if(!empty($data->esdeveniment))
+          @if($data->esdeveniment == 1)
+            @if($data->localizacion != NULL)
+              <div id="map" class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1"></div>
+            @endif
+          @endif
+        @endif
 
+            <div class="col-md-9">
+              <a href="{{url('/reportarPost/' . $data->id)}}">Reportar aquest post per ser incorrecte o inapropiat</a>
             </div>
         </main>
         <div class="categoryPostsSidebar col-md-3 col-sm-12">
@@ -51,26 +71,40 @@
             <div>
                 <h2>Etiquetes</h2>
                 <ul class="tags" style="width: 100%;">
-                    @foreach($etiquetas as $etiqueta) 
+                    @foreach($etiquetas as $etiqueta)
                     <li><a href="#" class="tag">{{$etiqueta->nombre}}</a></li>
                     @endforeach
                 </ul>
             </div>
             @endif
-               @if(count($related)!=0)<h2>Posts Relacionats</h2> @endif
-                @foreach($related as $info)              
-                <a href="../post/{{$info->id}}">
-                    <div class="sidebarPost">
-                        <img class="sidebarPostImg" src="{{$info->fotosUrl}}">
-                        <div class="sidebarPostTitle">
-                            <p>@if(!empty($info->titulo)) {{$info->titulo}} @endif</p>
+              @if(isset($related))
+               @if(count($related)>0)<h2>Entrades relacionades</h2> @endif
+                @foreach($related as $info)
+                  @if($info->id_entrada != $data->id_entrada_m)
+                    <a href="{{$info->id_entrada}}">
+                        <div class="sidebarPost">
+                            <img class="sidebarPostImg" src="@if(!empty($info->fotosUrl)){{$info->fotosUrl}}@endif">
+                            <div class="sidebarPostTitle">
+                                <p>@if(!empty($info->titulo)) {{$info->titulo}} @endif</p>
+                            </div>
                         </div>
-                    </div>
-                </a>
+                    </a>
+                    @endif
                  @endforeach
-                <div id="entitatsColaboradores">
-                
-                </div>
+                @endif
+                 @if(isset($entitats_col))
+                   @if(count($entitats_col)>0 && !is_null($entitats_col[0]->nombre))<h2>Entitats col·laboradores</h2> @endif
+                    @foreach($entitats_col as $entitat_col)
+                    <a href="{{ $entitat_col->url}}">
+                        <div class="sidebarPost">
+                            <img class="sidebarPostImg" alt="{{$entitat_col->fotoALT}}" src="{{$entitat_col->fotoURL}}">
+                            <div class="sidebarPostTitle">
+                                <p>@if(!empty($entitat_col->nombre)) {{$entitat_col->nombre}} @endif</p>
+                            </div>
+                        </div>
+                    </a>
+                 @endforeach
+                @endif
         </div>
     </div>
 </body>

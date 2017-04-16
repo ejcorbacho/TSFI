@@ -5,9 +5,6 @@
 <!-- Tell the browser to be responsive to screen width -->
 <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 
-<!-- fullCalendar 2.2.5-->
-<link rel="stylesheet" href="../../plugins/fullcalendar/fullcalendar.min.css">
-<link rel="stylesheet" href="../../plugins/fullcalendar/fullcalendar.print.css" media="print">
 
 <link rel="stylesheet" href="../../dist/css/skins/_all-skins.min.css">
 
@@ -30,7 +27,7 @@
             <div class="col-md-12">
                 <div class="col-md-12 box box-primary">
                     <div class="box-header with-border">
-                        <h3 class="box-title">Categories</h3>
+                        <h3 class="box-title">Notificacions</h3>
                     </div>
                     <!-- /.box-header -->
 
@@ -51,7 +48,9 @@
                                     @foreach($data as $dato)
                                     <tr class="filaDeDadesCategoria" categoryId="{{ $dato->id }}">
                                         <td class="nomCategoria">
-                                          @if($dato->contenido == '@novaentrada')
+                                          @if($dato->titulo == '@reportePost')
+                                            Report d'un post
+                                          @elseif($dato->contenido == '@novaentrada')
                                             Nova entrada
                                           @else
                                             Contacte · {{ $dato->titulo }}
@@ -60,7 +59,9 @@
                                         <td class="nomCategoria">{{ $dato->nombre }}</td>
                                         <td class="nomCategoria">{{ $dato->mail }}</td>
                                         <td>
-                                          @if($dato->contenido == '@novaentrada')
+                                          @if($dato->titulo == '@reportePost')
+                                              <a href="{{url('/administracio/notificacio/' . $dato->id)}}">ACCEDEIX</a>
+                                          @elseif($dato->contenido == '@novaentrada')
                                               <a href="{{url('/administracio/entrada/nova/' . $dato->id_relacion)}}">ACCEDEIX</a>
                                           @else
                                               <a href="{{url('/administracio/notificacio/' . $dato->id)}}">ACCEDEIX</a>

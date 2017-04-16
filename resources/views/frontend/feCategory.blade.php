@@ -9,6 +9,8 @@
         <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Paytone+One" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Archivo+Black" rel="stylesheet">
+        <!--entitats colaboradores-->
+          <script src="{{ asset('js/frontend/mostrarEntitats.js')}}"></script>
         <script src="{{ asset('js/frontend/twitter.js')}}"></script>
         <meta name="viewport" content="width=device-width, user-scalable=no">
     </head>
@@ -47,9 +49,9 @@
                 <?php echo $posts->render(); ?>
                 <!-- final del bucle de posts -->
             </div>
-            <div class="categoryPostsSidebar col-md-3 col-sm-12">                
-              <h2>Posts Relacionats</h2>
-               @foreach($related as $info)                
+            <div class="categoryPostsSidebar col-md-3 col-sm-12">
+              <h2>Entrades més vistes</h2>
+               @foreach($related as $info)
                 <a href="../post/{{$info->id}}">
                     <div class="sidebarPost">
                         <img class="sidebarPostImg" src="{{$info->fotosUrl}}">
@@ -60,7 +62,7 @@
                 </a>
                  @endforeach
                 <div id="entitatsColaboradores">
-                
+
                 </div>
             </div>
         </div>

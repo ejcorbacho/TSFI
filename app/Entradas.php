@@ -244,9 +244,9 @@ class Entradas extends Model
           ->leftjoin('fotos', 'entradas.foto', '=', 'fotos.id')
           ->leftjoin('entradas_categorias', 'entradas_categorias.id_entrada', '=', 'entradas.id')
           ->leftjoin('categorias', 'categorias.id', '=', 'entradas_categorias.id_categoria')
-          ->select('entradas.id','entradas.resumen_largo','entradas.titulo','entradas.data_publicacion', 'fotos.url',DB::raw('group_concat(categorias.nombre separator ", ") as categoriasDePost'))
+          ->select('entradas.id', 'entradas.visitas', 'entradas.resumen_largo','entradas.titulo','entradas.data_publicacion', 'fotos.url',DB::raw('group_concat(categorias.nombre separator ", ") as categoriasDePost'))
           ->where('entradas.eliminado', '=', 0)
-          ->groupBy('entradas.id','entradas.resumen_largo','entradas.titulo','entradas.data_publicacion','fotos.url')
+          ->groupBy('entradas.id','entradas.resumen_largo','entradas.titulo','entradas.data_publicacion','fotos.url', 'entradas.visitas')
           ->get();
 
         return $contenido;
@@ -337,8 +337,8 @@ class Entradas extends Model
 
     public function leerCategoriasMarcadas($id){
         $contenido =  DB::table('entradas_categorias')
-          ->select('entradas_categoria.id_categoria as id')
-          ->where('entradas_categoria.id_entrada', '=', $id)
+          ->select('entradas_categorias.id_categoria as id')
+          ->where('entradas_categorias.id_entrada', '=', $id)
           ->get();
 
         return $contenido;

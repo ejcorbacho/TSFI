@@ -57,6 +57,7 @@ class CreateTablesBd3 extends Migration
             $table->integer('relevancia');
             $table->datetime('data_publicacion')->nullable();
             $table->integer('esdeveniment');
+            $table->integer('visitas')->default(0);
             $table->datetime('fecha1')->nullable();
             $table->datetime('fecha2')->nullable();
             $table->integer('notificar')->nullable()->unsigned();
@@ -71,7 +72,7 @@ class CreateTablesBd3 extends Migration
             $table->increments('id');
             $table->string('titulo', 200);
             $table->string('subtitulo', 200);
-            $table->string('contenido', 200);
+            $table->longText('contenido');
             $table->integer('foto')->nullable()->unsigned();
             $table->integer('usuario_publicador')->unsigned();
             $table->tinyInteger('eliminado');
@@ -127,7 +128,7 @@ class CreateTablesBd3 extends Migration
             $table->string('nombre',200);
             $table->timestamps();
         });
-		
+
         Schema::create('entradas_etiquetas', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('id_entrada')->unsigned();
@@ -156,7 +157,7 @@ class CreateTablesBd3 extends Migration
             $table->foreign('id_entidad')->references('id')->on('entidades');
             $table->timestamps();
         });
-		
+
 		Schema::create('rellevancia', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('valor');
@@ -170,7 +171,7 @@ class CreateTablesBd3 extends Migration
             'password' => bcrypt('Tsfi2017')
             )
         );
-		
+
 		DB::table('rellevancia')->insert(
         array(
             'valor' => '0',

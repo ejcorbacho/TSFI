@@ -8,8 +8,9 @@ use Illuminate\Support\Facades\DB;
 class feHome extends Model
 {
     protected $table = 'entradas';
+    public $publico;
 
-        public function llegirCategories($id){
+    public function llegirCategories($id){
         $contenido =  DB::table('entradas')
           //->join('fotos', 'entradas.foto', '=', 'fotos.id')
 
@@ -30,15 +31,18 @@ public function MostrarEntradasHome(){
       ->select('fotos.id as fotoId', 'fotos.alt as alt_foto', 'fotos.url as fotosUrl' , 'entradas.*', 'entradas.id as id_entrada')
       ->where('entradas.visible','=',1)
       ->where('entradas.eliminado','=',0)
+      ->where('entradas.data_publicacion', '<=' , date('Y-m-d H:i:s'))
+      ->whereIn('entradas.publico', $this->publico)
       ->orderByRaw('date_add(entradas.data_publicacion, INTERVAL r.valor DAY) DESC, entradas.data_publicacion DESC')
-      ->get();
+      ->paginate(12);
 
     foreach ($contenidos as $k => $contenido) {
       $contenidos[$k]->nombre_categoria = DB::table('entradas')
         ->join('entradas_categorias','entradas_categorias.id_entrada', '=','entradas.id' )
         ->join('categorias','categorias.id', '=','entradas_categorias.id_categoria' )
         ->where('entradas.id', '=', $contenidos[$k]->id_entrada)
-        ->where('categorias.eliminado','=', 0)    
+        ->where('entradas.data_publicacion', '<=' , date('Y-m-d H:i:s'))
+        ->where('categorias.eliminado','=', 0)
         ->select('categorias.nombre as nombre_categoria' , 'categorias.id as idCategoria')
         ->get();
     }
@@ -54,6 +58,7 @@ public function MostrarEntradasHome(){
         ->whereMonth('fecha1', '>', 'sysdate')
         ->where('publico', '=', '1')
         ->where('eliminado', '=', '0')
+        ->where('e.data_publicacion', '<=' , date('Y-m-d H:i:s'))
         ->orderBy('fecha1', 'DESC')
         ->get();
 

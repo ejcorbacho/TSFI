@@ -14,7 +14,7 @@ var vacio;
 //************* CUERPO PRINCIPAL DEL PROGRAMA *******************//
 $( document ).ready(function() {
 
-    /********************************* FUNCIONES BOTON GUARDAR  ***********************************/
+    validarFormulario();
 
 
 });
@@ -83,7 +83,7 @@ function validarTitulo() {
 
 
 function validarContenido() {
-  var longitud = getStats('contingut').chars;
+  var longitud = $("#contingut").val().length;
   if(longitud > 0){
     hayContenido = true;
   } else {

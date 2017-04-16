@@ -20,24 +20,36 @@ class feController extends Controller
     private $valor;
     private $cookiePublico;
     private $oentitats;
+    private $publico;
 
     public function __construct()
     {
         $this->oentitats = new feEntitats;
         $this->opaginashome = new Paginas;
-//        $request = new Request;
-//        $request->cookie('name');
-//        return response('Hello World')->cookie('nombre', 'valor', 1);
         if (!isset($_COOKIE["CookiePublico"])) {
-            setcookie("CookiePublico", 'todos', time()+200);
+
+            setcookie("CookiePublico", 'todos', time() + (60*60*24*60),'/cms');
+            $this->publico = array( 0=>0 , 1=>1 , 2=>2 );
         }else{
             $cookiePublico = $_COOKIE["CookiePublico"];
+            switch ($cookiePublico) {
+                case 'alumnos':
+                    $this->publico = array( 0=>1 , 1=>0 );
+                    break;
+                case 'profesores':
+                    $this->publico = array( 0=>2 , 1=>0 );
+                    break;
+                default :
+                    $this->publico = array( 0=>0 , 1=>1 , 2=>2 );
+                    break;
+            }
         }
     }
 
 
     public function category($id) {
         $ocategories = new feCategories;
+        $ocategories->publico = $this->publico;
         $data = $ocategories->llegirCategories($id);
         if (count($data)<=0) {
             abort(404);
@@ -49,22 +61,32 @@ class feController extends Controller
         $related = $ocategories->MostrarPostsRelated($id);
         $paginas = $this->opaginashome->llegirTotes();
         $categories = $ocategories->llegirTotesPerMenu();
+        $entitats = $this->oentitats->LlistaFooterEntitats();
 
-        return view('frontend.feCategory',['categoria'=>$data[0], 'posts'=>$post, 'related'=>$related, 'categories'=>$categories]);
+        return view('frontend.feCategory',['categoria'=>$data[0], 'posts'=>$post, 'related'=>$related, 'categories'=>$categories, 'entitats'=>$entitats, 'paginas'=>$paginas]);
     }
     public function post($id) {
         $oentradas = new feEntrades;
         $ocategories = new feCategories;
-        
+
+        $oentradas->publico = $this->publico;
+
         $etiquetas = $oentradas->llegirEtiquetesDePost($id);
+        $oentradas->incrementarVista($id);
         $categories = $ocategories->llegirTotesPerMenu();
+        $entitats = $this->oentitats->LlistaFooterEntitats();
         $data = $oentradas->llegirEntrada($id);
-            $paginas = $this->opaginashome->llegirTotes();
+        $categoriesDePost = $oentradas->llegirCategoriesDePost($id);
+        $paginas = $this->opaginashome->llegirTotes();
+
+        $entitats_col = $this->oentitats->llistarEntiatsCol($id);
+        $related = $oentradas->MostrarPostsRelated($data[0]->idcat);
+
         if (count($data)<=0) {
             abort(404);
         }
-        $related = $oentradas->MostrarPostsRelated($id);
-        return view('frontend.fePost',['data'=>$data[0] , 'related'=>$related, 'paginas'=>$paginas, 'categories'=>$categories, 'etiquetas'=>$etiquetas ]);
+
+        return view('frontend.fePost',['data'=>$data[0] , 'categoriesDePost'=>$categoriesDePost, 'entitats_col'=>$entitats_col, 'related'=>$related, 'paginas'=>$paginas, 'categories'=>$categories, 'etiquetas'=>$etiquetas, 'entitats'=>$entitats]);
     }
 
     public function pagines($id) {
@@ -73,7 +95,8 @@ class feController extends Controller
       $categories = $ocategories->llegirTotesPerMenu();
       $data = $this->opaginashome->llegirContingut($id);
       $paginas = $this->opaginashome->llegirTotes();
-      return view('frontend.fePaginas',['data'=>$data[0], 'paginas'=>$paginas, 'categories'=>$categories]);
+      $entitats = $this->oentitats->LlistaFooterEntitats();
+      return view('frontend.fePaginas',['data'=>$data[0], 'paginas'=>$paginas, 'categories'=>$categories, 'entitats'=>$entitats]);
 
     }
 
@@ -81,14 +104,16 @@ class feController extends Controller
 
       $oentradashome = new feHome;
       $ocategories = new feCategories;
+      $oentradashome->publico = $this->publico;
 
       $categories = $ocategories->llegirTotesPerMenu();
       $data = $oentradashome->MostrarEntradasHome();
       $paginas = $this->opaginashome->llegirTotes();
+      $entitats = $this->oentitats->LlistaFooterEntitats();
 
 
     //   return $data;
-      return view('frontend.feHome',['posts'=>$data, 'paginas'=>$paginas, 'categories'=>$categories]);
+      return view('frontend.feHome',['posts'=>$data, 'paginas'=>$paginas, 'categories'=>$categories, 'entitats'=>$entitats]);
 
     }
 

@@ -42,7 +42,7 @@ class Paginas extends Model
 
     }
     public function eliminar(){
-      
+
         DB::beginTransaction();
         try {
             //Paginas::where('id',$this->id)->delete();
@@ -94,6 +94,7 @@ class Paginas extends Model
           ->leftjoin('fotos', 'paginas.foto', '=', 'fotos.id')
           ->select('paginas.*', 'fotos.url as fotoUrl', 'fotos.alt')
           ->where('paginas.id', '=', $id)
+          ->where('paginas.eliminado', '=', 0)
           ->get();
 
         return $contenido;
@@ -103,6 +104,7 @@ class Paginas extends Model
 
         $contenido = DB::table('paginas')
                 ->select( 'paginas.*')
+                ->where('paginas.eliminado', '=', 0)
                 ->get();
 
         return $contenido;

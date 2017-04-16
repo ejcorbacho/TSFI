@@ -22,7 +22,7 @@
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
   <link rel="stylesheet" href="{{asset('dist/css/skins/_all-skins.min.css')}}">
-
+  <link rel="stylesheet" href="{{asset('css/backend/notificacions.css')}}">
   <!-- jQuery 3.3.1 -->
 	<script src="{{asset('js/jquery-3.1.1.min.js')}}"></script>
 <!-- Bootstrap 3.3.6 -->
@@ -85,29 +85,26 @@
           <!-- USUARIO PERFIL MENU -->
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+              <img src="{{asset('dist/img/user2-160x160.jpg')}}" class="user-image" alt="User Image">
               <span class="hidden-xs">{{Auth::user()->name }} {{ Auth::user()->apellido }}</span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
-                <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                <img src="{{asset('dist/img/user2-160x160.jpg')}}" class="img-circle" alt="User Image">
 
                 <p>
-                  {{Auth::user()->name }} {{ Auth::user()->apellido }}
-                  <small>{{ $email_usuarios }}</small>
+                  {{Auth::user()->name }}
+                  <small>{{ Auth::user()->email  }}</small>
                 </p>
               </li>
 
               <!-- Menu Footer-->
               <li class="user-footer">
-                <div class="pull-left">
-                  <a href="#" class="btn btn-default btn-flat">Profile</a>
-                </div>
                 <div class="pull-right">
                   <a href="{{ url('/logout') }}"
                                             onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();" class="btn btn-default btn-flat">Sign out</a>
+                                                     document.getElementById('logout-form').submit();" class="btn btn-default btn-flat">Tanca sessió</a>
                   <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
                       {{ csrf_field() }}
                   </form>
@@ -131,15 +128,7 @@
     <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar">
       <!-- search form -->
-      <form action="#" method="get" class="sidebar-form">
-        <div class="input-group">
-          <input type="text" name="q" class="form-control" placeholder="Search...">
-              <span class="input-group-btn">
-                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
-                </button>
-              </span>
-        </div>
-      </form>
+
       <!-- /.search form -->
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu">
@@ -213,11 +202,7 @@
                  </ul>
                </li>
  <!-- APARTADO MENUS -->
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-edit"></i> <span>MENÚS</span>
-          </a>
-        </li>
+
  <!-- APARTADO USUARIOS -->
         <li class="treeview">
           <a>
@@ -227,8 +212,7 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="pages/forms/general.html"><i class="fa fa-circle-o"></i> Afegir Usuaris</a></li>
-            <li><a href="pages/tables/data.html"><i class="fa fa-circle-o"></i> El Meu Perfil</a></li>
+            <li><a href="{{ url('/register') }}"><i class="fa fa-circle-o"></i> Afegir Administrador</a></li>
           </ul>
         </li>
 
@@ -244,11 +228,6 @@
         </li>--->
 
 	 <!-- APARTADO CONFIGURACION  -->
-        <li>
-          <a href="pages/mailbox/mailbox.html">
-            <i class="fa fa-book"></i> <span>CONFIGURACIÓ</span>
-          </a>
-        </li>
 
       </ul>
     </section>
@@ -270,16 +249,23 @@
 
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
+    <ul class="slide_notificaciones">
     <hr />
+
     @if(isset($notificaciones)) @if(!empty($notificaciones))
       @foreach($notificaciones as $notificacion)
-        @if($notificacion->contenido == '@novaentrada')
+        @if($notificacion->titulo == '@reportePost')
+          <a href="{{url('/administracio/notificacio/' . $notificacion->id)}}">
+        @elseif($notificacion->contenido == '@novaentrada')
           <a href="{{url('/administracio/entrada/nova/' . $notificacion->id_relacion)}}">
         @else
-          <a href="#">
+          <a href="{{url('/administracio/notificacio/' . $notificacion->id)}}">
         @endif
         <li >
-          @if($notificacion->contenido == '@novaentrada')
+          @if($notificacion->titulo == '@reportePost')
+            Nou report rebut! <br />
+            Revisa'l per corretgir-lo
+          @elseif($notificacion->contenido == '@novaentrada')
             Nova entrada rebuda! <br />
             Revisa-la per publicar-la
           @else
@@ -293,8 +279,9 @@
       </a>
       @endforeach
       <li>
-        Veure més..
+        <a href="{{url('/administracio/notificacions')}}">Veure més..</a>
       </li>
+    </ul>
     @endif @endif
   </aside>
 

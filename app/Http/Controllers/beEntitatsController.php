@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\beEntitats;
+use App\Notificaciones;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Input;
@@ -11,11 +12,13 @@ use View;
 class beEntitatsController extends Controller
 {
     private $oentitats;
+    private $onotificaciones;
 
     public function __construct()
     {
         $this->middleware('auth');
         $this->oentitats = new beEntitats;
+        $this->onotificaciones = new Notificaciones;
     }
 
     public function guardarNovaEntitat()
@@ -24,7 +27,7 @@ class beEntitatsController extends Controller
         $this->oentitats->son_colaboradoras = Input::get('colab');
         $this->oentitats->foto = Input::get('mainImage');
         $this->oentitats->url = Input::get('url');
-        
+
         if($this->oentitats->son_colaboradoras ){ // comprobacion de si es o no colaboardor
             $this->oentitats->son_colaboradoras = 1;
 
@@ -44,8 +47,8 @@ class beEntitatsController extends Controller
     public function editarEntitat($id)
     {
         $data = $this->oentitats->llegirEntitatPerId($id);
-
-        return view('backend.beEditarEntitat',['data'=>$data]);
+        $notificaciones = $this->onotificaciones->leerTodas();
+        return view('backend.beEditarEntitat',['data'=>$data, 'notificaciones'=>$notificaciones]);
     }
 
     public function actualitzarEntitat()
@@ -77,7 +80,8 @@ class beEntitatsController extends Controller
 
     public function NovaEntitat()
     {
-        return view('backend.beNuevaEntitat');
+        $notificaciones = $this->onotificaciones->leerTodas();
+        return view('backend.beNuevaEntitat', ['notificaciones'=>$notificaciones]);
     }
     public function eliminarEntitat()
     {
@@ -91,7 +95,7 @@ class beEntitatsController extends Controller
         }
         return json_encode($mensaje);
     }
-    
+
     public function llistarEnitats()
     {
       return($this->oentitats->llistarTotesEntitats());
@@ -99,7 +103,8 @@ class beEntitatsController extends Controller
     }
     public function totesEntitats()
     {
-      return view('backend.beTotesEntitats',['data'=>$this->oentitats->llistarTotesEntitats()]);
+      $notificaciones = $this->onotificaciones->leerTodas();
+      return view('backend.beTotesEntitats',['data'=>$this->oentitats->llistarTotesEntitats(), 'notificaciones'=>$notificaciones]);
     }
-    
+
 }

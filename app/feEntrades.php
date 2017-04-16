@@ -24,6 +24,17 @@ class feEntrades extends Model
 
         return $contenido;
     }
+    public function llegirCategoriesDePost($id){
+        $contenido = DB::table('entradas')
+                ->join('entradas_categorias', 'entradas_categorias.id_entrada', '=', 'entradas.id')
+                ->join('categorias', 'categorias.id', '=', 'entradas_categorias.id_categoria')
+                ->select('categorias.nombre', 'categorias.id as idcat')
+                ->where('categorias.eliminado','=',0)
+                ->where('entradas.id','=',$id)
+                ->get();
+
+        return $contenido;
+    }
     public function llegirEtiquetesDePost($id) {
         $contenido = DB::table('entradas')
                 ->leftjoin('entradas_etiquetas', 'entradas_etiquetas.id_entrada', '=', 'entradas.id')

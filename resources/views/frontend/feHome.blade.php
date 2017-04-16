@@ -9,6 +9,8 @@
           <link href="{{ asset('css/mainGrid.css')}}" rel="stylesheet">
           <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
+          <!--entitats colaboradores-->
+          <script src="{{ asset('js/frontend/mostrarEntitats.js')}}"></script>
           <!-- API Google Calendar -->
           <script src="{{ asset('js/frontend/googleCalendar.js')}}"></script>
           <!-- Widget Calendari -->

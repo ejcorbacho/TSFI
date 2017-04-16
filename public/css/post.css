@@ -183,16 +183,17 @@ img{
 .sidebarPostImg{
     width: 100%;
     object-fit: cover;
+    height: 100%;
 }
 .sidebarPostTitle{
     margin-left: 10%;
     width: 80%;
     opacity: 60;
     position: absolute;
-    bottom: 25%;
+    bottom: 5%;
     z-index: 1;
     object-fit: contain;
-    font-size: 2.9em;
+    font-size: 4.5vw;
     font-weight: bold;
     text-align: center;
     color: white;
@@ -209,5 +210,5 @@ img{
     font-family: 'Raleway', sans-serif;
 }
 @media (min-width: 992px) {
-    .sidebarPostTitle{font-size: 1.2em;height: 32px;}
+    .sidebarPostTitle{font-size: 1.2em;}
 }

@@ -199,6 +199,15 @@ img {
   text-decoration: none;
   width: 100%;
   padding: 15px !important;
+  text-decoration: none;
+  color:white;
+  font-size: 18px;
+  font-family: Roboto,sans-serif;
+  font-weight: 600;
+}
+.resultadoDeBusquedaMobil > h5{
+  font-size: 18px;
+  font-weight: 600;
 }
 .resultadoDeBusquedaMobil > a{
   text-decoration: none;
@@ -520,4 +529,7 @@ footer {
 
 .rowDeNavbar a:hover{
   text-decoration: none !important;
+}
+.pagination{
+  float:right;
 }

@@ -202,9 +202,9 @@
 
                 <div class="aluProfContainer">
                   <ul class="ULaluProf">
-                    <li class="LIaluProf changeCookieAlumnos">>Alumnos</li>
-                    <li class="LIaluProf changeCookieProfesores">>Profesores</li>
-                    <li class="LIaluProf changeCookieTodos">>Todos</li>
+                    <li class="LIaluProf changeCookieAlumnos">>Alumnes</li>
+                    <li class="LIaluProf changeCookieProfesores">>Professors</li>
+                    <li class="LIaluProf changeCookieTodos">>Ambdós</li>
                   </ul>
                 </div>
 

@@ -81,11 +81,11 @@
                 </div>
                 <!-- /.pull-right -->
               </div>
-                  <table id="taulaDePosts" class="table table-hover table-striped">
+                  <table id="taulaDePosts"  class="table table-hover table-striped">
                       <thead>
                           <tr>
                               <th>Títol</th>
-                              <th>Resum</th>
+                              <!--<th style="max-width:100px;">Resum</th>-->
                               <th>Categories</th>
                               <th>Data de publicació</th>
                               <th>Visites</th>
@@ -100,7 +100,7 @@
                   <tr entradaId="{{ $dato->id }}">
                       <!--<td><input type="checkbox"></td>-->
                       <td class="nomEntrada">{{ $dato->titulo }}</td>
-                      <td class="campoResumenTablaPosts">{{ $dato->resumen_largo }}</td>
+                      <!--<td style="max-width:100px;" class="campoResumenTablaPosts">{{ $dato->resumen_largo }}</td>-->
                       <td>{{ $dato->categoriasDePost }}</td>
                       <td>{{ Carbon\Carbon::parse($dato->data_publicacion)->format('d-m-Y') }}</td>
                       <td>{{ $dato->visitas }}</td>

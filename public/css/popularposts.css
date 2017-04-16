@@ -103,3 +103,15 @@
     float:left;
     object-fit: cover;
 }
+.sidebarPost{
+    width: 100%;
+    height: 150px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    position: relative;
+}
+.sidebarPostImg{
+    width: 100%;
+    object-fit: cover;
+    height: 100%;
+}

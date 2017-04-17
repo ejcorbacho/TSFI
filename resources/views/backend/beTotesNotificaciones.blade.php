@@ -38,6 +38,7 @@
                             <table id="taulaDeCategories" class="table table-hover table-striped">
                                 <thead>
                                     <tr>
+                                        <th>Data</th>
                                         <th>Tipus</th>
                                         <th>Persona de contacte</th>
                                         <th>E-mail de contacte</th>
@@ -47,6 +48,7 @@
                                 <tbody>
                                     @foreach($data as $dato)
                                     <tr class="filaDeDadesCategoria" categoryId="{{ $dato->id }}">
+                                        <td class="nomCategoria">{{ Carbon\Carbon::parse($dato->fecha)->format('d-m-Y H:i') }}</td>
                                         <td class="nomCategoria">
                                           @if($dato->titulo == '@reportePost')
                                             Report d'un post

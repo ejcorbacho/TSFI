@@ -8,10 +8,11 @@ $(document).ready(function() {
             { },
             { },
             { },
+            { },
             { "orderable": false }
         ],
 
-        "order": [[0, 'asc']]
+         "order": [[0, 'desc']]
     });
     $('.botoEsborrarCategories').on('click', function (e) {
 

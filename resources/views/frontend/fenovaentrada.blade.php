@@ -58,27 +58,27 @@
           <input type="hidden" name="_token" value="{{ csrf_token() }}">
           <div class="row">
             <div class="col-md-6">
-              <h5>INDICA EL TEU NOM:</h5>
+              <h5>INDICA EL TEU NOM:*</h5>
               <h6><div id="notificaciones_nom"></div></h6>
               <input type="text" name="nom" id="nom" class="form-control" placeholder="Introdueix el nom" onkeyup="validarFormulario()" />
             </div>
             <div class="col-md-6">
-              <h5>INDICA EL E-MAIL:</h5>
+              <h5>INDICA EL E-MAIL:*</h5>
               <h6><div id="notificaciones_email"></div></h6>
               <input type="text" name="email" id="email" class="form-control" placeholder="Introdueix el email" onkeyup="validarFormulario()" />
             </div>
             <div class="col-md-6">
-              <h5>TITOL:</h5>
+              <h5>TITOL:*</h5>
               <h6><div id="notificaciones_titulo"></div></h6>
               <input type="text" name="titulo" id="titulo" class="form-control" placeholder="Introdueix el titol" onkeyup="validarFormulario()" />
             </div>
             <div class="col-md-6">
-              <h5>SUBTITOL:</h5>
+              <h5>SUBTITOL:*</h5>
               <h6><div id="notificaciones_subtitulo"></div></h6>
               <input type="text" name="subtitulo" id="subtitulo" class="form-control" placeholder="Introdueix el subtitol" onkeyup="validarFormulario()" />
             </div>
             <div class="col-md-8">
-              <h5>RESUM:</h5>
+              <h5>RESUM:*</h5>
               <h6><div id="notificaciones_resumen"></div></h6>
               <textarea name="resum" id="resum" style="width: 100%;" onkeyup="validarFormulario()" onchange="validarFormulario()"></textarea>
             </div>
@@ -96,7 +96,7 @@
               </a>
             </div>
             <div class="col-md-12">
-              <h5>CONTINGUT:</h5>
+              <h5>CONTINGUT:*</h5>
               <h6><div id="notificaciones_contenido"></div></h6>
               <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#imageInsertionModal">
                   Inserir imatges

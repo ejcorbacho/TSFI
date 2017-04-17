@@ -11,6 +11,7 @@ class Notificaciones extends Model
   public function leerTodas(){
       $contenido =  DB::table('notificaciones')
         ->select('notificaciones.*')
+        ->orderBy('notificaciones.fecha','DESC')
         ->limit(5)
         ->get();
 
@@ -20,6 +21,7 @@ class Notificaciones extends Model
   public function leerTodasSinLimite(){
       $contenido =  DB::table('notificaciones')
         ->select('notificaciones.*')
+        ->orderBy('notificaciones.fecha','DESC')
         ->get();
 
       return $contenido;

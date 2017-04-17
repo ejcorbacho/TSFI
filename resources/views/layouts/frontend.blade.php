@@ -1,6 +1,6 @@
 <html>
   <head>
-    <title>Inicio </title>
+    <title>TSFI</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- URL DE ACCESO CON AJAX -->

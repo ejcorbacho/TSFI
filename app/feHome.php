@@ -52,14 +52,15 @@ public function MostrarEntradasHome(){
 
     public function getEventList() {
         $eventList = DB::table('entradas as e')
-        ->select('titulo as title', 'fecha1 as start', 'fecha2 as end')
-        ->whereNotNull('fecha1')
-        ->whereNotNull('fecha2')
-        ->whereMonth('fecha1', '>', 'sysdate')
-        ->where('publico', '=', '1')
-        ->where('eliminado', '=', '0')
-        ->where('e.data_publicacion', '<=' , date('Y-m-d H:i:s'))
-        ->orderBy('fecha1', 'DESC')
+        ->select('e.titulo as title', 'e.fecha1 as start', 'e.fecha2 as end')
+        ->whereNotNull('e.fecha1')
+        ->whereNotNull('e.fecha2')
+        ->whereMonth('e.fecha1', '>=', date('m'))
+        ->where('e.esdeveniment', '=', '1')
+        ->where('e.visible', '=', '1')
+        ->where('e.eliminado', '=', '0')
+        ->whereDate('e.data_publicacion', '<=' , date('Y-m-d') . ' 00:00:00')
+        ->orderBy('e.fecha1', 'DESC')
         ->get();
 
         return $eventList;

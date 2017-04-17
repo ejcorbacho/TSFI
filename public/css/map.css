@@ -1,0 +1,46 @@
+#map {
+    margin: auto;
+}
+.google-maps iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100% !important;
+    height: 100% !important;
+}
+@media (min-width:320px) {
+    #map {
+        width: 150px;
+        height: 100px;
+    }
+}
+@media (min-width:481px) {
+    #map {
+        width: 200px;
+        height: 150px;
+    }
+}
+@media (min-width:641px) {
+    #map {
+        width: 300px;
+        height: 200px;
+    }
+}
+@media (min-width:961px) {
+    #map {
+        width: 400px;
+        height: 300px;
+    }
+}
+@media (min-width:1025px) {
+    #map {
+        width: 600px;
+        height: 400px;
+    }
+}
+@media (min-width:1281px) {
+    #map {
+        width: 800px;
+        height: 400px;
+    }
+}

@@ -12,10 +12,11 @@ $(document).ready(function() {
             $( this ).toggleClass('selected');
         });*/
         selected.forEach( function ( image ) {
+            image = image.substring(0, selected[0].indexOf("class=")) + image.substring(selected[0].indexOf("\"",selected[0].indexOf("class=")+7)+1);
             images += image;
         });
         var regEx = new RegExp('>', 'g');
-        images = images.replace(regEx, 'width="200">');
+        images = images.replace(regEx, ' width="200px">');
 
         tinymce.get("contingut").execCommand('mceInsertContent', false, images);
         $('#imageInsertionModal').modal('hide');
@@ -26,10 +27,11 @@ $(document).ready(function() {
         var image = "";
         $( "div.selection ul.image_picker_selector li div.selected" ).each(function() {
             image = $( this ).html();
+            image = image.substring(0, image.indexOf("class=")) + image.substring(image.indexOf("\"",image.indexOf("class=")+7)+1);
             $( this ).toggleClass('selected');
         });
         var regEx = new RegExp('>', 'g');
-        image = image.replace(regEx, 'width="200">');
+        image = image.replace(regEx, ' width="200px">');
 
         $('#mainImage').html(image);
         $('#mainImageInput').val($("#imageSelectionSelector").data('picker').select[0].selectedOptions[0].value);

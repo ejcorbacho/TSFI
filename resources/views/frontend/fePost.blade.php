@@ -8,15 +8,11 @@
     <link rel="stylesheet" href="{{asset('/css/post.css')}}">
     <meta name="viewport" content="width=device-width, user-scalable=no"> </head>
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC8C2NIInthjdKLVEX0nrwh9OjmCd1JfOk&libraries=places" async defer></script>
+
     <script src="{{ asset('js/frontend/map.js')}}"></script>
     <script src="{{ asset('js/frontend/twitter.js')}}"></script>
-
-    <style>
-        #map {
-            height: 400px;
-        }
-    </style>
+    <link rel="stylesheet" href="{{ asset('css/backend/resources.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/map.css') }}">
 
 <body>
     <div class="col-lg-12 col-lg-offset-0 col-sm-12">
@@ -53,14 +49,14 @@
             <article class="col-sm-12 PostContent">
                 <p>@if(!empty($data->contenido)) {!!html_entity_decode($data->contenido)!!}@endif</p>
             </article>
-        <hr/>
-        @if(!empty($data->esdeveniment))
-          @if($data->esdeveniment == 1)
-            @if($data->localizacion != NULL)
-              <div id="map" class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1"></div>
+
+            @if(!empty($data->esdeveniment))
+              @if($data->esdeveniment == 1)
+                @if($data->localizacion != NULL)
+                  <div id="map"></div>
+                @endif
+              @endif
             @endif
-          @endif
-        @endif
 
             <div class="col-md-9">
               <a href="{{url('/reportarPost/' . $data->id)}}">Reportar aquest post per ser incorrecte o inapropiat</a>
@@ -111,6 +107,9 @@
 
 <script>
     var data = {!! json_encode($data) !!};
+</script>
+<script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC8C2NIInthjdKLVEX0nrwh9OjmCd1JfOk">
 </script>
 
 </html>

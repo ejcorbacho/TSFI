@@ -53,7 +53,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="password-confirm" class="col-md-4 control-label">Repeteix contrasenya</label>
+                            <label for="password-confirm" class="col-md-4 control-label">Repeteix la contrasenya</label>
 
                             <div class="col-md-6">
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>

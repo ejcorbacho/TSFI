@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\beUploads;
 use Illuminate\Support\Facades\Input;
+use URL;
 
 class beImageController extends Controller {
     private $uploads;
@@ -76,7 +77,7 @@ class beImageController extends Controller {
     				$files[] = array(
     					"name" => $f,
     					"type" => "file",
-    					"path" => $dir . '/' . $f,
+    					"path" => URL::to('/') . '/' . $dir . '/' . $f,
     					"size" => filesize($dir . '/' . $f) // Gets the size of this file
     				);
     			}

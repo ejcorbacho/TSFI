@@ -81,6 +81,10 @@ Route::post('entradaGuardada', array('uses' => 'feEntradasController@guardarEntr
 
 Route::post('contactaGuardat', array('uses' => 'feContactaController@guardarContacta'));  //Guardar entrada FRONTEND
 
+/********************* usuari ****************/
+Route::get('administracio/usuaris/llistat', 'beUsuarisController@mostrarLlistat');
+Route::post('ajax/usuaris/eliminar', 'beUsuarisController@eliminarUsuari');
+
 /***** entitats *****/
 
 Route::get('administracio/entitats/nova', 'beEntitatsController@NovaEntitat');

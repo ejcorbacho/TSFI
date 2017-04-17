@@ -518,7 +518,6 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Tancar</button>
-                    <button id="insertResource" type="button" class="btn btn-primary">Desar</button>
                 </div>
             </div>
         </div>

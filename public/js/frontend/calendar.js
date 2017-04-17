@@ -11,7 +11,6 @@ $(document).ready(function() {
 });
 
 function startCalendar( events ) {
-    console.log(events);
     $('#calendar').fullCalendar({
         header: {
             left: 'prev,next',

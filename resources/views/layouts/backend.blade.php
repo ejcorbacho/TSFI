@@ -213,6 +213,7 @@
           </a>
           <ul class="treeview-menu">
             <li><a href="{{ url('/register') }}"><i class="fa fa-circle-o"></i> Afegir Administrador</a></li>
+            <li><a href="{{ url('/administracio/usuaris/llistat') }}"><i class="fa fa-circle-o"></i> Tots els usuaris</a></li>
           </ul>
         </li>
 

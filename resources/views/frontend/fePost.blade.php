@@ -11,6 +11,7 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC8C2NIInthjdKLVEX0nrwh9OjmCd1JfOk&libraries=places" async defer></script>
     <script src="{{ asset('js/frontend/map.js')}}"></script>
     <script src="{{ asset('js/frontend/twitter.js')}}"></script>
+    <link rel="stylesheet" href="{{ asset('css/backend/resources.css') }}">
 
     <style>
         #map {

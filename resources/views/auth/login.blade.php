@@ -30,7 +30,7 @@
   </div>
   <!-- /.login-logo -->
   <div class="login-box-body">
-    <p class="login-box-msg">Introduir les dades per poder accedir</p>
+    <p class="login-box-msg">Introdeix les teves credencials per accedir</p>
 
     <form action="{{ url('/login') }}" role="form" method="POST">
 

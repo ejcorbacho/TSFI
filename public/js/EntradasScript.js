@@ -128,10 +128,8 @@ $( document ).ready(function() {
           $('#idBD' ).val(data); /* GUARDAMOS LA ID DE LA BD EN EL FORMULARIO */
           cargaTodasEtiquetasBD(data);
           showSuccessAlert('Desat!');
-
         },
         error: function(xhr, desc, err) {
-
           showErrorAlert('Error al guardar!');
         }
     });
@@ -212,13 +210,12 @@ function validarSubtitulo() {
 }
 
 function validarContenido() {
-  var longitud = getStats('contingut').chars;
-  if(longitud > 0){
-    hayContenido = true;
-  } else {
-    hayContenido = false;
-  }
-
+    var longitud = getStats('contingut').chars;
+    if(longitud > 0){
+        hayContenido = true;
+    } else {
+        hayContenido = false;
+    }
 }
 
 function validarTodoVacio(){

@@ -80,11 +80,12 @@ class feController extends Controller
         $paginas = $this->opaginashome->llegirTotes();
 
         $entitats_col = $this->oentitats->llistarEntiatsCol($id);
-        $related = $oentradas->MostrarPostsRelated($data[0]->idcat);
 
         if (count($data)<=0) {
             abort(404);
         }
+
+        $related = $oentradas->MostrarPostsRelated($data[0]->idcat);
 
         return view('frontend.fePost',['data'=>$data[0] , 'categoriesDePost'=>$categoriesDePost, 'entitats_col'=>$entitats_col, 'related'=>$related, 'paginas'=>$paginas, 'categories'=>$categories, 'etiquetas'=>$etiquetas, 'entitats'=>$entitats]);
     }

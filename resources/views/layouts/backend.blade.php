@@ -273,7 +273,7 @@
             {{$notificacion->titulo}}
           @endif
           <br />
-          {{$notificacion->fecha}}
+          {{Carbon\Carbon::parse($notificacion->fecha)->format('d-m-Y H:i')}}
           <hr />
         </li>
       </a>

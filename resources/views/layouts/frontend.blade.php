@@ -288,10 +288,10 @@
       </ul>
       <div style="clear: both"></div>
         <div id="redes_sociales_footer">
-        <i class="fa fa-facebook-official" aria-hidden="true"></i>
-        <i class="fa fa-twitter" aria-hidden="true"></i>
-        <i class="fa fa-envelope-o" aria-hidden="true"></i>
-        <i class="fa fa-rss" aria-hidden="true"></i>
+        <!--<i class="fa fa-facebook-official" aria-hidden="true"></i>-->
+        <a style="color:white;" href="https://twitter.com/fundacioBCNfp"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+        <a style="color:white;" href="{{url('/contacta')}}"><i class="fa fa-envelope-o" aria-hidden="true"></i></a>
+        <!--<i class="fa fa-rss" aria-hidden="true"></i>-->
       </div>
     </footer>
   </body>

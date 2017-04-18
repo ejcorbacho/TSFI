@@ -59,7 +59,7 @@
         </div>
         <div class="icons">
             @if(isset($posts[0]->titulo))
-                <a class="twitter-share-button" href="https://twitter.com/intent/tweet?text={{$posts[0]->titulo}} &url=http://localhost/cms/post/{{$posts[0]->id}}&hashtags=TSFI">
+                <a class="twitter-share-button" href="https://twitter.com/intent/tweet?text={{$posts[0]->titulo}} &url=http://g1s2aw.sdslab.cat/cms/post/{{$posts[0]->id}}&hashtags=TSFI">
                     Tweet
                 </a>
             @endif
@@ -84,7 +84,7 @@
         </div>
         <div class="icons">
             @if(isset($posts[1]->titulo))
-                <a class="twitter-share-button" href="https://twitter.com/intent/tweet?text={{$posts[1]->titulo}} &url=http://localhost/cms/post/{{$posts[1]->id}}&hashtags=TSFI">
+                <a class="twitter-share-button" href="https://twitter.com/intent/tweet?text={{$posts[1]->titulo}} &url=http://g1s2aw.sdslab.cat/cms/post/{{$posts[1]->id}}&hashtags=TSFI">
                     Tweet
                 </a>
             @endif
@@ -108,7 +108,7 @@
         </div>
         <div class="icons">
             @if(isset($posts[2]->titulo))
-                <a class="twitter-share-button" href="https://twitter.com/intent/tweet?text={{$posts[2]->titulo}} &url=http://localhost/cms/post/{{$posts[2]->id}}&hashtags=TSFI">
+                <a class="twitter-share-button" href="https://twitter.com/intent/tweet?text={{$posts[2]->titulo}} &url=http://g1s2aw.sdslab.cat/cms/post/{{$posts[2]->id}}&hashtags=TSFI">
                     Tweet
                 </a>
             @endif
@@ -135,7 +135,7 @@
             </div>
             <div class="icons">
                 @if(isset($posts[3]->titulo))
-                    <a class="twitter-share-button" href="https://twitter.com/intent/tweet?text={{$posts[3]->titulo}} &url=http://localhost/cms/post/{{$posts[3]->id}}&hashtags=TSFI">
+                    <a class="twitter-share-button" href="https://twitter.com/intent/tweet?text={{$posts[3]->titulo}} &url=http://g1s2aw.sdslab.cat/cms/post/{{$posts[3]->id}}&hashtags=TSFI">
                         Tweet
                     </a>
                 @endif
@@ -159,7 +159,7 @@
             </div>
             <div class="icons">
                 @if(isset($posts[4]->titulo))
-                    <a class="twitter-share-button" href="https://twitter.com/intent/tweet?text={{$posts[4]->titulo}} &url=http://localhost/cms/post/{{$posts[4]->id}}&hashtags=TSFI">
+                    <a class="twitter-share-button" href="https://twitter.com/intent/tweet?text={{$posts[4]->titulo}} &url=http://g1s2aw.sdslab.cat/cms/post/{{$posts[4]->id}}&hashtags=TSFI">
                         Tweet
                     </a>
                 @endif
@@ -182,7 +182,7 @@
             </div>
             <div class="icons">
                 @if(isset($posts[5]->titulo))
-                    <a class="twitter-share-button" href="https://twitter.com/intent/tweet?text={{$posts[5]->titulo}} &url=http://localhost/cms/post/{{$posts[5]->id}}&hashtags=TSFI">
+                    <a class="twitter-share-button" href="https://twitter.com/intent/tweet?text={{$posts[5]->titulo}} &url=http://g1s2aw.sdslab.cat/cms/post/{{$posts[5]->id}}&hashtags=TSFI">
                         Tweet
                     </a>
                 @endif
@@ -229,7 +229,7 @@
                           <p class="col-md-2 col-sm-2 col-xs-2 popularPostDate"> {{Carbon\Carbon::parse($posts[$i]->data_publicacion)->format('d-m-Y')}}</p>
                           <span class="popularPostDataSeparator">•</span>
                           <!--<a href="#"><i class="fa fa-facebook-official popularPostSocialIcon" aria-hidden="true"></i></a>-->
-                          <a class="twitter-share-button" href="https://twitter.com/intent/tweet?text={{$posts[$i]->titulo}} &url=http://localhost/cms/post/{{$posts[$i]->id}}&hashtags=TSFI">
+                          <a class="twitter-share-button" href="https://twitter.com/intent/tweet?text={{$posts[$i]->titulo}} &url=http://g1s2aw.sdslab.cat/cms/post/{{$posts[$i]->id}}&hashtags=TSFI">
                               Tweet
                           </a>
                       </div>

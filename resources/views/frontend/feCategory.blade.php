@@ -37,7 +37,7 @@
                             <p class="col-md-3 col-sm-3 col-xs-3 categoryPostDate">{{ Carbon\Carbon::parse($unpost->data_publicacion)->format('d-m-Y') }}</p>
                             <span class="categoryPostDataSeparator">•</span>
                             @if(isset($unpost->titulo))
-                                <a class="twitter-share-button" href="https://twitter.com/intent/tweet?text={{$unpost->titulo}} &url=http://localhost/cms/post/{{$unpost->id}}&hashtags=TSFI">
+                                <a class="twitter-share-button" href="https://twitter.com/intent/tweet?text={{$unpost->titulo}} &url=http://g1s2aw.sdslab.cat/cms/post/{{$unpost->id}}&hashtags=TSFI">
                                     Tweet
                                 </a>
                             @endif

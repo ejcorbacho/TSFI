@@ -19,9 +19,11 @@ class feSearch extends Model {
         $posts = DB::table('entradas as e')
             ->leftJoin('entradas_etiquetas as et', 'e.id', '=', 'et.id_entrada')
             ->leftJoin('etiquetas as t', 't.id', '=', 'et.id_etiqueta')
-            ->orWhereIn('t.nombre', $requestTags)
-            ->orWhere('e.titulo','like','%'.$filters.'%')
-            ->orWhere('e.contenido','like','%'.$filters.'%')
+            ->orWhere( function( $query ) {
+                $query->orWhereIn('t.nombre', $requestTags)
+                ->orWhere('e.titulo','like','%'.$filters.'%')
+                ->orWhere('e.contenido','like','%'.$filters.'%');
+            })
             ->where('e.visible', '=', '1')
             ->where('e.eliminado', '=', '0')
             ->where('e.data_publicacion', '<=' , date('Y-m-d H:i:s'))

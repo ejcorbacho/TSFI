@@ -19,7 +19,7 @@ class feSearch extends Model {
         $posts = DB::table('entradas as e')
             ->leftJoin('entradas_etiquetas as et', 'e.id', '=', 'et.id_entrada')
             ->leftJoin('etiquetas as t', 't.id', '=', 'et.id_etiqueta')
-            ->orWhere( function( $query ) {
+            ->where( function( $query ) use ( $requestTags, $filters ) {
                 $query->orWhereIn('t.nombre', $requestTags)
                 ->orWhere('e.titulo','like','%'.$filters.'%')
                 ->orWhere('e.contenido','like','%'.$filters.'%');

@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use URL;
 
 class beUploads extends Model {
     protected $table = 'fotos';
@@ -11,7 +12,7 @@ class beUploads extends Model {
     public function uploadFile() {
         $ds = DIRECTORY_SEPARATOR;
 
-        $storeFolder = public_path() . $ds . 'uploads' . $ds;
+        $storeFolder = __DIR__ . $ds . '..' . $ds . 'public' . $ds . 'uploads' . $ds;
 
         $targetFile = '';
 
@@ -41,8 +42,8 @@ class beUploads extends Model {
                 $serverFileName = $storeFolder . $ds . $originalFileName . "." . $extension;
             }
 
-            if (move_uploaded_file($tempName,$serverFileName)) {
-                $serverFileName = '/cms' . $ds . substr($serverFileName, strpos($serverFileName, 'uploads'));
+            if (move_uploaded_file($tempName, $serverFileName)) {
+                $serverFileName = URL::to('/') . $ds . substr($serverFileName, strpos($serverFileName, 'uploads'));
                 $serverFileName = str_replace("\\", "/", $serverFileName);
                 if ($isImage) {
                     if($this->insertAtDataBase($serverFileName, $originalFileName)) {
@@ -52,10 +53,10 @@ class beUploads extends Model {
                     }
                 }
             } else {
-                return '1';
+                return '1' . $serverFileName;
             }
         } else {
-            return '2';
+            return '2' . $serverFileName;
         }
     }
 

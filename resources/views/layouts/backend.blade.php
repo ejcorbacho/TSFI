@@ -22,7 +22,7 @@
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
   <link rel="stylesheet" href="{{asset('dist/css/skins/_all-skins.min.css')}}">
-
+  <link rel="stylesheet" href="{{asset('css/backend/notificacions.css')}}">
   <!-- jQuery 3.3.1 -->
 	<script src="{{asset('js/jquery-3.1.1.min.js')}}"></script>
 <!-- Bootstrap 3.3.6 -->
@@ -65,9 +65,9 @@
   <header class="main-header">
 
     <!-- Logo -->
-    <a href="./administracio" class="logo">
+    <a href="{{ url('administracio') }}" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>A</b>LT</span>
+      <span class="logo-mini">TSFI</span>
       <!-- logo for regular state and mobile devices -->
       <span class="logo-lg"><b>TSFI</b></span>
     </a>
@@ -85,29 +85,26 @@
           <!-- USUARIO PERFIL MENU -->
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+              <img src="{{asset('dist/img/user2-160x160.jpg')}}" class="user-image" alt="User Image">
               <span class="hidden-xs">{{Auth::user()->name }} {{ Auth::user()->apellido }}</span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
-                <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                <img src="{{asset('dist/img/user2-160x160.jpg')}}" class="img-circle" alt="User Image">
 
                 <p>
-                  {{Auth::user()->name }} {{ Auth::user()->apellido }}
-                  <small>{{ $email_usuarios }}</small>
+                  {{Auth::user()->name }}
+                  <small>{{ Auth::user()->email  }}</small>
                 </p>
               </li>
 
               <!-- Menu Footer-->
               <li class="user-footer">
-                <div class="pull-left">
-                  <a href="#" class="btn btn-default btn-flat">Profile</a>
-                </div>
                 <div class="pull-right">
                   <a href="{{ url('/logout') }}"
                                             onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();" class="btn btn-default btn-flat">Sign out</a>
+                                                     document.getElementById('logout-form').submit();" class="btn btn-default btn-flat">Tanca sessió</a>
                   <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
                       {{ csrf_field() }}
                   </form>
@@ -117,7 +114,8 @@
           </li>
           <!-- Control Sidebar Toggle Button -->
           <li>
-            <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+            <a href="#" data-toggle="control-sidebar"><i class="fa fa-bell" aria-hidden="true"></i>
+            </a>
           </li>
         </ul>
       </div>
@@ -130,15 +128,7 @@
     <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar">
       <!-- search form -->
-      <form action="#" method="get" class="sidebar-form">
-        <div class="input-group">
-          <input type="text" name="q" class="form-control" placeholder="Search...">
-              <span class="input-group-btn">
-                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
-                </button>
-              </span>
-        </div>
-      </form>
+
       <!-- /.search form -->
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu">
@@ -164,7 +154,7 @@
           </a>
           <ul class="treeview-menu">
             <li><a href="{{ url('administracio/entrada/nova') }}"><i class="fa fa-circle-o"></i> Nova Entrada</a></li>
-            <li><a href="{{ url('administracio/entrada/llistat') }}"><i class="fa fa-circle-o"></i> Entrades </a></li>
+            <li><a href="{{ url('administracio/entrada/llistat') }}"><i class="fa fa-circle-o"></i> Totes les Entrades </a></li>
           </ul>
         </li>
  <!-- APARTADO CATEGORIAS -->
@@ -178,7 +168,7 @@
           </a>
           <ul class="treeview-menu">
             <li><a href="{{ url('/administracio/categoria/nova') }}"><i class="fa fa-circle-o"></i> Nova Categoria</a></li>
-            <!--<li><a href="{{ url('/administracio/categoria/editar') }}"><i class="fa fa-circle-o"></i> Editar Categoria </a></li>-->
+            <!--<li><a href="{{ url('/administracio/entitat/editar') }}"><i class="fa fa-circle-o"></i> Editar Categoria </a></li>-->
             <li><a href="{{ url('/administracio/categoria/llistat') }}"><i class="fa fa-circle-o"></i> Totes Les Categories</a></li>
           </ul>
         </li>
@@ -208,15 +198,11 @@
                  </a>
                  <ul class="treeview-menu">
                    <li><a href="{{ url('administracio/entitats/nova') }}"><i class="fa fa-circle-o"></i> Nova entitat</a></li>
-                   <li><a href="#"><i class="fa fa-circle-o"></i> Totes les entitats</a></li>
+                   <li><a href="{{ url('administracio/entitats/totes') }}"><i class="fa fa-circle-o"></i> Totes les entitats</a></li>
                  </ul>
                </li>
  <!-- APARTADO MENUS -->
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-edit"></i> <span>MENÚS</span>
-          </a>
-        </li>
+
  <!-- APARTADO USUARIOS -->
         <li class="treeview">
           <a>
@@ -226,8 +212,8 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="pages/forms/general.html"><i class="fa fa-circle-o"></i> Afegir Usuaris</a></li>
-            <li><a href="pages/tables/data.html"><i class="fa fa-circle-o"></i> El Meu Perfil</a></li>
+            <li><a href="{{ url('/register') }}"><i class="fa fa-circle-o"></i> Afegir Administrador</a></li>
+            <li><a href="{{ url('/administracio/usuaris/llistat') }}"><i class="fa fa-circle-o"></i> Tots els usuaris</a></li>
           </ul>
         </li>
 
@@ -243,11 +229,6 @@
         </li>--->
 
 	 <!-- APARTADO CONFIGURACION  -->
-        <li>
-          <a href="pages/mailbox/mailbox.html">
-            <i class="fa fa-book"></i> <span>CONFIGURACIÓ</span>
-          </a>
-        </li>
 
       </ul>
     </section>
@@ -269,7 +250,40 @@
 
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
+    <ul class="slide_notificaciones">
+    <hr />
 
+    @if(isset($notificaciones)) @if(!empty($notificaciones))
+      @foreach($notificaciones as $notificacion)
+        @if($notificacion->titulo == '@reportePost')
+          <a href="{{url('/administracio/notificacio/' . $notificacion->id)}}">
+        @elseif($notificacion->contenido == '@novaentrada')
+          <a href="{{url('/administracio/entrada/nova/' . $notificacion->id_relacion)}}">
+        @else
+          <a href="{{url('/administracio/notificacio/' . $notificacion->id)}}">
+        @endif
+        <li >
+          @if($notificacion->titulo == '@reportePost')
+            Nou report rebut! <br />
+            Revisa'l per corretgir-lo
+          @elseif($notificacion->contenido == '@novaentrada')
+            Nova entrada rebuda! <br />
+            Revisa-la per publicar-la
+          @else
+            Nou missatge de contacte <br />
+            {{$notificacion->titulo}}
+          @endif
+          <br />
+          {{Carbon\Carbon::parse($notificacion->fecha)->format('d-m-Y H:i')}}
+          <hr />
+        </li>
+      </a>
+      @endforeach
+      <li>
+        <a href="{{url('/administracio/notificacions')}}">Veure més..</a>
+      </li>
+    </ul>
+    @endif @endif
   </aside>
 
   <div class="control-sidebar-bg"></div>

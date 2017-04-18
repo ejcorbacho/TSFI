@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Paginas;
+
+use App\Notificaciones;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Input;
@@ -13,29 +15,55 @@ use View;
 class bePaginasController extends Controller
 {
 
+  private $cImages;
+  private $mpaginas;
+  private $onotificaciones;
+
+
   public function __construct()
   {
     $this->middleware('auth');
     $this->mpaginas = new Paginas;
+    $this->cImages = new beImageController;
+    $this->onotificaciones = new Notificaciones;
   }
 
 
   public function mostrarPagina()
   {
-    return view('backend.bePaginas');
+    $notificaciones = $this->onotificaciones->leerTodas();
+    return view('backend.bePaginas', ['notificaciones'=>$notificaciones]);
   }
+
+  public function editarPagina($id)
+  {
+
+    $this->mpaginas->id = $id;
+    $paginas = $this->mpaginas->llegirContingut($id);
+    $notificaciones = $this->onotificaciones->leerTodas();
+
+    if(!is_null($paginas[0]->foto)){
+      $foto = $this->cImages->getOneImage($paginas[0]->foto);
+    } else {
+      $foto = NULL;
+    }
+
+    return view('backend.bePaginas',['data'=>$paginas, 'foto'=>$foto, 'notificaciones'=>$notificaciones]);
+  }
+
 
   public function mostrarTotes()
   {
-  
+
     $data = $this->mpaginas->llegirTotes();
-    return view('backend.beTotesPagines',['data'=>$data]);
+    $notificaciones = $this->onotificaciones->leerTodas();
+    return view('backend.beTotesPagines',['data'=>$data, 'notificaciones'=>$notificaciones]);
   }
-  
+
   public function eliminar()
   {
     $this->mpaginas->id = Input::get('id');
-    
+
     if ($this->mpaginas->eliminar()){
           $mensaje = "Pàgina Eliminada!";
         } else {
@@ -45,7 +73,8 @@ class bePaginasController extends Controller
         return json_encode($mensaje);
     return $mensaje;
   }
-  
+
+
   //Guardar datos del formulario en la BD
   public function guardarBD()
   {

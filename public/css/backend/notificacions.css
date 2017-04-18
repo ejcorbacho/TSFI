@@ -1,0 +1,12 @@
+.slide_notificaciones{
+  color: red;
+  list-style: none;
+}
+
+.slide_notificaciones a{
+  color: white;
+}
+
+.slide_notificaciones a:hover{
+  color: grey;
+}

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Notificaciones;
+
 use App\beAnalytics;
 
 class HomeController extends Controller
@@ -14,11 +16,13 @@ class HomeController extends Controller
 	 * @return void
 	 */
 	private $analytics;
+	private $onotificaciones;
 
 	public function __construct()
 	{
 		$this->middleware('auth');
 		$this->analytics = new beAnalytics;
+    $this->onotificaciones = new Notificaciones;
 	}
 
 	/**
@@ -27,7 +31,10 @@ class HomeController extends Controller
 	 * @return \Illuminate\Http\Response
 	 */
 	public function index(){
-		return view('backend.homeBack');
+
+    $notificaciones = $this->onotificaciones->leerTodas();
+
+		return view('backend.homeBack', ['notificaciones'=>$notificaciones]);
 	}
 
 	public function getNewUsersData() {

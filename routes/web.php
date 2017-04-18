@@ -44,13 +44,27 @@ Route::post('ajax/categories/transferirCategoria', 'beCategoriesController@trans
 // PAGINAS
 Route::get('paginas/pagina', 'fePaginasController@mostrarPagina');
 Route::get('administracio/pagines/nova', 'bePaginasController@mostrarPagina');
+Route::get('administracio/pagines/nova/{id}', 'bePaginasController@editarPagina');
 Route::get('administracio/pagines/llistat', 'bePaginasController@mostrarTotes');
 Route::get('pagines/{id}', 'feController@pagines');
+
+Route::get('enviaentrada', 'feEntradasController@mostrarpagina');
+Route::get('contacta', 'feContactaController@mostrarpagina');
 
 
 Route::get('administracio/entrada/nova/', array('uses' => 'EntradasController@makeEntrada')); //Mostrar formulario
 Route::get('administracio/entrada/nova/{id}', array('uses' => 'EntradasController@editarEntrada')); //Mostrar formulario
 Route::get('administracio/entrada/llistat', array('uses' => 'EntradasController@llistarEntradas')); //Mostrar listado de entradas
+Route::get('administracio/entrada/paperera', array('uses' => 'EntradasController@llistarEntradasPaperera')); //Mostrar listado de entradas
+
+/******** REPORTAR UN POST ***********/
+Route::get('/reportarPost/{id}', ['uses' =>'fereportarPost@mostrarCaptcha']);
+Route::post('/informarReporte', ['uses' =>'fereportarPost@informarReporte']);
+Route::post('/reportGuardar', ['uses' =>'fereportarPost@guardarReport']);
+
+/******** NOTIFICACIONES ***********/
+Route::get('administracio/notificacions', array('uses' => 'beNotificaciones@mostrarGrid')); //Mostrar formulario
+Route::get('/administracio/notificacio/{id}', array('uses' => 'beNotificaciones@veureNotificacio')); //Mostrar formulario
 
 //******* RUTAS AJAX ***********/
 Route::get('ajax/categories/llistaCategories', array('uses' => 'beCategoriesController@llistarCategoria')); //Mostrar formulario
@@ -60,15 +74,28 @@ Route::post('ajax/entradas/recargarEtiquetas', array('uses' => 'EntradasControll
 Route::post('ajax/entrades/ocultarEntrada', array('uses' => 'EntradasController@ocultarEntrada'));
 Route::post('ajax/pagines/eliminar', array('uses' => 'bePaginasController@eliminar'));
 Route::post('ajax/paginas/guardarPagina', array('uses' => 'bePaginasController@guardarBD'));  //Guardar entrada
+Route::post('ajax/entrades/restaurarEntrada', array('uses' => 'EntradasController@restaurarEntrada'));  //Guardar entrada
 
+Route::post('informarContenido', array('uses' => 'feEntradasController@aceptarCaptcha'));  //Guardar entrada FRONTEND
+Route::post('entradaGuardada', array('uses' => 'feEntradasController@guardarEntrada'));  //Guardar entrada FRONTEND
 
+Route::post('contactaGuardat', array('uses' => 'feContactaController@guardarContacta'));  //Guardar entrada FRONTEND
+
+/********************* usuari ****************/
+Route::get('administracio/usuaris/llistat', 'beUsuarisController@mostrarLlistat');
+Route::post('ajax/usuaris/eliminar', 'beUsuarisController@eliminarUsuari');
 
 /***** entitats *****/
 
 Route::get('administracio/entitats/nova', 'beEntitatsController@NovaEntitat');
+Route::get('administracio/entitats/totes', array('uses' => 'beEntitatsController@totesEntitats'));
+Route::get('administracio/entitats/editar/{id}', array('uses' => 'beEntitatsController@editarEntitat')); //Mostrar formulario
 Route::get('ajax/entitat/guardarEntitat', array('uses' => 'beEntitatsController@guardarNovaEntitat'));
+Route::post('ajax/entitat/actualitzarEntitat', 'beEntitatsController@actualitzarEntitat');
 Route::get('ajax/entitat/llistatEntitats', array('uses' => 'beEntitatsController@llistarEnitats'));
+Route::post('ajax/entitat/eliminarEntitat', array('uses' => 'beEntitatsController@eliminarEntitat'));
 Route::get('ajax/entitat/TresEntitats', array('uses' => 'feController@TresEnitats'));
+
 /***entitats footer ***/
 Route::get('ajax/entitat/EntitatsFooter', array('uses' => 'feController@FooterEntitats'));
 

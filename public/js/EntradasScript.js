@@ -1,6 +1,6 @@
 //************* DECLARAR VARIABLES             ******************//
 var enviar = false;
-var maximoResumen = 500; /* CARACTERES MAXIMOS DE RESUMEN */
+var maximoResumen = 200; /* CARACTERES MAXIMOS DE RESUMEN */
 var maximoTitulo = 60; /* CARACTERES MAXIMOS DE TITULO */
 var maximoSubtitulo = 120; /* CARACTERES MAXIMOS DE SUBTITULO */
 var maximoContenido = 0; /* CARACTERES MAXIMOS DE CONTENIDO */
@@ -128,10 +128,8 @@ $( document ).ready(function() {
           $('#idBD' ).val(data); /* GUARDAMOS LA ID DE LA BD EN EL FORMULARIO */
           cargaTodasEtiquetasBD(data);
           showSuccessAlert('Desat!');
-
         },
         error: function(xhr, desc, err) {
-
           showErrorAlert('Error al guardar!');
         }
     });
@@ -212,13 +210,12 @@ function validarSubtitulo() {
 }
 
 function validarContenido() {
-  var longitud = getStats('contingut').chars;
-  if(longitud > 0){
-    hayContenido = true;
-  } else {
-    hayContenido = false;
-  }
-
+    var longitud = getStats('contingut').chars;
+    if(longitud > 0){
+        hayContenido = true;
+    } else {
+        hayContenido = false;
+    }
 }
 
 function validarTodoVacio(){

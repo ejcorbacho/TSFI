@@ -5,6 +5,7 @@ use App\Categories;
 use App\Entradas;
 use App\beEtiquetas;
 use App\beEntitats;
+use App\Notificaciones;
 use App\beAnalytics;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
@@ -16,6 +17,7 @@ class EntradasController extends Controller
 {
   private $mentradas; //* MODEL ENTRADAS **/
   private $ocategorias;
+  private $onotificaciones;
   private $categorias;
   private $etiquetas;
   private $oetiquetas;
@@ -33,16 +35,17 @@ class EntradasController extends Controller
     $this->cImages = new beImageController;
     $this->oanalytics = new beAnalytics;
     $this->mentitats = new beEntitats;
+    $this->onotificaciones = new Notificaciones;
   }
 
   //Mostrar formulario para crear client
   public function makeEntrada()
   {
-      $categorias = $this->categoriaMarcada('-1');
+    $categorias = $this->categoriaMarcada('-1');
     $etiquetas = $this->etiquetaMarcada('-1');
     $entitats = $this->entidadMarcada('-1');
-
-    return view('backend.Entradas',['categorias'=>$categorias, 'etiquetas'=>$etiquetas, 'entitats'=>$entitats]);
+    $notificaciones = $this->onotificaciones->leerTodas();
+    return view('backend.Entradas',['categorias'=>$categorias, 'etiquetas'=>$etiquetas, 'entitats'=>$entitats, 'notificaciones'=>$notificaciones]);
   }
 
   //Guardar datos del formulario en la BD
@@ -56,6 +59,7 @@ class EntradasController extends Controller
       /* TRATAMOS EL CONTENIDO DEL POST */
 
       $this->mentradas->titulo = Input::get('titulo');
+      $tituloNot = Input::get('titulo');
       $this->mentradas->subtitulo = Input::get('subtitulo');
       $this->mentradas->resumen_largo = Input::get('resum');
       $this->mentradas->contenido = Input::get('contingut');
@@ -78,8 +82,10 @@ class EntradasController extends Controller
       if(Input::get('visible') == null)
       {
         $this->mentradas->visible = 0;
+        $visibleNot = false;
       } else {
         $this->mentradas->visible = Input::get('visible');
+        $visibleNot = true;
       }
 
       $this->mentradas->publico = Input::get('publico');
@@ -115,10 +121,40 @@ class EntradasController extends Controller
           if($request == '-1'){
             abort(500);
           } else {
+            if($this->mentradas->notificar($idPostBd) && $visibleNot){
+
+              $datos_envio = $this->mentradas->notificarPublicacion($idPostBd);
+
+              $titulo = 'Post publicat';
+              $nombre = $datos_envio->nombre;
+
+              $asunto = 'La entrada ha estat publicada';
+              $contenido = 'Hola! La entrada ' . $tituloNot . ' ha estat publicada! <br /> Pots consultarlo a la nostra plana web.<br /> Aquest es un correu automàtic, si us plau, no el contestis.';
+
+              $destinatario = $datos_envio->mail;
+
+              $this->enviarMail($asunto, $contenido, $destinatario);
+
+              $this->mentradas->noNotificarEntradas($idPostBd);
+            }
             return $request;
           }
       }
 
+
+  }
+
+  public function enviarMail($asunto, $contenido, $destinatario){
+
+    //cabecera
+    $headers = "MIME-Version: 1.0\r\n";
+    $headers .= "Content-type: text/html; charset=iso-8859-1\r\n";
+    //dirección del remitente
+    $headers .= "From: TSFI < TSFI.no_reply >\r\n";
+    //Enviamos el mensaje a tu_dirección_email
+    $enviado = mail($destinatario,$asunto,$contenido,$headers);
+
+    return $enviado;
 
   }
 
@@ -168,7 +204,7 @@ class EntradasController extends Controller
   //comprobar si una categoria esta marcada o no
   public function categoriaMarcada($id){
      $todasCategorias = $this->ocategorias->llistarTotes()->toArray();
-     $categoriasMarcadas = $this->mentradas->leerEntidadesMarcadas($id);
+     $categoriasMarcadas = $this->mentradas->leerCategoriasMarcadas($id);
 
      $ACategoriasMarcadas = array();
      $categoriasConMarcado = array();
@@ -196,12 +232,12 @@ class EntradasController extends Controller
     $etiquetas = $this->etiquetaMarcada($id);
     $entitats = $this->entidadMarcada($id);
     if(!is_null($entradas[0]->foto)){
-      $foto = $this->cImages->getOneImge($entradas[0]->foto);
+      $foto = $this->cImages->getOneImage($entradas[0]->foto);
     } else {
       $foto = NULL;
     }
-
-    return view('backend.Entradas',['data'=>$entradas, 'categorias'=>$categorias, 'etiquetas'=>$etiquetas, 'entitats'=>$entitats, 'foto'=>$foto]);
+    $notificaciones = $this->onotificaciones->leerTodas();
+    return view('backend.Entradas',['data'=>$entradas, 'categorias'=>$categorias, 'notificaciones'=>$notificaciones, 'etiquetas'=>$etiquetas, 'entitats'=>$entitats, 'foto'=>$foto]);
   }
 
   public function recargarListadoEtiquetas(){
@@ -230,6 +266,20 @@ class EntradasController extends Controller
         }
         return json_encode($mensaje);
   }
+
+  public function restaurarEntrada()
+  {
+    $this->mentradas->id = Input::get('id');
+        //COMPOBAR SI ID ES NULL
+        if ($this->mentradas->restaurarEntrada()){
+          $mensaje = "Entrada Restaurada!";
+        } else {
+          $mensaje = "Error al restaurar!";
+          abort(500,"Error al restaurar!");
+        }
+        return json_encode($mensaje);
+  }
+
   //Listar las entradas guardados en la BD
   public function llistarEntradas()
   {
@@ -237,10 +287,20 @@ class EntradasController extends Controller
 
     foreach ($entradas as $post) {
         $postId = $post->id;
-        $views = $this->oanalytics->getPostViews($postId);
-        $post->views = $views[0];
+        // $views = $this->oanalytics->getPostViews($postId);
+        // $post->views = $views[0];
     }
+    $notificaciones = $this->onotificaciones->leerTodas();
 
-    return view('backend.beTotesEntrades',['data' => $entradas]);
+    return view('backend.beTotesEntrades',['data' => $entradas, 'notificaciones'=>$notificaciones]);
   }
+
+
+    public function llistarEntradasPaperera()
+    {
+      $entradas = $this->mentradas->leerTodasPapelera();
+      $notificaciones = $this->onotificaciones->leerTodas();
+
+      return view('backend.beTotesEntradesPaperera',['data'=> $entradas, 'notificaciones'=>$notificaciones]);
+    }
 }

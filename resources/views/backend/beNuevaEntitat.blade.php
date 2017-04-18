@@ -48,7 +48,7 @@
                     <label>Url de l'entitat</label>
                     <input type="text" class="form-control" id="url" name="url" placeholder="Inserta la URL de l'entitat" required>
                 </div>
-                
+
                 <div class="checkbox">
                     <label><input id="colab" type="checkbox" name="colab">Son Colaboradors</label>
                 </div>
@@ -57,7 +57,7 @@
                 <input id="mainImageInput" name="mainImage" type="hidden">
                 <a href="javascript:void(0);" data-toggle="modal" data-target="#imageSelectionModal">
                     <div id="mainImage">
-                        @if (!empty($data[0]->foto)) {!!html_entity_decode('img')!!} @endif
+
                     </div>
                 </a>
                 <a type="button" class="btn" data-toggle="modal" data-target="#imageSelectionModal">
@@ -66,6 +66,7 @@
                 <div class="box-footer">
                     <button type="submit" class="btn btn-primary">Desar</button>
                 </div>
+            </div>
         </form>
     </div>
 </section>

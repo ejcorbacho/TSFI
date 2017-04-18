@@ -14,18 +14,18 @@
 <script src="{{ asset('plugins/daterangepicker/daterangepicker.js') }}"></script>
 <link rel="stylesheet" href="{{ asset('plugins/daterangepicker/daterangepicker.css') }}">
 
-<!-- Càrrega d'arxius -->
-<script type="text/javascript" src="{{ asset('js/dropzone/dropzone.js') }}"></script>
-<script type="text/javascript" src="{{ asset('js/backend/dropzoneConfig.js') }}"></script>
-<link rel="stylesheet" href="{{ asset('css/dropzone/dropzone.css') }}">
-<link rel="stylesheet" href="{{ asset('css/image-picker/image-picker.css') }}">
-
 <script src="{{ asset('js/chosen.jquery.js') }}" type="text/javascript"></script>
 
 <script type="text/javascript" src="{{ asset('js/sol.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/EntradasScript.js') }}"></script>
 <script src="{{ asset('js/tinymce/tinymce/tinymce.dev.js') }}"></script>
 <script src="{{ asset('js/tinymceConfig.js') }}"></script>
+
+<!-- Càrrega d'arxius -->
+<script type="text/javascript" src="{{ asset('js/dropzone/dropzone.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/backend/dropzoneConfig.js') }}"></script>
+<link rel="stylesheet" href="{{ asset('css/dropzone/dropzone.css') }}">
+<link rel="stylesheet" href="{{ asset('css/image-picker/image-picker.css') }}">
 
 <!-- Image gallery -->
 <script src="{{ asset('js/image-picker/image-picker.js') }}"></script>
@@ -35,9 +35,15 @@
 <!-- Paginacio -->
 <script src="{{ asset('js/bootpag/bootpag.js') }}"></script>
 
+<!-- Recursos -->
 <link rel="stylesheet" href="{{ asset('css/backend/resources.css') }}">
 <script src="{{ asset('/js/backend/resources.js') }}"></script>
-<!-- Recursos -->
+
+<!-- Maps -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC8C2NIInthjdKLVEX0nrwh9OjmCd1JfOk&libraries=places" async defer></script>
+<script src="{{ asset('/js/backend/map.js') }}"></script>
+<link rel="stylesheet" href="{{ asset('css/backend/map.css') }}">
+
 <div class="">
       <!-- Main content -->
 
@@ -74,12 +80,12 @@
 
   				<div class="form-group">
 
-                      <input type="text" name="titulo" value="@if (!empty($data[0]->titulo)) {{ $data[0]->titulo }} @endif" id="titulo" class="form-control" placeholder="Introdueix el titol" onkeyup="validarFormulario()" />
+                      <input type="text" name="titulo" value="@if (!empty($data[0]->titulo)) {{$data[0]->titulo}} @endif" id="titulo" class="form-control" placeholder="Introdueix el titol" onkeyup="validarFormulario()" />
 
                   </div>
   				<div class="form-group">
 
-                    <input type="text" name="subtitulo" value="@if (!empty($data[0]->subtitulo)) {{ $data[0]->subtitulo  }} @endif" id="subtitulo" class="form-control" placeholder="Introdueix el subtitol" onkeyup="validarFormulario()" />
+                    <input type="text" name="subtitulo" value="@if (!empty($data[0]->subtitulo)) {{$data[0]->subtitulo}} @endif" id="subtitulo" class="form-control" placeholder="Introdueix el subtitol" onkeyup="validarFormulario()" />
                   </div>
                 </div>
 
@@ -171,13 +177,12 @@
                     <i class="fa fa-fw fa-arrows"></i><b>Prioritat</b><br />
                     <select id="prioritat" name="prioritat">
                       <option  @if (empty($data[0]->prioritat)) {{ ""  }} @elseif ($data[0]->prioritat == '1') {{ "selected=selected"}} @endif  value="1">Baixa</option>
-                      <option  @if (empty($data[0]->prioritat)) {{ "selected=selected"  }} @elseif ($data[0]->prioritat == '5') {{ "selected=selected"}} @endif value="5">Mitja </option>
-                      <option  @if (empty($data[0]->prioritat)) {{ ""  }} @elseif ($data[0]->prioritat == '10') {{ "selected=selected"}} @endif  value="10"> Alta </option>
+                      <option  @if (empty($data[0]->prioritat)) {{ "selected=selected"  }} @elseif ($data[0]->prioritat == '2') {{ "selected=selected"}} @endif value="2">Mitja </option>
+                      <option  @if (empty($data[0]->prioritat)) {{ ""  }} @elseif ($data[0]->prioritat == '3') {{ "selected=selected"}} @endif  value="3"> Alta </option>
                     </select>
                   </p>
                 </center>
                 <hr />
-        				<button type="button" class="btn btn-default pull-left" data-dismiss="modal">Vista previa</button>
         				<button type="submit" value="Guardar" class="btn btn-primary pull-right" />Guardar</button>
         			</div>
         		</div>
@@ -225,7 +230,7 @@
           </div>
   	<!-- END Categories -->
       <input type="hidden" value="" id="etiquetasNuevas" class="etiquetasNuevas" name="etiquetasNuevas" />
-  	  <div class="col-md-12 col-lg-3">
+  	  <div style="z-index:1;" class="col-md-12 col-lg-3">
   		<div class="example-modal">
               <div class="modal-content box">
                 <div class="modal-header">
@@ -234,7 +239,7 @@
   			  <div  class="modal-body">
             <div id="dropdown_etiquetas"  class="dropdown-container">
 
-                <select name="etiquetas_seleccionadas[]" id="selector_etiquetas" data-placeholder="Introdueix tags aqui" multiple class="chosen-select" tabindex="8">
+                <select name="etiquetas_seleccionadas[]" id="selector_etiquetas" data-placeholder="Introdueix tags aqui" multiple class="chosen-select" tabindex="8" >
                   @foreach($etiquetas as $etiqueta)
 
                     <option @if ($etiqueta['seleccionado'])) {{ 'selected'}} @endif  value="{{$etiqueta['id']}}">{{$etiqueta['nombre']}}</option>
@@ -261,10 +266,10 @@
                               </div>
                               <div class="modal-body">
                                   <div class="form-group ">
-                                      <input id="mainImageInput" name="mainImage" type="hidden">
+                                      <input id="mainImageInput" name="mainImage" value="@if(!empty($data[0]->foto)){{$data[0]->foto}}@endif" type="hidden">
                                       <a href="javascript:void(0);" data-toggle="modal" data-target="#imageSelectionModal">
                                           <div id="mainImage">
-                                              @if (!empty($data[0]->foto))<img class="image_picker_image" src="{{$foto[0]->url}}" alt="{{$foto[0]->alt}}" width="200"> @endif
+                                              @if (!empty($data[0]->foto))<img src="{{$foto[0]->url}}" alt="{{$foto[0]->alt}}" width="200"> @endif
                                           </div>
                                       </a>
                                       <a type="button" class="btn" data-toggle="modal" data-target="#imageSelectionModal">
@@ -275,7 +280,7 @@
                               </div>
                           </div>
                       </div>
-                  
+
 
 
 <!-- ***************** ESDEVENIMENTS *****************-->
@@ -293,7 +298,7 @@
         </center>
     </div>
 
-    
+
 	<div id="opciones_evento">
 
 		<div class="modal-body">
@@ -312,6 +317,9 @@
 			<center class="selector_publicado">
 				<i class="fa fa-fw fa-map-marker"></i><b>Localització</b>
 				<input type="text" name="localizacion" value="@if (!empty($data[0]->localizacion)) {{ $data[0]->localizacion }} @endif" id="localizacion" class="form-control" placeholder="Introdueix la localitzacio" />
+                <a type="button" class="btn" data-toggle="modal" data-target="#locationSelection">
+                    + Editar ubicació de l'event
+                </a>
 			</center>
 			<hr />
 		</div>
@@ -510,11 +518,36 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Tancar</button>
-                    <button id="insertResource" type="button" class="btn btn-primary">Desar</button>
                 </div>
             </div>
         </div>
     </div>
 <!-- END RESOURCE SELECTION MODAL -->
+
+<!-- START MAP MODAL -->
+    <div class="modal fade" id="locationSelection" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        Selecció d'ubicació
+                    </h4>
+                </div>
+                <div class="modal-body" style="height:500px">
+                    <input id="pac-input" class="controls" type="text" placeholder="Cerca">
+                    <div id="map">
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Tancar</button>
+                    <button id="setLocation" type="button" class="btn btn-primary">Desar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- END MAP MODAL -->
 </div>
 @endsection

@@ -3,7 +3,9 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
-
+//inserts:
+use Illuminate\Support\Facades\DB;
+use Illuminate\Foundation\Auth\RegistersUsers;
 class CreateTablesBd3 extends Migration
 {
     /**
@@ -55,8 +57,10 @@ class CreateTablesBd3 extends Migration
             $table->integer('relevancia');
             $table->datetime('data_publicacion')->nullable();
             $table->integer('esdeveniment');
+            $table->integer('visitas')->default(0);
             $table->datetime('fecha1')->nullable();
             $table->datetime('fecha2')->nullable();
+            $table->integer('notificar')->nullable()->unsigned();
             $table->integer('eliminado');
             $table->integer('usuario_publicador')->unsigned();
             $table->foreign('usuario_publicador')->references('id')->on('users');
@@ -68,11 +72,24 @@ class CreateTablesBd3 extends Migration
             $table->increments('id');
             $table->string('titulo', 200);
             $table->string('subtitulo', 200);
-            $table->string('contenido', 200);
+            $table->longText('contenido');
             $table->integer('foto')->nullable()->unsigned();
             $table->integer('usuario_publicador')->unsigned();
+            $table->tinyInteger('eliminado');
             $table->foreign('usuario_publicador')->references('id')->on('users');
             $table->foreign('foto')->references('id')->on('fotos');
+            $table->timestamps();
+        });
+
+        Schema::create('notificaciones', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('titulo', 200)->nullable();
+            $table->string('contenido', 200);
+            $table->string('mail', 200);
+            $table->string('nombre', 200);
+            $table->integer('visto');
+            $table->integer('id_relacion')->nullable();
+            $table->datetime('fecha');
             $table->timestamps();
         });
 
@@ -111,6 +128,7 @@ class CreateTablesBd3 extends Migration
             $table->string('nombre',200);
             $table->timestamps();
         });
+
         Schema::create('entradas_etiquetas', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('id_entrada')->unsigned();
@@ -125,11 +143,11 @@ class CreateTablesBd3 extends Migration
             $table->string('nombre',200);
             $table->integer('son_colaboradoras');
             $table->string('url',500);
+            $table->tinyInteger('eliminado');
             $table->integer('foto')->unsigned();
             $table->foreign('foto')->references('id')->on('fotos');
             $table->timestamps();
         });
-
 
         Schema::create('entradas_entidades', function (Blueprint $table) {
             $table->increments('id');
@@ -139,6 +157,36 @@ class CreateTablesBd3 extends Migration
             $table->foreign('id_entidad')->references('id')->on('entidades');
             $table->timestamps();
         });
+
+		Schema::create('rellevancia', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('valor');
+            $table->timestamps();
+        });
+        //Insert Data:
+        DB::table('users')->insert(
+        array(
+            'name' => 'Admin',
+            'email' => 'admin@tsfisds.com',
+            'password' => bcrypt('Tsfi2017')
+            )
+        );
+
+		DB::table('rellevancia')->insert(
+        array(
+            'valor' => '0',
+            )
+        );
+		DB::table('rellevancia')->insert(
+        array(
+            'valor' => '5',
+            )
+        );
+		DB::table('rellevancia')->insert(
+        array(
+            'valor' => '10',
+            )
+        );
 
     }
 

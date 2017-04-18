@@ -21,7 +21,7 @@ $(document).ready(function () {
 
             $('#modalConfirmacioEliminarPagina').modal('toggle');
             $('#modalConfirmacioEliminarPaginaContent').empty();
-            var html = '<p paginaId="' + id + '">Estas segur de que vols eliminar la entrada "' + $('tr[paginaId="' + id + '"]').children('.nomPagina').text() + '" ?</p>';
+            var html = '<p paginaId="' + id + '">Estas segur de que vols eliminar la pàgina "' + $('tr[paginaId="' + id + '"]').children('.nomPagina').text() + '" ?</p>';
             $('#modalConfirmacioEliminarPaginaContent').append(html);
             
         }

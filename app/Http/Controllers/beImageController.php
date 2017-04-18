@@ -4,12 +4,12 @@ namespace App\Http\Controllers;
 
 use App\beUploads;
 use Illuminate\Support\Facades\Input;
+use URL;
 
 class beImageController extends Controller {
     private $uploads;
 
     public function __construct() {
-        $this->middleware('auth');
         $this->uploads = new beUploads;
     }
 
@@ -26,7 +26,7 @@ class beImageController extends Controller {
     }
 
     public function getOneImage($imageId) {
-        return($this->uploads->getOneImage($imageId));
+        return($this->uploads->getOneImge($imageId));
     }
 
     public function getResourceList() {
@@ -77,7 +77,7 @@ class beImageController extends Controller {
     				$files[] = array(
     					"name" => $f,
     					"type" => "file",
-    					"path" => $dir . '/' . $f,
+    					"path" => URL::to('/') . '/' . $dir . '/' . $f,
     					"size" => filesize($dir . '/' . $f) // Gets the size of this file
     				);
     			}

@@ -5,9 +5,10 @@
 }
 
 img {
-  width:100px;
-  height:100px;
-  background: url(http://goo.gl/vyAs27) ;
+  background: url(http://shashgrewal.com/wp-content/uploads/2015/05/default-placeholder.png) no-repeat center center ;
+
+  background-size: cover;
+
 }
 
 #menu_superior{
@@ -47,13 +48,21 @@ img {
 
 #menu_superior #items_principales li a{
   text-decoration: none;
-  color: white;
+  color: orange;
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  opacity: 1;
 }
 
 #menu_superior #items_principales li a:hover{
-  color: rgb(223, 227, 229);
+  color: white;
+  transition: all 0.2s ease-in-out;
 }
-
+#items_principales{
+  flex-wrap: wrap;
+}
 #menu_superior #logotipo {
   display: flex;
   padding-left: 15px;
@@ -62,13 +71,47 @@ img {
   color: white;
   font-size: 40px;
 }
-
+.aluProfContainer{
+    color: white;
+    cursor: pointer;
+}
+.ULaluProf{
+    display: flex;
+    align-items: center;
+    height: 60px;
+    justify-content: center;
+    max-width: 100px;
+    margin-left: 10px !important;
+    margin-right: 10px !important;
+    flex-wrap: wrap;
+    font-family: Roboto,sans-serif;
+}
+.LIaluProf{
+  width: 100%;
+    margin-left: 5px !important;
+    margin-right: 5px !important;
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+}
+.LIaluProf:hover{
+    color: orange;
+    transition: all 0.2s ease-in-out;
+}
 #menu_superior #logotipo:hover {
-
+  text-decoration: none;
   transition: all 0.5s ease-in-out;
   color: orange;
 }
 
+#menu_superior #logotipo a:hover{
+  text-decoration: none;
+}
+
+.rowDeNavbar{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
 
 
 .dropdown-menu{
@@ -124,7 +167,7 @@ img {
 
 #componentes_buscador *{
   text-transform: uppercase;
-  margin-top: 18px;
+  /*margin-top: 18px;*/
   background-color: #424242;
   font-family: 'Oxygen', sans-serif;
   font-size: 14px;
@@ -132,11 +175,74 @@ img {
   color: white;
   border: solid 0px;
 }
+.resultadosDeBusqueda{
+    position: relative;
+    bottom: -100%;
 
+    width: 100%;
+
+}
+.resultadosDeBusquedaMobil{
+    position: relative;
+    bottom: -100%;
+    
+    width: 100%;
+
+}
+.resultadoDeBusqueda{
+  width: 100%;
+  padding: 15px !important;
+
+}
+.resultadoDeBusquedaMobil{
+  
+  text-decoration: none;
+  width: 100%;
+  padding: 15px !important;
+  text-decoration: none;
+  color:white;
+  font-size: 18px;
+  font-family: Roboto,sans-serif;
+  font-weight: 600;
+}
+.resultadoDeBusquedaMobil > h5{
+  font-size: 18px;
+  font-weight: 600;
+}
+.resultadoDeBusquedaMobil > a{
+  text-decoration: none;
+  color:white;
+  
+}
+.resultadoDeBusquedaMobil > a > h5{
+  font-size: 18px;
+  font-family: Roboto,sans-serif;
+  font-weight: 600;
+}
+.resultadoDeBusqueda > h5 > span{
+  font-size: 12px !important;
+
+}
+.hrBuscador{
+  border-color: white !important;
+  border-width: 1px !important;
+  margin: 0px;
+}
+.ulCategoriesBuscadorMobil{
+  list-style: none;
+}
+.ulCategoriesBuscadorMobil > li >a{
+  color: orange;
+  text-decoration: none;
+  font-size: 16px;
+  font-family: Roboto,sans-serif;
+  font-weight: 600;
+}
 
 #caja_buscador{
-  padding-left: 5px;
-  width: 260px;
+  padding: 15px;
+  width: 100%;
+  height: 100%;
   float:left;
   color: white;
 }
@@ -180,7 +286,7 @@ img {
 
 #contenido_menu_responsive {
   display: none;
-  background-color: rgba(0,0,0,0.95);
+  background-color: #424242 ;
   position: absolute;
   width: 100%;
   margin: 0px;
@@ -188,18 +294,20 @@ img {
   padding-bottom: 15px;
   min-width: 303px;
   z-index: 20;
+  
+  
 }
 
 .items_menu_responsive{
   min-width: 303px;
-  font-family: 'Oxygen', sans-serif;
   color: white;
   font-size: 16px;
   font-weight: bold;
   text-transform: uppercase;
+  font-family: Roboto,sans-serif;
+  font-weight: 600;
 
 }
-
 .item_menu_responsive{
   cursor: pointer;
   width: 45%;
@@ -232,7 +340,7 @@ img {
   font-size: 15px;
   border: solid 0px white;
   height: 35px;
-  width: 80%;
+  width: 100%;
   margin-left: 4px;
 }
 #buscador_responsive select {
@@ -316,4 +424,112 @@ footer {
 
     color:white;
     text-decoration: none;
+}
+/*--------Tags--------*/
+.tags {
+  list-style: none;
+  margin: 0;
+  overflow: hidden;
+  padding: 0;
+}
+
+.tags li {
+  float: left;
+}
+
+.tag {
+  background: orange !important;
+  border-radius: 3px 0 0 3px;
+  color: white;
+  display: inline-block;
+  height: 26px !important;
+  line-height: 26px;
+  padding: 0 20px 0 23px !important;
+  position: relative;
+  margin: 0 10px 10px 0;
+  text-decoration: none;
+  -webkit-transition: color 0.2s;
+}
+
+.tag::before {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: inset 0 1px rgba(0, 0, 0, 0.25);
+  content: '';
+  height: 6px !important;
+  left: 10px;
+  position: absolute;
+  width: 6px;
+  top: 10px;
+}
+
+.tag::after {
+  background: #fff;
+  border-bottom: 13px solid transparent !important;
+  border-left: 10px solid orange !important;
+  border-top: 13px solid transparent !important;
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.tagBuscador::after {
+  background: #424242 !important;
+}
+.tagBuscador {
+  margin: 4px !important;
+}
+.tagsBuscador{
+  margin-top: 45px !important;
+}
+
+
+.tag:hover {
+  background-color: #F2CB4B;
+  color: white;
+  text-decoration: none;
+}
+
+.tag:hover::after {
+   border-left-color: #F2CB4B;
+}
+.btn-o > a{
+  background-color: orange !important;
+}
+.cookiesMessage{
+  position: fixed;
+  bottom: 0px;
+  justify-content: center;
+  background-color: #424242;
+  color: white;
+  font-family: Montserrat,sans-serif;
+  width: 100%;
+  z-index: 9999;
+  display: none;
+}
+.cookiesMessage > p {
+  padding: 8px;
+  float: left;
+  margin-bottom: 0px;
+}
+.cookiesMessage > div{
+  background-color: orange;
+  margin: 8px;
+  float: left;
+  cursor: pointer;
+  padding: 2px;
+  
+}
+.fc-view{
+  z-index: 20 !important;
+}
+.rowDeNavbar a{
+  text-decoration: none !important;
+}
+
+.rowDeNavbar a:hover{
+  text-decoration: none !important;
+}
+.pagination{
+  float:right;
 }

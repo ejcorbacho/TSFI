@@ -4,33 +4,57 @@ body  {
  }
  .titol  {
          position:  absolute;
-         bottom:  -10px;
+         bottom:  0px;
          color:  white;
-         background:  black;
-         opacity:  0.7;
+         
+         background: rgba(54, 25, 25, .8);
          font-size:  35px;
-         padding:  25px 0 35px;
+         /*padding:  25px 0 35px;*/
+         display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+    
+
  }
  .categoria  {
          position:  absolute;
-         bottom:  72px;
+         top:  -40;
          color:  black;
          background:#fab23a;
          font-size:  22px;
-         padding:  5px;
+         padding: 8px;
  }
  .autor  {
-         position:  absolute;
-         bottom:  0;
+         margin-top:0px; 
          color:  white;
          font-size:  18px;
+         margin-right: 6px;
+         margin-left: 6px;
+ }
+ .autorContainer{
+     display: flex;
+    flex-direction: row;
+ }
+ .iconoXXSS{
+    font-size:20px;
+    
+    margin-top:8px;
+    color: orange;
+    cursor: pointer;
+ }
+  .iconoXXSS:hover{
+    color: #337ab7;
+	transition: all 0.5s ease-in-out;
  }
  main {
          padding-top:  30px;
          
  }
- article {       
-         
+ article > img{
+    
+
  }
  article p {
         color:black;
@@ -39,9 +63,9 @@ body  {
         margin-bottom:0px;
         display: -webkit-box;
         -webkit-box-orient: vertical;
-        -webkit-line-clamp:6;
         text-overflow: ellipsis;
         font-family: 'Montserrat', sans-serif;
+        word-wrap: break-word;
 }
  aside {
          background-color:  black;
@@ -51,7 +75,7 @@ body  {
 
 
 .postTitleContainer{
-    height: 35%;     
+    height: 48%;     
     overflow: hidden;     
     position: relative;     
     text-align: center;
@@ -76,7 +100,9 @@ body  {
 }
 .PostContent{
     padding: 22px;
-    
+}
+img{
+    max-width: 100% !important;
 }
 .PostLink:link{
     text-decoration: none;
@@ -138,16 +164,18 @@ body  {
     margin-bottom: 5px;
     float:left;
     border-style: solid;
-    border-width: 2px;
-    border-color:black;
+    border-width: 0px;
+    border-color:#D6D6D6;
 }
 .sidebarLink > img{
     width: 100%;
     height: 100%;
     float:left;
+    object-fit: cover;
 }
 .sidebarPost{
     width: 100%;
+    height: 150px;
     margin-top: 10px;
     margin-bottom: 10px;
     position: relative;
@@ -155,30 +183,32 @@ body  {
 .sidebarPostImg{
     width: 100%;
     object-fit: cover;
+    height: 100%;
 }
 .sidebarPostTitle{
-    height: 16%;
     margin-left: 10%;
     width: 80%;
     opacity: 60;
-    background-color:#3DC2E1;
     position: absolute;
-    bottom: 25%;
+    bottom: 5%;
     z-index: 1;
     object-fit: contain;
-    font-size: 2.9em;
+    font-size: 4.5vw;
     font-weight: bold;
     text-align: center;
     color: white;
+    font-family: 'Raleway', sans-serif;
 }
 .sidebarPostTitle > p{
-    background-color:#3DC2E1;
+    background-color: rgba(54, 25, 25, .8);
     overflow: hidden;
+    padding:4px;
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp:2;
     text-overflow: ellipsis;
+    font-family: 'Raleway', sans-serif;
 }
 @media (min-width: 992px) {
-    .sidebarPostTitle{font-size: 1.2em;height: 32px;}
+    .sidebarPostTitle{font-size: 1.2em;}
 }

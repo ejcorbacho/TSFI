@@ -105,5 +105,5 @@ function validarTwitter() {
     var longitud = $(".inputTwitter").val().length;
     var restant = 140 - longitud;
     $(".charactersLeftTwitter ").empty();
-    $(".charactersLeftTwitter ").append("queden " + restant);
+    $(".charactersLeftTwitter ").append("Queden " + restant + " caràcters.");
 }

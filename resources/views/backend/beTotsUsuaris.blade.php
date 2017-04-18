@@ -46,9 +46,9 @@
 
 
 
-                <div class="btn-group">
+                <!--<div class="btn-group">
                   <a href="{{url('administracio/entrada/llistat')}}"><button type="button" class="btn btn-default btn-sm"><i class="fa fa-arrow-left"></i> Torna entrades</button></a>
-                </div>
+                </div>-->
                 <!-- /.pull-right -->
               </div>
                   <table id="taulaDePosts" class="table table-hover table-striped">

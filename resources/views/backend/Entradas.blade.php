@@ -303,7 +303,7 @@
 
 		<div class="modal-body">
 			<center class="selector_publicado">
-				<i class="fa fa-fw fa-calendar-times-o"></i><b>Data del esdeveniment</b>
+				<b><i class="fa fa-fw fa-calendar-times-o"></i>Data del esdeveniment</b>
 				<div class="input-group date">
 					<div class="input-group-addon">
 						<i class="fa fa-calendar"></i>
@@ -315,7 +315,7 @@
 		</div>
 		<div class="modal-body">
 			<center class="selector_publicado">
-				<i class="fa fa-fw fa-map-marker"></i><b>Localització</b>
+				<b><i class="fa fa-fw fa-map-marker"></i>Localització</b>
 				<input type="text" name="localizacion" value="@if (!empty($data[0]->localizacion)) {{ $data[0]->localizacion }} @endif" id="localizacion" class="form-control" placeholder="Introdueix la localitzacio" />
                 <a type="button" class="btn" data-toggle="modal" data-target="#locationSelection">
                     + Editar ubicació de l'event

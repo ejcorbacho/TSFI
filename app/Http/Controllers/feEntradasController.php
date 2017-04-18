@@ -90,6 +90,7 @@ class feEntradasController extends Controller {
           $this->mentradas->subtitulo = Input::get('subtitulo');
           $this->mentradas->resumen_largo = Input::get('resum');
           $this->mentradas->contenido = Input::get('contingut');
+          $this->mentradas->imagen = Input::get('mainImage');
           $this->mentradas->nom = Input::get('nom');
           $this->mentradas->email = Input::get('email');
 

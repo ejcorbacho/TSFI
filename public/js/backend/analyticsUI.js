@@ -228,8 +228,8 @@ function drawGenderChart (data) {
 
     var genderChartData = {
         labels: [
-            "Femení",
-            "Masculí"
+            "Masculí",
+            "Femení"
         ],
         datasets: [
             {

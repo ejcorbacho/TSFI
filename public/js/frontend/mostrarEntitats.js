@@ -18,7 +18,7 @@ function mostrarEntitats(data) {
         var div = document.getElementById('entitatsColaboradores');
         var html;
         console.log(data.length);
-        div.innerHTML = '<h2>Entitats Colaboradores</h2>';
+        div.innerHTML = '<h2>Entitats Col·laboradores</h2>';
         for (var index = 0; index < data.length; index++) {
             html = div.innerHTML;
             div.innerHTML = html + '<a href="' + data[index].url + '"><div style="height:85px;" class="sidebarPost"><img class="sidebarPostImg" src="' + data[index].fotoentidad + '"></div></a>';

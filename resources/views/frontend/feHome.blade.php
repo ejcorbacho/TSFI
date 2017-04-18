@@ -22,7 +22,6 @@
           <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
           <link href="{{ asset('fullcalendar-3.2.0/fullcalendar.min.css')}}" rel='stylesheet' />
           <link href="{{ asset('fullcalendar-3.2.0/fullcalendar.print.min.css')}}" rel='stylesheet' media='print' />
-          <link href="{{ asset('/css/calendar.css')}}" rel="stylesheet" >
 
           <!-- Missatge de cookies -->
       </head>

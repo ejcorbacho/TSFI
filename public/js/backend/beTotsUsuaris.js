@@ -37,7 +37,7 @@ $(document).ready(function () {
             success: function (data) {
                 console.log(data);
                 if (data != 0) {
-                    showSuccessAlert(data);
+                    showSuccessAlert('Usuari eliminat!');
                     $(e).closest('.modal').modal('hide');
                     setTimeout(location.reload.bind(location), 1000);
                 }

@@ -189,6 +189,7 @@ class Entradas extends Model
         'subtitulo'=> $this->subtitulo,
         'resumen_largo'=> $this->resumen_largo,
         'contenido'=>  $this->contenido,
+        'foto'=> $this->imagen,
         'visible'=> '0',
         'publico'=> '0',
         'relevancia'=> '5',
